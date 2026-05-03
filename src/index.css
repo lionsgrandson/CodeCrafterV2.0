@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-headline: "Lexend", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary: #94442e;
+  --color-primary-container: #b35c44;
+  --color-secondary: #595e69;
+  --color-tertiary: #00685d;
+  
+  --color-surface: #fbf9f4;
+  --color-surface-container-low: #f5f3ee;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-high: #eae8e3;
+  --color-surface-container-highest: #e4e2dd;
+  
+  --color-on-surface: #1b1c19;
+  --color-on-surface-variant: #55433e;
+  
+  --color-outline-variant: #dbc1ba;
+  
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-sans antialiased selection:bg-primary-container selection:text-white;
+  }
+}
+
+.glass-nav {
+  @apply backdrop-blur-[20px] bg-surface/80;
+}
+
+.bg-primary-gradient {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-container) 100%);
+}
+
+.text-editorial-hero {
+  @apply font-headline font-extrabold tracking-tighter leading-[1.1];
+}
+
+@theme {
+  --font-headline: "Lexend", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary: #94442e;
+  --color-primary-container: #b35c44;
+  --color-secondary: #595e69;
+  --color-tertiary: #00685d;
+  
+  --color-surface: #fbf9f4;
+  --color-surface-container-low: #f5f3ee;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-high: #eae8e3;
+  --color-surface-container-highest: #e4e2dd;
+  
+  --color-on-surface: #1b1c19;
+  --color-on-surface-variant: #55433e;
+  
+  --color-outline-variant: #dbc1ba;
+  
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-sans antialiased selection:bg-primary-container selection:text-white;
+  }
+}
+
+.glass-nav {
+  @apply backdrop-blur-[20px] bg-surface/80;
+}
+
+.bg-primary-gradient {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-container) 100%);
+}
+
+.text-editorial-hero {
+  @apply font-headline font-extrabold tracking-tighter leading-[1.1];
+}
