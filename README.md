@@ -1,20 +1,55 @@
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+  <h1>CodeCrafter V2.0</h1>
+  <p><strong>Crafting Code. Crafting Solutions.</strong></p>
 </div>
 
-# Run and deploy your AI Studio app
+## About CodeCrafter V2.0
 
-This contains everything you need to run your app locally.
+CodeCrafter V2.0 is the next evolution of the CodeCrafter experience. This version is built to showcase a polished modern portfolio website powered by a fast Vite/React stack, designed for developers, creators, and small teams who want a clean, responsive presentation of their skills, services, and projects.
 
-View your app in AI Studio: https://ai.studio/apps/9beced80-eecc-4644-a669-818b2b836146
+### What it does
 
-## Run Locally
+- Presents a strong, branded portfolio homepage with modern styling
+- Highlights key services, featured work, and professional offerings
+- Enables fast local development with Vite and a lightweight React setup
+- Supports easy updates so your portfolio stays current and flexible
 
-**Prerequisites:**  Node.js
+### Why this version exists
 
+CodeCrafter V2.0 is about moving beyond a basic template and into a refined digital identity. It is designed to:
+
+- Improve the user experience with a polished brand voice
+- Make content easy to manage and showcase
+- Offer a faster, more modern development workflow
+- Help you present your capabilities clearly to clients, employers, and collaborators
+
+## Project structure
+
+- `src/main.tsx` — application entry point
+- `src/App.tsx` — top-level app layout
+- `src/components/` — reusable page sections like Hero, Services, Portfolio, and Footer
+- `src/index.css` — global styling
+
+## Run locally
+
+**Prerequisites:** Node.js
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. Start the development server:
    `npm run dev`
+3. Open the local URL shown in your terminal to preview CodeCrafter V2.0
+
+## Customize your site
+
+- Edit content in `src/components/Hero.tsx`, `Services.tsx`, and `Portfolio.tsx`
+- Update branding, copy, and visuals to match your personal or business identity
+- Add new sections or portfolio items to grow the site with your work
+
+## Build for production
+
+Run:
+
+`npm run build`
+
+Then serve the `dist` folder with any static hosting provider.
