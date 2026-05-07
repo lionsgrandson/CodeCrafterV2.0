@@ -19,14 +19,16 @@ export function Services() {
       desc: t.services.items[1].desc,
       icon: Users,
       color: 'bg-secondary text-white',
-      span: 'md:col-span-4'
+      span: 'md:col-span-4',
+      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800'
     },
     {
       title: t.services.items[2].title,
       desc: t.services.items[2].desc,
       icon: Zap,
       color: 'bg-tertiary text-white',
-      span: 'md:col-span-4'
+      span: 'md:col-span-4',
+      image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800'
     },
     {
       title: t.services.items[3].title,
@@ -34,14 +36,15 @@ export function Services() {
       icon: Search,
       color: 'bg-surface-container-highest text-on-surface',
       span: 'md:col-span-8',
-      image: 'https://images.unsplash.com/photo-1551288049-bbda64626d5b?auto=format&fit=crop&q=80&w=800'
+      image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=900'
     },
     {
       title: t.services.items[4].title,
       desc: t.services.items[4].desc,
       icon: ShieldAlert,
       color: 'bg-on-surface text-surface',
-      span: 'md:col-span-12'
+      span: 'md:col-span-12',
+      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=1200'
     }
   ];
 
@@ -72,8 +75,7 @@ export function Services() {
                   <h3 className="text-2xl font-bold mb-4 font-headline text-on-surface">{service.title}</h3>
                   <p className="text-secondary font-light leading-relaxed max-w-md">{service.desc}</p>
                 </div>
-                {service.image && (
-                   <div className="mt-8 overflow-hidden rounded-lg aspect-[21/9] hidden md:block">
+                <div className={`${service.span === 'md:col-span-12' ? 'mt-8 md:mt-0 md:w-[42%]' : 'mt-8'} overflow-hidden rounded-lg aspect-[21/9]`}>
                     <img 
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90" 
                       src={service.image} 
@@ -82,7 +84,6 @@ export function Services() {
                       referrerPolicy="no-referrer"
                     />
                   </div>
-                )}
               </div>
             </motion.div>
           ))}

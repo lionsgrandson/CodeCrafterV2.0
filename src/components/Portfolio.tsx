@@ -4,16 +4,18 @@ import { useLanguage } from '../App';
 
 export function Portfolio() {
   const { t } = useLanguage();
+  const projectImages = [
+    'https://gxgtkdshctfclpmavgbp.supabase.co/storage/v1/object/public/project-images/uploads/1759489369256-lxc88q.png',
+    'https://www.ykadosh.co.il/assets/yuvalLogo.png',
+    'https://rainbowasdv2.netlify.app/assets/LogoWithText-CcLxZipc.png',
+    'https://chicagotraumatherapy.com/assets/blueLogo-DrhddtD2.png',
+    'https://sumsup.co/assets/sumsup-logo-RXncwyPE.png',
+    'https://mosheschwartzberg.com/amitStarProject/assets/outofthelines-DhXC0Cmr.jpeg',
+  ];
+
   const projects = t.portfolio.projects.map((project, idx) => ({
     ...project,
-    img: [
-      'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&q=80&w=800', // Furniture/Mahogony
-      'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800', // Lecture/Yuval
-      'https://images.unsplash.com/photo-1594608661623-aa0bd3a07d9d?auto=format&fit=crop&q=80&w=800', // Rainbow/Autism
-      'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800', // Therapy
-      'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800', // Tax
-      'https://images.unsplash.com/photo-1541462608141-ad4d157ee921?auto=format&fit=crop&q=80&w=800', // Creative Portfolio
-    ][idx % 6]
+    img: projectImages[idx % projectImages.length],
   }));
 
   return (
@@ -34,9 +36,9 @@ export function Portfolio() {
               viewport={{ once: true }}
               className="bg-surface-container-lowest rounded-xl overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-500 border border-outline-variant/10 flex flex-col h-full"
             >
-              <div className="aspect-video relative overflow-hidden">
+              <div className="aspect-video relative overflow-hidden bg-surface-container-high">
                 <img 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 brightness-90 group-hover:brightness-100" 
+                  className="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-700" 
                   src={project.img} 
                   alt={project.title}
                   loading="lazy"
@@ -47,15 +49,8 @@ export function Portfolio() {
                 </div>
               </div>
               <div className="p-6 flex-1 flex flex-col justify-between">
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-[10px] uppercase font-bold text-secondary mb-1 tracking-widest opacity-60">{t.portfolio.before}</p>
-                    <p className="text-on-surface/70 text-sm font-light leading-snug">{project.before}</p>
-                  </div>
-                  <div className="border-t border-outline-variant/20 pt-4">
-                    <p className="text-[10px] uppercase font-bold text-primary mb-1 tracking-widest">{t.portfolio.after}</p>
-                    <p className="text-on-surface font-bold text-sm tracking-tight leading-snug">{project.after}</p>
-                  </div>
+                <div>
+                  <p className="text-on-surface-variant text-sm font-light leading-relaxed">{project.desc}</p>
                 </div>
               </div>
             </motion.a>
@@ -68,33 +63,16 @@ export function Portfolio() {
 
 export function Testimonials() {
   const { t } = useLanguage();
-  const reviews = [
-    {
-      name: t.testimonials.items[0].name,
-      role: t.testimonials.items[0].role,
-      text: t.testimonials.items[0].text,
-      avatar: 'https://i.pravatar.cc/150?u=mark',
-    },
-    {
-      name: t.testimonials.items[1].name,
-      role: t.testimonials.items[1].role,
-      text: t.testimonials.items[1].text,
-      avatar: 'https://i.pravatar.cc/150?u=sarah',
-      featured: true,
-    },
-    {
-      name: t.testimonials.items[2].name,
-      role: t.testimonials.items[2].role,
-      text: t.testimonials.items[2].text,
-      avatar: 'https://i.pravatar.cc/150?u=david',
-    },
-  ];
+  const reviews = t.testimonials.items.map((review, idx) => ({
+    ...review,
+    featured: idx === 0,
+  }));
 
   return (
     <section className="py-24 px-6 md:px-8 bg-surface" id="testimonials">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center tracking-tight font-headline text-on-surface">{t.testimonials.headline}</h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {reviews.map((review, idx) => (
             <motion.div 
               key={idx}
@@ -113,8 +91,8 @@ export function Testimonials() {
                 {review.text}
               </p>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full overflow-hidden bg-primary/20 ring-2 ring-primary/10">
-                  <img className="w-full h-full object-cover" src={review.avatar} alt={review.name} loading="lazy" referrerPolicy="no-referrer" />
+                <div className="w-12 h-12 rounded-full bg-primary/10 text-primary ring-2 ring-primary/10 flex items-center justify-center font-headline font-bold">
+                  {review.name.charAt(0)}
                 </div>
                 <div>
                   <p className="font-bold text-on-surface font-headline tracking-tight">{review.name}</p>

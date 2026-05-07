@@ -55,7 +55,7 @@ export function WhyWorkWithMe() {
           >
             <img 
               className="w-full h-full object-cover grayscale brightness-90 contrast-125 transition-all duration-700" 
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1000" 
+              src="https://mosheschwartzberg.com/imgs/2bc27d9b-60cd-4633-beb8-9c307636b359.jpg" 
               alt={t.why.alt}
               loading="lazy"
               referrerPolicy="no-referrer"
