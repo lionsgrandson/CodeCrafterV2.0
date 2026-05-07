@@ -47,7 +47,7 @@ export function Services() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 text-center md:text-left max-w-3xl">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight font-headline text-on-surface">The Problem-Solver Service Grid</h2>
-          <p className="text-secondary text-lg">You don’t need a vendor. You need a partner who fixes the leaks and builds systems that actually work.</p>
+          <p className="text-secondary text-lg">You don’t need a contractor. You need a partner who fixes the leaks and builds systems that actually work.</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">

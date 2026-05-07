@@ -52,9 +52,9 @@ export function WhyWorkWithMe() {
             className="w-full aspect-[4/5] bg-primary/20 rounded-2xl relative overflow-hidden ring-1 ring-white/10"
           >
             <img 
-              className="w-full h-full object-cover grayscale brightness-90 hover:grayscale-0 transition-all duration-700" 
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000" 
-              alt="Strategic planning session"
+              className="w-full h-full object-cover grayscale brightness-90 contrast-125 transition-all duration-700" 
+              src="https://images.unsplash.com/photo-1590086782957-93c06ef21604?auto=format&fit=crop&q=80&w=1000" 
+              alt="Moshe Schwartzberg - Digital Architect"
               referrerPolicy="no-referrer"
             />
           </motion.div>
@@ -69,7 +69,7 @@ export function FinalCTA() {
     <section className="py-24 px-6 md:px-8 bg-surface-container-low">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight font-headline text-on-surface">Built Around Your Business</h2>
-        <p className="text-secondary text-lg mb-12 font-light">No fixed packages. No useless features. We build exactly what you need. Price points typically start from a foundational setup focused on immediate ROI.</p>
+        <p className="text-secondary text-lg mb-12 font-light">We provide custom solutions tailored to your unique requirements, focusing on delivering tangible results and maximum value for your business.</p>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

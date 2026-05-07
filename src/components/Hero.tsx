@@ -59,10 +59,7 @@ export function Hero() {
               Message on WhatsApp
             </button>
           </div>
-          <div className="mt-8 flex items-center gap-2 text-sm text-secondary font-medium">
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-            Lead: Moshe Schwartzberg
-          </div>
+
         </motion.div>
         
         <motion.div 
