@@ -1,6 +1,8 @@
+import { type FormEvent, useState } from 'react';
 import { motion } from 'motion/react';
-import { Check, MessageSquare, Globe, Shield, Verified } from 'lucide-react';
+import { Check, MessageSquare, Globe, Shield, Verified, Mail, Phone } from 'lucide-react';
 import { useLanguage } from '../App';
+import { contact, getWhatsAppUrl } from '../lib/contact';
 
 export function WhyWorkWithMe() {
   const { t } = useLanguage();
@@ -69,9 +71,48 @@ export function WhyWorkWithMe() {
 }
 
 export function FinalCTA() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const copy = lang === 'he'
+    ? {
+        name: 'שם',
+        email: 'אימייל',
+        phone: 'טלפון',
+        message: 'ספרו לי בקצרה על הפרויקט',
+        success: 'ההודעה נשלחה. אחזור אליכם בהקדם.',
+        error: 'משהו השתבש בשליחה. אפשר לנסות שוב או לשלוח WhatsApp.',
+      }
+    : {
+        name: 'Name',
+        email: 'Email',
+        phone: 'Phone',
+        message: 'Tell me briefly about the project',
+        success: 'Message sent. I will get back to you soon.',
+        error: 'Something went wrong. Try again or message me on WhatsApp.',
+      };
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus('sending');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+
+      if (!response.ok) throw new Error('Contact request failed');
+      setStatus('sent');
+      setForm({ name: '', email: '', phone: '', message: '' });
+    } catch {
+      setStatus('error');
+    }
+  }
+
   return (
-    <section className="py-24 px-6 md:px-8 bg-surface-container-low">
+    <section className="py-24 px-6 md:px-8 bg-surface-container-low" id="contact">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight font-headline text-on-surface">{t.cta.headline}</h2>
         <p className="text-secondary text-lg mb-12 font-light">{t.cta.subline}</p>
@@ -86,15 +127,57 @@ export function FinalCTA() {
           </div>
           <h3 className="text-3xl md:text-4xl font-bold mb-4 font-headline text-on-surface">{t.cta.cardTitle}</h3>
           <p className="text-secondary text-lg mb-10 font-light">{t.cta.cardSubline}</p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center relative z-10">
-            <button className="bg-primary-gradient text-white px-10 py-5 rounded-lg font-headline font-bold text-xl shadow-lg hover:shadow-primary/30 transition-all active:scale-95 text-center">
-              {t.cta.primary}
-            </button>
-            <button className="bg-surface-container text-primary px-10 py-5 rounded-lg font-headline font-bold text-xl flex items-center justify-center gap-3 hover:bg-surface-container-high transition-all active:scale-95 border border-primary/10">
-              <MessageSquare className="w-6 h-6 fill-current" />
-              {t.cta.secondary}
-            </button>
-          </div>
+          <form onSubmit={handleSubmit} className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-4 text-start">
+            <input
+              value={form.name}
+              onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
+              required
+              placeholder={copy.name}
+              className="w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-4 text-on-surface outline-none transition focus:border-primary"
+            />
+            <input
+              type="email"
+              value={form.email}
+              onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
+              required
+              placeholder={copy.email}
+              className="w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-4 text-on-surface outline-none transition focus:border-primary"
+            />
+            <input
+              value={form.phone}
+              onChange={(event) => setForm((current) => ({ ...current, phone: event.target.value }))}
+              placeholder={copy.phone}
+              className="w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-4 text-on-surface outline-none transition focus:border-primary md:col-span-2"
+            />
+            <textarea
+              value={form.message}
+              onChange={(event) => setForm((current) => ({ ...current, message: event.target.value }))}
+              required
+              placeholder={copy.message}
+              rows={5}
+              className="w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-4 text-on-surface outline-none transition focus:border-primary md:col-span-2 resize-none"
+            />
+            {status === 'sent' && <p className="text-sm font-medium text-tertiary md:col-span-2">{copy.success}</p>}
+            {status === 'error' && <p className="text-sm font-medium text-primary md:col-span-2">{copy.error}</p>}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:col-span-2">
+              <button
+                type="submit"
+                disabled={status === 'sending'}
+                className="bg-primary-gradient text-white px-10 py-5 rounded-lg font-headline font-bold text-xl shadow-lg hover:shadow-primary/30 transition-all active:scale-95 text-center disabled:opacity-70"
+              >
+                {status === 'sending' ? 'Sending...' : t.cta.primary}
+              </button>
+              <a
+                href={getWhatsAppUrl()}
+                target="_blank"
+                rel="noreferrer"
+                className="bg-surface-container text-primary px-10 py-5 rounded-lg font-headline font-bold text-xl flex items-center justify-center gap-3 hover:bg-surface-container-high transition-all active:scale-95 border border-primary/10"
+              >
+                <MessageSquare className="w-6 h-6 fill-current" />
+                {t.cta.secondary}
+              </a>
+            </div>
+          </form>
         </motion.div>
       </div>
     </section>
@@ -111,9 +194,18 @@ export function Footer() {
           <p className="text-sm text-secondary max-w-xs mb-6 leading-relaxed">
             {t.footer.desc}
           </p>
-          <div className="flex gap-4">
-            <a href="mailto:hello@codecrafter.com" className="text-primary hover:underline underline-offset-4 transition-all font-medium">
-              hello@codecrafter.com
+          <div className="flex flex-col gap-3 text-sm">
+            <a href={`mailto:${contact.email}`} className="text-primary hover:underline underline-offset-4 transition-all font-medium inline-flex items-center gap-2">
+              <Mail className="w-4 h-4" />
+              {contact.email}
+            </a>
+            <a href={`tel:${contact.phoneE164}`} className="text-primary hover:underline underline-offset-4 transition-all font-medium inline-flex items-center gap-2">
+              <Phone className="w-4 h-4" />
+              {contact.phoneDisplay}
+            </a>
+            <a href={getWhatsAppUrl()} target="_blank" rel="noreferrer" className="text-primary hover:underline underline-offset-4 transition-all font-medium inline-flex items-center gap-2">
+              <MessageSquare className="w-4 h-4 fill-current" />
+              WhatsApp
             </a>
           </div>
         </div>

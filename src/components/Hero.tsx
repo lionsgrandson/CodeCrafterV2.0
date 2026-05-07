@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Menu, MessageSquare, Languages } from 'lucide-react';
 import { useLanguage } from '../App';
+import { getWhatsAppUrl } from '../lib/contact';
 
 export function Navbar() {
   const { t, lang, setLang } = useLanguage();
@@ -33,9 +34,12 @@ export function Navbar() {
             <span>{lang === 'he' ? 'EN' : 'HE'}</span>
           </button>
 
-          <button className="bg-primary-gradient text-white px-6 py-2 rounded-lg font-headline text-sm font-semibold hover:scale-[1.02] active:scale-95 transition-all duration-200 shadow-lg shadow-primary/20">
+          <a
+            href="#contact"
+            className="bg-primary-gradient text-white px-6 py-2 rounded-lg font-headline text-sm font-semibold hover:scale-[1.02] active:scale-95 transition-all duration-200 shadow-lg shadow-primary/20"
+          >
             {t.nav.cta}
-          </button>
+          </a>
         </div>
         <div className="flex items-center gap-2 md:hidden">
           <button 
@@ -107,13 +111,21 @@ export function Hero() {
             {t.hero.subline}
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="bg-primary-gradient text-white px-8 py-5 rounded-lg font-headline font-bold text-lg shadow-xl hover:shadow-primary/30 transition-all active:scale-95 text-center">
+            <a
+              href="#contact"
+              className="bg-primary-gradient text-white px-8 py-5 rounded-lg font-headline font-bold text-lg shadow-xl hover:shadow-primary/30 transition-all active:scale-95 text-center"
+            >
               {t.hero.ctaPrimary}
-            </button>
-            <button className="bg-surface-container-low text-primary px-8 py-5 rounded-lg font-headline font-bold text-lg flex items-center justify-center gap-2 hover:bg-surface-container-high transition-all active:scale-95 border border-primary/10">
+            </a>
+            <a
+              href={getWhatsAppUrl()}
+              target="_blank"
+              rel="noreferrer"
+              className="bg-surface-container-low text-primary px-8 py-5 rounded-lg font-headline font-bold text-lg flex items-center justify-center gap-2 hover:bg-surface-container-high transition-all active:scale-95 border border-primary/10"
+            >
               <MessageSquare className="w-5 h-5 fill-current" />
               {t.hero.ctaSecondary}
-            </button>
+            </a>
           </div>
         </motion.div>
         
