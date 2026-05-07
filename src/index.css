@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&family=Assistant:wght@200;300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-headline: "Lexend", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-headline: "Rubik", "Lexend", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Assistant", "Inter", ui-sans-serif, system-ui, sans-serif;
 
   --color-primary: #94442e;
   --color-primary-container: #b35c44;
@@ -28,8 +27,16 @@
 
 @layer base {
   body {
-    @apply bg-surface text-on-surface font-sans antialiased selection:bg-primary-container selection:text-white;
+    @apply bg-surface text-on-surface font-sans antialiased selection:bg-primary-container selection:text-white leading-relaxed;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline tracking-tight leading-tight;
+  }
+
+  h1 { @apply text-5xl md:text-7xl font-black; }
+  h2 { @apply text-3xl md:text-5xl font-bold; }
+  h3 { @apply text-xl md:text-2xl font-semibold; }
 }
 
 .glass-nav {
@@ -41,47 +48,14 @@
 }
 
 .text-editorial-hero {
-  @apply font-headline font-extrabold tracking-tighter leading-[1.1];
+  @apply font-headline font-black tracking-tighter leading-[1.05] md:leading-[1];
 }
 
-@theme {
-  --font-headline: "Lexend", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-
-  --color-primary: #94442e;
-  --color-primary-container: #b35c44;
-  --color-secondary: #595e69;
-  --color-tertiary: #00685d;
-  
-  --color-surface: #fbf9f4;
-  --color-surface-container-low: #f5f3ee;
-  --color-surface-container-lowest: #ffffff;
-  --color-surface-container-high: #eae8e3;
-  --color-surface-container-highest: #e4e2dd;
-  
-  --color-on-surface: #1b1c19;
-  --color-on-surface-variant: #55433e;
-  
-  --color-outline-variant: #dbc1ba;
-  
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
+.rtl-flip {
+  @apply rtl:-scale-x-100;
 }
 
-@layer base {
-  body {
-    @apply bg-surface text-on-surface font-sans antialiased selection:bg-primary-container selection:text-white;
-  }
+.portfolio-card-shadow {
+  box-shadow: 0 10px 30px -10px rgba(148, 68, 46, 0.15);
 }
 
-.glass-nav {
-  @apply backdrop-blur-[20px] bg-surface/80;
-}
-
-.bg-primary-gradient {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-container) 100%);
-}
-
-.text-editorial-hero {
-  @apply font-headline font-extrabold tracking-tighter leading-[1.1];
-}

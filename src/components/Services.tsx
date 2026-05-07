@@ -1,41 +1,44 @@
 import { motion } from 'motion/react';
 import { Globe, Users, Zap, Search, ShieldAlert } from 'lucide-react';
+import { useLanguage } from '../App';
 
 export function Services() {
+  const { t } = useLanguage();
+
   const services = [
     {
-      title: 'Professional Digital Footprint',
-      desc: 'If they can\'t find you, you don\'t exist. I build high-end sites that make you the obvious choice and win client trust immediately.',
+      title: t.services.items[0].title,
+      desc: t.services.items[0].desc,
       icon: Globe,
       color: 'bg-primary/10 text-primary',
       span: 'md:col-span-8',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800'
     },
     {
-      title: 'Lead & Content Management',
-      desc: 'Losing a lead is losing a paycheck. Simple CRM and CMS tools that require zero technical expertise to manage.',
+      title: t.services.items[1].title,
+      desc: t.services.items[1].desc,
       icon: Users,
       color: 'bg-secondary text-white',
       span: 'md:col-span-4'
     },
     {
-      title: 'Workflow Automation',
-      desc: 'Eliminate human error in mundane tasks. Custom systems that run themselves while you sleep.',
+      title: t.services.items[2].title,
+      desc: t.services.items[2].desc,
       icon: Zap,
       color: 'bg-tertiary text-white',
       span: 'md:col-span-4'
     },
     {
-      title: 'Cost & Infrastructure Analysis',
-      desc: 'Stop paying for ghost subscriptions. I audit your tech stack to cut the fat and dramatically reduce monthly overhead.',
+      title: t.services.items[3].title,
+      desc: t.services.items[3].desc,
       icon: Search,
       color: 'bg-surface-container-highest text-on-surface',
       span: 'md:col-span-8',
       image: 'https://images.unsplash.com/photo-1551288049-bbda64626d5b?auto=format&fit=crop&q=80&w=800'
     },
     {
-      title: '24/7 Safety Net',
-      desc: 'Total peace of mind with on-call emergency support. No more sites crashing five minutes before a major launch.',
+      title: t.services.items[4].title,
+      desc: t.services.items[4].desc,
       icon: ShieldAlert,
       color: 'bg-on-surface text-surface',
       span: 'md:col-span-12'
@@ -45,9 +48,9 @@ export function Services() {
   return (
     <section className="py-24 px-6 md:px-8 bg-surface-container-low" id="services">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-16 text-center md:text-left max-w-3xl">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight font-headline text-on-surface">The Problem-Solver Service Grid</h2>
-          <p className="text-secondary text-lg">You don’t need a contractor. You need a partner who fixes the leaks and builds systems that actually work.</p>
+        <div className="mb-16 text-center md:text-start max-w-3xl">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight font-headline text-on-surface">{t.services.headline}</h2>
+          <p className="text-secondary text-lg font-light">{t.services.subline}</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
@@ -56,13 +59,13 @@ export function Services() {
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: idx * 0.05 }}
+              whileHover={{ y: -5, scale: 1.01 }}
+              transition={{ duration: 0.5, delay: idx * 0.05 }}
               viewport={{ once: true }}
-              className={`${service.span} bg-surface-container-lowest p-8 rounded-xl flex flex-col justify-between group shadow-sm hover:shadow-md transition-shadow border border-outline-variant/5`}
-              style={{ backgroundColor: service.image ? undefined : undefined }}
+              className={`${service.span} bg-surface-container-lowest p-8 rounded-xl flex flex-col justify-between group shadow-sm hover:shadow-xl transition-all duration-300 border border-outline-variant/10 cursor-default`}
             >
-              <div className={`${service.span === 'md:col-span-12' ? 'flex items-center gap-8' : ''}`}>
-                <div className="flex-1">
+              <div className={`${service.span === 'md:col-span-12' ? 'flex flex-col md:flex-row items-center gap-8' : ''}`}>
+                <div className="flex-1 w-full">
                   <div className={`w-12 h-12 ${service.color} rounded-lg flex items-center justify-center mb-6`}>
                     <service.icon className="w-6 h-6" />
                   </div>
@@ -75,6 +78,7 @@ export function Services() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90" 
                       src={service.image} 
                       alt={service.title}
+                      loading="lazy"
                       referrerPolicy="no-referrer"
                     />
                   </div>
@@ -89,18 +93,19 @@ export function Services() {
 }
 
 export function Process() {
+  const { t } = useLanguage();
   const steps = [
-    { title: 'The Tech Audit', desc: 'I go under the hood to identify every digital leak and bottleneck holding your growth back.' },
-    { title: 'The Custom Build', desc: 'No cookie-cutters here. I implement high-performance systems tailored to your specific workflow.' },
-    { title: 'The Handover', desc: 'Zero tech degree required. I deliver systems that are simple to manage and impossible to break.' },
+    { title: t.process.steps[0].title, desc: t.process.steps[0].desc },
+    { title: t.process.steps[1].title, desc: t.process.steps[1].desc },
+    { title: t.process.steps[2].title, desc: t.process.steps[2].desc },
   ];
 
   return (
     <section className="py-24 px-6 md:px-8 bg-surface" id="process">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center tracking-tight font-headline">Simple Process. Real Results.</h2>
+        <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center tracking-tight font-headline text-on-surface">{t.process.headline}</h2>
         <div className="grid md:grid-cols-3 gap-12 relative">
-          <div className="hidden md:block absolute top-[32px] left-0 w-full h-px bg-outline-variant/30 -z-10"></div>
+          <div className="hidden md:block absolute top-[32px] right-0 left-0 h-px bg-outline-variant/30 -z-10"></div>
           
           {steps.map((step, idx) => (
             <motion.div 
