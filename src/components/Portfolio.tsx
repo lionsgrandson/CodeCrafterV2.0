@@ -11,11 +11,12 @@ export function Portfolio() {
     'https://chicagotraumatherapy.com/assets/blueLogo-DrhddtD2.png',
     'https://sumsup.co/assets/sumsup-logo-RXncwyPE.png',
     'https://mosheschwartzberg.com/amitStarProject/assets/outofthelines-DhXC0Cmr.jpeg',
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuBXtm5vmCqj-ux3Q8YBk6RhJg1OrlY3bmPH4n_D7a-Xv7uVOTCEbMnoRCpOunHOJ2O7mAOBofqjivokq7e8xiC13AkqJ4AqC8XTN5Ka9W06oXc4Y_JcypdVt0aXw8teDmYG4QctCdTt4tBrf37-8vss01rryYZOV5bpxUvHI_zZ-NErXT-nZofEA0JpQuZnpiCe2kZTVEywEMsugwnpdPUvXBuEQhRNLeEGFkqL-mQWOTsE6ZAWkpLuiZWtztNHp_I-fpC95j7CDCNo',
   ];
 
   const projects = t.portfolio.projects.map((project, idx) => ({
     ...project,
-    img: projectImages[idx % projectImages.length],
+    img: projectImages[idx],
   }));
 
   return (
