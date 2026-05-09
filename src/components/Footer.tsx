@@ -22,7 +22,7 @@ export function WhyWorkWithMe() {
             {points.map((point, idx) => (
               <motion.li 
                 key={idx}
-                initial={{ opacity: 0, x: 20 }}
+                initial={false}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 viewport={{ once: true }}
@@ -39,7 +39,7 @@ export function WhyWorkWithMe() {
             ))}
           </ul>
           <motion.div 
-            initial={{ opacity: 0, y: 10 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
             className="mt-12 p-6 bg-surface/5 border border-surface/10 rounded-xl"
@@ -49,7 +49,7 @@ export function WhyWorkWithMe() {
         </div>
         <div className="relative flex justify-center">
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={false}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
@@ -117,7 +117,7 @@ export function FinalCTA() {
         <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight font-headline text-on-surface">{t.cta.headline}</h2>
         <p className="text-secondary text-lg mb-12 font-light">{t.cta.subline}</p>
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="bg-surface-container-lowest p-8 md:p-12 rounded-2xl shadow-2xl relative overflow-hidden border border-outline-variant/10"

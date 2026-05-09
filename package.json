@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
-    "build": "vite build",
+    "build": "vite build && vite build --ssr src/entry-server.tsx && tsx scripts/prerender.ts",
+    "build:client": "vite build",
+    "build:ssr": "vite build --ssr src/entry-server.tsx",
     "preview": "vite preview",
     "start": "node --import tsx server.ts",
     "clean": "rm -rf dist",

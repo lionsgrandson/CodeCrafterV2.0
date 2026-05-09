@@ -30,7 +30,7 @@ export function Portfolio() {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ y: -8 }}
               transition={{ duration: 0.4, delay: (idx % 3) * 0.1 }}
@@ -77,7 +77,7 @@ export function Testimonials() {
           {reviews.map((review, idx) => (
             <motion.div 
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
               viewport={{ once: true }}
