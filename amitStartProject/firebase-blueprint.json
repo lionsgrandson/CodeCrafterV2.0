@@ -1,0 +1,43 @@
+{
+  "entities": {
+    "StarSelection": {
+      "title": "Star Selection",
+      "description": "A user's selected star and their IP address.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The Firebase Auth UID of the user."
+        },
+        "starId": {
+          "type": "string",
+          "description": "The ID of the star chosen (e.g., 'gold-siph')."
+        },
+        "ip": {
+          "type": "string",
+          "description": "The IP address of the user at the time of selection."
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the star was selected."
+        },
+        "position": {
+          "type": "object",
+          "properties": {
+            "x": { "type": "number" },
+            "y": { "type": "number" }
+          },
+          "description": "Randomized position on screen for this user's star."
+        }
+      },
+      "required": ["userId", "starId", "ip", "timestamp", "position"]
+    }
+  },
+  "firestore": {
+    "/stars/{userId}": {
+      "schema": "StarSelection",
+      "description": "Collection of star selections, keyed by user ID to enforce one star per user."
+    }
+  }
+}

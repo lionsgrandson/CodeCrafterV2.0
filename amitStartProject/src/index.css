@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;400;500;600&family=Noto+Serif+Hebrew:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans Hebrew", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Noto Serif Hebrew", serif;
+  
+  --color-background: #041329;
+  --color-surface: #112036;
+  --color-tertiary: #d2c972;
+  --color-on-surface: #d6e3ff;
+  --color-on-surface-variant: #c5c6cd;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-surface font-sans antialiased;
+    cursor: crosshair;
+    direction: rtl;
+    text-align: right;
+  }
+}
+
+.glass-panel {
+  background: rgba(39, 53, 76, 0.4);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.star-glow {
+  box-shadow: 0 0 20px rgba(210, 201, 114, 0.3);
+}

@@ -29,6 +29,7 @@ CodeCrafter V2.0 is about moving beyond a basic template and into a refined digi
 - `src/App.tsx` — top-level app layout
 - `src/components/` — reusable page sections like Hero, Services, Portfolio, and Footer
 - `src/index.css` — global styling
+- `amitStartProject/` — separate static Vite/React art-gallery project with Firebase/Firestore backend support, designed for DigitalOcean Static Site hosting
 
 ## Run locally
 
