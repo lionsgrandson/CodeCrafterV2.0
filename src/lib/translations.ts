@@ -10,7 +10,7 @@ export const translations = {
     },
     hero: {
       eyebrow: 'בונים קוד. יוצרים פתרונות. מגדילים תוצאות.',
-      headline: 'תתחילו להרוויח כסף על מערכות מתקדמות ועבודה יעילה.',
+      headline: 'בניית אתרים ומערכות דיגיטליות שעוזרות לעסק שלך לעבוד חכם יותר',
       subline:
         'אני משדרג את המערכת הדיגיטלית של העסק שלך. מאתרי אינטרנט מקצועיים שבונים אמון ועד אוטומציות שחוסכות לך 10+ שעות בשבוע, אני מטפל בטכנולוגיה כדי שאתה תוכל להתמקד בצמיחה.',
       ctaPrimary: 'הזמן שיחת אסטרטגיה',
@@ -69,7 +69,7 @@ export const translations = {
       after: 'התוצאה',
       projects: [
         {
-          title: 'Mahogony Israel',
+          title: 'Mahagony Israel',
           desc: 'חברת ריהוט יוקרה המתמחה בפריטי עץ איכותיים ובהזמנה אישית.',
           before: 'קטלוג רהיטים שהזמין חוויה עשירה יותר',
           after: 'קטלוג מוצרים ב-3D עם חוויית לקוח סוחפת',
@@ -256,7 +256,7 @@ export const translations = {
       after: 'Result',
       projects: [
         {
-          title: 'Mahogony Israel',
+          title: 'Mahagony Israel',
           desc: 'Luxury furniture company specializing in high-end wooden and custom-made pieces',
           before: 'A product catalog ready for a richer visual experience',
           after: '3D product catalog with immersive client experience',

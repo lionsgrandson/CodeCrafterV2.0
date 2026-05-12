@@ -8,8 +8,34 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProduction = process.env.NODE_ENV === 'production';
 const app = express();
 const preferredPort = Number(process.env.PORT || 5173);
+const canonicalOrigin = 'https://mosheschwartzberg.com';
+
+const legacyRedirects = new Map<string, string>([
+  ['/blog/free-domains-new-era-internet', '/#services'],
+  ['/blog/perfect-lighthouse', '/#services'],
+  ['/blog/backend-code-horror', '/#services'],
+  ['/blog/5-website-must-have', '/#services'],
+  ['/portfolio/idf-tech-maintenance-corps-v2', '/#portfolio'],
+  ['/portfolio/rainbow-asd', '/#portfolio'],
+  ['/portfolio/nexa-automations-glass-ui', '/#services'],
+]);
 
 app.use(express.json({ limit: '32kb' }));
+
+app.use((req, res, next) => {
+  const host = req.headers.host?.toLowerCase().split(':')[0];
+  if (host === 'www.mosheschwartzberg.com') {
+    return res.redirect(301, `${canonicalOrigin}${req.originalUrl}`);
+  }
+
+  const pathname = req.path.replace(/\/$/, '').toLowerCase() || '/';
+  const redirectTarget = legacyRedirects.get(pathname);
+  if (redirectTarget) {
+    return res.redirect(301, redirectTarget);
+  }
+
+  next();
+});
 
 type ContactPayload = {
   name?: string;

@@ -200,7 +200,7 @@ export function Footer() {
             </a>
             <a href={`tel:${contact.phoneE164}`} className="text-primary hover:underline underline-offset-4 transition-all font-medium inline-flex items-center gap-2">
               <Phone className="w-4 h-4" />
-              {contact.phoneDisplay}
+              <span dir="ltr">{contact.phoneDisplay}</span>
             </a>
             <a href={getWhatsAppUrl()} target="_blank" rel="noreferrer" className="text-primary hover:underline underline-offset-4 transition-all font-medium inline-flex items-center gap-2">
               <MessageSquare className="w-4 h-4 fill-current" />
@@ -228,8 +228,8 @@ export function Footer() {
         <div>
           <p className="font-headline font-bold text-xs uppercase tracking-widest text-on-surface mb-6">{t.footer.legal}</p>
           <ul className="space-y-3 text-sm">
-            <li><a href="#" className="text-secondary hover:text-primary transition-all">{t.footer.privacy}</a></li>
-            <li><a href="#" className="text-secondary hover:text-primary transition-all">{t.footer.terms}</a></li>
+            <li><a href="/privacy/" className="text-secondary hover:text-primary transition-all">{t.footer.privacy}</a></li>
+            <li><a href="/terms/" className="text-secondary hover:text-primary transition-all">{t.footer.terms}</a></li>
           </ul>
         </div>
       </div>

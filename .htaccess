@@ -23,6 +23,15 @@ ErrorDocument 404 /404.html
   # Friendly status page URLs.
   RewriteRule ^(200|401|403|404)/?$ /$1.html [L]
 
+  # Legacy indexed URLs.
+  RewriteRule ^blog/free-domains-new-era-internet/?$ /#services [R=301,L,NE,NC]
+  RewriteRule ^blog/perfect-lighthouse/?$ /#services [R=301,L,NE,NC]
+  RewriteRule ^blog/backend-code-horror/?$ /#services [R=301,L,NE,NC]
+  RewriteRule ^blog/5-website-must-have/?$ /#services [R=301,L,NE,NC]
+  RewriteRule ^portfolio/idf-tech-maintenance-corps-v2/?$ /#portfolio [R=301,L,NE,NC]
+  RewriteRule ^portfolio/Rainbow-asd/?$ /#portfolio [R=301,L,NE,NC]
+  RewriteRule ^portfolio/nexa-automations-glass-ui/?$ /#services [R=301,L,NE,NC]
+
   # Keep real files and directories untouched.
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
