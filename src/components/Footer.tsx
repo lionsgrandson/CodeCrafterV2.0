@@ -57,10 +57,9 @@ export function WhyWorkWithMe() {
           >
             <img 
               className="w-full h-full object-cover grayscale brightness-90 contrast-125 transition-all duration-700" 
-              src="https://mosheschwartzberg.com/imgs/2bc27d9b-60cd-4633-beb8-9c307636b359.jpg" 
+              src="/about-photo.jpeg" 
               alt={t.why.alt}
               loading="lazy"
-              referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
           </motion.div>

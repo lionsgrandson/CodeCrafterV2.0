@@ -145,26 +145,26 @@ export const translations = {
       ],
     },
     why: {
-      headline: 'למה לעבוד איתי',
+      headline: 'בצד שלך מהרגע הראשון',
       items: [
         {
-          title: 'גישה אישית ישירה',
-          desc: 'אתם עובדים ישירות מול המומחה שמוביל את העבודה, עם תקשורת ברורה, קצב מסודר והחלטות שמתקדמות מהר.',
+          title: 'אני מקשיב לפני שאני בונה',
+          desc: 'לפני קוד, עיצוב או מערכת, אני רוצה להבין מה מכביד עליך ביום יום: איפה לקוחות נופלים, מה שואב זמן, ומה צריך להרגיש פשוט יותר.',
         },
         {
-          title: 'טיפול במעטפת מלאה',
-          desc: 'משורת הקוד הראשונה ועד תחזוקה, אבטחה וביקורת תשתית, אני מנהל את כל מחזור החיים הדיגיטלי במקום אחד.',
+          title: 'אתה לא נשאר לבד עם הטכנולוגיה',
+          desc: 'אני מתרגם את החלקים המורכבים לשיחה רגועה וברורה, מחזיק לך את התהליך, ודואג שתמיד תדע מה קורה ולמה זה טוב לעסק שלך.',
         },
         {
-          title: 'לוגיקה עסקית תחילה',
-          desc: 'אני בונה פתרונות שנמדדים מול מדדי הביצוע העסקיים שלך, יעדי הצמיחה והשורה התחתונה - לא רק מול מראה יפה.',
+          title: 'האתר מדבר אל הלקוח שלך',
+          desc: 'אני חושב כמו האדם שנכנס לאתר שלך: מה הוא מפחד להפסיד, מה הוא רוצה להרגיש, ומה יעזור לו לסמוך עליך מספיק כדי לפנות.',
         },
         {
-          title: "הבטחה ללא ז'רגון",
-          desc: 'אני מדבר בשפה שלך. תוצאות ברורות, התקדמות שקופה ומערכות שעובדות בצורה שאפשר להבין ולנהל.',
+          title: 'עבודה שמרגישה כמו חבר חכם בצד שלך',
+          desc: 'המטרה שלי היא שלא תרגיש שאתה קונה אתר, אלא שיש לידך מישהו שאכפת לו שהעסק שלך יראה נכון, יעבוד טוב ויביא אנשים אמיתיים.',
         },
       ],
-      quote: '"אתה תתמקד בעסק שלך. אני אדאג שהדיגיטל יעבוד בשבילך."',
+      quote: '"אתה מביא את החלום והעסק. אני עוזר לאנשים להרגיש למה כדאי להם לבחור בך."',
       alt: 'דיוקן מקצועי של משה שוורצברג',
     },
     cta: {
@@ -332,26 +332,26 @@ export const translations = {
       ],
     },
     why: {
-      headline: 'Why Work With Me',
+      headline: 'On Your Side From The First Call',
       items: [
         {
-          title: 'Personal Direct Access',
-          desc: 'You work directly with the expert leading the build, with clear communication, a steady pace, and decisions that move forward quickly.',
+          title: 'I listen before I build',
+          desc: 'Before code, design, or systems, I want to understand what feels heavy in your day: where clients drop off, what wastes time, and what should finally feel easy.',
         },
         {
-          title: 'Full Spectrum Handling',
-          desc: 'From the first line of code to maintenance, security, and infrastructure review, I manage the full digital lifecycle in one place.',
+          title: 'You are not left alone with the tech',
+          desc: 'I turn the complicated parts into calm, plain conversation, hold the process with you, and make sure you always know what is happening and why it matters.',
         },
         {
-          title: 'Business-First Logic',
-          desc: 'I build solutions measured against your business KPIs, growth goals, and bottom line - not only against how good they look.',
+          title: 'Your site speaks to your customer',
+          desc: 'I think like the person landing on your website: what they are worried about, what they hope to feel, and what will help them trust you enough to reach out.',
         },
         {
-          title: 'The No Jargon Promise',
-          desc: 'I speak your language: clear outcomes, transparent progress, and systems that work in a way you can understand and manage.',
+          title: 'Work that feels like a smart friend in your corner',
+          desc: 'My goal is for you to feel like you are not just buying a website, but working with someone who genuinely cares that your business is seen, understood, and chosen.',
         },
       ],
-      quote: '"You focus on your business. I will make the digital side work for you."',
+      quote: '"You bring the dream and the business. I help people feel why choosing you makes sense."',
       alt: 'Professional portrait of Moshe Schwartzberg',
     },
     cta: {
