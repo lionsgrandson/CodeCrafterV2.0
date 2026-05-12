@@ -1,22 +1,30 @@
-import { motion } from 'motion/react';
-import { Menu, MessageSquare, Languages } from 'lucide-react';
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
+import { Menu, MessageSquare, Languages, X } from 'lucide-react';
 import { useLanguage } from '../App';
 import { getWhatsAppUrl } from '../lib/contact';
 
 export function Navbar() {
   const { t, lang, setLang } = useLanguage();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navItems = [
+    { label: t.nav.solve, href: '#services' },
+    { label: t.nav.work, href: '#portfolio' },
+    { label: t.nav.process, href: '#process' },
+    { label: t.nav.success, href: '#testimonials' }
+  ];
+
+  const toggleLanguage = () => {
+    setLang(lang === 'he' ? 'en' : 'he');
+    setIsMenuOpen(false);
+  };
 
   return (
     <nav className="fixed top-0 w-full z-50 glass-nav shadow-sm border-b border-outline-variant/10">
       <div className="flex justify-between items-center px-6 md:px-8 py-4 max-w-7xl mx-auto">
         <div className="text-2xl font-bold font-headline text-on-surface tracking-tight">{t.nav.brand}</div>
         <div className="hidden md:flex space-x-8 rtl:space-x-reverse items-center">
-          {[
-            { label: t.nav.solve, href: '#services' },
-            { label: t.nav.work, href: '#portfolio' },
-            { label: t.nav.process, href: '#process' },
-            { label: t.nav.success, href: '#testimonials' }
-          ].map((item) => (
+          {navItems.map((item) => (
             <a 
               key={item.label}
               href={item.href}
@@ -27,7 +35,7 @@ export function Navbar() {
           ))}
           
           <button 
-            onClick={() => setLang(lang === 'he' ? 'en' : 'he')}
+            onClick={toggleLanguage}
             className="flex items-center gap-2 text-secondary hover:text-primary transition-colors font-headline text-sm font-semibold border-x border-outline-variant/20 px-4"
           >
             <Languages className="w-4 h-4" />
@@ -43,16 +51,55 @@ export function Navbar() {
         </div>
         <div className="flex items-center gap-2 md:hidden">
           <button 
-            onClick={() => setLang(lang === 'he' ? 'en' : 'he')}
+            onClick={toggleLanguage}
             className="p-2 text-on-surface"
+            aria-label="Change language"
           >
             <Languages className="w-5 h-5" />
           </button>
-          <button className="text-on-surface p-2">
-            <Menu className="w-6 h-6" />
+          <button
+            onClick={() => setIsMenuOpen((open) => !open)}
+            className="text-on-surface p-2"
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            id="mobile-menu"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18 }}
+            className="md:hidden border-t border-outline-variant/10 bg-surface/95 backdrop-blur-[20px] shadow-lg"
+          >
+            <div className="px-6 py-4 flex flex-col gap-1">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="font-headline text-base font-semibold text-on-surface py-3 border-b border-outline-variant/10 last:border-b-0"
+                >
+                  {item.label}
+                </a>
+              ))}
+              <a
+                href="#contact"
+                onClick={() => setIsMenuOpen(false)}
+                className="mt-3 bg-primary-gradient text-white px-6 py-3 rounded-lg font-headline text-sm font-semibold text-center shadow-lg shadow-primary/20"
+              >
+                {t.nav.cta}
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
