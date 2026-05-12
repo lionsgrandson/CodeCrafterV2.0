@@ -7,6 +7,10 @@ export default defineConfig(() => {
   return {
     base: '/amitStarProject/',
     plugins: [react(), tailwindcss()],
+    build: {
+      outDir: '../dist/amitStarProject',
+      emptyOutDir: true,
+    },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

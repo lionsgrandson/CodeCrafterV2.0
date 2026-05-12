@@ -1,15 +1,15 @@
 # Amit Start Project
 
-`amitStartProject` is a separate Vite/React art-gallery site inside the main CodeCrafter repository. It is built as a static deployable app and uses Firebase/Firestore as its backend for visitor star selections.
+`amitStarProject` is a separate Vite/React art-gallery site inside the main CodeCrafter repository. It is built as a static deployable app and uses Firebase/Firestore as its backend for visitor star selections.
 
 ## Deployment model
 
 - Hosting target: DigitalOcean Static Site
-- Build command: `npm install && npm run build`
-- Output directory: `dist`
+- Root build command: `npm install && npm run build`
+- Subproject output path: `dist/amitStarProject`
 - Backend: Firebase/Firestore, reached from the browser after the static app loads
 
-The project is intended to stay static-host friendly. There is no long-running Node server required in production, so DigitalOcean only needs to pull the repository, install dependencies, build once, and serve the generated files from `dist`.
+The project is intended to stay static-host friendly. There is no long-running Node server required in production, so DigitalOcean only needs to pull the repository, install dependencies, run the root build once, and serve the generated files from `dist`.
 
 ## Rendering note
 

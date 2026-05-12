@@ -80,6 +80,16 @@ app.post('/api/contact', async (req, res) => {
 });
 
 if (isProduction) {
+  const amitStarDistPath = path.join(__dirname, 'dist', 'amitStarProject');
+
+  app.get('/amitStarProject', (_req, res) => {
+    res.redirect(301, '/amitStarProject/');
+  });
+  app.use('/amitStarProject', express.static(amitStarDistPath));
+  app.get('/amitStarProject/*', (_req, res) => {
+    res.sendFile(path.join(amitStarDistPath, 'index.html'));
+  });
+
   app.use(express.static(path.join(__dirname, 'dist')));
   app.get('*', (_req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'dist', '404.html'));

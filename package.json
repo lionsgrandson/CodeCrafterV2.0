@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
-    "build": "vite build && vite build --ssr src/entry-server.tsx && tsx scripts/prerender.ts",
+    "build": "vite build && vite build --ssr src/entry-server.tsx && tsx scripts/prerender.ts && npm --prefix amitStarProject install && npm --prefix amitStarProject run build",
+    "build:amit": "npm --prefix amitStarProject install && npm --prefix amitStarProject run build",
     "build:client": "vite build",
     "build:ssr": "vite build --ssr src/entry-server.tsx",
     "preview": "vite preview",
