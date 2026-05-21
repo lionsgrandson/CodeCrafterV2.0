@@ -1,29 +1,20 @@
-# Amit Start Project
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-`amitStarProject` is a separate Vite/React art-gallery site inside the main CodeCrafter repository. It is built as a static deployable app and uses Firebase/Firestore as its backend for visitor star selections.
+# Run and deploy your AI Studio app
 
-## Deployment model
+This contains everything you need to run your app locally.
 
-- Hosting target: DigitalOcean Static Site
-- Root build command: `npm install && npm run build`
-- Subproject output path: `dist/amitStarProject`
-- Backend: Firebase/Firestore, reached from the browser after the static app loads
+View your app in AI Studio: https://ai.studio/apps/a7f84374-3dc8-48fb-b701-c08a951d1db7
 
-The project is intended to stay static-host friendly. There is no long-running Node server required in production, so DigitalOcean only needs to pull the repository, install dependencies, run the root build once, and serve the generated files from `dist`.
+## Run Locally
 
-## Rendering note
+**Prerequisites:**  Node.js
 
-For static hosting, treat this as an SSR/SSG-style deployment boundary: page assets are built once during the DigitalOcean build, while live visitor interactions continue to use Firebase from the client. This keeps the deployment compatible with a DO static website while still allowing the app to use a backend.
 
-## Local development
-
-```bash
-npm install
-npm run dev
-```
-
-## Production build
-
-```bash
-npm run build
-```
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`

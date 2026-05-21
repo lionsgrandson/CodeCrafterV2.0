@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: /amitStarProject/sitemap.xml

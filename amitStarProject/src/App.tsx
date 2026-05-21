@@ -9,10 +9,10 @@ import {
   onSnapshot,
   setDoc,
 } from 'firebase/firestore'
-import hedghogPainting from './assets/hedghogPainting.jpeg'
-import outofLine from './assets/outofthelines.jpeg'
-import penFlower from './assets/pencilFlower.jpeg'
-import rainingHead from './assets/rainingHead.jpeg'
+import hedghogPainting from './assets/hedghogPainting-seo.jpeg'
+import outofLine from './assets/outofthelines-seo.jpeg'
+import penFlower from './assets/pencilFlower-seo.jpeg'
+import rainingHead from './assets/rainingHead-seo.jpeg'
 import { db } from './lib/firebase'
 import { cn } from './lib/utils'
 
@@ -36,6 +36,8 @@ interface ArtPieceProps {
   size: string
   image: string
   alt: string
+  width: number
+  height: number
   reverse?: boolean
 }
 
@@ -68,14 +70,18 @@ const ART_PIECES: ArtPieceProps[] = [
     medium: 'שמן על בד',
     size: '80 X 90',
     image: hedghogPainting,
-    alt: 'היצירה חי צומח דומם, שמן על בד',
+    alt: 'ציור שמן על בד בשם חי צומח דומם מאת עמית קדוש',
+    width: 1400,
+    height: 1047,
   },
   {
     title: 'לצאת מהקווים',
     medium: 'אקריליק על בד',
     size: '40 X 35',
     image: outofLine,
-    alt: 'היצירה לצאת מהקווים, אקריליק על בד',
+    alt: 'ציור אקריליק על בד בשם לצאת מהקווים מאת עמית קדוש',
+    width: 1400,
+    height: 1050,
     reverse: true,
   },
   {
@@ -83,16 +89,27 @@ const ART_PIECES: ArtPieceProps[] = [
     medium: 'הצבה',
     size: '10 X 15',
     image: penFlower,
-    alt: 'היצירה קומפוזיציה עפרונות צבעוניים, הצבה',
+    alt: 'עבודת הצבה בשם קומפוזיציה עפרונות צבעוניים מאת עמית קדוש',
+    width: 638,
+    height: 1000,
   },
   {
     title: 'ללא שם',
     medium: 'שמן על בד',
     size: '25 X 35',
     image: rainingHead,
-    alt: 'היצירה ללא שם, שמן על בד',
+    alt: 'ציור שמן על בד ללא שם מאת עמית קדוש',
+    width: 1041,
+    height: 1200,
     reverse: true,
   },
+]
+
+const INTERNAL_LINKS = [
+  { href: '/', label: 'אתר הבית של עמית קדוש' },
+  { href: '/about', label: 'אודות עמית קדוש' },
+  { href: '/gallery', label: 'גלריית עבודות באתר הראשי' },
+  { href: '/contact', label: 'יצירת קשר עם עמית קדוש' },
 ]
 
 const getAnonymousId = () => {
@@ -110,6 +127,8 @@ const ArtPiece = ({
   size,
   image,
   alt,
+  width,
+  height,
   reverse = false,
 }: ArtPieceProps) => (
   <motion.article
@@ -132,7 +151,10 @@ const ArtPiece = ({
             className='block h-auto w-auto max-w-full max-h-[44svh] md:max-h-[62svh] grayscale-[20%] brightness-75 hover:grayscale-0 hover:brightness-100 transition-all duration-1000'
             src={image}
             alt={alt}
+            width={width}
+            height={height}
             loading='lazy'
+            decoding='async'
             referrerPolicy='no-referrer'
           />
         </div>
@@ -140,9 +162,9 @@ const ArtPiece = ({
     </div>
 
     <div className='w-full md:w-[30%] space-y-3 text-right'>
-      <h3 className='font-serif italic text-4xl md:text-6xl lg:text-7xl text-on-surface leading-tight'>
+      <h2 className='font-serif italic text-4xl md:text-6xl lg:text-7xl text-on-surface leading-tight'>
         {title}
-      </h3>
+      </h2>
       <div className='ml-auto flex w-fit items-start gap-5 border-t border-white/10 pt-3'>
         <p className='font-sans text-base'>{medium}</p>
         <p
@@ -366,10 +388,18 @@ export default function App() {
           isStarFocusMode && 'pointer-events-none select-none',
         )}
       >
+        <nav className='seo-internal-links' aria-label='קישורים פנימיים לאתר הראשי'>
+          {INTERNAL_LINKS.map((link) => (
+            <a key={link.href} href={link.href}>
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
         <header className='fixed top-0 w-full z-30 flex justify-between items-center px-8 md:px-12 py-8 bg-transparent'>
-          <h1 className='font-serif italic text-3xl text-on-surface tracking-tight'>
+          <p className='font-serif italic text-3xl text-on-surface tracking-tight'>
             עמית קדוש
-          </h1>
+          </p>
         </header>
 
         <main className='relative z-20'>
@@ -385,14 +415,14 @@ export default function App() {
               className='absolute left-1/2 top-1/2 h-56 w-56 md:h-96 md:w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(210,201,114,0.24)_0%,rgba(210,201,114,0.08)_35%,rgba(210,201,114,0)_72%)] blur-2xl'
             />
             <div className='relative w-full max-w-7xl space-y-6 text-center flex flex-col items-center'>
-              <motion.h2
+              <motion.h1
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, delay: 0.1 }}
-                className='font-serif italic text-[clamp(3.8rem,12vw,12rem)] leading-[0.85] text-on-surface whitespace-nowrap'
+                className='font-serif italic text-[clamp(3.2rem,10vw,10rem)] leading-[0.9] text-on-surface'
               >
-                הגלריה שלי
-              </motion.h2>
+                גלריית האמנות של עמית קדוש
+              </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
