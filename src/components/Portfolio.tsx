@@ -10,7 +10,7 @@ export function Portfolio() {
     'https://rainbowasdv2.netlify.app/assets/LogoWithText-CcLxZipc.png',
     'https://chicagotraumatherapy.com/assets/blueLogo-DrhddtD2.png',
     'https://sumsup.co/assets/sumsup-logo-RXncwyPE.png',
-    '../amitStarProject/src/assets/outofthelines-seo.jpeg',
+    'https://mosheschwartzberg.com/amitStarProject/assets/outofthelines-seo-Dxx0P0rN.jpeg',
     'https://lh3.googleusercontent.com/aida-public/AB6AXuBXtm5vmCqj-ux3Q8YBk6RhJg1OrlY3bmPH4n_D7a-Xv7uVOTCEbMnoRCpOunHOJ2O7mAOBofqjivokq7e8xiC13AkqJ4AqC8XTN5Ka9W06oXc4Y_JcypdVt0aXw8teDmYG4QctCdTt4tBrf37-8vss01rryYZOV5bpxUvHI_zZ-NErXT-nZofEA0JpQuZnpiCe2kZTVEywEMsugwnpdPUvXBuEQhRNLeEGFkqL-mQWOTsE6ZAWkpLuiZWtztNHp_I-fpC95j7CDCNo',
   ]
 
