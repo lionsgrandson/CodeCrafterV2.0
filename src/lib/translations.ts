@@ -108,7 +108,7 @@ export const translations = {
           desc: 'יצירת פורטפוליו לעמית קדוש, שהיא במקרה גם בת הזוג שלי.',
           before: 'עבודות יצירתיות שחיכו להצגה מלוטשת',
           after: 'חלון ראווה יצירתי, מקצועי ונעים לצפייה',
-          link: 'https://mosheschwartzberg.com/amitStarProject/',
+          link: '../../amitStarProject/',
         },
         {
           title: 'Creative Intelligence',
@@ -164,7 +164,8 @@ export const translations = {
           desc: 'המטרה שלי היא שלא תרגיש שאתה קונה אתר, אלא שיש לידך מישהו שאכפת לו שהעסק שלך יראה נכון, יעבוד טוב ויביא אנשים אמיתיים.',
         },
       ],
-      quote: '"אתה מביא את החלום והעסק. אני עוזר לאנשים להרגיש למה כדאי להם לבחור בך."',
+      quote:
+        '"אתה מביא את החלום והעסק. אני עוזר לאנשים להרגיש למה כדאי להם לבחור בך."',
       alt: 'דיוקן מקצועי של משה שוורצברג',
     },
     cta: {
@@ -265,8 +266,10 @@ export const translations = {
         {
           title: 'Yuval Kadosh',
           desc: 'heartfelt online home by Yuval Kadosh - father, lecturer, writer, and mentor - offering transformative personal coaching, uplifting storytelling, and his signature talk "To Love, To Believe, To Prevail". Driven by his powerful journey throughout life, Yuval guides individuals and groups through resilience-building mindset shifts and purpose-driven change.',
-          before: 'A rich professional story ready for one central digital home',
-          after: 'Centralized, heartfelt platform for storytelling and coaching',
+          before:
+            'A rich professional story ready for one central digital home',
+          after:
+            'Centralized, heartfelt platform for storytelling and coaching',
           link: 'https://ykadosh.co.il',
         },
         {
@@ -279,7 +282,8 @@ export const translations = {
         {
           title: 'Chicago Trauma Therapy',
           desc: 'Chicago Trauma Therapy is a specialized mental health platform providing virtual, evidence-based care for adults across Illinois. The site bridges clinical expertise and accessible technology, offering focused treatment for PTSD and CPTSD through a secure, HIPAA-compliant interface. It is a clean, functional example of how digital solutions can streamline the path to recovery.',
-          before: 'A specialized care service ready for a safer, simpler intake experience',
+          before:
+            'A specialized care service ready for a safer, simpler intake experience',
           after: 'Fast, accessible, HIPAA-compliant virtual therapy portal',
           link: 'https://chicagotraumatherapy.com/',
         },
@@ -295,13 +299,15 @@ export const translations = {
           desc: 'Created a portfolio for Amit Kadosh who also happens to be my significant other.',
           before: 'Creative work ready for a more polished showcase',
           after: 'Polished, professional creative showcase',
-          link: 'https://mosheschwartzberg.com/amitStarProject/',
+          link: '../../amitStarProject/',
         },
         {
           title: 'Creative Intelligence',
           desc: 'A strategic brand website for a business intelligence, cyber, and security consulting company, built with a discreet, premium, and precise visual language. The site presents a multidisciplinary service offering for complex security, investigation, and risk-management challenges.',
-          before: 'A professional company ready for a sharper, more secure digital presence',
-          after: 'A premium, focused website connecting strategy, intelligence, and technology',
+          before:
+            'A professional company ready for a sharper, more secure digital presence',
+          after:
+            'A premium, focused website connecting strategy, intelligence, and technology',
           link: 'https://creative-intelligence.co.il/',
         },
       ],
@@ -351,7 +357,8 @@ export const translations = {
           desc: 'My goal is for you to feel like you are not just buying a website, but working with someone who genuinely cares that your business is seen, understood, and chosen.',
         },
       ],
-      quote: '"You bring the dream and the business. I help people feel why choosing you makes sense."',
+      quote:
+        '"You bring the dream and the business. I help people feel why choosing you makes sense."',
       alt: 'Professional portrait of Moshe Schwartzberg',
     },
     cta: {
@@ -373,4 +380,4 @@ export const translations = {
       rights: 'All rights reserved.',
     },
   },
-};
+}
