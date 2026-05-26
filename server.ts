@@ -108,7 +108,7 @@ app.post('/api/contact', async (req, res) => {
 if (isProduction) {
   const amitStarDistPath = path.join(__dirname, 'dist', 'amitStarProject');
 
-  app.get('/amitStarProject', (_req, res) => {
+  app.get(/^\/amitStarProject$/, (_req, res) => {
     res.redirect(301, '/amitStarProject/');
   });
   app.use('/amitStarProject', express.static(amitStarDistPath));
