@@ -117,7 +117,41 @@ export const translations = {
           after: 'אתר יוקרתי, חד וברור שמחבר בין אסטרטגיה, מודיעין וטכנולוגיה',
           link: 'https://creative-intelligence.co.il/',
         },
+        {
+          title: 'Creative Intelligence CRM',
+          desc: 'מערכת CRM מותאמת אישית ל-Creative Intelligence, שנבנתה כדי להפוך ניהול לקוחות, פרויקטים, כספים ופרופילי משתמשים לפשוט וברור גם למי שלא חי טכנולוגיה ביום-יום. המערכת כוללת אוטומציות וחלקים מאחורי הקלעים, אבל החוויה עצמה נשארת נקייה, פשוטה ומותאמת לעבודה של הלקוח. בצילומים חלק מהשמות מוסתרים, והלקוחות שמופיעים הם דוגמאות לא אמיתיות לצורך פרטיות.',
+          before: 'תהליכי עבודה, לקוחות וכספים שחיכו למקום אחד מסודר ופשוט',
+          after: 'CRM נקי ומותאם אישית שמרכז את העבודה ומפעיל אוטומציות מאחורי הקלעים',
+          link: '',
+          gallery: 'creativeIntCrm',
+        },
       ],
+      crmGallery: {
+        title: 'Creative Intelligence CRM',
+        desc: 'הצצה למערכת הפנימית שנבנתה עבור Creative Intelligence. חלק מהמידע מוסתר, והלקוחות שמופיעים בצילומים הם דוגמאות לא אמיתיות לצורך שמירה על פרטיות.',
+        items: [
+          {
+            title: 'לוח בקרה',
+            desc: 'תמונה מהירה של מה שקורה בעסק: לקוחות, פרויקטים, הכנסות ומשימות חשובות במקום אחד ברור.',
+          },
+          {
+            title: 'רשימת לקוחות',
+            desc: 'רשימה פשוטה לניהול לקוחות, אנשי קשר וסטטוסים, בלי עומס מיותר ובלי צורך בידע טכני.',
+          },
+          {
+            title: 'ניהול פרויקטים',
+            desc: 'מסך שמרכז את העבודה הפעילה ועוזר להבין מה פתוח, מה מתקדם ומה צריך תשומת לב.',
+          },
+          {
+            title: 'כספים והכנסות',
+            desc: 'תצוגה נקייה של נתונים כספיים, כדי שהלקוח יוכל לעקוב אחרי כסף והתקדמות בצורה פשוטה.',
+          },
+          {
+            title: 'פרופיל משתמש וצוות',
+            desc: 'ניהול משתמשים והרשאות בצורה מסודרת, עם חלקים מאחורי הקלעים שמותאמים לדרך העבודה של הלקוח.',
+          },
+        ],
+      },
     },
     testimonials: {
       headline: 'מילים מאנשים שעבדתי איתם.',
@@ -310,7 +344,43 @@ export const translations = {
             'A premium, focused website connecting strategy, intelligence, and technology',
           link: 'https://creative-intelligence.co.il/',
         },
+        {
+          title: 'Creative Intelligence CRM',
+          desc: 'A custom CRM for Creative Intelligence, built to make clients, projects, finances, and user profiles easy to understand and manage even for people who are not deeply technical. The system includes automations and behind-the-scenes logic, while keeping the day-to-day experience clean, simple, and tailored to the client. Some names are blocked out in the screenshots, and the visible clients are fake examples for privacy.',
+          before:
+            'Client work, projects, and finances needed one simple place to live',
+          after:
+            'A clean custom CRM with simple workflows and automations behind the scenes',
+          link: '',
+          gallery: 'creativeIntCrm',
+        },
       ],
+      crmGallery: {
+        title: 'Creative Intelligence CRM',
+        desc: 'A look inside the internal system built for Creative Intelligence. Some information is blocked out, and the visible clients in the screenshots are fake examples used for privacy.',
+        items: [
+          {
+            title: 'Dashboard',
+            desc: 'A simple overview of the business: clients, projects, revenue, and important work all in one easy place.',
+          },
+          {
+            title: 'Client List',
+            desc: 'A clean way to manage clients, contacts, and statuses without clutter or technical complexity.',
+          },
+          {
+            title: 'Project Management',
+            desc: 'A working view that shows what is open, what is moving, and what needs attention next.',
+          },
+          {
+            title: 'Money & Finance',
+            desc: 'A clear financial view that helps the client follow income and progress without digging through spreadsheets.',
+          },
+          {
+            title: 'User & Team Profile',
+            desc: 'Organized user and permission management, supported by custom backend logic that fits the client workflow.',
+          },
+        ],
+      },
     },
     testimonials: {
       headline: "Words from people I've worked with.",
