@@ -61,41 +61,308 @@
       href="https://mosheschwartzberg.com/"
     />
 
-    <!-- Structured Data (JSON-LD) -->
+    <meta name="application-name" content="CodeCrafter" />
+    <meta name="business:profile" content="CodeCrafter Israel - Webite Developer" />
+    <meta name="business:service_area" content="Tel Aviv, Israel; Kfar Saba, Israel; Caesarea, Israel; Chicago, USA; New York, USA; United States; Israel; remote and international clients" />
+    <meta name="business:services" content="website developer, automation consultant, CRM developer, SEO consultant, custom website development, SEO-focused websites, business automation, CRM development, CMS development, lead management systems, workflow automation, technology audits, website maintenance" />
+    <meta name="business:industries" content="local businesses, ecommerce businesses, nonprofits, consultants, service providers, remote-first businesses" />
+    <meta name="business:languages" content="Hebrew and English" />
+    <meta name="business:support" content="ongoing maintenance, launch support, emergency support, and 24/7 safety-net availability for active clients" />
+    <meta name="business:pricing" content="Website projects start at 1,000 ILS and are often customized per client based on scope, design, integrations, automation, content, and ongoing support needs." />
+    <meta name="business:founder" content="Moshe Schwartzberg" />
+    <meta name="business:google_maps" content="https://maps.app.goo.gl/428ZTkX5tAebXS8V8" />
+    <meta name="geo.region" content="IL" />
+    <meta name="geo.position" content="32.1750918;34.9087986" />
+    <meta name="ICBM" content="32.1750918, 34.9087986" />
+
+    <!-- Structured Data (JSON-LD): kept in metadata for SEO and AI answer engines. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": ["Organization", "ProfessionalService"],
-        "name": "CodeCrafter",
-        "image": "/og-logo.png",
-        "@id": "https://mosheschwartzberg.com/#organization",
-        "url": "https://mosheschwartzberg.com/",
-        "founder": {
-          "@type": "Person",
-          "name": "Moshe Schwartzberg"
-        },
-        "email": "moshe@mosheschwartzberg.com",
-        "telephone": "+972587076077",
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "IL"
-        },
-        "areaServed": ["Israel", "International"],
-        "openingHoursSpecification": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Sunday"],
-          "opens": "09:00",
-          "closes": "18:00"
-        },
-        "sameAs": ["https://www.linkedin.com/in/moshe-schwartzberg-ab54401a7"]
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "CodeCrafter",
-        "url": "https://mosheschwartzberg.com/"
+        "@graph": [
+          {
+            "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
+            "@id": "https://mosheschwartzberg.com/#organization",
+            "name": "CodeCrafter",
+            "alternateName": ["CodeCrafter Israel", "CodeCrafter Israel - Webite Developer"],
+            "description": "CodeCrafter is a bilingual Hebrew and English website developer, automation consultant, CRM developer, and SEO consultant. CodeCrafter builds SEO-focused websites, custom business systems, CRM tools, workflow automations, and digital infrastructure for local businesses, ecommerce companies, nonprofits, and remote clients in Israel, the United States, and international markets.",
+            "url": "https://mosheschwartzberg.com/",
+            "image": "https://mosheschwartzberg.com/og-logo.png",
+            "logo": "https://mosheschwartzberg.com/og-logo.png",
+            "email": "moshe@mosheschwartzberg.com",
+            "telephone": "+972587076077",
+            "founder": {
+              "@type": "Person",
+              "@id": "https://mosheschwartzberg.com/#moshe-schwartzberg",
+              "name": "Moshe Schwartzberg",
+              "jobTitle": "Website Developer and Automation Specialist",
+              "url": "https://mosheschwartzberg.com/"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "IL"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 32.1750918,
+              "longitude": 34.9087986
+            },
+            "hasMap": "https://maps.app.goo.gl/428ZTkX5tAebXS8V8",
+            "priceRange": "Website projects start at 1,000 ILS; most projects are customized per client.",
+            "paymentAccepted": ["Bank transfer", "Credit card"],
+            "currenciesAccepted": "ILS, USD",
+            "availableLanguage": ["Hebrew", "English"],
+            "areaServed": [
+              { "@type": "Place", "name": "Tel Aviv, Israel" },
+              { "@type": "Place", "name": "Kfar Saba, Israel" },
+              { "@type": "Place", "name": "Caesarea, Israel" },
+              { "@type": "Place", "name": "Israel" },
+              { "@type": "Place", "name": "Chicago, USA" },
+              { "@type": "Place", "name": "New York, USA" },
+              { "@type": "Place", "name": "United States" },
+              { "@type": "Place", "name": "International remote clients" }
+            ],
+            "knowsAbout": [
+              "website developer",
+              "automation consultant",
+              "CRM developer",
+              "SEO consultant",
+              "website development",
+              "SEO",
+              "local SEO",
+              "Google Business Profile optimization",
+              "custom CRM development",
+              "workflow automation",
+              "lead management",
+              "business process automation",
+              "website maintenance",
+              "technical audits",
+              "React websites",
+              "conversion-focused web design",
+              "ecommerce websites",
+              "nonprofit websites",
+              "local business websites",
+              "bilingual Hebrew and English websites"
+            ],
+            "serviceType": [
+              "Website developer",
+              "Automation consultant",
+              "CRM developer",
+              "SEO consultant",
+              "Website development",
+              "SEO-focused website builds",
+              "Custom CRM development",
+              "Business automation",
+              "CMS and lead management systems",
+              "Website maintenance",
+              "Technology audits"
+            ],
+            "audience": [
+              { "@type": "BusinessAudience", "name": "Local businesses" },
+              { "@type": "BusinessAudience", "name": "Ecommerce businesses" },
+              { "@type": "BusinessAudience", "name": "Nonprofit organizations" }
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "CodeCrafter services",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Professional website development",
+                    "description": "Premium business websites built for trust, speed, SEO, and lead generation."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Workflow automation",
+                    "description": "Custom automations that reduce manual work, improve accuracy, and save business owners time."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Custom CRM and internal systems",
+                    "description": "Tailored tools for managing clients, leads, projects, finance, content, and operations."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "SEO and Google Business Profile consulting",
+                    "description": "Technical and practical SEO guidance for websites, local search, business profiles, and conversion-focused content."
+                  }
+                }
+              ]
+            },
+            "review": [
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Gabby" },
+                "reviewBody": "I met Moshe through a networking group and had an OUTSTANDING experience working with him on our website. His communication was incredibly clear, proactive and straightforward from start to finish. In my 13 years of working with similar companies, I can honestly say I've never had such a seamless experience. Genuinely made everything feel easy, efficient and well thought out - and the final results reflect that. I'll absolutely be coming back to CodeCrafter for future projects. Highly recommend.",
+                "itemReviewed": { "@id": "https://mosheschwartzberg.com/#organization" }
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Elisheva Eizenbach" },
+                "reviewBody": "I turned to Moshe because I was frustrated - I'd poured serious time and effort into my website and SEO, yet it was buried deep in Google search results. I know branding and design, but when it comes to the tech and code side of things, I needed someone who really gets it. Moshe is exactly that. A total tech genius. During a one-hour call, he analyzed my site using a variety of tools, explained how Google really works, and walked me through everything with patience and clarity - no jargon, just real, useful explanations. He even went over my Google Business profile and gave me a detailed, actionable checklist of things I could implement immediately. The amount of insight I got in just one session was incredible. He's friendly, professional, and makes the complex stuff simple. If your website is supposed to bring you leads and revenue, Moshe is the person to call. Highly, highly recommend.",
+                "itemReviewed": { "@id": "https://mosheschwartzberg.com/#organization" }
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Yosef Glanz" },
+                "reviewBody": "I was very satisfied with the end result of the redesign on my webpage. They were readily available to answer my questions and fulfill my requests.",
+                "itemReviewed": { "@id": "https://mosheschwartzberg.com/#organization" }
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Intro" },
+                "reviewBody": "Very good. Really recommend for others.",
+                "itemReviewed": { "@id": "https://mosheschwartzberg.com/#organization" }
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Yonatan Vinnik" },
+                "reviewBody": "Moshe at CodeCrafter really understands the needs of his clients and delivers at a high level, I recommend him to all people that need a website or coding done!",
+                "itemReviewed": { "@id": "https://mosheschwartzberg.com/#organization" }
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Sivan" },
+                "reviewBody": "בניית אתרים וליווי צמוד ומדויק. מקצועיות וגמישות ממוקדת לקוח",
+                "itemReviewed": { "@id": "https://mosheschwartzberg.com/#organization" },
+                "inLanguage": "he"
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Amit Kadosh" },
+                "reviewBody": "אין לי מילים לתאר כמה אני מרוצה מהעבודה של משה! הוא לקח רעיון פשוט והפך אותו לאתר מקצועי ומרהיב. משה הקפיד על כל פרט, התאים את האתר בדיוק לצרכים ולחזון שלי, ודאג לחוויית משתמש חלקה ונוחה. הוא מביא עמו שילוב נדיר של יצירתיות, מקצועיות, ואכפתיות אמיתית לפרויקט. ממליצה עליו מכל הלב לכל מי שרוצה לקחת את העסק שלה צעד קדימה בעולם הדיגיטלי!",
+                "itemReviewed": { "@id": "https://mosheschwartzberg.com/#organization" },
+                "inLanguage": "he"
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Lev" },
+                "reviewBody": "שירות יוצא מן הכלל! משה וצוות Sites for Everyone בנו לי אתר ואפליקציה שמתאימים בדיוק לצרכים שלי. התוצאה מקצועית, נראית מעולה ומותאמת אישית לכל מה שרציתי. לאורך כל הדרך, משה היה זמין לשאלות והצעות, וגרם לי להרגיש שאני בידיים טובות. אני בהחלט אחזור אליו בעתיד לפרויקטים נוספים וממליץ עליו בחום לכל מי שמחפש מפתח איכותי.",
+                "itemReviewed": { "@id": "https://mosheschwartzberg.com/#organization" },
+                "inLanguage": "he"
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Ari" },
+                "reviewBody": "אתר ברמה הגבוהה ביותר! משה והצוות שלו עשו עבודה מדהימה, עם עיצוב חדשני ותשומת לב לפרטים הקטנים. הכל יצא בדיוק כמו שרציתי, והשירות היה אישי ומקצועי. ממליץ בחום!",
+                "itemReviewed": { "@id": "https://mosheschwartzberg.com/#organization" },
+                "inLanguage": "he"
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Niztan" },
+                "reviewBody": "משה פשוט עשה קסמים בפרויקט שלי! האתר והאפליקציה לא רק נראים מעולה, אלא גם עובדים חלק ומהר. משה הבין את החזון שלי עד הפרט האחרון, הוסיף רעיונות יצירתיים משלו שהעלו את התוצאה לרמה אחרת, ונתן מענה סבלני ומקצועי לכל שאלה שלי. הרגשתי שהוא באמת מושקע בהצלחה שלי ושאכפת לו מהתוצאה. מי שמחפש פתרון דיגיטלי שהוא גם מרשים וגם עובד - משה הוא האיש הנכון!",
+                "itemReviewed": { "@id": "https://mosheschwartzberg.com/#organization" },
+                "inLanguage": "he"
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Yonatan" },
+                "reviewBody": "Service and professionalism above all! I will recommend you to everyone. You are professional and helpful!",
+                "itemReviewed": { "@id": "https://mosheschwartzberg.com/#organization" }
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Rabbi Amos Azizoff" },
+                "reviewBody": "Moshe is a lovely person. He loves to help and is always on the phone to support. I highly recommend this dear man.",
+                "itemReviewed": { "@id": "https://mosheschwartzberg.com/#organization" }
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Ayala" },
+                "reviewBody": "לאורך כל התהליך, קיבלתי שירות מדהים ומקצועי! הצוות היה קשוב לצרכים ולרעיונות שלי וידע איך לתרגם אותם לעיצוב ופיתוח ברמה הגבוהה ביותר. האתר יצא מרשים ואינטואיטיבי, והאפליקציה עובדת בצורה חלקה וללא תקלות. קיבלתי עדכונים שוטפים בכל שלב, וגם לאחר ההשקה הם המשיכו לתמוך ולעזור בכל דבר שהייתי צריך. ממליץ בחום לכל מי שמחפש שירותי פיתוח אתרים ואפליקציות אמינים ומקצועיים!",
+                "itemReviewed": { "@id": "https://mosheschwartzberg.com/#organization" },
+                "inLanguage": "he"
+              }
+            ],
+            "makesOffer": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "24/7 support safety net",
+                  "description": "Ongoing maintenance, launch support, emergency support, and high-availability assistance for active clients."
+                }
+              }
+            ],
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Sunday"],
+              "opens": "09:00",
+              "closes": "18:00"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/moshe-schwartzberg-ab54401a7",
+              "https://maps.app.goo.gl/428ZTkX5tAebXS8V8"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://mosheschwartzberg.com/#website",
+            "name": "CodeCrafter",
+            "url": "https://mosheschwartzberg.com/",
+            "inLanguage": ["he", "en"],
+            "publisher": { "@id": "https://mosheschwartzberg.com/#organization" },
+            "about": { "@id": "https://mosheschwartzberg.com/#organization" }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://mosheschwartzberg.com/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What are the prices for a website?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Website projects with CodeCrafter start at 1,000 ILS, but most projects are customized per client based on scope, design, integrations, automation, content, and support needs."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Where does CodeCrafter work with clients?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "CodeCrafter works with clients in Israel and the United States, including Tel Aviv, Kfar Saba, Caesarea, Chicago, and New York, as well as remote and international clients."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What does CodeCrafter build?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "CodeCrafter builds professional websites, SEO-focused digital presence, custom CRM systems, content and lead management tools, workflow automations, and internal business systems."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can CodeCrafter help after the website is launched?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. CodeCrafter provides ongoing support, maintenance, technical guidance, and improvements so the website or system stays useful as the business grows."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can CodeCrafter improve SEO and Google Business Profile performance?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. CodeCrafter helps with technical SEO, local SEO, structured data, website performance, content clarity, and practical Google Business Profile optimization."
+                }
+              }
+            ]
+          }
+        ]
       }
     </script>
   </head>
