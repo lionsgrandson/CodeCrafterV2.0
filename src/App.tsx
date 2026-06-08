@@ -51,7 +51,7 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  const [lang, setLang] = useState<Language>('he');
+  const [lang, setLang] = useState<Language>('en');
 
   useEffect(() => {
     document.documentElement.lang = lang;
