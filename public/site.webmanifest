@@ -1,0 +1,18 @@
+{
+  "name": "CodeCrafter",
+  "short_name": "CodeCrafter",
+  "description": "Bilingual website development, SEO, automation, and custom business systems.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#123b62",
+  "theme_color": "#123b62",
+  "icons": [
+    {
+      "src": "/log-round.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

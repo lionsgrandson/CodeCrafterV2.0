@@ -1,6 +1,12 @@
 {
   "name": "CodeCrafter",
-  "description": "A premium digital architecture and consultancy landing page for high-end digital solutions.",
+  "description": "CodeCrafter builds bilingual websites, SEO-focused digital presence, business automations, and custom internal systems for clients in Israel, the United States, and remote markets.",
   "requestFramePermissions": [],
-  "majorCapabilities": []
+  "majorCapabilities": [
+    "Website development",
+    "Technical SEO and local SEO",
+    "Business automation",
+    "Custom internal systems",
+    "Bilingual Hebrew and English digital presence"
+  ]
 }
