@@ -4,14 +4,18 @@ import { Menu, MessageSquare, Languages, X } from 'lucide-react';
 import { useLanguage } from '../App';
 import { getWhatsAppUrl } from '../lib/contact';
 
-export function Navbar() {
+type NavbarProps = {
+  homeHashPrefix?: string;
+};
+
+export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
   const { t, lang, setLang } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navItems = [
-    { label: t.nav.solve, href: '#services' },
-    { label: t.nav.work, href: '#portfolio' },
-    { label: t.nav.process, href: '#process' },
-    { label: t.nav.success, href: '#testimonials' }
+    { label: t.nav.solve, href: `${homeHashPrefix}#services` },
+    { label: t.nav.work, href: `${homeHashPrefix}#portfolio` },
+    { label: t.nav.process, href: `${homeHashPrefix}#process` },
+    { label: t.nav.success, href: `${homeHashPrefix}#testimonials` }
   ];
 
   const toggleLanguage = () => {
@@ -43,7 +47,7 @@ export function Navbar() {
           </button>
 
           <a
-            href="#contact"
+            href={`${homeHashPrefix}#contact`}
             className="bg-primary-gradient text-white px-6 py-2 rounded-lg font-headline text-sm font-semibold hover:scale-[1.02] active:scale-95 transition-all duration-200 shadow-lg shadow-primary/20"
           >
             {t.nav.cta}
@@ -90,7 +94,7 @@ export function Navbar() {
                 </a>
               ))}
               <a
-                href="#contact"
+                href={`${homeHashPrefix}#contact`}
                 onClick={() => setIsMenuOpen(false)}
                 className="mt-3 bg-primary-gradient text-white px-6 py-3 rounded-lg font-headline text-sm font-semibold text-center shadow-lg shadow-primary/20"
               >

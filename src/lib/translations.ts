@@ -67,6 +67,11 @@ export const translations = {
       headline: 'עבודה אמיתית. תוצאות אמיתיות.',
       before: 'נקודת פתיחה',
       after: 'התוצאה',
+      seeAll: 'לצפייה בכל העבודות שלנו',
+      allHeadline: 'כל העבודות שלנו',
+      allSubline:
+        'מבחר מלא של אתרים, מערכות וחוויות דיגיטליות שנבנו סביב אנשים, עסקים ומטרות אמיתיות.',
+      backHome: 'חזרה לעמוד הבית',
       projects: [
         {
           title: 'Mahagony Israel',
@@ -304,6 +309,11 @@ export const translations = {
       headline: 'Real Work. Real Results.',
       before: 'Starting Point',
       after: 'Result',
+      seeAll: 'See all our work',
+      allHeadline: 'See All Our Work',
+      allSubline:
+        'Explore the complete collection of websites, systems, and digital experiences built around real people, businesses, and goals.',
+      backHome: 'Back to the homepage',
       projects: [
         {
           title: 'Mahagony Israel',

@@ -3,6 +3,7 @@
 CodeCrafter is Moshe Schwartzberg's website development, SEO, automation, and custom business systems studio.
 
 Primary URL: https://mosheschwartzberg.com/
+Portfolio: [CodeCrafter project portfolio](https://mosheschwartzberg.com/portfolio/)
 
 Services:
 - Bilingual Hebrew and English website development

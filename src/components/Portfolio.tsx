@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { Star } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Star } from 'lucide-react'
 import { useState } from 'react'
 import { useLanguage } from '../App'
 
@@ -49,8 +49,16 @@ function ProjectMedia({ src, title, kind = 'logo' }: ProjectMediaProps) {
   )
 }
 
-export function Portfolio() {
-  const { t } = useLanguage()
+type PortfolioProps = {
+  showAll?: boolean
+  standalone?: boolean
+}
+
+export function Portfolio({
+  showAll = false,
+  standalone = false,
+}: PortfolioProps) {
+  const { t, lang } = useLanguage()
 
   const projectMedia = [
     {
@@ -88,44 +96,82 @@ export function Portfolio() {
 
   return (
     <section
-      className='py-24 px-6 md:px-8 bg-surface-container-low'
+      className={`${standalone ? 'pt-32 pb-24' : 'py-24'} px-6 md:px-8 bg-surface-container-low`}
       id='portfolio'
     >
       <div className='max-w-7xl mx-auto'>
-        <h2 className='text-4xl md:text-5xl font-bold mb-16 tracking-tight font-headline text-on-surface'>
-          {t.portfolio.headline}
-        </h2>
+        {standalone && (
+          <a
+            href='/#portfolio'
+            className='mb-8 inline-flex items-center gap-2 font-headline text-sm font-semibold text-secondary hover:text-primary transition-colors'
+          >
+            {lang === 'he' ? (
+              <ArrowRight className='h-4 w-4' aria-hidden='true' />
+            ) : (
+              <ArrowLeft className='h-4 w-4' aria-hidden='true' />
+            )}
+            {t.portfolio.backHome}
+          </a>
+        )}
+        {standalone ? (
+          <div className='mb-16 max-w-3xl'>
+            <h1 className='text-4xl md:text-6xl font-bold mb-5 tracking-tight font-headline text-on-surface'>
+              {t.portfolio.allHeadline}
+            </h1>
+            <p className='text-lg md:text-xl text-on-surface-variant font-light leading-relaxed'>
+              {t.portfolio.allSubline}
+            </p>
+          </div>
+        ) : (
+          <h2 className='text-4xl md:text-5xl font-bold mb-16 tracking-tight font-headline text-on-surface'>
+            {t.portfolio.headline}
+          </h2>
+        )}
         <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
           {projects.map((project, idx) => {
+            const isHomepageExtra = !showAll && idx >= 5
+
             return (
               <motion.a
-              key={project.link || project.title}
-              href={project.link}
-              target='_blank'
-              rel='noopener noreferrer'
-              initial={false}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -8 }}
-              transition={{ duration: 0.4, delay: (idx % 3) * 0.1 }}
-              viewport={{ once: true }}
-              className='bg-surface-container-lowest rounded-xl overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-500 border border-outline-variant/10 flex flex-col h-full text-start cursor-pointer'
-            >
-              <ProjectMedia
-                src={project.media?.src}
-                title={project.title}
-                kind={project.media?.kind}
-              />
-              <div className='p-6 flex-1 flex flex-col justify-between'>
-                <div>
-                  <p className='text-on-surface-variant text-sm font-light leading-relaxed'>
-                    {project.desc}
-                  </p>
+                key={project.link || project.title}
+                href={project.link}
+                target='_blank'
+                rel='noopener noreferrer'
+                initial={false}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -8 }}
+                transition={{ duration: 0.4, delay: (idx % 3) * 0.1 }}
+                viewport={{ once: true }}
+                className={`${isHomepageExtra ? 'hidden' : 'flex'} bg-surface-container-lowest rounded-xl overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-500 border border-outline-variant/10 flex-col h-full text-start cursor-pointer`}
+              >
+                <ProjectMedia
+                  src={
+                    showAll || idx < 5 ? project.media?.src : undefined
+                  }
+                  title={project.title}
+                  kind={project.media?.kind}
+                />
+                <div className='p-6 flex-1 flex flex-col justify-between'>
+                  <div>
+                    <p className='text-on-surface-variant text-sm font-light leading-relaxed'>
+                      {project.desc}
+                    </p>
+                  </div>
                 </div>
-              </div>
               </motion.a>
             )
           })}
         </div>
+        {!showAll && (
+          <div className='mt-10 flex justify-center'>
+            <a
+              href='/portfolio/'
+              className='inline-flex min-h-12 items-center justify-center rounded-lg bg-primary-gradient px-7 py-3 text-center font-headline font-bold text-white shadow-lg shadow-primary/20 transition-all duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/30 active:scale-95'
+            >
+              {t.portfolio.seeAll}
+            </a>
+          </div>
+        )}
       </div>
     </section>
   )

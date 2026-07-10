@@ -183,7 +183,11 @@ export function FinalCTA() {
   );
 }
 
-export function Footer() {
+type FooterProps = {
+  homeHashPrefix?: string;
+};
+
+export function Footer({ homeHashPrefix = '' }: FooterProps) {
   const { t } = useLanguage();
   return (
     <footer className="w-full py-12 px-6 md:px-8 bg-surface-container-high border-t border-outline-variant/10">
@@ -212,10 +216,10 @@ export function Footer() {
           <p className="font-headline font-bold text-xs uppercase tracking-widest text-on-surface mb-6">{t.footer.explore}</p>
           <ul className="space-y-3 text-sm">
             {[
-              { label: t.nav.solve, href: '#services' },
-              { label: t.nav.work, href: '#portfolio' },
-              { label: t.nav.process, href: '#process' },
-              { label: t.nav.success, href: '#testimonials' }
+              { label: t.nav.solve, href: `${homeHashPrefix}#services` },
+              { label: t.nav.work, href: `${homeHashPrefix}#portfolio` },
+              { label: t.nav.process, href: `${homeHashPrefix}#process` },
+              { label: t.nav.success, href: `${homeHashPrefix}#testimonials` }
             ].map((link) => (
               <li key={link.label}>
                 <a href={link.href} className="text-secondary hover:text-primary transition-all">

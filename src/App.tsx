@@ -53,8 +53,17 @@ function ScrollToTop() {
   )
 }
 
-export default function App() {
+type AppProps = {
+  pathname?: string
+}
+
+export default function App({ pathname }: AppProps) {
   const [lang, setLang] = useState<Language>('he')
+  const currentPath =
+    pathname ?? (typeof window !== 'undefined' ? window.location.pathname : '/')
+  const normalizedPath = currentPath.replace(/\/+$/, '') || '/'
+  const isPortfolioPage = normalizedPath === '/portfolio'
+  const homeHashPrefix = isPortfolioPage ? '/' : ''
 
   useEffect(() => {
     document.documentElement.lang = lang
@@ -71,17 +80,23 @@ export default function App() {
     <LanguageContext.Provider value={value}>
       <div className='min-h-screen bg-surface'>
         <ScrollToTop />
-        <Navbar />
-        <main>
-          <Hero />
-          <Services />
-          <Process />
-          <Portfolio />
-          <Testimonials />
-          <WhyWorkWithMe />
-          <FinalCTA />
+        <Navbar homeHashPrefix={homeHashPrefix} />
+        <main id='main-content'>
+          {isPortfolioPage ? (
+            <Portfolio showAll standalone />
+          ) : (
+            <>
+              <Hero />
+              <Services />
+              <Process />
+              <Portfolio />
+              <Testimonials />
+              <WhyWorkWithMe />
+              <FinalCTA />
+            </>
+          )}
         </main>
-        <Footer />
+        <Footer homeHashPrefix={homeHashPrefix} />
       </div>
     </LanguageContext.Provider>
   )
