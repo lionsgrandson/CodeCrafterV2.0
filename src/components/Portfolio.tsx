@@ -1,23 +1,89 @@
 import { motion } from 'motion/react'
 import { Star } from 'lucide-react'
+import { useState } from 'react'
 import { useLanguage } from '../App'
+
+type ProjectMediaProps = {
+  src?: string
+  title: string
+  kind?: 'logo' | 'screenshot'
+}
+
+function ProjectMedia({ src, title, kind = 'logo' }: ProjectMediaProps) {
+  const [state, setState] = useState<
+    'blank' | 'loading' | 'success' | 'failure'
+  >(src ? 'loading' : 'blank')
+
+  return (
+    <div className='aspect-video relative overflow-hidden bg-surface-container-high'>
+      {state === 'loading' && (
+        <div
+          className='absolute inset-0 animate-pulse bg-gradient-to-br from-surface-container-high to-surface-container-highest'
+          aria-hidden='true'
+        />
+      )}
+      {(state === 'blank' || state === 'failure') && (
+        <div className='absolute inset-0 flex items-center justify-center p-8 text-center'>
+          <span className='font-headline text-xl font-bold text-on-surface'>
+            {title}
+          </span>
+        </div>
+      )}
+      {src && (
+        <img
+          className={`w-full h-full group-hover:scale-105 transition-all duration-700 ${kind === 'screenshot' ? 'object-cover' : 'object-contain p-8'} ${state === 'success' ? 'opacity-100' : 'opacity-0'}`}
+          src={src}
+          alt={title}
+          loading='lazy'
+          referrerPolicy='no-referrer'
+          onLoad={() => setState('success')}
+          onError={() => setState('failure')}
+        />
+      )}
+      <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6'>
+        <h3 className='text-white text-xl font-bold font-headline'>
+          {title}
+        </h3>
+      </div>
+    </div>
+  )
+}
 
 export function Portfolio() {
   const { t } = useLanguage()
 
-  const projectImages = [
-    'https://gxgtkdshctfclpmavgbp.supabase.co/storage/v1/object/public/project-images/uploads/1759489369256-lxc88q.png',
-    'https://www.ykadosh.co.il/assets/yuvalLogo.png',
-    'https://rainbowasdv2.netlify.app/assets/LogoWithText-CcLxZipc.png',
-    'https://chicagotraumatherapy.com/assets/blueLogo-DrhddtD2.png',
-    'https://sumsup.co/assets/sumsup-logo-RXncwyPE.png',
-    'https://mosheschwartzberg.com/amitStarProject/assets/outofthelines-seo-Dxx0P0rN.jpeg',
+  const projectMedia = [
+    {
+      src: 'https://gxgtkdshctfclpmavgbp.supabase.co/storage/v1/object/public/project-images/uploads/1759489369256-lxc88q.png',
+    },
+    { src: 'https://www.ykadosh.co.il/assets/yuvalLogo.png' },
+    {
+      src: 'https://rainbowasdv2.netlify.app/assets/LogoWithText-CcLxZipc.png',
+    },
+    {
+      src: 'https://chicagotraumatherapy.com/assets/blueLogo-DrhddtD2.png',
+    },
+    { src: 'https://sumsup.co/assets/sumsup-logo-RXncwyPE.png' },
+    {
+      src: 'https://mosheschwartzberg.com/amitStarProject/assets/outofthelines-seo-Dxx0P0rN.jpeg',
+    },
+    { src: '/portfolio/technology-corps-logo.png' },
+    { src: '/portfolio/big-sale-logo.jpeg' },
+    { src: '/portfolio/creative-intelligence-logo.svg' },
+    { src: '/portfolio/shimon-photography-logo.jpeg' },
+    { src: '/portfolio/aderet-argaman-logo.png' },
+    {
+      src: '/portfolio/coderecovery-screenshot.png',
+      kind: 'screenshot' as const,
+    },
+    { src: '/portfolio/ai-pro-logo.jpeg' },
+    { src: '/portfolio/omnifood-logo.png' },
   ]
 
   const projects = t.portfolio.projects.map((project, idx) => ({
     ...project,
-    img: projectImages[idx],
-    link: project.link || projectImages[idx],
+    media: projectMedia[idx],
+    link: project.link || projectMedia[idx]?.src,
   }))
 
   return (
@@ -33,7 +99,7 @@ export function Portfolio() {
           {projects.map((project, idx) => {
             return (
               <motion.a
-              key={idx}
+              key={project.link || project.title}
               href={project.link}
               target='_blank'
               rel='noopener noreferrer'
@@ -44,20 +110,11 @@ export function Portfolio() {
               viewport={{ once: true }}
               className='bg-surface-container-lowest rounded-xl overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-500 border border-outline-variant/10 flex flex-col h-full text-start cursor-pointer'
             >
-              <div className='aspect-video relative overflow-hidden bg-surface-container-high'>
-                <img
-                  className='w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-700'
-                  src={project.img}
-                  alt={project.title}
-                  loading='lazy'
-                  referrerPolicy='no-referrer'
-                />
-                <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6'>
-                  <h3 className='text-white text-xl font-bold font-headline'>
-                    {project.title}
-                  </h3>
-                </div>
-              </div>
+              <ProjectMedia
+                src={project.media?.src}
+                title={project.title}
+                kind={project.media?.kind}
+              />
               <div className='p-6 flex-1 flex flex-col justify-between'>
                 <div>
                   <p className='text-on-surface-variant text-sm font-light leading-relaxed'>
