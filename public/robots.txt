@@ -3,7 +3,7 @@ Allow: /
 Allow: /assets/
 Allow: /log-round.png
 Allow: /favicon.ico
-Allow: /about-photo.jpeg
+Allow: /about-photo.jpg
 Allow: /llms.txt
 
 Disallow: /401.html

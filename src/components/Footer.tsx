@@ -75,7 +75,7 @@ export function WhyWorkWithMe() {
           >
             <img
               className='w-full h-full object-cover grayscale brightness-90 contrast-125 transition-all duration-700'
-              src='/about-photo.jpeg'
+              src='/about-photo.jpg'
               alt={t.why.alt}
               loading='lazy'
             />
