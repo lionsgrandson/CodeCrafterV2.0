@@ -202,24 +202,28 @@ export const translations = {
       headline: 'בצד שלך מהרגע הראשון',
       items: [
         {
-          title: 'אני מקשיב לפני שאני בונה',
-          desc: 'לפני קוד, עיצוב או מערכת, אני רוצה להבין מה מכביד עליך ביום יום: איפה לקוחות נופלים, מה שואב זמן, ומה צריך להרגיש פשוט יותר.',
+          title: 'אני לא מתחיל בעיצוב או בקוד – אני מתחיל בלהבין את העסק שלך.',
+          desc: 'מה מאט אותך? איפה לקוחות נעלמים בדרך? ואיך אפשר להפוך את התהליך לפשוט, יעיל ורווחי יותר.',
         },
         {
-          title: 'אתה לא נשאר לבד עם הטכנולוגיה',
-          desc: 'אני מתרגם את החלקים המורכבים לשיחה רגועה וברורה, מחזיק לך את התהליך, ודואג שתמיד תדע מה קורה ולמה זה טוב לעסק שלך.',
+          title: 'פתרונות שבאמת עובדים בשבילך',
+          desc: 'כל אתר או מערכת שאני בונה מותאמים לאופן שבו העסק שלך עובד, כדי לחסוך זמן, לייצר יותר פניות ולהפוך תהליכים מורכבים לפשוטים.',
         },
         {
-          title: 'האתר מדבר אל הלקוח שלך',
-          desc: 'אני חושב כמו האדם שנכנס לאתר שלך: מה הוא מפחד להפסיד, מה הוא רוצה להרגיש, ומה יעזור לו לסמוך עליך מספיק כדי לפנות.',
+          title: 'בלי כאב ראש טכנולוגי',
+          desc: 'אני מסביר הכול בשפה פשוטה, מלווה אותך לאורך כל הדרך, ודואג שתמיד תדע מה קורה, למה זה חשוב, ואיך זה מקדם את העסק שלך.',
         },
         {
-          title: 'עבודה שמרגישה כמו חבר חכם בצד שלך',
-          desc: 'המטרה שלי היא שלא תרגיש שאתה קונה אתר, אלא שיש לידך מישהו שאכפת לו שהעסק שלך יראה נכון, יעבוד טוב ויביא אנשים אמיתיים.',
+          title: 'חושב כמו הלקוחות שלך',
+          desc: 'אני בונה אתרים שמדברים אל האנשים הנכונים יוצרים אמון, מעבירים את הערך שלך ומובילים יותר מבקרים להפוך ללקוחות.',
+        },
+        {
+          title: 'שותף להצלחה, לא רק ספק',
+          desc: 'המטרה שלי היא שלא תקבל רק אתר יפה, אלא כלי עבודה שמייצג אותך בצורה מקצועית, מייצר תוצאות, וממשיך לעבוד בשבילך גם הרבה אחרי העלייה לאוויר.',
         },
       ],
       quote:
-        '"אתה מביא את החלום והעסק. אני עוזר לאנשים להרגיש למה כדאי להם לבחור בך."',
+        '"אתה מביא את החזון והעסק. אני דואג להפוך אותו לחוויה דיגיטלית שמביאה לקוחות."',
       alt: 'דיוקן מקצועי של משה שוורצברג',
     },
     cta: {
@@ -363,57 +367,72 @@ export const translations = {
         {
           title: 'Technology & Maintenance Corps',
           desc: 'A focused information hub that helps candidates and young people understand study tracks, placements, benefits, and common questions in one clear, accessible experience.',
-          before: 'Important track and placement information that was difficult to compare',
-          after: 'A clear information hub that guides every candidate toward the right path',
+          before:
+            'Important track and placement information that was difficult to compare',
+          after:
+            'A clear information hub that guides every candidate toward the right path',
           link: 'https://flourishing-toffee-be2e06.netlify.app/',
         },
         {
           title: 'Big Sale',
           desc: 'An Israeli online store that helps customers discover shoes, home textiles, jewelry, children’s clothing, and useful gadgets, then shop with confidence and ease.',
-          before: 'A broad product range ready for a more organized shopping experience',
-          after: 'An accessible store that shortens the path from discovery to purchase',
+          before:
+            'A broad product range ready for a more organized shopping experience',
+          after:
+            'An accessible store that shortens the path from discovery to purchase',
           link: 'https://sarit-beauity.netlify.app/',
         },
         {
           title: 'Creative Intelligence',
           desc: 'A discreet, authoritative website that presents strategic consulting, business intelligence, cyber, and security solutions while guiding qualified clients toward contact.',
-          before: 'Sensitive expertise ready for a credible and precise presentation',
-          after: 'A secure digital presence that builds trust and generates qualified inquiries',
+          before:
+            'Sensitive expertise ready for a credible and precise presentation',
+          after:
+            'A secure digital presence that builds trust and generates qualified inquiries',
           link: 'https://creative-intell.netlify.app/',
         },
         {
           title: 'Shimon Cohen Photography',
           desc: 'A photography portfolio that puts story and emotion first, showcases the work with depth, and helps families and clients feel confident before reaching out.',
-          before: 'Powerful photography ready for one cohesive viewing experience',
-          after: 'An emotional gallery that communicates the style and encourages contact',
+          before:
+            'Powerful photography ready for one cohesive viewing experience',
+          after:
+            'An emotional gallery that communicates the style and encourages contact',
           link: 'https://eclectic-marigold-0fe508.netlify.app/',
         },
         {
           title: 'Aderet & Argaman',
           desc: 'A digital home for Tel Aviv second-hand stores that connects premium fashion, sustainability, and a local story while encouraging customers to explore the brands and visit.',
-          before: 'Two character-rich stores ready for one unified digital story',
-          after: 'A distinctive fashion site that turns brand discovery into store visits',
+          before:
+            'Two character-rich stores ready for one unified digital story',
+          after:
+            'A distinctive fashion site that turns brand discovery into store visits',
           link: 'https://snazzy-phoenix-fbd0ad.netlify.app/',
         },
         {
           title: 'CodeRecovery',
           desc: 'A focused service site for a data recovery lab that explains a complex process in plain language and helps clients with critical data reach support quickly and confidently.',
-          before: 'An urgent technical service that needed to establish trust immediately',
-          after: 'A clear inquiry experience that guides clients to the right diagnosis',
+          before:
+            'An urgent technical service that needed to establish trust immediately',
+          after:
+            'A clear inquiry experience that guides clients to the right diagnosis',
           link: 'https://simplyrecovery.netlify.app/',
         },
         {
           title: 'AI Pro',
           desc: 'An engineering services site that organizes calibration, validation, engineering, and repair offerings so clients can quickly identify the right service and make contact.',
           before: 'A range of technical services ready for a clearer structure',
-          after: 'A professional service hub that shortens the path from need to solution',
+          after:
+            'A professional service hub that shortens the path from need to solution',
           link: 'https://ai-pro.co.il/',
         },
         {
           title: 'Omnifood',
           desc: 'A landing page for a smart meal subscription that combines personalization, convenient nutrition, and social proof, then guides visitors clearly toward starting a plan.',
-          before: 'A new meal service ready for a simple, persuasive value proposition',
-          after: 'A focused marketing experience that explains the offer and drives trials',
+          before:
+            'A new meal service ready for a simple, persuasive value proposition',
+          after:
+            'A focused marketing experience that explains the offer and drives trials',
           link: 'https://omnifood.dev/',
         },
       ],
