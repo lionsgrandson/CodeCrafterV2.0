@@ -6,7 +6,7 @@ import { Services, Process } from './components/Services'
 import { Portfolio, Testimonials } from './components/Portfolio'
 import { WhyWorkWithMe, FinalCTA, Footer } from './components/Footer'
 import { translations } from './lib/translations'
-
+import FloatingWA from './components/floatingWA'
 type Language = 'he' | 'en'
 
 interface LanguageContextType {
@@ -87,6 +87,7 @@ export default function App({ pathname }: AppProps) {
           ) : (
             <>
               <Hero />
+              <FloatingWA />
               <Services />
               <Process />
               <Portfolio />
