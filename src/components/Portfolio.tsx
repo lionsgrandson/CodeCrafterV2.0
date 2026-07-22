@@ -60,7 +60,7 @@ export function Portfolio({
 
   const projectMedia = [
     {
-      src: 'https://gxgtkdshctfclpmavgbp.supabase.co/storage/v1/object/public/project-images/uploads/1759489369256-lxc88q.png',
+      src: 'https://mahagonyisrael.netlify.app/assets/logo-ln4ACuF9.png',
     },
     { src: 'https://www.ykadosh.co.il/assets/yuvalLogo.png' },
     {
@@ -73,17 +73,23 @@ export function Portfolio({
     {
       src: 'https://mosheschwartzberg.com/amitStarProject/assets/outofthelines-seo-Dxx0P0rN.jpeg',
     },
-    { src: '/portfolio/technology-corps-logo.png' },
-    { src: '/portfolio/big-sale-logo.jpeg' },
-    { src: '/portfolio/creative-intelligence-logo.svg' },
-    { src: '/portfolio/shimon-photography-logo.jpeg' },
-    { src: '/portfolio/aderet-argaman-logo.png' },
     {
-      src: '/portfolio/coderecovery-screenshot.png',
+      src: 'https://mosheschwartzberg.com/portfolio/technology-corps-logo.png',
+    },
+    { src: 'https://mosheschwartzberg.com/portfolio/big-sale-logo.jpeg' },
+    {
+      src: 'https://mosheschwartzberg.com/portfolio/creative-intelligence-logo.svg',
+    },
+    {
+      src: 'https://mosheschwartzberg.com/portfolio/shimon-photography-logo.jpeg',
+    },
+    { src: 'https://mosheschwartzberg.com/portfolio/aderet-argaman-logo.png' },
+    {
+      src: 'https://mosheschwartzberg.com/portfolio/coderecovery-screenshot.png',
       kind: 'screenshot' as const,
     },
-    { src: '/portfolio/ai-pro-logo.jpeg' },
-    { src: '/portfolio/omnifood-logo.png' },
+    { src: 'https://mosheschwartzberg.com/portfolio/ai-pro-logo.jpeg' },
+    { src: 'https://mosheschwartzberg.com/portfolio/omnifood-logo.png' },
   ]
 
   const projects = t.portfolio.projects.map((project, idx) => ({
@@ -127,7 +133,7 @@ export function Portfolio({
         )}
         <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
           {projects.map((project, idx) => {
-            const isHomepageExtra = !showAll && idx >= 5
+            const isHomepageExtra = !showAll && idx >= 20
 
             return (
               <motion.a
@@ -143,7 +149,7 @@ export function Portfolio({
                 className={`${isHomepageExtra ? 'hidden' : 'flex'} bg-surface-container-lowest rounded-xl overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-500 border border-outline-variant/10 flex-col h-full text-start cursor-pointer`}
               >
                 <ProjectMedia
-                  src={showAll || idx < 5 ? project.media?.src : undefined}
+                  src={showAll || idx < 20 ? project.media?.src : undefined}
                   title={project.title}
                   kind={project.media?.kind}
                 />
@@ -158,7 +164,7 @@ export function Portfolio({
             )
           })}
         </div>
-        {!showAll && (
+        {/* {!showAll && (
           <div className='mt-10 flex justify-center'>
             <a
               href='/portfolio/'
@@ -167,7 +173,7 @@ export function Portfolio({
               {t.portfolio.seeAll}
             </a>
           </div>
-        )}
+        )} */}
       </div>
     </section>
   )
