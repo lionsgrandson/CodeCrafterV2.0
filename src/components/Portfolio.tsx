@@ -41,9 +41,7 @@ function ProjectMedia({ src, title, kind = 'logo' }: ProjectMediaProps) {
         />
       )}
       <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6'>
-        <h3 className='text-white text-xl font-bold font-headline'>
-          {title}
-        </h3>
+        <h3 className='text-white text-xl font-bold font-headline'>{title}</h3>
       </div>
     </div>
   )
@@ -145,9 +143,7 @@ export function Portfolio({
                 className={`${isHomepageExtra ? 'hidden' : 'flex'} bg-surface-container-lowest rounded-xl overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-500 border border-outline-variant/10 flex-col h-full text-start cursor-pointer`}
               >
                 <ProjectMedia
-                  src={
-                    showAll || idx < 5 ? project.media?.src : undefined
-                  }
+                  src={showAll || idx < 5 ? project.media?.src : undefined}
                   title={project.title}
                   kind={project.media?.kind}
                 />
@@ -202,7 +198,10 @@ export function Testimonials() {
             >
               <div className='flex text-primary mb-6'>
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className='w-5 h-5 fill-primary' />
+                  <Star
+                    key={i}
+                    className='w-5 h-5 fill-yellow-500 text-yellow-500'
+                  />
                 ))}
               </div>
               <p className='text-lg font-light text-on-surface-variant mb-8 flex-1 leading-relaxed italic'>
