@@ -501,7 +501,7 @@ html[dir="rtl"] .crm-pop-heading p {
 
 .hero-photo-frame {
   @apply relative isolate overflow-hidden rounded-[1.75rem] border-[6px] border-white bg-white;
-  aspect-ratio: 1420 / 931;
+  aspect-ratio: 1052 / 945;
   box-shadow:
     0 34px 80px -28px rgb(31 41 55 / 45%),
     0 18px 38px -24px rgb(63 81 181 / 48%),

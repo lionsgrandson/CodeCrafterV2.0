@@ -68,12 +68,11 @@ export function WhyWorkWithMe() {
             className='w-full aspect-[4/5] bg-primary/20 rounded-2xl relative overflow-hidden ring-1 ring-white/10'
           >
             <img
-              className='w-full h-full object-cover grayscale brightness-90 contrast-125 transition-all duration-700'
+              className='w-full h-full object-cover grayscale'
               src='/about-photo.jpg'
               alt={t.why.alt}
               loading='lazy'
             />
-            <div className='absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent'></div>
           </motion.div>
         </div>
       </div>

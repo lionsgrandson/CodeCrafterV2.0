@@ -15,7 +15,7 @@ export const translations = {
       ctaPrimary: 'אני כאן לייעוץ',
       ctaSecondary: 'שלח הודעה ב-WhatsApp',
       lead: '',
-      alt: 'סביבת עבודה אדריכלית מודרנית',
+      alt: 'משה שוורצברג ברחוב עירוני בפראג',
     },
     services: {
       eyebrow: 'השירותים שלי',
@@ -252,21 +252,21 @@ export const translations = {
   en: {
     nav: {
       brand: 'CodeCrafter',
-      solve: 'What We Build',
-      work: 'Our Work',
-      process: 'The Process',
-      success: 'Client Words',
-      cta: "I'm Here to Help",
+      solve: 'What I Build',
+      work: 'Projects',
+      process: 'How I Work',
+      success: 'Client Testimonials',
+      cta: "I'm Here for a Consultation",
     },
     hero: {
-      eyebrow: 'Crafting Code. Creating Solutions.',
-      headline: 'Start Earning More With Advanced Systems and Efficient Work.',
-      subline:
-        'I upgrade the digital engine behind your business. From professional websites that build trust to automations that save you 10+ hours a week, I handle the tech so you can focus on growth.',
-      ctaPrimary: "I'm Here to Help",
-      ctaSecondary: 'Message on WhatsApp',
+      eyebrow: 'Building Code. Creating Solutions.',
+      headline:
+        'Building Websites and Digital Systems That Move Your Business Forward',
+      subline: 'Custom Digital Solutions for Businesses That Want to Grow',
+      ctaPrimary: "I'm Here for a Consultation",
+      ctaSecondary: 'Send a Message on WhatsApp',
       lead: '',
-      alt: 'Modern architectural workspace',
+      alt: 'Moshe Schwartzberg on a city street in Prague',
     },
     services: {
       eyebrow: 'My Services',
@@ -276,15 +276,15 @@ export const translations = {
       items: [
         {
           title: 'Websites & Web Systems',
-          desc: 'Custom marketing sites, online stores, and web systems with a focus on performance, user experience, and measurable results.',
+          desc: 'Custom marketing sites, online stores, and web systems with a focus on performance, user experience, and results.',
         },
         {
           title: 'CRM / CMS Systems',
-          desc: 'Custom systems for managing customers, content, and business processes, tailored to the way your business works.',
+          desc: 'Custom systems for managing customers, content, and business processes, fully tailored to your business needs.',
         },
         {
           title: 'Mobile Apps',
-          desc: 'Modern iOS and Android apps that connect smoothly with the systems your business already uses.',
+          desc: 'iOS and Android apps with a modern user experience and connections to your business’s existing systems.',
         },
         {
           title: 'Automation & Integrations',
@@ -323,7 +323,7 @@ export const translations = {
       before: 'Starting Point',
       after: 'Result',
       seeAll: 'See all our work',
-      allHeadline: 'See All Our Work',
+      allHeadline: 'All Our Work',
       allSubline:
         'Explore the complete collection of websites, systems, and digital experiences built around real people, businesses, and goals.',
       backHome: 'Back to the homepage',
@@ -363,7 +363,7 @@ export const translations = {
           title: 'SumsUp',
           desc: 'SumsUp is a premium white-label tax preparation platform designed for bookkeepers who want to scale sustainably. By providing a behind-the-scenes expert team, SumsUp allows firms to offer full-service tax prep and planning under their own brand, without referrals or extra hiring.',
           before: 'Bookkeeping firms ready to expand services intelligently',
-          after: 'Scalable white-label platform for automated tax growth',
+          after: 'White-label platform for growth and automated tax planning',
           link: 'https://sumsup.co',
         },
         {
@@ -472,38 +472,43 @@ export const translations = {
       ],
     },
     why: {
-      headline: 'On Your Side From The First Call',
+      headline: 'On Your Side From the Very First Moment',
       items: [
         {
-          title: 'I listen before I build',
-          desc: 'Before code, design, or systems, I want to understand what feels heavy in your day: where clients drop off, what wastes time, and what should finally feel easy.',
+          title:
+            'I Don’t Start with Design or Code—I Start by Understanding Your Business',
+          desc: 'What slows you down? Where do customers disappear along the way? And how can we make the process simpler, more efficient, and more profitable?',
         },
         {
-          title: 'You are not left alone with the tech',
-          desc: 'I turn the complicated parts into calm, plain conversation, hold the process with you, and make sure you always know what is happening and why it matters.',
+          title: 'Solutions That Truly Work for You',
+          desc: 'Every website or system I build is tailored to the way your business works, helping you save time, generate more inquiries, and turn complex processes into simple ones.',
         },
         {
-          title: 'Your site speaks to your customer',
-          desc: 'I think like the person landing on your website: what they are worried about, what they hope to feel, and what will help them trust you enough to reach out.',
+          title: 'No Technology Headaches',
+          desc: 'I explain everything in plain language, guide you throughout the process, and make sure you always know what is happening, why it matters, and how it moves your business forward.',
         },
         {
-          title: 'Work that feels like a smart friend in your corner',
-          desc: 'My goal is for you to feel like you are not just buying a website, but working with someone who genuinely cares that your business is seen, understood, and chosen.',
+          title: 'Thinking Like Your Customers',
+          desc: 'I build websites that speak to the right people, build trust, communicate your value, and turn more visitors into customers.',
+        },
+        {
+          title: 'A Partner in Success, Not Just a Vendor',
+          desc: 'My goal is for you to receive more than a beautiful website: a professional tool that represents you, produces results, and keeps working for you long after launch.',
         },
       ],
       quote:
-        '"You bring the dream and the business. I help people feel why choosing you makes sense."',
+        '"You bring the vision and the business. I turn it into a digital experience that brings in customers."',
       alt: 'Professional portrait of Moshe Schwartzberg',
     },
     cta: {
       headline: "Let's Talk About Your Project",
       subline:
         "Have an idea for a website, system, or automation? I'd love to learn about your business, understand what you need, and build a solution tailored to your goals.",
-      cardTitle: "I'm Here to Help",
       cardSubline:
         "Tell me briefly what your business needs, and I'll get back to you so we can think through the right next step together.",
-      primary: "I'm Here to Help",
-      secondary: 'Message on WhatsApp',
+      cardTitle: "I'm Here for a Consultation",
+      primary: "I'm Here for a Consultation",
+      secondary: 'Send a Message on WhatsApp',
     },
     footer: {
       desc: 'Architecting the digital future for ambitious businesses. One system at a time.',

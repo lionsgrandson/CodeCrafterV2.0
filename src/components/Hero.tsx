@@ -220,8 +220,8 @@ export function Hero() {
                   : 'Moshe Schwartzberg on a city street in Prague'
               }
               className='hero-photo'
-              width='1420'
-              height='931'
+              width='1052'
+              height='945'
               fetchPriority='high'
               decoding='async'
             />
