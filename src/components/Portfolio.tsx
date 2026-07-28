@@ -34,8 +34,8 @@ function ProjectMedia({ src, title, kind = 'logo' }: ProjectMediaProps) {
           className={`w-full h-full group-hover:scale-105 transition-all duration-700 ${kind === 'screenshot' ? 'object-cover' : 'object-contain p-8'} ${state === 'success' ? 'opacity-100' : 'opacity-0'}`}
           src={src}
           alt={title}
-          loading='lazy'
-          referrerPolicy='no-referrer'
+          loading='eager'
+          decoding='async'
           onLoad={() => setState('success')}
           onError={() => setState('failure')}
         />
@@ -59,37 +59,23 @@ export function Portfolio({
   const { t, lang } = useLanguage()
 
   const projectMedia = [
+    { src: '/portfolio/mahagony-logo.png' },
+    { src: '/portfolio/yuval-kadosh-logo.png' },
+    { src: '/portfolio/rainbow-asd-logo.png' },
+    { src: '/portfolio/chicago-trauma-logo.png' },
+    { src: '/portfolio/sumsup-logo.png' },
+    { src: '/portfolio/amit-kadosh.jpeg', kind: 'screenshot' as const },
+    { src: '/portfolio/technology-corps-logo.png' },
+    { src: '/portfolio/big-sale-logo.jpeg' },
+    { src: '/portfolio/creative-intelligence-logo.svg' },
+    { src: '/portfolio/shimon-photography-logo.jpeg' },
+    { src: '/portfolio/aderet-argaman-logo.png' },
     {
-      src: 'https://mahagonyisrael.netlify.app/assets/logo-ln4ACuF9.png',
-    },
-    { src: 'https://www.ykadosh.co.il/assets/yuvalLogo.png' },
-    {
-      src: 'https://rainbowasdv2.netlify.app/assets/LogoWithText-CcLxZipc.png',
-    },
-    {
-      src: 'https://chicagotraumatherapy.com/assets/blueLogo-DrhddtD2.png',
-    },
-    { src: 'https://sumsup.co/assets/sumsup-logo-RXncwyPE.png' },
-    {
-      src: 'https://mosheschwartzberg.com/amitStarProject/assets/outofthelines-seo-Dxx0P0rN.jpeg',
-    },
-    {
-      src: 'https://mosheschwartzberg.com/portfolio/technology-corps-logo.png',
-    },
-    { src: 'https://mosheschwartzberg.com/portfolio/big-sale-logo.jpeg' },
-    {
-      src: 'https://mosheschwartzberg.com/portfolio/creative-intelligence-logo.svg',
-    },
-    {
-      src: 'https://mosheschwartzberg.com/portfolio/shimon-photography-logo.jpeg',
-    },
-    { src: 'https://mosheschwartzberg.com/portfolio/aderet-argaman-logo.png' },
-    {
-      src: 'https://mosheschwartzberg.com/portfolio/coderecovery-screenshot.png',
+      src: '/portfolio/coderecovery-screenshot.png',
       kind: 'screenshot' as const,
     },
-    { src: 'https://mosheschwartzberg.com/portfolio/ai-pro-logo.jpeg' },
-    { src: 'https://mosheschwartzberg.com/portfolio/omnifood-logo.png' },
+    { src: '/portfolio/ai-pro-logo.jpeg' },
+    { src: '/portfolio/omnifood-logo.png' },
   ]
 
   const projects = t.portfolio.projects.map((project, idx) => ({
@@ -141,7 +127,7 @@ export function Portfolio({
                 href={project.link}
                 target='_blank'
                 rel='noopener noreferrer'
-                initial={false}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.4, delay: (idx % 3) * 0.1 }}
@@ -196,7 +182,7 @@ export function Testimonials() {
           {reviews.map((review, idx) => (
             <motion.div
               key={idx}
-              initial={false}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
               viewport={{ once: true }}

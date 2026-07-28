@@ -27,6 +27,7 @@ export function useLanguage() {
 }
 
 function ScrollToTop() {
+  const { lang } = useLanguage()
   const [show, setShow] = useState(false)
 
   useEffect(() => {
@@ -43,8 +44,8 @@ function ScrollToTop() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5, y: 20 }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className='fixed bottom-8 end-8 z-50 p-4 bg-primary text-white rounded-full shadow-2xl hover:bg-primary-container transition-colors active:scale-90'
-          aria-label='Scroll to top'
+          className='fixed bottom-28 end-8 z-50 p-4 bg-primary text-white rounded-full shadow-2xl hover:bg-primary-container hover:-translate-y-1 transition-all active:scale-90'
+          aria-label={lang === 'he' ? 'חזרה לראש הדף' : 'Scroll to top'}
         >
           <ArrowUp className='w-6 h-6' />
         </motion.button>

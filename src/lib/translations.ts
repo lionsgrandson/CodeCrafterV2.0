@@ -9,56 +9,61 @@ export const translations = {
       cta: 'אני כאן לייעוץ',
     },
     hero: {
-      eyebrow: 'בונים קוד. יוצרים פתרונות. מגדילים תוצאות.',
+      eyebrow: 'בונים קוד. יוצרים פתרונות.',
       headline: 'בניית אתרים ומערכות דיגיטליות שמקדמות את העסק שלך',
       subline: 'פתרונות דיגיטליים בהתאמה אישית לעסקים שרוצים לצמוח',
-      ctaPrimary: 'הזמן שיחת אסטרטגיה',
+      ctaPrimary: 'אני כאן לייעוץ',
       ctaSecondary: 'שלח הודעה ב-WhatsApp',
       lead: '',
       alt: 'סביבת עבודה אדריכלית מודרנית',
     },
     services: {
-      eyebrow: 'גריד השירותים שלנו',
-      headline: 'לוח השירותים לצמיחה דיגיטלית',
+      eyebrow: 'השירותים שלי',
+      headline: 'פתרונות דיגיטליים שבנויים לעסק שלך',
       subline:
-        'אתה לא צריך עוד ספק. אתה צריך שותף שבונה מערכות חכמות, מסדר תהליכים ומייצר תשתית שעוזרת לעסק לעבוד טוב יותר.',
+        'מאתר ומערכת ועד אפליקציה ואוטומציה – כל פתרון נבנה בהתאמה אישית.\nכדי לחסוך זמן ולעזור לעסק שלך להתקדם.',
       items: [
         {
-          title: 'נוכחות דיגיטלית מקצועית',
-          desc: 'אתר שגורם לאנשים לפנות אליך',
+          title: 'אתרים ומערכות Web',
+          desc: 'אתרי תדמית, אתרי מכירות ומערכות Web בהתאמה אישית, עם דגש על ביצועים, חוויית משתמש ותוצאות.',
         },
         {
-          title: 'ניהול לידים ותוכן',
-          desc: 'לשמור על כל פנייה מסודרת',
+          title: 'מערכות CRM / CMS',
+          desc: 'פיתוח מערכות לניהול לקוחות, תוכן ותהליכים עסקיים, בהתאמה מלאה לצרכים של העסק שלך.',
         },
         {
-          title: 'אוטומציה של תהליכי עבודה',
-          desc: 'פחות עבודה ידנית',
+          title: 'אפליקציות מובייל',
+          desc: 'אפליקציות ל-iOS ולאנדרואיד עם חוויית משתמש מודרנית וחיבור למערכות הקיימות בעסק.',
         },
         {
-          title: 'ניתוח עלויות ותשתית',
-          desc: 'למצוא מה אפשר לשפר',
+          title: 'אוטומציות ואינטגרציות',
+          desc: 'חיבור בין מערכות, אוטומציה של תהליכים והפחתת עבודה ידנית כדי לחסוך זמן ולייעל את העסק.',
         },
         {
-          title: 'רשת ביטחון 24/7',
-          desc: 'גם אחרי שהאתר באוויר',
+          title: 'בוטים לעסקים',
+          desc: 'בוטים ל-WhatsApp, Instagram, Facebook ו-Telegram המספקים מענה מהיר, אוספים לידים ומבצעים פעולות באופן אוטומטי.',
         },
       ],
     },
     process: {
       headline: 'תהליך פשוט. תוצאות אמיתיות.',
+      subline:
+        'אני מלווה אותך משלב הרעיון ועד להשקה – עם תהליך ברור, שקוף ומותאם לעסק שלך.',
       steps: [
         {
-          title: 'ביקורת טכנולוגית',
-          desc: 'מכירים את העסק',
+          title: 'היכרות ואפיון',
+          lead: 'אני לומד את העסק שלך',
+          desc: 'נבין את המטרות, האתגרים והצרכים שלך כדי להגדיר את הפתרון המתאים ביותר.',
         },
         {
-          title: 'בנייה מותאמת',
-          desc: 'מתחילים לבנות',
+          title: 'עיצוב ופיתוח',
+          lead: 'אני בונה את הפתרון',
+          desc: 'אני מפתח את האתר, המערכת או האוטומציה בהתאמה אישית, תוך עדכון ושיתוף לאורך כל הדרך.',
         },
         {
-          title: 'מסירה והמשך ליווי',
-          desc: 'ממשיכים יחד',
+          title: 'השקה וליווי',
+          lead: 'אני נשאר איתך גם אחרי ההשקה',
+          desc: 'לאחר העלייה לאוויר אני ממשיך ללוות, לבצע התאמות ולוודא שהמערכת עובדת בצורה מיטבית.',
         },
       ],
     },
@@ -226,13 +231,13 @@ export const translations = {
       alt: 'דיוקן מקצועי של משה שוורצברג',
     },
     cta: {
-      headline: 'בנוי סביב העסק שלך',
+      headline: 'בוא נדבר על הפרויקט שלך',
       subline:
-        'אני מספק פתרונות מותאמים אישית לדרישות הייחודיות שלך, עם התמקדות בתוצאות מוחשיות, חוויית שימוש טובה וערך מקסימלי לעסק.',
-      cardTitle: 'בוא נבנה את המערכת הדיגיטלית הבאה שלך',
+        'יש לך רעיון לאתר, מערכת או אוטומציה? אשמח להכיר את העסק שלך, להבין את הצרכים שלך ולבנות פתרון שמותאם בדיוק למטרות שלך.',
+      cardTitle: 'אני כאן לייעוץ',
       cardSubline:
-        'הגיע הזמן לעבוד עם כלים מסודרים, תהליכים יעילים ותשתית שמאפשרת לעסק להתקדם בביטחון.',
-      primary: 'הזמן שיחת אסטרטגיה',
+        'ספר לי בקצרה מה העסק שלך צריך, ואחזור אליך כדי לחשוב יחד על הצעד הבא.',
+      primary: 'אני כאן לייעוץ',
       secondary: 'שלח הודעה ב-WhatsApp',
     },
     footer: {
@@ -251,60 +256,65 @@ export const translations = {
       work: 'Our Work',
       process: 'The Process',
       success: 'Client Words',
-      cta: 'Free Tech Audit',
+      cta: "I'm Here to Help",
     },
     hero: {
-      eyebrow: 'Crafting Code. Creating Solutions. Growing Results.',
+      eyebrow: 'Crafting Code. Creating Solutions.',
       headline: 'Start Earning More With Advanced Systems and Efficient Work.',
       subline:
         'I upgrade the digital engine behind your business. From professional websites that build trust to automations that save you 10+ hours a week, I handle the tech so you can focus on growth.',
-      ctaPrimary: 'Book My Strategy Call',
+      ctaPrimary: "I'm Here to Help",
       ctaSecondary: 'Message on WhatsApp',
       lead: '',
       alt: 'Modern architectural workspace',
     },
     services: {
-      eyebrow: 'Our Service Grid',
-      headline: 'The Digital Growth Service Grid',
+      eyebrow: 'My Services',
+      headline: 'Digital Solutions Built Around Your Business',
       subline:
-        'You need a partner who builds smart systems, organizes workflows, and creates digital infrastructure that helps your business run better.',
+        'From websites and systems to apps and automation, every solution is custom-built.\nDesigned to save time and help your business move forward.',
       items: [
         {
-          title: 'Professional Digital Presence',
-          desc: 'I build premium websites that make you the obvious choice, create trust from the first click, and guide clients toward action.',
+          title: 'Websites & Web Systems',
+          desc: 'Custom marketing sites, online stores, and web systems with a focus on performance, user experience, and measurable results.',
         },
         {
-          title: 'Lead & Content Management',
-          desc: 'Simple lead and content tools for clients and updates, so every opportunity is organized and every change stays easy.',
+          title: 'CRM / CMS Systems',
+          desc: 'Custom systems for managing customers, content, and business processes, tailored to the way your business works.',
         },
         {
-          title: 'Workflow Automation',
-          desc: 'Custom systems that give you time back, improve accuracy, and help your business run smoothly even when the calendar is full.',
+          title: 'Mobile Apps',
+          desc: 'Modern iOS and Android apps that connect smoothly with the systems your business already uses.',
         },
         {
-          title: 'Cost & Infrastructure Analysis',
-          desc: 'I review your tech stack to uncover savings, improve performance, and build a more efficient foundation for long-term growth.',
+          title: 'Automation & Integrations',
+          desc: 'Connected systems and automated workflows that reduce manual work, save time, and make your business more efficient.',
         },
         {
-          title: '24/7 Safety Net',
-          desc: 'Peace of mind with available support, ongoing maintenance, and infrastructure prepared for your most important business moments.',
+          title: 'Business Bots',
+          desc: 'Bots for WhatsApp, Instagram, Facebook, and Telegram that answer quickly, collect leads, and carry out actions automatically.',
         },
       ],
     },
     process: {
       headline: 'Simple Process. Real Results.',
+      subline:
+        'I guide you from the first idea through launch with a clear, transparent process shaped around your business.',
       steps: [
         {
-          title: 'The Tech Audit',
-          desc: 'I go under the hood to identify opportunities for better speed, savings, clarity, and growth.',
+          title: 'Discovery & Planning',
+          lead: 'I learn your business',
+          desc: 'We define your goals, challenges, and needs so we can choose the right solution.',
         },
         {
-          title: 'The Custom Build',
-          desc: 'I implement high-performance systems tailored to your workflow, audience, and business goals.',
+          title: 'Design & Development',
+          lead: 'I build the solution',
+          desc: 'I create your website, system, or automation around your needs while keeping you updated throughout the process.',
         },
         {
-          title: 'Handover & Support',
-          desc: 'You receive a system that is simple to manage, clearly explained, and built on a stable foundation for continued progress.',
+          title: 'Launch & Support',
+          lead: 'I stay with you after launch',
+          desc: 'After launch, I continue to support, refine, and make sure everything works at its best.',
         },
       ],
     },
@@ -486,13 +496,13 @@ export const translations = {
       alt: 'Professional portrait of Moshe Schwartzberg',
     },
     cta: {
-      headline: 'Built Around Your Business',
+      headline: "Let's Talk About Your Project",
       subline:
-        'I provide custom solutions tailored to your unique requirements, focused on tangible results, strong user experience, and maximum business value.',
-      cardTitle: "Let's Build Your Next Digital System",
+        "Have an idea for a website, system, or automation? I'd love to learn about your business, understand what you need, and build a solution tailored to your goals.",
+      cardTitle: "I'm Here to Help",
       cardSubline:
-        'It is time to work with organized tools, efficient workflows, and infrastructure that helps your business move forward with confidence.',
-      primary: 'Book My Strategy Call',
+        "Tell me briefly what your business needs, and I'll get back to you so we can think through the right next step together.",
+      primary: "I'm Here to Help",
       secondary: 'Message on WhatsApp',
     },
     footer: {

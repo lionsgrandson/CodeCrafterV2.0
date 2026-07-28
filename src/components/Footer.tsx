@@ -15,13 +15,7 @@ import { contact, getWhatsAppUrl } from '../lib/contact'
 
 export function WhyWorkWithMe() {
   const { t } = useLanguage()
-  const points = [
-    { title: t.why.items[0].title, desc: t.why.items[0].desc },
-    { title: t.why.items[1].title, desc: t.why.items[1].desc },
-    { title: t.why.items[2].title, desc: t.why.items[2].desc },
-    { title: t.why.items[3].title, desc: t.why.items[3].desc },
-    { title: t.why.items[4].title, desc: t.why.items[4].desc },
-  ]
+  const points = t.why.items
 
   return (
     <section className='py-24 px-6 md:px-8 bg-on-surface text-surface overflow-hidden'>
@@ -34,7 +28,7 @@ export function WhyWorkWithMe() {
             {points.map((point, idx) => (
               <motion.li
                 key={idx}
-                initial={false}
+                initial={{ opacity: 0, x: -18 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 viewport={{ once: true }}
@@ -55,7 +49,7 @@ export function WhyWorkWithMe() {
             ))}
           </ul>
           <motion.div
-            initial={false}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
             className='mt-12 p-6 bg-surface/5 border border-surface/10 rounded-xl'
@@ -67,7 +61,7 @@ export function WhyWorkWithMe() {
         </div>
         <div className='relative flex justify-center'>
           <motion.div
-            initial={false}
+            initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
@@ -150,7 +144,7 @@ export function FinalCTA() {
           {t.cta.subline}
         </p>
         <motion.div
-          initial={false}
+          initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className='bg-surface-container-lowest p-8 md:p-12 rounded-2xl shadow-2xl relative overflow-hidden border border-outline-variant/10'
@@ -230,10 +224,19 @@ export function FinalCTA() {
                 disabled={status === 'sending'}
                 className='bg-primary-gradient text-white px-10 py-5 rounded-lg font-headline font-bold text-xl shadow-lg hover:shadow-primary/30 transition-all active:scale-95 text-center disabled:opacity-70'
               >
-                {status === 'sending' ? 'Sending...' : t.cta.primary}
+                {status === 'sending' ? (
+                  <span className='inline-flex items-center gap-3'>
+                    <span className='h-2.5 w-24 rounded-full bg-white/35 animate-pulse' />
+                    <span className='sr-only'>
+                      {lang === 'he' ? 'שולח...' : 'Sending...'}
+                    </span>
+                  </span>
+                ) : (
+                  t.cta.primary
+                )}
               </button>
               <a
-                href={getWhatsAppUrl()}
+                href={getWhatsAppUrl(lang)}
                 target='_blank'
                 rel='noreferrer'
                 className='bg-surface-container text-primary px-10 py-5 rounded-lg font-headline font-bold text-xl flex items-center justify-center gap-3 hover:bg-surface-container-high transition-all active:scale-95 border border-primary/10'
@@ -254,7 +257,7 @@ type FooterProps = {
 }
 
 export function Footer({ homeHashPrefix = '' }: FooterProps) {
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
   return (
     <footer className='w-full py-12 px-6 md:px-8 bg-surface-container-high border-t border-outline-variant/10'>
       <div className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8'>
@@ -281,7 +284,7 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
               <span dir='ltr'>{contact.phoneDisplay}</span>
             </a>
             <a
-              href={getWhatsAppUrl()}
+              href={getWhatsAppUrl(lang)}
               target='_blank'
               rel='noreferrer'
               className='text-primary hover:underline underline-offset-4 transition-all font-medium inline-flex items-center gap-2'
@@ -341,10 +344,22 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
         <p className='text-xs text-secondary'>
           © {new Date().getFullYear()} {t.nav.brand}. {t.footer.rights}
         </p>
-        <div className='flex gap-6'>
-          <Globe className='w-4 h-4 text-secondary' />
-          <Shield className='w-4 h-4 text-secondary' />
-          <Verified className='w-4 h-4 text-secondary' />
+        <div className='flex flex-wrap items-center justify-center gap-2'>
+          <a
+            href={`${homeHashPrefix}#services`}
+            className='footer-trust-link'
+          >
+            <Globe className='w-4 h-4' />
+            <span>{t.nav.solve}</span>
+          </a>
+          <a href='/privacy/' className='footer-trust-link'>
+            <Shield className='w-4 h-4' />
+            <span>{t.footer.privacy}</span>
+          </a>
+          <a href='/terms/' className='footer-trust-link'>
+            <Verified className='w-4 h-4' />
+            <span>{t.footer.terms}</span>
+          </a>
         </div>
       </div>
     </footer>
