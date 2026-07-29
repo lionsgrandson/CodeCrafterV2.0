@@ -113,13 +113,13 @@
 }
 
 .service-card {
-  @apply relative min-h-60 overflow-hidden bg-white/80 p-7 rounded-2xl border border-white/80 shadow-lg transition-all duration-500 hover:shadow-2xl hover:border-primary/25 backdrop-blur;
+  @apply relative min-h-60 overflow-hidden bg-white/80 p-7 rounded-2xl border border-white/80 shadow-lg transition-all duration-[625ms] hover:shadow-2xl hover:border-primary/25 backdrop-blur;
   box-shadow: 0 16px 45px -28px rgb(55 38 31 / 45%);
 }
 
 .service-card::before {
   content: "";
-  @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+  @apply absolute inset-0 opacity-0 transition-opacity duration-[625ms];
   background: radial-gradient(circle at 90% 5%, rgb(148 68 46 / 18%), transparent 42%);
 }
 
@@ -137,15 +137,15 @@
 }
 
 .service-card-number {
-  @apply absolute top-5 end-6 text-5xl font-black text-primary/[0.07] transition-all duration-500 group-hover:text-primary/15 group-hover:-translate-y-1;
+  @apply absolute top-5 end-6 text-5xl font-black text-primary/[0.07] transition-all duration-[625ms] group-hover:text-primary/15 group-hover:-translate-y-1;
 }
 
 .service-card-beam {
-  @apply absolute bottom-0 start-0 h-1 w-0 bg-primary transition-all duration-500 group-hover:w-full;
+  @apply absolute bottom-0 start-0 h-1 w-0 bg-primary transition-all duration-[625ms] group-hover:w-full;
 }
 
 .service-icon {
-  @apply w-11 h-11 mb-5 rounded-xl flex items-center justify-center bg-primary/10 text-primary transition-all duration-300;
+  @apply w-11 h-11 mb-5 rounded-xl flex items-center justify-center bg-primary/10 text-primary transition-all duration-[375ms];
 }
 
 .service-card:hover .service-icon {
@@ -167,7 +167,7 @@
   background-position: 100% 0;
   background-clip: text;
   -webkit-background-clip: text;
-  animation: title-shine 6s ease-in-out infinite;
+  animation: title-shine 7.5s ease-in-out infinite;
 }
 
 .subtitle-accent {
@@ -182,15 +182,15 @@ html[dir="rtl"] .subtitle-accent {
 .subtitle-accent::after {
   content: "";
   @apply absolute -bottom-1 start-5 h-px w-16 bg-primary/60;
-  animation: subtitle-pulse 3s ease-in-out infinite;
+  animation: subtitle-pulse 3.75s ease-in-out infinite;
 }
 
 .process-card {
-  @apply relative z-10 bg-surface-container-lowest rounded-xl border border-outline-variant/20 p-6 pt-12 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:border-primary/25;
+  @apply relative z-10 bg-surface-container-lowest rounded-xl border border-outline-variant/20 p-6 pt-12 text-center shadow-sm transition-all duration-[375ms] hover:shadow-lg hover:border-primary/25;
 }
 
 .process-number {
-  @apply absolute -top-8 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 w-16 h-16 bg-surface-container-lowest border border-outline-variant/30 rounded-full flex items-center justify-center text-xl font-extrabold text-primary shadow-sm transition-all duration-300;
+  @apply absolute -top-8 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 w-16 h-16 bg-surface-container-lowest border border-outline-variant/30 rounded-full flex items-center justify-center text-xl font-extrabold text-primary shadow-sm transition-all duration-[375ms];
 }
 
 .process-card:hover .process-number {
@@ -198,20 +198,20 @@ html[dir="rtl"] .subtitle-accent {
 }
 
 .button-primary {
-  @apply inline-flex items-center justify-center gap-2 rounded-lg text-white font-headline font-bold shadow-lg shadow-primary/20 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 active:translate-y-0 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  @apply inline-flex items-center justify-center gap-2 rounded-lg text-white font-headline font-bold shadow-lg shadow-primary/20 transition-all duration-[250ms] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 active:translate-y-0 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-container) 100%);
 }
 
 .button-secondary {
-  @apply inline-flex items-center justify-center gap-2 rounded-lg bg-surface-container-low text-primary font-headline font-bold border border-primary/10 transition-all duration-200 hover:-translate-y-0.5 hover:bg-surface-container-high hover:border-primary/25 active:translate-y-0 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  @apply inline-flex items-center justify-center gap-2 rounded-lg bg-surface-container-low text-primary font-headline font-bold border border-primary/10 transition-all duration-[250ms] hover:-translate-y-0.5 hover:bg-surface-container-high hover:border-primary/25 active:translate-y-0 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
 }
 
 .interactive-link {
-  @apply transition-colors duration-200 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-sm;
+  @apply transition-colors duration-[250ms] hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-sm;
 }
 
 .icon-button {
-  @apply p-2 rounded-lg text-on-surface transition-all duration-200 hover:bg-primary/10 hover:text-primary active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
+  @apply p-2 rounded-lg text-on-surface transition-all duration-[250ms] hover:bg-primary/10 hover:text-primary active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
 }
 
 .crm-pop-frame {
@@ -244,7 +244,7 @@ html[dir="rtl"] .subtitle-accent {
 }
 
 .crm-pop-side-icon {
-  @apply flex h-9 w-9 items-center justify-center rounded-xl text-slate-500 transition-colors;
+  @apply flex h-9 w-9 items-center justify-center rounded-xl text-slate-500 transition-colors duration-[200ms];
 }
 
 .crm-pop-side-icon.is-active {
@@ -552,11 +552,11 @@ html[dir="rtl"] .crm-pop-heading p {
 }
 
 .footer-trust-link {
-  @apply inline-flex items-center gap-2 rounded-full border border-outline-variant/30 bg-surface/70 px-3 py-2 text-xs font-bold text-secondary transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-white hover:text-primary hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
+  @apply inline-flex items-center gap-2 rounded-full border border-outline-variant/30 bg-surface/70 px-3 py-2 text-xs font-bold text-secondary transition-all duration-[250ms] hover:-translate-y-0.5 hover:border-primary/30 hover:bg-white hover:text-primary hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
 }
 
 .localized-whatsapp [class*="whatsappButton"] {
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition: transform 225ms ease, box-shadow 225ms ease;
 }
 
 .localized-whatsapp [class*="whatsappButton"]:hover {

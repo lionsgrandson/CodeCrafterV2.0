@@ -43,8 +43,9 @@ function ScrollToTop() {
           initial={{ opacity: 0, scale: 0.5, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5, y: 20 }}
+          transition={{ duration: 0.3 }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className='fixed bottom-28 end-8 z-50 p-4 bg-primary text-white rounded-full shadow-2xl hover:bg-primary-container hover:-translate-y-1 transition-all active:scale-90'
+          className='fixed bottom-28 end-8 z-50 p-4 bg-primary text-white rounded-full shadow-2xl hover:bg-primary-container hover:-translate-y-1 transition-all duration-[250ms] active:scale-90'
           aria-label={lang === 'he' ? 'חזרה לראש הדף' : 'Scroll to top'}
         >
           <ArrowUp className='w-6 h-6' />

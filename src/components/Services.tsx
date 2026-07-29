@@ -37,7 +37,7 @@ export function Services() {
           initial='hidden'
           whileInView='visible'
           viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.65 }}
+          transition={{ duration: 0.8 }}
           className='mb-14 text-center max-w-4xl mx-auto'
         >
           <span className='section-kicker'>{t.services.eyebrow}</span>
@@ -61,7 +61,7 @@ export function Services() {
                 whileInView='visible'
                 whileHover={{ y: -6 }}
                 viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.5, delay: idx * 0.07 }}
+                transition={{ duration: 0.625, delay: idx * 0.07 }}
                 className={`service-card service-card-${idx + 1} ${cardLayouts[idx]} group`}
               >
                 <span className='service-card-number'>0{idx + 1}</span>
@@ -95,7 +95,7 @@ export function Process() {
           initial='hidden'
           whileInView='visible'
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.65 }}
+          transition={{ duration: 0.8 }}
           className='max-w-3xl mx-auto text-center mb-14'
         >
           <h2 className='text-4xl md:text-5xl font-bold mb-5 text-on-surface'>
@@ -119,7 +119,7 @@ export function Process() {
               initial='hidden'
               whileInView='visible'
               whileHover={{ y: -5 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              transition={{ duration: 0.625, delay: idx * 0.1 }}
               viewport={{ once: true, amount: 0.3 }}
               className='process-card group'
             >

@@ -30,7 +30,7 @@ export function WhyWorkWithMe() {
                 key={idx}
                 initial={{ opacity: 0, x: -18 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                transition={{ duration: 0.625, delay: idx * 0.1 }}
                 viewport={{ once: true }}
                 className='flex gap-6 items-start'
               >
@@ -51,7 +51,7 @@ export function WhyWorkWithMe() {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+            transition={{ duration: 0.625, delay: 0.6 }}
             className='mt-12 p-6 bg-surface/5 border border-surface/10 rounded-xl'
           >
             <p className='text-2xl font-headline italic font-light opacity-90'>
@@ -63,7 +63,7 @@ export function WhyWorkWithMe() {
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1 }}
             viewport={{ once: true }}
             className='w-full aspect-[4/5] bg-primary/20 rounded-2xl relative overflow-hidden ring-1 ring-white/10'
           >
@@ -146,6 +146,7 @@ export function FinalCTA() {
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.625 }}
           className='bg-surface-container-lowest p-8 md:p-12 rounded-2xl shadow-2xl relative overflow-hidden border border-outline-variant/10'
         >
           <div className='absolute top-0 start-0 p-8 opacity-5'>
@@ -168,7 +169,7 @@ export function FinalCTA() {
               }
               required
               placeholder={copy.name}
-              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-4 text-on-surface outline-none transition focus:border-primary'
+              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-4 text-on-surface outline-none transition duration-[200ms] focus:border-primary'
             />
             <input
               type='email'
@@ -181,7 +182,7 @@ export function FinalCTA() {
               }
               required
               placeholder={copy.email}
-              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-4 text-on-surface outline-none transition focus:border-primary'
+              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-4 text-on-surface outline-none transition duration-[200ms] focus:border-primary'
             />
             <input
               value={form.phone}
@@ -192,7 +193,7 @@ export function FinalCTA() {
                 }))
               }
               placeholder={copy.phone}
-              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-4 text-on-surface outline-none transition focus:border-primary md:col-span-2'
+              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-4 text-on-surface outline-none transition duration-[200ms] focus:border-primary md:col-span-2'
             />
             <textarea
               value={form.message}
@@ -205,7 +206,7 @@ export function FinalCTA() {
               required
               placeholder={copy.message}
               rows={5}
-              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-4 text-on-surface outline-none transition focus:border-primary md:col-span-2 resize-none'
+              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-4 text-on-surface outline-none transition duration-[200ms] focus:border-primary md:col-span-2 resize-none'
             />
             {status === 'sent' && (
               <p className='text-sm font-medium text-tertiary md:col-span-2'>
@@ -221,11 +222,11 @@ export function FinalCTA() {
               <button
                 type='submit'
                 disabled={status === 'sending'}
-                className='bg-primary-gradient text-white px-10 py-5 rounded-lg font-headline font-bold text-xl shadow-lg hover:shadow-primary/30 transition-all active:scale-95 text-center disabled:opacity-70'
+                className='bg-primary-gradient text-white px-10 py-5 rounded-lg font-headline font-bold text-xl shadow-lg hover:shadow-primary/30 transition-all duration-[200ms] active:scale-95 text-center disabled:opacity-70'
               >
                 {status === 'sending' ? (
                   <span className='inline-flex items-center gap-3'>
-                    <span className='h-2.5 w-24 rounded-full bg-white/35 animate-pulse' />
+                    <span className='h-2.5 w-24 rounded-full bg-white/35 animate-pulse [animation-duration:2.5s]' />
                     <span className='sr-only'>
                       {lang === 'he' ? 'שולח...' : 'Sending...'}
                     </span>
@@ -238,7 +239,7 @@ export function FinalCTA() {
                 href={getWhatsAppUrl(lang)}
                 target='_blank'
                 rel='noreferrer'
-                className='bg-surface-container text-primary px-10 py-5 rounded-lg font-headline font-bold text-xl flex items-center justify-center gap-3 hover:bg-surface-container-high transition-all active:scale-95 border border-primary/10'
+                className='bg-surface-container text-primary px-10 py-5 rounded-lg font-headline font-bold text-xl flex items-center justify-center gap-3 hover:bg-surface-container-high transition-all duration-[200ms] active:scale-95 border border-primary/10'
               >
                 <MessageSquare className='w-6 h-6 fill-current' />
                 {t.cta.secondary}
@@ -270,14 +271,14 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
           <div className='flex flex-col gap-3 text-sm'>
             <a
               href={`mailto:${contact.email}`}
-              className='text-primary hover:underline underline-offset-4 transition-all font-medium inline-flex items-center gap-2'
+              className='text-primary hover:underline underline-offset-4 transition-all duration-[200ms] font-medium inline-flex items-center gap-2'
             >
               <Mail className='w-4 h-4' />
               {contact.email}
             </a>
             <a
               href={`tel:${contact.phoneE164}`}
-              className='text-primary hover:underline underline-offset-4 transition-all font-medium inline-flex items-center gap-2'
+              className='text-primary hover:underline underline-offset-4 transition-all duration-[200ms] font-medium inline-flex items-center gap-2'
             >
               <Phone className='w-4 h-4' />
               <span dir='ltr'>{contact.phoneDisplay}</span>
@@ -286,7 +287,7 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
               href={getWhatsAppUrl(lang)}
               target='_blank'
               rel='noreferrer'
-              className='text-primary hover:underline underline-offset-4 transition-all font-medium inline-flex items-center gap-2'
+              className='text-primary hover:underline underline-offset-4 transition-all duration-[200ms] font-medium inline-flex items-center gap-2'
             >
               <MessageSquare className='w-4 h-4 fill-current' />
               WhatsApp
@@ -307,7 +308,7 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
               <li key={link.label}>
                 <a
                   href={link.href}
-                  className='text-secondary hover:text-primary transition-all'
+                  className='text-secondary hover:text-primary transition-all duration-[200ms]'
                 >
                   {link.label}
                 </a>
@@ -323,7 +324,7 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
             <li>
               <a
                 href='/privacy/'
-                className='text-secondary hover:text-primary transition-all'
+                className='text-secondary hover:text-primary transition-all duration-[200ms]'
               >
                 {t.footer.privacy}
               </a>
@@ -331,7 +332,7 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
             <li>
               <a
                 href='/terms/'
-                className='text-secondary hover:text-primary transition-all'
+                className='text-secondary hover:text-primary transition-all duration-[200ms]'
               >
                 {t.footer.terms}
               </a>

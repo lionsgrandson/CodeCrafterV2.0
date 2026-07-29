@@ -18,7 +18,7 @@ function ProjectMedia({ src, title, kind = 'logo' }: ProjectMediaProps) {
     <div className='aspect-video relative overflow-hidden bg-surface-container-high'>
       {state === 'loading' && (
         <div
-          className='absolute inset-0 animate-pulse bg-gradient-to-br from-surface-container-high to-surface-container-highest'
+          className='absolute inset-0 animate-pulse [animation-duration:2.5s] bg-gradient-to-br from-surface-container-high to-surface-container-highest'
           aria-hidden='true'
         />
       )}
@@ -31,7 +31,7 @@ function ProjectMedia({ src, title, kind = 'logo' }: ProjectMediaProps) {
       )}
       {src && (
         <img
-          className={`w-full h-full group-hover:scale-105 transition-all duration-700 ${kind === 'screenshot' ? 'object-cover' : 'object-contain p-8'} ${state === 'success' ? 'opacity-100' : 'opacity-0'}`}
+          className={`w-full h-full group-hover:scale-105 transition-all duration-[875ms] ${kind === 'screenshot' ? 'object-cover' : 'object-contain p-8'} ${state === 'success' ? 'opacity-100' : 'opacity-0'}`}
           src={src}
           alt={title}
           loading='eager'
@@ -93,7 +93,7 @@ export function Portfolio({
         {standalone && (
           <a
             href='/#portfolio'
-            className='mb-8 inline-flex items-center gap-2 font-headline text-sm font-semibold text-secondary hover:text-primary transition-colors'
+            className='mb-8 inline-flex items-center gap-2 font-headline text-sm font-semibold text-secondary hover:text-primary transition-colors duration-[200ms]'
           >
             {lang === 'he' ? (
               <ArrowRight className='h-4 w-4' aria-hidden='true' />
@@ -130,9 +130,9 @@ export function Portfolio({
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -8 }}
-                transition={{ duration: 0.4, delay: (idx % 3) * 0.1 }}
+                transition={{ duration: 0.5, delay: (idx % 3) * 0.1 }}
                 viewport={{ once: true }}
-                className={`${isHomepageExtra ? 'hidden' : 'flex'} bg-surface-container-lowest rounded-xl overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-500 border border-outline-variant/10 flex-col h-full text-start cursor-pointer`}
+                className={`${isHomepageExtra ? 'hidden' : 'flex'} bg-surface-container-lowest rounded-xl overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-[625ms] border border-outline-variant/10 flex-col h-full text-start cursor-pointer`}
               >
                 <ProjectMedia
                   src={showAll || idx < 20 ? project.media?.src : undefined}
@@ -154,7 +154,7 @@ export function Portfolio({
           <div className='mt-10 flex justify-center'>
             <a
               href='/portfolio/'
-              className='inline-flex min-h-12 items-center justify-center rounded-lg bg-primary-gradient px-7 py-3 text-center font-headline font-bold text-white shadow-lg shadow-primary/20 transition-all duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/30 active:scale-95'
+              className='inline-flex min-h-12 items-center justify-center rounded-lg bg-primary-gradient px-7 py-3 text-center font-headline font-bold text-white shadow-lg shadow-primary/20 transition-all duration-[250ms] hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/30 active:scale-95'
             >
               {t.portfolio.seeAll}
             </a>
@@ -184,9 +184,9 @@ export function Testimonials() {
               key={idx}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              transition={{ duration: 0.75, delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className={`p-8 rounded-xl flex flex-col shadow-sm border-t-4 transition-all hover:-translate-y-1 ${review.featured ? 'bg-surface-container-high border-primary' : 'bg-surface-container-low border-transparent'}`}
+              className={`p-8 rounded-xl flex flex-col shadow-sm border-t-4 transition-all duration-[200ms] hover:-translate-y-1 ${review.featured ? 'bg-surface-container-high border-primary' : 'bg-surface-container-low border-transparent'}`}
             >
               <div className='flex text-primary mb-6'>
                 {[...Array(5)].map((_, i) => (

@@ -30,7 +30,7 @@ export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
           <a
             href='/'
             aria-label={lang === 'he' ? 'דף הבית' : 'Homepage'}
-            className='block transition-opacity hover:opacity-75'
+            className='block transition-opacity duration-[200ms] hover:opacity-75'
           >
             {t.nav.brand}
             <span className='text-primary font-headline font-bold tracking-widest uppercase text-xs mb-4 block underline-offset-4 decoration-primary/30 underline'>
@@ -43,7 +43,7 @@ export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
             <a
               key={item.label}
               href={item.href}
-              className='font-headline tracking-tight text-sm uppercase font-semibold text-secondary hover:text-primary transition-colors duration-300'
+              className='font-headline tracking-tight text-sm uppercase font-semibold text-secondary hover:text-primary transition-colors duration-[375ms]'
             >
               {item.label}
             </a>
@@ -95,7 +95,7 @@ export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.18 }}
+            transition={{ duration: 0.225 }}
             className='md:hidden border-t border-outline-variant/10 bg-surface/95 backdrop-blur-[20px] shadow-lg'
           >
             <div className='px-6 py-4 flex flex-col gap-1'>
@@ -141,7 +141,7 @@ export function Hero() {
                 scale: [1, 1.2, 0.8, 1],
               }}
               transition={{
-                duration: 20 + i * 5,
+                duration: 25 + i * 6.25,
                 repeat: Infinity,
                 ease: 'linear',
               }}
@@ -176,7 +176,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1 }}
           className='z-10'
         >
           <h1 className='title-shine text-5xl md:text-7xl text-editorial-hero mb-6'>
@@ -207,7 +207,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, x: lang === 'he' ? -28 : 28 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.85, delay: 0.15 }}
+          transition={{ duration: 1.05, delay: 0.15 }}
           className='relative mt-4 md:mt-0'
           aria-label={lang === 'he' ? 'משה שוורצברג' : 'Moshe Schwartzberg'}
         >
