@@ -69,7 +69,7 @@ export function Portfolio({
     { src: '/portfolio/big-sale-logo.jpeg' },
     { src: '/portfolio/creative-intelligence-logo.svg' },
     { src: '/portfolio/shimon-photography-logo.jpeg' },
-    { src: '/portfolio/aderet-argaman-logo.png' },
+    // { src: '/portfolio/aderet-argaman-logo.png' },
     {
       src: '/portfolio/coderecovery-screenshot.png',
       kind: 'screenshot' as const,

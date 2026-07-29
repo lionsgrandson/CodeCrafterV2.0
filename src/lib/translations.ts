@@ -147,13 +147,13 @@ export const translations = {
           after: 'גלריה רגשית שמציגה את הסגנון ומעודדת יצירת קשר',
           link: 'https://eclectic-marigold-0fe508.netlify.app/',
         },
-        {
-          title: 'אדרת וארגמן',
-          desc: 'בית דיגיטלי לחנויות יד שנייה בתל אביב שמחבר בין אופנת פרימיום, קיימות וסיפור מקומי ומעודד לקוחות לגלות את המותגים ולהגיע לחנות.',
-          before: 'שתי חנויות עם אופי עשיר שחיכו לסיפור דיגיטלי מאוחד',
-          after: 'אתר אופנה מלא אופי שמחבר בין המותגים לביקור בחנות',
-          link: 'https://snazzy-phoenix-fbd0ad.netlify.app/',
-        },
+        // {
+        //   title: 'אדרת וארגמן',
+        //   desc: 'בית דיגיטלי לחנויות יד שנייה בתל אביב שמחבר בין אופנת פרימיום, קיימות וסיפור מקומי ומעודד לקוחות לגלות את המותגים ולהגיע לחנות.',
+        //   before: 'שתי חנויות עם אופי עשיר שחיכו לסיפור דיגיטלי מאוחד',
+        //   after: 'אתר אופנה מלא אופי שמחבר בין המותגים לביקור בחנות',
+        //   link: 'https://snazzy-phoenix-fbd0ad.netlify.app/',
+        // },
         {
           title: 'CodeRecovery',
           desc: 'אתר שירות ממוקד למעבדת שחזור מידע שמסביר תהליך מורכב בשפה ברורה ועוזר ללקוחות עם מידע קריטי לפנות במהירות ובביטחון.',
@@ -409,15 +409,15 @@ export const translations = {
             'An emotional gallery that communicates the style and encourages contact',
           link: 'https://eclectic-marigold-0fe508.netlify.app/',
         },
-        {
-          title: 'Aderet & Argaman',
-          desc: 'A digital home for Tel Aviv second-hand stores that connects premium fashion, sustainability, and a local story while encouraging customers to explore the brands and visit.',
-          before:
-            'Two character-rich stores ready for one unified digital story',
-          after:
-            'A distinctive fashion site that turns brand discovery into store visits',
-          link: 'https://snazzy-phoenix-fbd0ad.netlify.app/',
-        },
+        // {
+        //   title: 'Aderet & Argaman',
+        //   desc: 'A digital home for Tel Aviv second-hand stores that connects premium fashion, sustainability, and a local story while encouraging customers to explore the brands and visit.',
+        //   before:
+        //     'Two character-rich stores ready for one unified digital story',
+        //   after:
+        //     'A distinctive fashion site that turns brand discovery into store visits',
+        //   link: 'https://snazzy-phoenix-fbd0ad.netlify.app/',
+        // },
         {
           title: 'CodeRecovery',
           desc: 'A focused service site for a data recovery lab that explains a complex process in plain language and helps clients with critical data reach support quickly and confidently.',
