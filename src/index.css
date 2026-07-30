@@ -202,7 +202,7 @@
   background-position: 100% 0;
   background-clip: text;
   -webkit-background-clip: text;
-  animation: title-shine 7.5s ease-in-out infinite;
+  animation: title-shine 10s ease-in-out infinite;
 }
 
 .subtitle-accent {
