@@ -79,8 +79,62 @@
   }
 }
 
+.viewport-section {
+  height: 100svh;
+  min-height: 100svh;
+  max-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  scroll-margin-top: 4.5rem;
+}
+
+.viewport-section > * {
+  width: 100%;
+}
+
+.hero-section {
+  padding-top: clamp(5.5rem, 12svh, 8rem);
+  padding-bottom: clamp(1.5rem, 6svh, 4rem);
+}
+
+.testimonials-section,
+.about-section,
+.contact-section {
+  padding-top: clamp(4.75rem, 8svh, 6rem);
+  padding-bottom: clamp(1.25rem, 5svh, 4rem);
+}
+
+.word-reveal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.24em;
+  font-weight: inherit;
+}
+
+.word-reveal-item {
+  display: inline-block;
+}
+
+.word-reveal-cursor {
+  display: inline-block;
+  width: 0.08em;
+  height: 0.9em;
+  margin-inline-start: 0.05em;
+  border-radius: 999px;
+  background: currentColor;
+  transform: translateY(0.08em);
+}
+
+.testimonials-section .word-reveal {
+  justify-content: center;
+}
+
 .section-shell {
-  @apply py-20 md:py-24 px-6 md:px-8 overflow-hidden;
+  @apply px-6 md:px-8 overflow-hidden;
+  padding-top: clamp(4.75rem, 8svh, 6rem);
+  padding-bottom: clamp(1.25rem, 5svh, 4rem);
 }
 
 .services-showcase {
@@ -136,7 +190,7 @@
 }
 
 .service-card {
-  @apply relative min-h-60 overflow-hidden bg-white/80 p-7 rounded-2xl border border-white/80 shadow-lg transition-all duration-[625ms] hover:shadow-2xl hover:border-primary/25 backdrop-blur;
+  @apply relative min-h-0 overflow-hidden bg-white/80 p-5 rounded-2xl border border-white/80 shadow-lg transition-all duration-[625ms] hover:shadow-2xl hover:border-primary/25 backdrop-blur;
   box-shadow: 0 16px 45px -28px rgb(55 38 31 / 45%);
 }
 
@@ -169,10 +223,6 @@
     rgb(220 158 65 / 20%),
     transparent 42%
   );
-}
-
-.service-card-number {
-  @apply absolute top-5 end-6 text-5xl font-black text-primary/[0.07] transition-all duration-[625ms] group-hover:text-primary/15 group-hover:-translate-y-1;
 }
 
 .service-card-beam {
@@ -221,7 +271,7 @@ html[dir='rtl'] .subtitle-accent {
 }
 
 .process-card {
-  @apply relative z-10 bg-surface-container-lowest rounded-xl border border-outline-variant/20 p-6 pt-12 text-center shadow-sm transition-all duration-[375ms] hover:shadow-lg hover:border-primary/25;
+  @apply relative z-10 bg-surface-container-lowest rounded-xl border border-outline-variant/20 p-5 pt-10 text-center shadow-sm transition-all duration-[375ms] hover:shadow-lg hover:border-primary/25;
 }
 
 .process-number {
@@ -601,6 +651,179 @@ html[dir='rtl'] .crm-pop-heading p {
     @apply rounded-[1.25rem] border-4;
     transform: rotate(0.6deg);
   }
+
+  .hero-section {
+    padding-top: 5.25rem;
+    padding-bottom: 1rem;
+  }
+
+  .hero-section > div:last-child {
+    @apply grid-cols-[minmax(0,1.15fr)_minmax(108px,0.85fr)] gap-4;
+  }
+
+  .hero-section .text-editorial-hero {
+    @apply text-[clamp(1.75rem,8vw,2.5rem)] mb-3;
+  }
+
+  .hero-section .subtitle-accent {
+    @apply text-sm mb-4 ps-3;
+  }
+
+  .hero-section .button-primary,
+  .hero-section .button-secondary {
+    @apply px-4 py-3 text-sm;
+  }
+
+  .section-shell,
+  .testimonials-section,
+  .about-section,
+  .contact-section {
+    padding-top: 4.5rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .services-showcase .mb-14 {
+    @apply mb-3;
+  }
+
+  .services-showcase .word-reveal {
+    @apply mt-0 mb-2 text-2xl;
+  }
+
+  .services-showcase .section-subtitle-panel {
+    @apply px-3 py-2 text-xs leading-snug;
+  }
+
+  .services-showcase .grid {
+    @apply grid-cols-2 gap-2;
+  }
+
+  .services-showcase .service-card {
+    @apply p-3 rounded-xl;
+  }
+
+  .services-showcase .service-card:last-child {
+    @apply col-span-2;
+  }
+
+  .services-showcase .service-icon {
+    @apply w-8 h-8 mb-2;
+  }
+
+  .services-showcase .service-card h3 {
+    @apply text-sm mb-1;
+  }
+
+  .services-showcase .service-card p {
+    @apply text-[0.68rem] leading-snug;
+  }
+
+  #process .mb-14 {
+    @apply mb-6;
+  }
+
+  #process .word-reveal {
+    @apply text-2xl mb-2 justify-center;
+  }
+
+  #process .max-w-3xl > p {
+    @apply text-xs leading-snug;
+  }
+
+  #process .grid {
+    @apply grid-cols-3 gap-2;
+  }
+
+  #process .process-card {
+    @apply p-2 pt-8 rounded-lg;
+  }
+
+  #process .process-number {
+    @apply -top-5 w-10 h-10 text-sm;
+  }
+
+  #process .process-card h3 {
+    @apply text-sm mb-1;
+  }
+
+  #process .process-card p {
+    @apply text-[0.67rem] leading-snug mb-1;
+  }
+
+  .testimonials-section .word-reveal {
+    @apply text-2xl mb-3;
+  }
+
+  .testimonial-card {
+    @apply p-2.5;
+  }
+
+  .testimonial-copy {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7;
+  }
+
+  .testimonial-card .gap-4 {
+    @apply gap-2;
+  }
+
+  .testimonial-card .font-bold {
+    @apply text-xs;
+  }
+
+  .testimonial-card .uppercase {
+    @apply text-[0.58rem];
+  }
+
+  .about-section .word-reveal {
+    @apply text-2xl mb-3;
+  }
+
+  .about-section li .w-6 {
+    @apply w-4 h-4;
+  }
+
+  .about-section li svg {
+    @apply w-3 h-3;
+  }
+
+  .about-section li p {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .contact-section .word-reveal {
+    @apply text-2xl;
+  }
+
+  .contact-section form {
+    @apply grid-cols-2 gap-2;
+  }
+
+  .contact-section form input,
+  .contact-section form textarea {
+    @apply px-3 py-2 text-sm;
+  }
+
+  .contact-section form input:nth-of-type(3),
+  .contact-section form textarea,
+  .contact-section form > p,
+  .contact-section form > div {
+    @apply col-span-2;
+  }
+
+  .contact-section form textarea {
+    max-height: 4.5rem;
+  }
+
+  .contact-section form button,
+  .contact-section form a {
+    @apply px-4 py-2.5 text-sm;
+  }
 }
 
 .footer-trust-link {
@@ -649,7 +872,7 @@ html[dir='rtl'] .localized-whatsapp [class*='chatFooter'] button svg {
 }
 
 .text-editorial-hero {
-  @apply font-headline font-black tracking-tighter leading-[1.05] md:leading-[1];
+  @apply font-headline font-normal tracking-tighter leading-[1.05] md:leading-[1];
 }
 
 .rtl-flip {
@@ -691,5 +914,15 @@ html[dir='rtl'] .localized-whatsapp [class*='chatFooter'] button svg {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .word-reveal-item,
+  .word-reveal-cursor {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .word-reveal-cursor {
+    display: none;
   }
 }

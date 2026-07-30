@@ -1,12 +1,7 @@
 import { motion } from 'motion/react'
-import {
-  Bot,
-  Braces,
-  Database,
-  Smartphone,
-  Workflow,
-} from 'lucide-react'
+import { Bot, Braces, Database, Smartphone, Workflow } from 'lucide-react'
 import { useLanguage } from '../App'
+import { WordReveal } from './WordReveal'
 
 const reveal = {
   hidden: { opacity: 0, y: 28 },
@@ -26,7 +21,7 @@ export function Services() {
 
   return (
     <section
-      className='section-shell services-showcase'
+      className='viewport-section section-shell services-showcase'
       id='services'
     >
       <div className='services-orb services-orb-one' aria-hidden='true' />
@@ -40,10 +35,11 @@ export function Services() {
           transition={{ duration: 0.8 }}
           className='mb-14 text-center max-w-4xl mx-auto'
         >
-          <span className='section-kicker'>{t.services.eyebrow}</span>
-          <h2 className='title-shine text-4xl md:text-6xl font-extrabold mt-5 mb-5'>
-            {t.services.headline}
-          </h2>
+          {/* <span className='section-kicker'>{t.services.eyebrow}</span> */}
+          <WordReveal
+            text={t.services.headline}
+            className='text-4xl md:text-6xl font-extrabold mt-5 mb-5'
+          />
           <p className='section-subtitle-panel text-secondary text-lg md:text-xl whitespace-pre-line'>
             {t.services.subline}
           </p>
@@ -64,7 +60,6 @@ export function Services() {
                 transition={{ duration: 0.625, delay: idx * 0.07 }}
                 className={`service-card service-card-${idx + 1} ${cardLayouts[idx]} group`}
               >
-                <span className='service-card-number'>0{idx + 1}</span>
                 <div className='service-icon' aria-hidden='true'>
                   <Icon className='w-6 h-6' />
                 </div>
@@ -88,7 +83,10 @@ export function Process() {
   const { t } = useLanguage()
 
   return (
-    <section className='section-shell bg-surface' id='process'>
+    <section
+      className='viewport-section section-shell bg-surface'
+      id='process'
+    >
       <div className='max-w-7xl mx-auto'>
         <motion.div
           variants={reveal}
@@ -98,9 +96,10 @@ export function Process() {
           transition={{ duration: 0.8 }}
           className='max-w-3xl mx-auto text-center mb-14'
         >
-          <h2 className='text-4xl md:text-5xl font-bold mb-5 text-on-surface'>
-            {t.process.headline}
-          </h2>
+          <WordReveal
+            text={t.process.headline}
+            className='text-4xl md:text-5xl font-bold mb-5 text-on-surface'
+          />
           <p className='text-lg text-secondary leading-relaxed'>
             {t.process.subline}
           </p>

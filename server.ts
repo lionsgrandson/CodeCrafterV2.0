@@ -9,6 +9,9 @@ const isProduction = process.env.NODE_ENV === 'production'
 const app = express()
 const preferredPort = Number(process.env.PORT || 5173)
 const canonicalOrigin = 'https://mosheschwartzberg.com'
+const contactAttempts = new Map<string, number[]>()
+const contactWindowMs = 10 * 60 * 1000
+const maxContactAttempts = 5
 
 const legacyRedirects = new Map<string, string>([
   ['/blog/free-domains-new-era-internet', '/#services'],
@@ -42,6 +45,8 @@ type ContactPayload = {
   email?: string
   phone?: string
   message?: string
+  company?: string
+  language?: string
 }
 
 function clean(value: unknown) {
@@ -57,17 +62,67 @@ function escapeHtml(value: string) {
     .replace(/'/g, '&#39;')
 }
 
+function isRateLimited(ip: string) {
+  const now = Date.now()
+  const recentAttempts = (contactAttempts.get(ip) || []).filter(
+    (timestamp) => now - timestamp < contactWindowMs,
+  )
+
+  if (recentAttempts.length >= maxContactAttempts) {
+    contactAttempts.set(ip, recentAttempts)
+    return true
+  }
+
+  contactAttempts.set(ip, [...recentAttempts, now])
+  return false
+}
+
+app.get('/api/contact/health', (_req, res) => {
+  res.json({
+    ok: true,
+    providerConfigured: Boolean(
+      process.env.RESEND_API_KEY && process.env.RESEND_FROM_EMAIL,
+    ),
+  })
+})
+
 app.post('/api/contact', async (req, res) => {
   const body = req.body as ContactPayload
   const name = clean(body.name)
   const email = clean(body.email)
   const phone = clean(body.phone)
   const message = clean(body.message)
+  const company = clean(body.company)
+  const language = clean(body.language) === 'en' ? 'en' : 'he'
+  const ip =
+    clean(req.headers['cf-connecting-ip']) ||
+    clean(req.headers['x-forwarded-for']).split(',')[0] ||
+    req.ip
+
+  if (company) {
+    return res.json({ ok: true })
+  }
+
+  if (isRateLimited(ip)) {
+    return res
+      .status(429)
+      .json({ error: 'Too many contact attempts. Please try again later.' })
+  }
 
   if (!name || !email || !message) {
     return res
       .status(400)
       .json({ error: 'Please provide your name, email, and message.' })
+  }
+
+  if (
+    name.length > 120 ||
+    email.length > 254 ||
+    phone.length > 40 ||
+    message.length > 5000 ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  ) {
+    return res.status(400).json({ error: 'Please check the submitted details.' })
   }
 
   if (!process.env.RESEND_API_KEY || !process.env.RESEND_FROM_EMAIL) {
@@ -88,6 +143,7 @@ app.post('/api/contact', async (req, res) => {
         `Name: ${name}`,
         `Email: ${email}`,
         `Phone: ${phone || 'Not provided'}`,
+        `Language: ${language}`,
         '',
         message,
       ].join('\n'),
@@ -96,6 +152,7 @@ app.post('/api/contact', async (req, res) => {
       <p><strong>Name:</strong> ${escapeHtml(name)}</p>
       <p><strong>Email:</strong> ${escapeHtml(email)}</p>
       <p><strong>Phone:</strong> ${escapeHtml(phone || 'Not provided')}</p>
+      <p><strong>Language:</strong> ${language}</p>
       <p><strong>Message:</strong></p>
       <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
     `,

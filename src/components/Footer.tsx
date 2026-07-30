@@ -12,19 +12,21 @@ import {
 import { useLanguage } from '../App'
 import { trackContactLead } from '../lib/analytics'
 import { contact, getWhatsAppUrl } from '../lib/contact'
+import { WordReveal } from './WordReveal'
 
 export function WhyWorkWithMe() {
   const { t } = useLanguage()
   const points = t.why.items
 
   return (
-    <section className='py-24 px-6 md:px-8 bg-on-surface text-surface overflow-hidden'>
-      <div className='max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center'>
+    <section className='viewport-section about-section px-6 md:px-8 bg-on-surface text-surface overflow-hidden'>
+      <div className='max-w-7xl mx-auto grid grid-cols-[minmax(0,1fr)_minmax(110px,0.42fr)] lg:grid-cols-[minmax(0,1.4fr)_minmax(260px,0.6fr)] gap-5 md:gap-10 items-center'>
         <div>
-          <h2 className='text-4xl md:text-5xl font-bold mb-12 tracking-tight font-headline'>
-            {t.why.headline}
-          </h2>
-          <ul className='space-y-8'>
+          <WordReveal
+            text={t.why.headline}
+            className='text-3xl md:text-5xl font-bold mb-5 md:mb-8 tracking-tight font-headline'
+          />
+          <ul className='space-y-2.5 md:space-y-4'>
             {points.map((point, idx) => (
               <motion.li
                 key={idx}
@@ -32,16 +34,16 @@ export function WhyWorkWithMe() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.625, delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                className='flex gap-6 items-start'
+                className='flex gap-3 md:gap-4 items-start'
               >
                 <div className='mt-1 w-6 h-6 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-sm'>
                   <Check className='w-4 h-4 text-white' />
                 </div>
                 <div>
-                  <h4 className='text-xl font-bold mb-1 font-headline'>
+                  <h4 className='text-sm md:text-lg font-bold mb-0.5 font-headline leading-tight'>
                     {point.title}
                   </h4>
-                  <p className='opacity-70 font-light leading-relaxed'>
+                  <p className='text-xs md:text-sm opacity-70 font-light leading-snug'>
                     {point.desc}
                   </p>
                 </div>
@@ -52,9 +54,9 @@ export function WhyWorkWithMe() {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.625, delay: 0.6 }}
-            className='mt-12 p-6 bg-surface/5 border border-surface/10 rounded-xl'
+            className='mt-4 md:mt-6 p-3 md:p-4 bg-surface/5 border border-surface/10 rounded-xl'
           >
-            <p className='text-2xl font-headline italic font-light opacity-90'>
+            <p className='text-sm md:text-lg font-headline italic font-light opacity-90'>
               {t.why.quote}
             </p>
           </motion.div>
@@ -65,7 +67,7 @@ export function WhyWorkWithMe() {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
             viewport={{ once: true }}
-            className='w-full aspect-[4/5] bg-primary/20 rounded-2xl relative overflow-hidden ring-1 ring-white/10'
+            className='w-full max-h-[62svh] aspect-[4/5] bg-primary/20 rounded-2xl relative overflow-hidden ring-1 ring-white/10'
           >
             <img
               className='w-full h-full object-cover grayscale'
@@ -87,6 +89,7 @@ export function FinalCTA() {
     email: '',
     phone: '',
     message: '',
+    company: '',
   })
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>(
     'idle',
@@ -118,13 +121,13 @@ export function FinalCTA() {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, language: lang }),
       })
 
       if (!response.ok) throw new Error('Contact request failed')
       trackContactLead()
       setStatus('sent')
-      setForm({ name: '', email: '', phone: '', message: '' })
+      setForm({ name: '', email: '', phone: '', message: '', company: '' })
     } catch {
       setStatus('error')
     }
@@ -132,14 +135,15 @@ export function FinalCTA() {
 
   return (
     <section
-      className='py-24 px-6 md:px-8 bg-surface-container-low'
+      className='viewport-section contact-section px-6 md:px-8 bg-surface-container-low'
       id='contact'
     >
       <div className='max-w-4xl mx-auto text-center'>
-        <h2 className='text-4xl md:text-5xl font-bold mb-6 tracking-tight font-headline text-on-surface'>
-          {t.cta.headline}
-        </h2>
-        <p className='text-secondary text-lg mb-12 font-light'>
+        <WordReveal
+          text={t.cta.headline}
+          className='text-3xl md:text-5xl font-bold mb-3 md:mb-4 tracking-tight font-headline text-on-surface'
+        />
+        <p className='text-secondary text-sm md:text-lg mb-4 md:mb-6 font-light'>
           {t.cta.subline}
         </p>
         <motion.div
@@ -147,21 +151,44 @@ export function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.625 }}
-          className='bg-surface-container-lowest p-8 md:p-12 rounded-2xl shadow-2xl relative overflow-hidden border border-outline-variant/10'
+          className='bg-surface-container-lowest p-5 md:p-7 rounded-2xl shadow-2xl relative overflow-hidden border border-outline-variant/10'
         >
           <div className='absolute top-0 start-0 p-8 opacity-5'>
             <Globe className='w-32 h-32 text-primary' />
           </div>
-          <h3 className='text-3xl md:text-4xl font-bold mb-4 font-headline text-on-surface'>
+          <h3 className='text-2xl md:text-3xl font-bold mb-2 font-headline text-on-surface'>
             {t.cta.cardTitle}
           </h3>
-          <p className='text-secondary text-lg mb-10 font-light'>
+          <p className='text-secondary text-sm md:text-base mb-4 font-light'>
             {t.cta.cardSubline}
           </p>
           <form
             onSubmit={handleSubmit}
+            data-state={
+              status === 'sent' || status === 'error' || status === 'sending'
+                ? status
+                : Object.values(form).some(Boolean)
+                  ? 'filled'
+                  : 'blank'
+            }
             className='relative z-10 grid grid-cols-1 md:grid-cols-2 gap-4 text-start'
           >
+            <div className='absolute -start-[10000px]' aria-hidden='true'>
+              <label htmlFor='company'>Company</label>
+              <input
+                id='company'
+                name='company'
+                value={form.company}
+                onChange={(event) =>
+                  setForm((current) => ({
+                    ...current,
+                    company: event.target.value,
+                  }))
+                }
+                tabIndex={-1}
+                autoComplete='off'
+              />
+            </div>
             <input
               value={form.name}
               onChange={(event) =>
@@ -169,7 +196,8 @@ export function FinalCTA() {
               }
               required
               placeholder={copy.name}
-              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-4 text-on-surface outline-none transition duration-[200ms] focus:border-primary'
+              aria-label={copy.name}
+              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-3 text-on-surface outline-none transition duration-[200ms] hover:border-primary/60 focus:border-primary'
             />
             <input
               type='email'
@@ -182,7 +210,8 @@ export function FinalCTA() {
               }
               required
               placeholder={copy.email}
-              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-4 text-on-surface outline-none transition duration-[200ms] focus:border-primary'
+              aria-label={copy.email}
+              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-3 text-on-surface outline-none transition duration-[200ms] hover:border-primary/60 focus:border-primary'
             />
             <input
               value={form.phone}
@@ -193,7 +222,8 @@ export function FinalCTA() {
                 }))
               }
               placeholder={copy.phone}
-              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-4 text-on-surface outline-none transition duration-[200ms] focus:border-primary md:col-span-2'
+              aria-label={copy.phone}
+              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-3 text-on-surface outline-none transition duration-[200ms] hover:border-primary/60 focus:border-primary md:col-span-2'
             />
             <textarea
               value={form.message}
@@ -205,8 +235,9 @@ export function FinalCTA() {
               }
               required
               placeholder={copy.message}
-              rows={5}
-              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-4 text-on-surface outline-none transition duration-[200ms] focus:border-primary md:col-span-2 resize-none'
+              rows={3}
+              aria-label={copy.message}
+              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-3 text-on-surface outline-none transition duration-[200ms] hover:border-primary/60 focus:border-primary md:col-span-2 resize-none'
             />
             {status === 'sent' && (
               <p className='text-sm font-medium text-tertiary md:col-span-2'>
@@ -218,11 +249,22 @@ export function FinalCTA() {
                 {copy.error}
               </p>
             )}
+            <p className='text-xs text-secondary md:col-span-2 text-center'>
+              {lang === 'he' ? 'בשליחת הטופס אני מאשר/ת את' : 'By submitting, I agree to the'}{' '}
+              <a className='hover:text-primary underline' href='/privacy/'>
+                {t.footer.privacy}
+              </a>{' '}
+              {lang === 'he' ? 'ואת' : 'and'}{' '}
+              <a className='hover:text-primary underline' href='/terms/'>
+                {t.footer.terms}
+              </a>
+              .
+            </p>
             <div className='flex flex-col sm:flex-row gap-4 justify-center md:col-span-2'>
               <button
                 type='submit'
                 disabled={status === 'sending'}
-                className='bg-primary-gradient text-white px-10 py-5 rounded-lg font-headline font-bold text-xl shadow-lg hover:shadow-primary/30 transition-all duration-[200ms] active:scale-95 text-center disabled:opacity-70'
+                className='bg-primary-gradient text-white px-8 py-3.5 rounded-lg font-headline font-bold text-lg shadow-lg hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 transition-all duration-[200ms] active:scale-95 text-center disabled:opacity-70 disabled:hover:translate-y-0'
               >
                 {status === 'sending' ? (
                   <span className='inline-flex items-center gap-3'>
@@ -239,7 +281,7 @@ export function FinalCTA() {
                 href={getWhatsAppUrl(lang)}
                 target='_blank'
                 rel='noreferrer'
-                className='bg-surface-container text-primary px-10 py-5 rounded-lg font-headline font-bold text-xl flex items-center justify-center gap-3 hover:bg-surface-container-high transition-all duration-[200ms] active:scale-95 border border-primary/10'
+                className='bg-surface-container text-primary px-8 py-3.5 rounded-lg font-headline font-bold text-lg flex items-center justify-center gap-3 hover:-translate-y-0.5 hover:bg-surface-container-high hover:shadow-md transition-all duration-[200ms] active:scale-95 border border-primary/10'
               >
                 <MessageSquare className='w-6 h-6 fill-current' />
                 {t.cta.secondary}
@@ -265,6 +307,9 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
           <div className='text-xl font-bold font-headline text-on-surface mb-4'>
             {t.nav.brand}
           </div>
+          <p className='text-primary font-headline font-bold tracking-wide mb-2'>
+            {t.hero.eyebrow}
+          </p>
           <p className='text-sm text-secondary max-w-xs mb-6 leading-relaxed'>
             {t.footer.desc}
           </p>

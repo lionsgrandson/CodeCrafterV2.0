@@ -1,7 +1,8 @@
 import { motion } from 'motion/react'
 import { ArrowLeft, ArrowRight, Star } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../App'
+import { WordReveal } from './WordReveal'
 
 type ProjectMediaProps = {
   src?: string
@@ -10,9 +11,17 @@ type ProjectMediaProps = {
 }
 
 function ProjectMedia({ src, title, kind = 'logo' }: ProjectMediaProps) {
+  const imageRef = useRef<HTMLImageElement>(null)
   const [state, setState] = useState<
     'blank' | 'loading' | 'success' | 'failure'
   >(src ? 'loading' : 'blank')
+
+  useEffect(() => {
+    const image = imageRef.current
+    if (!image || !image.complete) return
+
+    setState(image.naturalWidth > 0 ? 'success' : 'failure')
+  }, [src])
 
   return (
     <div className='aspect-video relative overflow-hidden bg-surface-container-high'>
@@ -31,11 +40,14 @@ function ProjectMedia({ src, title, kind = 'logo' }: ProjectMediaProps) {
       )}
       {src && (
         <img
+          ref={imageRef}
           className={`w-full h-full group-hover:scale-105 transition-all duration-[875ms] ${kind === 'screenshot' ? 'object-cover' : 'object-contain p-8'} ${state === 'success' ? 'opacity-100' : 'opacity-0'}`}
           src={src}
           alt={title}
-          loading='eager'
+          loading='lazy'
           decoding='async'
+          width='640'
+          height='360'
           onLoad={() => setState('success')}
           onError={() => setState('failure')}
         />
@@ -113,9 +125,10 @@ export function Portfolio({
             </p>
           </div>
         ) : (
-          <h2 className='text-4xl md:text-5xl font-bold mb-16 tracking-tight font-headline text-on-surface'>
-            {t.portfolio.headline}
-          </h2>
+          <WordReveal
+            text={t.portfolio.headline}
+            className='text-4xl md:text-5xl font-bold mb-16 tracking-tight font-headline text-on-surface'
+          />
         )}
         <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
           {projects.map((project, idx) => {
@@ -173,12 +186,16 @@ export function Testimonials() {
   }))
 
   return (
-    <section className='py-24 px-6 md:px-8 bg-surface' id='testimonials'>
+    <section
+      className='viewport-section testimonials-section px-6 md:px-8 bg-surface'
+      id='testimonials'
+    >
       <div className='max-w-7xl mx-auto'>
-        <h2 className='text-4xl md:text-5xl font-bold mb-16 text-center tracking-tight font-headline text-on-surface'>
-          {t.testimonials.headline}
-        </h2>
-        <div className='grid md:grid-cols-2 gap-8'>
+        <WordReveal
+          text={t.testimonials.headline}
+          className='text-4xl md:text-5xl font-bold mb-8 md:mb-10 text-center tracking-tight font-headline text-on-surface'
+        />
+        <div className='grid grid-cols-2 gap-3 md:gap-5'>
           {reviews.map((review, idx) => (
             <motion.div
               key={idx}
@@ -186,21 +203,21 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className={`p-8 rounded-xl flex flex-col shadow-sm border-t-4 transition-all duration-[200ms] hover:-translate-y-1 ${review.featured ? 'bg-surface-container-high border-primary' : 'bg-surface-container-low border-transparent'}`}
+              className={`testimonial-card p-4 md:p-5 rounded-xl flex flex-col shadow-sm border-t-4 transition-all duration-[200ms] hover:-translate-y-1 hover:shadow-lg ${review.featured ? 'bg-surface-container-high border-primary' : 'bg-surface-container-low border-transparent'}`}
             >
-              <div className='flex text-primary mb-6'>
+              <div className='flex text-primary mb-2 md:mb-3'>
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className='w-5 h-5 fill-yellow-500 text-yellow-500'
+                    className='w-3.5 h-3.5 md:w-4 md:h-4 fill-yellow-500 text-yellow-500'
                   />
                 ))}
               </div>
-              <p className='text-lg font-light text-on-surface-variant mb-8 flex-1 leading-relaxed italic'>
+              <p className='testimonial-copy text-xs md:text-sm font-light text-on-surface-variant mb-3 md:mb-4 flex-1 leading-snug italic'>
                 {review.text}
               </p>
               <div className='flex items-center gap-4'>
-                <div className='w-12 h-12 rounded-full bg-primary/10 text-primary ring-2 ring-primary/10 flex items-center justify-center font-headline font-bold'>
+                <div className='hidden sm:flex w-9 h-9 rounded-full bg-primary/10 text-primary ring-2 ring-primary/10 items-center justify-center font-headline font-bold'>
                   {review.name.charAt(0)}
                 </div>
                 <div>

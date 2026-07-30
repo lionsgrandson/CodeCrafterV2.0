@@ -18,7 +18,7 @@ export const translations = {
       alt: 'משה שוורצברג ברחוב עירוני בפראג',
     },
     services: {
-      eyebrow: 'השירותים שלי',
+      // eyebrow: 'השירותים שלי',
       headline: 'פתרונות דיגיטליים שבנויים לעסק שלך',
       subline:
         'מאתר ומערכת ועד אפליקציה ואוטומציה – כל פתרון נבנה בהתאמה אישית.\nכדי לחסוך זמן ולעזור לעסק שלך להתקדם.',
@@ -242,7 +242,7 @@ export const translations = {
     },
     footer: {
       desc: 'מתכננים את העתיד הדיגיטלי לעסקים שאפתניים. מערכת אחת בכל פעם.',
-      explore: 'חקור',
+      explore: 'מפת אתר',
       legal: 'משפטי',
       privacy: 'מדיניות פרטיות',
       terms: 'תנאי שימוש',
@@ -512,7 +512,7 @@ export const translations = {
     },
     footer: {
       desc: 'Architecting the digital future for ambitious businesses. One system at a time.',
-      explore: 'Explore',
+      explore: 'Site Map',
       legal: 'Legal',
       privacy: 'Privacy Policy',
       terms: 'Terms of Service',

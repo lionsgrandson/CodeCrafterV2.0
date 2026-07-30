@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { Languages, Menu, MessageSquare, X } from 'lucide-react'
 import { useLanguage } from '../App'
 import { getWhatsAppUrl } from '../lib/contact'
+import { WordReveal } from './WordReveal'
 
 type NavbarProps = {
   homeHashPrefix?: string
@@ -128,7 +129,7 @@ export function Hero() {
   const { t, lang } = useLanguage()
 
   return (
-    <header className='relative pt-32 pb-24 px-6 md:px-8 overflow-hidden bg-surface'>
+    <header className='viewport-section hero-section relative px-6 md:px-8 overflow-hidden bg-surface'>
       <div className='absolute inset-0 z-0 pointer-events-none opacity-20'>
         <div className='absolute top-0 left-0 w-full h-full'>
           {[...Array(6)].map((_, i) => (
@@ -179,9 +180,11 @@ export function Hero() {
           transition={{ duration: 1 }}
           className='z-10'
         >
-          <h1 className='title-shine text-5xl md:text-7xl text-editorial-hero mb-6'>
-            {t.hero.headline}
-          </h1>
+          <WordReveal
+            as='h1'
+            text={t.hero.headline}
+            className='text-5xl md:text-7xl text-editorial-hero mb-6'
+          />
           <p className='subtitle-accent text-secondary text-lg md:text-xl max-w-xl mb-10 leading-relaxed'>
             {t.hero.subline}
           </p>
