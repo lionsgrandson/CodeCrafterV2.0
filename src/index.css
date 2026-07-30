@@ -2,10 +2,8 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-headline:
-    'Manrope', 'Assistant', ui-sans-serif, system-ui, sans-serif;
-  --font-sans:
-    'Manrope', 'Assistant', ui-sans-serif, system-ui, sans-serif;
+  --font-headline: 'Manrope', 'Assistant', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Manrope', 'Assistant', ui-sans-serif, system-ui, sans-serif;
 
   --color-primary: #94442e;
   --color-primary-container: #b35c44;
@@ -33,15 +31,13 @@
   }
 
   html[dir='rtl'] body {
-    font-family:
-      'Assistant', 'Manrope', ui-sans-serif, system-ui, sans-serif;
+    font-family: 'Assistant', 'Manrope', ui-sans-serif, system-ui, sans-serif;
   }
 
   html[dir='rtl'] {
     --font-headline:
       'Assistant', 'Manrope', ui-sans-serif, system-ui, sans-serif;
-    --font-sans:
-      'Assistant', 'Manrope', ui-sans-serif, system-ui, sans-serif;
+    --font-sans: 'Assistant', 'Manrope', ui-sans-serif, system-ui, sans-serif;
   }
 
   html[dir='rtl'] h1,
@@ -50,8 +46,7 @@
   html[dir='rtl'] h4,
   html[dir='rtl'] h5,
   html[dir='rtl'] h6 {
-    font-family:
-      'Assistant', 'Manrope', ui-sans-serif, system-ui, sans-serif;
+    font-family: 'Assistant', 'Manrope', ui-sans-serif, system-ui, sans-serif;
     letter-spacing: -0.035em;
   }
 
@@ -82,7 +77,7 @@
 .viewport-section {
   height: 100svh;
   min-height: 100svh;
-  max-height: 100svh;
+  /* max-height: 100svh; */
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -856,7 +851,6 @@ html[dir='rtl'] .localized-whatsapp [class*='chatFooter'] button svg {
     right: 0;
     left: 0;
   }
-
 }
 
 .glass-nav {
