@@ -173,7 +173,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className='max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10'>
+      <div className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10'>
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
@@ -188,10 +188,10 @@ export function Hero() {
           <p className='subtitle-accent text-secondary text-lg md:text-xl max-w-xl mb-10 leading-relaxed'>
             {t.hero.subline}
           </p>
-          <div className='flex flex-col sm:flex-row gap-4'>
+          <div className='flex flex-col md:flex-row gap-4'>
             <a
               href='#contact'
-              className='button-primary px-8 py-5 text-lg text-center'
+              className='button-primary w-full md:w-auto px-6 md:px-8 py-4 md:py-5 text-base md:text-lg text-center'
             >
               {t.hero.ctaPrimary}
             </a>
@@ -199,7 +199,7 @@ export function Hero() {
               href={getWhatsAppUrl(lang)}
               target='_blank'
               rel='noreferrer'
-              className='button-secondary px-8 py-5 text-lg'
+              className='button-secondary w-full md:w-auto px-6 md:px-8 py-4 md:py-5 text-base md:text-lg'
             >
               <MessageSquare className='w-5 h-5 fill-current' />
               {t.hero.ctaSecondary}

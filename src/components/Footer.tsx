@@ -20,7 +20,7 @@ export function WhyWorkWithMe() {
 
   return (
     <section className='viewport-section about-section px-6 md:px-8 bg-on-surface text-surface overflow-hidden'>
-      <div className='max-w-7xl mx-auto grid grid-cols-[minmax(0,1fr)_minmax(110px,0.42fr)] lg:grid-cols-[minmax(0,1.4fr)_minmax(260px,0.6fr)] gap-5 md:gap-10 items-center'>
+      <div className='max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1.4fr)_minmax(260px,0.6fr)] gap-5 md:gap-10 items-center'>
         <div>
           <WordReveal
             text={t.why.headline}
@@ -40,10 +40,10 @@ export function WhyWorkWithMe() {
                   <Check className='w-4 h-4 text-white' />
                 </div>
                 <div>
-                  <h4 className='text-sm md:text-lg font-bold mb-0.5 font-headline leading-tight'>
+                  <h4 className='text-base md:text-lg font-bold mb-0.5 font-headline leading-tight'>
                     {point.title}
                   </h4>
-                  <p className='text-xs md:text-sm opacity-70 font-light leading-snug'>
+                  <p className='text-sm opacity-70 font-light leading-snug'>
                     {point.desc}
                   </p>
                 </div>
@@ -260,11 +260,11 @@ export function FinalCTA() {
               </a>
               .
             </p>
-            <div className='flex flex-col sm:flex-row gap-4 justify-center md:col-span-2'>
+            <div className='flex flex-col md:flex-row gap-4 justify-center md:col-span-2'>
               <button
                 type='submit'
                 disabled={status === 'sending'}
-                className='bg-primary-gradient text-white px-8 py-3.5 rounded-lg font-headline font-bold text-lg shadow-lg hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 transition-all duration-[200ms] active:scale-95 text-center disabled:opacity-70 disabled:hover:translate-y-0'
+                className='bg-primary-gradient text-white w-full md:w-auto px-5 md:px-8 py-3.5 rounded-lg font-headline font-bold text-base md:text-lg whitespace-nowrap shadow-lg hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 transition-all duration-[200ms] active:scale-95 text-center disabled:opacity-70 disabled:hover:translate-y-0'
               >
                 {status === 'sending' ? (
                   <span className='inline-flex items-center gap-3'>
@@ -281,7 +281,7 @@ export function FinalCTA() {
                 href={getWhatsAppUrl(lang)}
                 target='_blank'
                 rel='noreferrer'
-                className='bg-surface-container text-primary px-8 py-3.5 rounded-lg font-headline font-bold text-lg flex items-center justify-center gap-3 hover:-translate-y-0.5 hover:bg-surface-container-high hover:shadow-md transition-all duration-[200ms] active:scale-95 border border-primary/10'
+                className='bg-surface-container text-primary w-full md:w-auto px-5 md:px-8 py-3.5 rounded-lg font-headline font-bold text-base md:text-lg whitespace-nowrap flex items-center justify-center gap-3 hover:-translate-y-0.5 hover:bg-surface-container-high hover:shadow-md transition-all duration-[200ms] active:scale-95 border border-primary/10'
               >
                 <MessageSquare className='w-6 h-6 fill-current' />
                 {t.cta.secondary}
@@ -301,19 +301,19 @@ type FooterProps = {
 export function Footer({ homeHashPrefix = '' }: FooterProps) {
   const { t, lang } = useLanguage()
   return (
-    <footer className='w-full py-12 px-6 md:px-8 bg-surface-container-high border-t border-outline-variant/10'>
-      <div className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8'>
+    <footer className='w-full py-8 px-6 md:px-8 bg-surface-container-high border-t border-outline-variant/10'>
+      <div className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6'>
         <div className='col-span-1 md:col-span-2'>
-          <div className='text-xl font-bold font-headline text-on-surface mb-4'>
+          <div className='text-xl font-bold font-headline text-on-surface mb-2'>
             {t.nav.brand}
           </div>
           <p className='text-primary font-headline font-bold tracking-wide mb-2'>
             {t.hero.eyebrow}
           </p>
-          <p className='text-sm text-secondary max-w-xs mb-6 leading-relaxed'>
+          <p className='text-sm text-secondary max-w-xs mb-4 leading-relaxed'>
             {t.footer.desc}
           </p>
-          <div className='flex flex-col gap-3 text-sm'>
+          <div className='flex flex-col gap-2 text-sm'>
             <a
               href={`mailto:${contact.email}`}
               className='text-primary hover:underline underline-offset-4 transition-all duration-[200ms] font-medium inline-flex items-center gap-2'
@@ -340,10 +340,10 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
           </div>
         </div>
         <div>
-          <p className='font-headline font-bold text-xs uppercase tracking-widest text-on-surface mb-6'>
+          <p className='font-headline font-bold text-xs uppercase tracking-widest text-on-surface mb-3'>
             {t.footer.explore}
           </p>
-          <ul className='space-y-3 text-sm'>
+          <ul className='space-y-2 text-sm'>
             {[
               { label: t.nav.solve, href: `${homeHashPrefix}#services` },
               { label: t.nav.work, href: `${homeHashPrefix}#portfolio` },
@@ -362,10 +362,10 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
           </ul>
         </div>
         <div>
-          <p className='font-headline font-bold text-xs uppercase tracking-widest text-on-surface mb-6'>
+          <p className='font-headline font-bold text-xs uppercase tracking-widest text-on-surface mb-3'>
             {t.footer.legal}
           </p>
-          <ul className='space-y-3 text-sm'>
+          <ul className='space-y-2 text-sm'>
             <li>
               <a
                 href='/privacy/'
@@ -385,7 +385,7 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
           </ul>
         </div>
       </div>
-      <div className='max-w-7xl mx-auto mt-12 pt-8 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-4'>
+      <div className='max-w-7xl mx-auto mt-8 pt-5 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-3'>
         <p className='text-xs text-secondary'>
           © {new Date().getFullYear()} {t.nav.brand}. {t.footer.rights}
         </p>

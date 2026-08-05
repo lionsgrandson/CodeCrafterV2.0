@@ -195,7 +195,7 @@ export function Testimonials() {
           text={t.testimonials.headline}
           className='text-4xl md:text-5xl font-bold mb-8 md:mb-10 text-center tracking-tight font-headline text-on-surface'
         />
-        <div className='grid grid-cols-2 gap-3 md:gap-5'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5'>
           {reviews.map((review, idx) => (
             <motion.div
               key={idx}

@@ -272,7 +272,7 @@ export const translations = {
       eyebrow: 'My Services',
       headline: 'Digital Solutions Built Around Your Business',
       subline:
-        'From websites and systems to apps and automation, every solution is custom-built.\nDesigned to save time and help your business move forward.',
+        'From websites and systems to apps and automation, every solution is custom-built.\nBuilt to save time and help your business move forward.',
       items: [
         {
           title: 'Websites & Web Systems',
@@ -280,41 +280,41 @@ export const translations = {
         },
         {
           title: 'CRM / CMS Systems',
-          desc: 'Custom systems for managing customers, content, and business processes, fully tailored to your business needs.',
+          desc: 'Systems for managing customers, content, and business processes, fully tailored to your business needs.',
         },
         {
           title: 'Mobile Apps',
-          desc: 'iOS and Android apps with a modern user experience and connections to your business’s existing systems.',
+          desc: 'iOS and Android apps with a modern user experience and connections to the systems already in your business.',
         },
         {
           title: 'Automation & Integrations',
-          desc: 'Connected systems and automated workflows that reduce manual work, save time, and make your business more efficient.',
+          desc: 'Connecting systems, automating workflows, and reducing manual work to save time and make your business more efficient.',
         },
         {
           title: 'Business Bots',
-          desc: 'Bots for WhatsApp, Instagram, Facebook, and Telegram that answer quickly, collect leads, and carry out actions automatically.',
+          desc: 'Bots for WhatsApp, Instagram, Facebook, and Telegram that answer quickly, collect leads, and perform actions automatically.',
         },
       ],
     },
     process: {
       headline: 'Simple Process. Real Results.',
       subline:
-        'I guide you from the first idea through launch with a clear, transparent process shaped around your business.',
+        'I guide you from the first idea all the way to launch with a clear, transparent process tailored to your business.',
       steps: [
         {
           title: 'Discovery & Planning',
           lead: 'I learn your business',
-          desc: 'We define your goals, challenges, and needs so we can choose the right solution.',
+          desc: 'We define your goals, challenges, and needs so we can shape the right solution.',
         },
         {
           title: 'Design & Development',
           lead: 'I build the solution',
-          desc: 'I create your website, system, or automation around your needs while keeping you updated throughout the process.',
+          desc: 'I build your website, system, or automation around your needs while keeping you updated and involved throughout the process.',
         },
         {
           title: 'Launch & Support',
           lead: 'I stay with you after launch',
-          desc: 'After launch, I continue to support, refine, and make sure everything works at its best.',
+          desc: 'After launch, I keep supporting, refining, and making sure everything works at its best.',
         },
       ],
     },
@@ -476,16 +476,16 @@ export const translations = {
       items: [
         {
           title:
-            'I Don’t Start with Design or Code—I Start by Understanding Your Business',
-          desc: 'What slows you down? Where do customers disappear along the way? And how can we make the process simpler, more efficient, and more profitable?',
+            'I Do Not Start with Design or Code. I Start by Understanding Your Business.',
+          desc: 'What is slowing you down? Where are customers dropping off? And how can we make the process simpler, more efficient, and more profitable?',
         },
         {
-          title: 'Solutions That Truly Work for You',
+          title: 'Solutions That Actually Work for You',
           desc: 'Every website or system I build is tailored to the way your business works, helping you save time, generate more inquiries, and turn complex processes into simple ones.',
         },
         {
           title: 'No Technology Headaches',
-          desc: 'I explain everything in plain language, guide you throughout the process, and make sure you always know what is happening, why it matters, and how it moves your business forward.',
+          desc: 'I explain everything in simple language, guide you throughout the process, and make sure you always know what is happening, why it matters, and how it moves your business forward.',
         },
         {
           title: 'Thinking Like Your Customers',
@@ -493,7 +493,7 @@ export const translations = {
         },
         {
           title: 'A Partner in Success, Not Just a Vendor',
-          desc: 'My goal is for you to receive more than a beautiful website: a professional tool that represents you, produces results, and keeps working for you long after launch.',
+          desc: 'My goal is for you to get more than a beautiful website: a professional tool that represents you, produces results, and keeps working for you long after launch.',
         },
       ],
       quote:
@@ -511,7 +511,7 @@ export const translations = {
       secondary: 'Send a Message on WhatsApp',
     },
     footer: {
-      desc: 'Architecting the digital future for ambitious businesses. One system at a time.',
+      desc: 'Planning the digital future for ambitious businesses. One system at a time.',
       explore: 'Site Map',
       legal: 'Legal',
       privacy: 'Privacy Policy',
