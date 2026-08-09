@@ -112,7 +112,8 @@ if (baseUrl) {
   const missing = await fetch(`${baseUrl}/seo-soft-404-probe-8f15c`, { redirect: 'manual' })
   if (missing.status !== 404) fail(`missing route returned ${missing.status}`)
   const legacy = await fetch(`${baseUrl}/blog.html`, { redirect: 'manual' })
-  if (![301, 308].includes(legacy.status) || legacy.headers.get('location') !== `${origin}/websites/`) fail('/blog.html does not redirect permanently to /websites/')
+  const legacyLocation = legacy.headers.get('location')
+  if (![301, 308].includes(legacy.status) || !legacyLocation || new URL(legacyLocation, origin).href !== `${origin}/websites/`) fail('/blog.html does not redirect permanently to /websites/')
   for (const variant of ['http://mosheschwartzberg.com/', 'http://www.mosheschwartzberg.com/', 'https://www.mosheschwartzberg.com/']) {
     const response = await fetch(variant, { redirect: 'manual' })
     if (![301, 308].includes(response.status) || response.headers.get('location') !== `${origin}/`) fail(`${variant} does not redirect directly to the canonical homepage`)
