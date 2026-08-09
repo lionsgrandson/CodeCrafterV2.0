@@ -17,6 +17,7 @@ export default defineConfig(() => {
       hmr: process.env.DISABLE_HMR !== 'true',
     },
     build: {
+      sourcemap: true,
       outDir: isSsrBuild ? 'dist/server' : 'dist',
       emptyOutDir: !isSsrBuild,
       ssr: isSsrBuild ? 'src/entry-server.tsx' : undefined,

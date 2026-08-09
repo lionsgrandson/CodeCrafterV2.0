@@ -1,7 +1,7 @@
 {
   "name": "react-example",
   "private": true,
-  "version": "0.5.3",
+  "version": "0.5.6",
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
@@ -12,7 +12,10 @@
     "preview": "vite preview",
     "start": "node --import tsx server.ts",
     "clean": "rm -rf dist",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "postbuild": "node scripts/seo-check.mjs --dist dist",
+    "seo:check": "node scripts/seo-check.mjs --dist dist",
+    "seo:check:production": "node scripts/seo-check.mjs --base-url https://mosheschwartzberg.com"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",

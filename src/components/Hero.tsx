@@ -30,7 +30,7 @@ export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
         <div className='text-2xl font-bold font-headline text-on-surface tracking-tight'>
           <a
             href='/'
-            aria-label={lang === 'he' ? 'דף הבית' : 'Homepage'}
+            aria-label={`${t.nav.brand} ${t.hero.eyebrow}`}
             className='block transition-opacity duration-[200ms] hover:opacity-75'
           >
             {t.nav.brand}
@@ -208,7 +208,7 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: lang === 'he' ? -28 : 28 }}
+          initial={{ opacity: 1, x: lang === 'he' ? -20 : 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.05, delay: 0.15 }}
           className='relative mt-4 md:mt-0'
@@ -216,7 +216,9 @@ export function Hero() {
         >
           <div className='hero-photo-frame'>
             <img
-              src='/moshe-prague.png'
+              src='/moshe-prague-768.webp'
+              srcSet='/moshe-prague-480.webp 480w, /moshe-prague-768.webp 768w, /moshe-prague-1052.webp 1052w'
+              sizes='(max-width: 767px) calc(100vw - 48px), 50vw'
               alt={
                 lang === 'he'
                   ? 'משה שוורצברג ברחוב עירוני בפראג'

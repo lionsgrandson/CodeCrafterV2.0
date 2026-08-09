@@ -40,9 +40,9 @@ export function WhyWorkWithMe() {
                   <Check className='w-4 h-4 text-white' />
                 </div>
                 <div>
-                  <h4 className='text-base md:text-lg font-bold mb-0.5 font-headline leading-tight'>
+                  <h3 className='text-base md:text-lg font-bold mb-0.5 font-headline leading-tight'>
                     {point.title}
-                  </h4>
+                  </h3>
                   <p className='text-sm opacity-70 font-light leading-snug'>
                     {point.desc}
                   </p>
@@ -71,9 +71,14 @@ export function WhyWorkWithMe() {
           >
             <img
               className='w-full h-full object-cover grayscale'
-              src='/about-photo.jpg'
+              src='/about-photo-800.webp'
+              srcSet='/about-photo-480.webp 480w, /about-photo-800.webp 800w, /about-photo-1200.webp 1200w'
+              sizes='(max-width: 767px) calc(100vw - 48px), 50vw'
               alt={t.why.alt}
               loading='lazy'
+              decoding='async'
+              width='1200'
+              height='800'
             />
           </motion.div>
         </div>
