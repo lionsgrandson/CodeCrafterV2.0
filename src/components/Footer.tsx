@@ -12,6 +12,7 @@ import {
 import { useLanguage } from '../App'
 import { trackContactLead } from '../lib/analytics'
 import { contact, getWhatsAppUrl } from '../lib/contact'
+import { localizePath, serviceLabels, serviceSlugs } from '../lib/seoRoutes'
 import { WordReveal } from './WordReveal'
 
 export function WhyWorkWithMe() {
@@ -351,9 +352,10 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
           <ul className='space-y-2 text-sm'>
             {[
               { label: t.nav.solve, href: `${homeHashPrefix}#services` },
-              { label: t.nav.work, href: `${homeHashPrefix}#portfolio` },
+              { label: t.nav.work, href: localizePath('portfolio', lang) },
+              { label: lang === 'he' ? 'אודות משה ו-CodeCrafter' : 'About Moshe and CodeCrafter', href: localizePath('about', lang) },
               { label: t.nav.process, href: `${homeHashPrefix}#process` },
-              { label: t.nav.success, href: `${homeHashPrefix}#testimonials` },
+              ...serviceSlugs.map((slug) => ({ label: serviceLabels[lang][slug], href: localizePath(slug, lang) })),
             ].map((link) => (
               <li key={link.label}>
                 <a

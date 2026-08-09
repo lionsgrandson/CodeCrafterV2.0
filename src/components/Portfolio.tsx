@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, Star } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../App'
 import { WordReveal } from './WordReveal'
+import { localizePath } from '../lib/seoRoutes'
 
 type ProjectMediaProps = {
   src?: string
@@ -76,14 +77,14 @@ export function Portfolio({
     { src: '/portfolio/rainbow-asd-logo.png' },
     { src: '/portfolio/chicago-trauma-logo.png' },
     { src: '/portfolio/sumsup-logo.png' },
-    { src: '/portfolio/amit-kadosh.jpeg', kind: 'screenshot' as const },
-    { src: '/portfolio/technology-corps-logo.png' },
+    { src: '/portfolio/amit-kadosh.webp', kind: 'screenshot' as const },
+    { src: '/portfolio/technology-corps-logo.webp' },
     { src: '/portfolio/big-sale-logo.jpeg' },
     { src: '/portfolio/creative-intelligence-logo.svg' },
     { src: '/portfolio/shimon-photography-logo.jpeg' },
     // { src: '/portfolio/aderet-argaman-logo.png' },
     {
-      src: '/portfolio/coderecovery-screenshot.png',
+      src: '/portfolio/coderecovery-screenshot.webp',
       kind: 'screenshot' as const,
     },
     { src: '/portfolio/ai-pro-logo.jpeg' },
@@ -93,7 +94,13 @@ export function Portfolio({
   const projects = t.portfolio.projects.map((project, idx) => ({
     ...project,
     media: projectMedia[idx],
-    link: project.link || projectMedia[idx]?.src,
+    externalLink: project.link || projectMedia[idx]?.src,
+    link: ({
+      1: localizePath('portfolio/yuval-kadosh', lang),
+      4: localizePath('portfolio/sumsup', lang),
+      8: localizePath('portfolio/creative-intelligence', lang),
+      10: localizePath('portfolio/coderecovery', lang),
+    } as Record<number, string>)[idx] || project.link || projectMedia[idx]?.src,
   }))
 
   return (
@@ -104,7 +111,7 @@ export function Portfolio({
       <div className='max-w-7xl mx-auto'>
         {standalone && (
           <a
-            href='/#portfolio'
+            href={localizePath('', lang)}
             className='mb-8 inline-flex items-center gap-2 font-headline text-sm font-semibold text-secondary hover:text-primary transition-colors duration-[200ms]'
           >
             {lang === 'he' ? (
@@ -116,14 +123,14 @@ export function Portfolio({
           </a>
         )}
         {standalone ? (
-          <div className='mb-16 max-w-3xl'>
+          <header className='mb-16 max-w-3xl'>
             <h1 className='text-4xl md:text-6xl font-bold mb-5 tracking-tight font-headline text-on-surface'>
               {t.portfolio.allHeadline}
             </h1>
             <p className='text-lg md:text-xl text-on-surface-variant font-light leading-relaxed'>
               {t.portfolio.allSubline}
             </p>
-          </div>
+          </header>
         ) : (
           <WordReveal
             text={t.portfolio.headline}
@@ -138,8 +145,8 @@ export function Portfolio({
               <motion.a
                 key={project.link || project.title}
                 href={project.link}
-                target='_blank'
-                rel='noopener noreferrer'
+                target={project.link === project.externalLink ? '_blank' : undefined}
+                rel={project.link === project.externalLink ? 'noopener noreferrer' : undefined}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -8 }}

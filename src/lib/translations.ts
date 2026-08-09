@@ -10,8 +10,8 @@ export const translations = {
     },
     hero: {
       eyebrow: 'בונים קוד. יוצרים פתרונות.',
-      headline: 'בניית אתרים ומערכות דיגיטליות שמקדמות את העסק שלך',
-      subline: 'פתרונות דיגיטליים בהתאמה אישית לעסקים שרוצים לצמוח',
+      headline: 'בניית אתרים, מערכות ואוטומציות לעסקים',
+      subline: 'פתרונות דיגיטליים שמותאמים לתהליך העבודה שלך — כדי לחסוך זמן, לייצר יותר פניות ולבנות עסק מסודר ויעיל יותר.',
       ctaPrimary: 'אני כאן לייעוץ',
       ctaSecondary: 'שלח הודעה ב-WhatsApp',
       lead: '',
@@ -260,9 +260,8 @@ export const translations = {
     },
     hero: {
       eyebrow: 'Building Code. Creating Solutions.',
-      headline:
-        'Building Websites and Digital Systems That Move Your Business Forward',
-      subline: 'Custom Digital Solutions for Businesses That Want to Grow',
+      headline: 'Websites, Systems, and Automation for Businesses',
+      subline: 'Digital solutions built around your workflow to save time, improve processes, and turn more opportunities into customers.',
       ctaPrimary: "I'm Here for a Consultation",
       ctaSecondary: 'Send a Message on WhatsApp',
       lead: '',

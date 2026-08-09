@@ -859,31 +859,71 @@ html[dir='rtl'] .crm-pop-heading p {
   @apply inline-flex items-center gap-2 rounded-full border border-outline-variant/30 bg-surface/70 px-3 py-2 text-xs font-bold text-secondary transition-all duration-[250ms] hover:-translate-y-0.5 hover:border-primary/30 hover:bg-white hover:text-primary hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
 }
 
-.localized-whatsapp [class*='whatsappButton'] {
-  transition:
-    transform 225ms ease,
-    box-shadow 225ms ease;
+.wa-widget {
+  @apply fixed bottom-5 end-5 z-[70] flex flex-col items-end gap-3;
 }
 
-.localized-whatsapp [class*='whatsappButton']:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 12px 28px rgb(0 0 0 / 22%);
+.wa-launcher {
+  @apply relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25d366] text-white shadow-xl transition-all duration-[225ms] hover:-translate-y-1 hover:scale-[1.03] hover:bg-[#1fbd5a] hover:shadow-2xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25d366]/35 active:scale-95;
 }
 
-html[dir='rtl'] .localized-whatsapp [class*='whatsappChatBox'] {
-  right: 4rem;
-  left: auto;
-  text-align: right;
+.wa-launcher span {
+  @apply absolute end-0 top-0 h-3 w-3 rounded-full border-2 border-white bg-red-500;
 }
 
-html[dir='rtl'] .localized-whatsapp [class*='chatFooter'] button svg {
+.wa-panel {
+  @apply w-[min(22rem,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-white/10 bg-[#101a20] text-white shadow-2xl;
+}
+
+.wa-panel-header {
+  @apply flex items-center gap-3 bg-[#075e54] p-4;
+}
+
+.wa-panel-header img {
+  @apply h-12 w-12 rounded-full object-cover ring-2 ring-white/20;
+}
+
+.wa-panel-header div {
+  @apply min-w-0 flex-1;
+}
+
+.wa-panel-header strong,
+.wa-panel-header span {
+  @apply block;
+}
+
+.wa-panel-header span {
+  @apply text-xs text-white/75;
+}
+
+.wa-panel-header button,
+.wa-panel form button {
+  @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors duration-[200ms] hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white;
+}
+
+.wa-message {
+  @apply m-4 max-w-[85%] rounded-xl rounded-es-sm bg-[#202c33] px-4 py-3 text-sm leading-relaxed shadow;
+}
+
+.wa-panel form {
+  @apply flex items-center gap-2 border-t border-white/10 bg-[#202c33] p-3;
+}
+
+.wa-panel input {
+  @apply min-h-11 min-w-0 flex-1 rounded-full border border-transparent bg-[#2a3942] px-4 text-sm text-white outline-none placeholder:text-white/50 focus:border-[#25d366];
+}
+
+.wa-panel form button {
+  @apply bg-[#25d366] text-white hover:bg-[#1fbd5a];
+}
+
+html[dir='rtl'] .wa-panel form button svg {
   transform: scaleX(-1);
 }
 
 @media (max-width: 575px) {
-  html[dir='rtl'] .localized-whatsapp [class*='whatsappChatBox'] {
-    right: 0;
-    left: 0;
+  .wa-widget {
+    @apply bottom-4 end-4;
   }
 }
 
@@ -909,6 +949,187 @@ html[dir='rtl'] .localized-whatsapp [class*='chatFooter'] button svg {
 
 .portfolio-card-shadow {
   box-shadow: 0 10px 30px -10px rgba(148, 68, 46, 0.15);
+}
+
+.service-card-link {
+  @apply relative z-10 flex h-full flex-col rounded-[inherit] text-inherit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4;
+}
+
+.service-card-cta {
+  @apply mt-5 inline-flex font-headline text-sm font-bold text-primary underline decoration-primary/30 underline-offset-4 transition-colors duration-[200ms];
+}
+
+.service-card-link:hover .service-card-cta {
+  @apply text-primary-container decoration-primary-container/60;
+}
+
+.seo-page {
+  background:
+    radial-gradient(circle at 80% 8%, rgb(78 99 214 / 10%), transparent 30rem),
+    var(--color-surface);
+}
+
+.breadcrumbs {
+  @apply mb-10 text-sm text-on-surface-variant;
+}
+
+.breadcrumbs ol {
+  @apply flex flex-wrap items-center gap-2;
+}
+
+.breadcrumbs a {
+  @apply rounded-sm font-semibold text-secondary underline-offset-4 transition-colors duration-[200ms] hover:text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
+}
+
+.breadcrumbs [aria-current='page'] {
+  @apply line-clamp-1 max-w-full font-semibold text-on-surface;
+}
+
+.seo-page-hero {
+  @apply grid items-center gap-10 border-b border-outline-variant/20 pb-14 md:grid-cols-[minmax(0,1fr)_minmax(16rem,0.62fr)];
+}
+
+.seo-page-hero:has(.seo-page-image) {
+  @apply md:grid-cols-[minmax(0,1fr)_minmax(16rem,0.62fr)];
+}
+
+.seo-page-hero:not(:has(.seo-page-image)) {
+  @apply block;
+}
+
+.seo-page-hero h1 {
+  @apply mt-4 mb-6 max-w-4xl font-headline text-4xl font-extrabold leading-tight tracking-tight text-on-surface md:text-6xl;
+}
+
+.seo-page-hero p {
+  @apply mb-4 max-w-3xl text-lg leading-relaxed text-on-surface-variant;
+}
+
+.seo-page-actions {
+  @apply mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap;
+}
+
+.seo-page-actions a {
+  @apply min-h-12 justify-center text-center;
+}
+
+.seo-page-image {
+  @apply flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-outline-variant/20 bg-white p-8 shadow-xl shadow-primary/10;
+}
+
+.seo-page-image img {
+  @apply h-full w-full object-contain;
+}
+
+.seo-page-image-photo,
+.seo-page-image-screenshot {
+  @apply p-0;
+}
+
+.seo-page-image-photo img,
+.seo-page-image-screenshot img {
+  @apply object-cover;
+}
+
+.seo-page-sections {
+  @apply grid gap-6 py-14 md:grid-cols-2;
+}
+
+.seo-page-sections section {
+  @apply rounded-2xl border border-outline-variant/15 bg-surface-container-lowest p-6 shadow-sm md:p-8;
+}
+
+.seo-page-sections h2,
+.seo-faq h2,
+.seo-related h2,
+.seo-contact-card h2 {
+  @apply mb-4 font-headline text-2xl font-extrabold tracking-tight text-on-surface md:text-3xl;
+}
+
+.seo-page-sections p,
+.seo-page-sections li,
+.seo-contact-card p {
+  @apply text-base leading-8 text-on-surface-variant;
+}
+
+.seo-page-sections p + p {
+  @apply mt-4;
+}
+
+.seo-page-sections ul {
+  @apply space-y-3;
+}
+
+.seo-page-sections li {
+  @apply relative ps-6;
+}
+
+.seo-page-sections li::before {
+  content: '';
+  @apply absolute start-0 top-[0.72rem] h-2 w-2 rounded-full bg-primary;
+}
+
+.seo-faq {
+  @apply border-y border-outline-variant/20 py-14;
+}
+
+.seo-faq-list {
+  @apply space-y-3;
+}
+
+.seo-faq details {
+  @apply rounded-xl border border-outline-variant/20 bg-surface-container-lowest transition-colors duration-[200ms] hover:border-primary/30;
+}
+
+.seo-faq summary {
+  @apply cursor-pointer px-5 py-4 font-headline text-lg font-bold text-on-surface outline-none focus-visible:ring-2 focus-visible:ring-primary;
+}
+
+.seo-faq details p {
+  @apply px-5 pb-5 leading-7 text-on-surface-variant;
+}
+
+.seo-related {
+  @apply grid gap-10 py-14;
+}
+
+.seo-link-grid {
+  @apply grid gap-3 sm:grid-cols-2;
+}
+
+.seo-link-grid a,
+.external-project-link {
+  @apply flex min-h-12 items-center justify-between gap-3 rounded-xl border border-outline-variant/20 bg-surface-container-lowest px-5 py-4 font-headline font-bold text-on-surface transition-all duration-[200ms] hover:-translate-y-0.5 hover:border-primary/35 hover:text-primary hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
+}
+
+.external-project-link {
+  @apply w-fit bg-primary text-white hover:bg-primary-container hover:text-white;
+}
+
+.seo-contact-card {
+  @apply scroll-mt-28 rounded-3xl bg-surface-container-high p-7 shadow-xl shadow-primary/10 md:p-12;
+}
+
+.seo-contact-card p {
+  @apply max-w-3xl;
+}
+
+@media (max-width: 767px) {
+  .seo-page-hero {
+    @apply grid-cols-1;
+  }
+
+  .seo-page-hero h1 {
+    @apply text-4xl;
+  }
+
+  .seo-page-sections {
+    @apply grid-cols-1 py-10;
+  }
+
+  .seo-page-actions a {
+    @apply w-full;
+  }
 }
 
 @keyframes title-shine {

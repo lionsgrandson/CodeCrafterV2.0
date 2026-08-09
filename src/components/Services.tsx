@@ -2,6 +2,7 @@ import { motion } from 'motion/react'
 import { Bot, Braces, Database, Smartphone, Workflow } from 'lucide-react'
 import { useLanguage } from '../App'
 import { WordReveal } from './WordReveal'
+import { localizePath, serviceSlugs } from '../lib/seoRoutes'
 
 const reveal = {
   hidden: { opacity: 0, y: 28 },
@@ -9,7 +10,7 @@ const reveal = {
 }
 
 export function Services() {
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
   const icons = [Braces, Database, Smartphone, Workflow, Bot]
   const cardLayouts = [
     'lg:col-span-3',
@@ -60,15 +61,20 @@ export function Services() {
                 transition={{ duration: 0.625, delay: idx * 0.07 }}
                 className={`service-card service-card-${idx + 1} ${cardLayouts[idx]} group`}
               >
-                <div className='service-icon' aria-hidden='true'>
-                  <Icon className='w-6 h-6' />
-                </div>
-                <h3 className='text-xl md:text-2xl font-extrabold mb-3 text-on-surface'>
-                  {service.title}
-                </h3>
-                <p className='text-on-surface-variant leading-relaxed text-[0.95rem]'>
-                  {service.desc}
-                </p>
+                <a className='service-card-link' href={localizePath(serviceSlugs[idx], lang)}>
+                  <div className='service-icon' aria-hidden='true'>
+                    <Icon className='w-6 h-6' />
+                  </div>
+                  <h3 className='text-xl md:text-2xl font-extrabold mb-3 text-on-surface'>
+                    {service.title}
+                  </h3>
+                  <p className='text-on-surface-variant leading-relaxed text-[0.95rem]'>
+                    {service.desc}
+                  </p>
+                  <span className='service-card-cta'>
+                    {lang === 'he' ? 'מידע נוסף על השירות' : 'Explore this service'}
+                  </span>
+                </a>
                 <div className='service-card-beam' aria-hidden='true' />
               </motion.article>
             )

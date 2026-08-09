@@ -5,9 +5,11 @@ import { Navbar, Hero } from './components/Hero'
 import { Services, Process } from './components/Services'
 import { Portfolio, Testimonials } from './components/Portfolio'
 import { WhyWorkWithMe, FinalCTA, Footer } from './components/Footer'
+import { SeoPage } from './components/SeoPage'
 import { translations } from './lib/translations'
+import { localizePath, type Language } from './lib/seoRoutes'
+import type { SeoPage as SeoPageData } from './lib/seoPages'
 import FloatingWA from './components/floatingWA'
-type Language = 'he' | 'en'
 
 interface LanguageContextType {
   lang: Language
@@ -57,15 +59,32 @@ function ScrollToTop() {
 
 type AppProps = {
   pathname?: string
+  seoPage?: SeoPageData
 }
 
-export default function App({ pathname }: AppProps) {
-  const [lang, setLang] = useState<Language>('he')
+export default function App({ pathname, seoPage }: AppProps) {
   const currentPath =
     pathname ?? (typeof window !== 'undefined' ? window.location.pathname : '/')
   const normalizedPath = currentPath.replace(/\/+$/, '') || '/'
-  const isPortfolioPage = normalizedPath === '/portfolio'
-  const homeHashPrefix = isPortfolioPage ? '/' : ''
+  const initialLanguage: Language = normalizedPath === '/en' || normalizedPath.startsWith('/en/') ? 'en' : 'he'
+  const [lang, setLanguageState] = useState<Language>(initialLanguage)
+  const localizedPath = normalizedPath.replace(/^\/en(?=\/|$)/, '') || '/'
+  const isHomePage = localizedPath === '/'
+  const isPortfolioPage = localizedPath === '/portfolio'
+  const homeHashPrefix = isHomePage ? '' : localizePath('', lang)
+
+  const setLang = (nextLanguage: Language) => {
+    if (nextLanguage === lang) return
+
+    if (typeof window === 'undefined') {
+      setLanguageState(nextLanguage)
+      return
+    }
+
+    const routeWithoutLanguage = window.location.pathname.replace(/^\/en(?=\/|$)/, '') || '/'
+    const nextPath = localizePath(routeWithoutLanguage, nextLanguage)
+    window.location.assign(`${nextPath}${window.location.hash}`)
+  }
 
   useEffect(() => {
     document.documentElement.lang = lang
@@ -84,12 +103,13 @@ export default function App({ pathname }: AppProps) {
         <ScrollToTop />
         <Navbar homeHashPrefix={homeHashPrefix} />
         <main id='main-content'>
-          {isPortfolioPage ? (
+          {seoPage ? (
+            <SeoPage page={seoPage} />
+          ) : isPortfolioPage ? (
             <Portfolio showAll standalone />
           ) : (
             <>
               <Hero />
-              <FloatingWA />
               <Services />
               <Process />
               <Portfolio />
@@ -99,6 +119,7 @@ export default function App({ pathname }: AppProps) {
             </>
           )}
         </main>
+        <FloatingWA />
         <Footer homeHashPrefix={homeHashPrefix} />
       </div>
     </LanguageContext.Provider>

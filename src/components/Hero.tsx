@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { Languages, Menu, MessageSquare, X } from 'lucide-react'
 import { useLanguage } from '../App'
 import { getWhatsAppUrl } from '../lib/contact'
+import { localizePath } from '../lib/seoRoutes'
 import { WordReveal } from './WordReveal'
 
 type NavbarProps = {
@@ -14,9 +15,9 @@ export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const navItems = [
     { label: t.nav.solve, href: `${homeHashPrefix}#services` },
-    { label: t.nav.work, href: `${homeHashPrefix}#portfolio` },
+    { label: t.nav.work, href: localizePath('portfolio', lang) },
     { label: t.nav.process, href: `${homeHashPrefix}#process` },
-    { label: t.nav.success, href: `${homeHashPrefix}#testimonials` },
+    { label: lang === 'he' ? 'אודות' : 'About', href: localizePath('about', lang) },
   ]
 
   const toggleLanguage = () => {
@@ -29,7 +30,7 @@ export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
       <div className='flex justify-between items-center px-6 md:px-8 py-4 max-w-7xl mx-auto'>
         <div className='text-2xl font-bold font-headline text-on-surface tracking-tight'>
           <a
-            href='/'
+            href={localizePath('', lang)}
             aria-label={`${t.nav.brand} ${t.hero.eyebrow}`}
             className='block transition-opacity duration-[200ms] hover:opacity-75'
           >

@@ -14,13 +14,15 @@ const contactWindowMs = 10 * 60 * 1000
 const maxContactAttempts = 5
 
 const legacyRedirects = new Map<string, string>([
-  ['/blog/free-domains-new-era-internet', '/#services'],
-  ['/blog/perfect-lighthouse', '/#services'],
-  ['/blog/backend-code-horror', '/#services'],
-  ['/blog/5-website-must-have', '/#services'],
-  ['/portfolio/idf-tech-maintenance-corps-v2', '/#portfolio'],
-  ['/portfolio/rainbow-asd', '/#portfolio'],
-  ['/portfolio/nexa-automations-glass-ui', '/#services'],
+  ['/blog.html', '/websites/'],
+  ['/index.html', '/'],
+  ['/blog/free-domains-new-era-internet', '/websites/'],
+  ['/blog/perfect-lighthouse', '/websites/'],
+  ['/blog/backend-code-horror', '/custom-software/'],
+  ['/blog/5-website-must-have', '/websites/'],
+  ['/portfolio/idf-tech-maintenance-corps-v2', '/portfolio/'],
+  ['/portfolio/rainbow-asd', '/portfolio/'],
+  ['/portfolio/nexa-automations-glass-ui', '/automation/'],
 ])
 
 app.use(express.json({ limit: '32kb' }))

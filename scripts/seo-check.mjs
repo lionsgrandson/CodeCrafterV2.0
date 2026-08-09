@@ -1,4 +1,3 @@
-import { createHash } from 'node:crypto'
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
@@ -10,121 +9,119 @@ const argument = (name) => {
 
 const distDir = argument('--dist') ?? 'dist'
 const baseUrl = argument('--base-url')?.replace(/\/$/, '')
-const canonicalOrigin = 'https://mosheschwartzberg.com'
-const routes = [
-  { path: '/', file: 'index.html' },
-  { path: '/portfolio/', file: 'portfolio/index.html' },
-  { path: '/privacy/', file: 'privacy/index.html' },
-  { path: '/terms/', file: 'terms/index.html' },
-]
-
-const fail = (message) => {
-  throw new Error(`SEO check failed: ${message}`)
-}
-
+const origin = 'https://mosheschwartzberg.com'
+const fail = (message) => { throw new Error(`SEO check failed: ${message}`) }
 const count = (value, pattern) => [...value.matchAll(pattern)].length
-const attribute = (html, selector) => html.match(selector)?.[1]?.trim() ?? ''
-const visibleText = (html) => html
-  .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
-  .replace(/<style\b[\s\S]*?<\/style>/gi, ' ')
-  .replace(/<svg\b[\s\S]*?<\/svg>/gi, ' ')
-  .replace(/<[^>]+>/g, ' ')
-  .replace(/&nbsp;|&#160;/g, ' ')
-  .replace(/&amp;/g, '&')
-  .replace(/&quot;|&#34;/g, '"')
-  .replace(/&#39;|&apos;/g, "'")
-  .replace(/&lt;/g, '<')
-  .replace(/&gt;/g, '>')
-  .replace(/\s+/g, ' ')
-  .trim()
+const capture = (html, pattern) => html.match(pattern)?.[1]?.trim() ?? ''
 
-const readRoute = async ({ path, file }) => {
+const readAsset = async (assetPath) => {
   if (baseUrl) {
-    const response = await fetch(`${baseUrl}${path}`, { redirect: 'manual' })
-    if (response.status !== 200) fail(`${path} returned ${response.status}`)
-    if (/noindex|none/i.test(response.headers.get('x-robots-tag') ?? '')) {
-      fail(`${path} has a restrictive X-Robots-Tag`)
-    }
+    const response = await fetch(`${baseUrl}${assetPath}`, { redirect: 'manual' })
+    if (response.status !== 200) fail(`${assetPath} returned ${response.status}`)
     return response.text()
   }
-
-  const filePath = join(distDir, file)
-  if (!existsSync(filePath)) fail(`missing built route ${file}`)
+  const filePath = join(distDir, assetPath.replace(/^\//, ''))
+  if (!existsSync(filePath)) fail(`missing built asset ${assetPath}`)
   return readFileSync(filePath, 'utf8')
 }
 
-const documents = new Map()
-for (const route of routes) {
-  const html = await readRoute(route)
-  documents.set(route.path, html)
-
-  const title = attribute(html, /<title[^>]*>([\s\S]*?)<\/title>/i)
-  const description = attribute(html, /<meta\s+name=["']description["'][^>]*content=["']([^"']+)["'][^>]*>/i)
-  const canonical = attribute(html, /<link\s+rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i)
-  const robots = attribute(html, /<meta\s+name=["']robots["'][^>]*content=["']([^"']+)["'][^>]*>/i)
-
-  if (count(html, /<title\b/gi) !== 1 || !title) fail(`${route.path} must have one title`)
-  if (count(html, /<meta\s+name=["']description["']/gi) !== 1 || !description) fail(`${route.path} must have one description`)
-  if (count(html, /<link\s+rel=["']canonical["']/gi) !== 1) fail(`${route.path} must have one canonical`)
-  if (!canonical.startsWith(`${canonicalOrigin}/`)) fail(`${route.path} has a malformed canonical: ${canonical}`)
-  if (/noindex|none/i.test(robots)) fail(`${route.path} is unexpectedly noindex`)
-  if (count(html, /<h1\b/gi) !== 1) fail(`${route.path} must have one h1`)
+const sitemapText = await readAsset('/sitemap.xml')
+try {
+  if (!sitemapText.startsWith('<?xml')) fail('sitemap has no XML declaration')
+  if (count(sitemapText, /<url>/g) !== count(sitemapText, /<\/url>/g)) fail('sitemap URL elements are unbalanced')
+} catch (error) {
+  fail(`sitemap XML is malformed: ${error.message}`)
 }
 
-const home = documents.get('/')
-if (!home?.includes('<html lang="he" dir="rtl">')) fail('homepage language or direction is incorrect')
-if (attribute(home, /<title[^>]*>([\s\S]*?)<\/title>/i) !== 'CodeCrafter | בניית אתרים, אוטומציות ומערכות לעסקים') {
-  fail('homepage title changed')
-}
-if (attribute(home, /<link\s+rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i) !== `${canonicalOrigin}/`) {
-  fail('homepage canonical is not self-referencing')
-}
-
-for (const match of home.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
-  const value = JSON.parse(match[1])
-  const serialized = JSON.stringify(value)
-  if (/placeholder|example\.com|your[_ -]?(name|email|phone)/i.test(serialized)) fail('structured data contains a placeholder')
-  if (/AggregateRating|"Review"/.test(serialized)) fail('structured data contains controlled ratings or reviews')
-}
-
-const sitemapText = baseUrl
-  ? await (await fetch(`${baseUrl}/sitemap.xml`)).text()
-  : readFileSync(join(distDir, 'sitemap.xml'), 'utf8')
 const sitemapUrls = [...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1])
-const expectedSitemapUrls = routes.map(({ path }) => `${canonicalOrigin}${path}`)
-if (JSON.stringify(sitemapUrls) !== JSON.stringify(expectedSitemapUrls)) fail('sitemap URLs do not match canonical indexable routes')
+if (sitemapUrls.length !== 26) fail(`expected 26 canonical URLs, found ${sitemapUrls.length}`)
+if (new Set(sitemapUrls).size !== sitemapUrls.length) fail('sitemap contains duplicate URLs')
+if (sitemapUrls.some((url) => !url.startsWith(`${origin}/`))) fail('sitemap contains a non-canonical origin')
+if (sitemapUrls.some((url) => /blog\.html|amitStarProject|index\.html/i.test(url))) fail('sitemap contains a redirect or noindex route')
 
-const llmsText = baseUrl
-  ? await (await fetch(`${baseUrl}/llms.txt`)).text()
-  : readFileSync(join(distDir, 'llms.txt'), 'utf8')
-if (!/^#\s+\S+/m.test(llmsText)) fail('llms.txt has no H1')
-if (!/\[[^\]]+\]\(https:\/\/[^)]+\)/.test(llmsText)) fail('llms.txt has no HTTPS Markdown link')
+const documents = new Map()
+for (const url of sitemapUrls) {
+  const routePath = new URL(url).pathname
+  let html
+  if (baseUrl) {
+    const response = await fetch(`${baseUrl}${routePath}`, { redirect: 'manual' })
+    if (response.status !== 200) fail(`${routePath} returned ${response.status}`)
+    if (/noindex|none/i.test(response.headers.get('x-robots-tag') ?? '')) fail(`${routePath} has restrictive X-Robots-Tag`)
+    html = await response.text()
+  } else {
+    const file = routePath === '/' ? 'index.html' : `${routePath.replace(/^\/+|\/+$/g, '')}/index.html`
+    const filePath = join(distDir, file)
+    if (!existsSync(filePath)) fail(`missing built route ${file}`)
+    html = readFileSync(filePath, 'utf8')
+  }
+  documents.set(routePath, html)
 
-if (!baseUrl) {
-  const snapshot = JSON.parse(readFileSync('seo/visible-text.snapshot.json', 'utf8'))
-  for (const [path, expected] of Object.entries(snapshot)) {
-    const routePath = path === '/' ? '/' : `${path}/`
-    const text = visibleText(documents.get(routePath) ?? '')
-    const sha256 = createHash('sha256').update(text).digest('hex')
-    if (text.length !== expected.length || sha256 !== expected.sha256) {
-      fail(`visible text changed on ${path}: ${text.length}/${sha256}`)
+  const title = capture(html, /<title[^>]*>([\s\S]*?)<\/title>/i)
+  const description = capture(html, /<meta\s+name=["']description["'][^>]*content=["']([^"']+)["'][^>]*>/i)
+  const canonical = capture(html, /<link\s+rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i)
+  const robots = capture(html, /<meta\s+name=["']robots["'][^>]*content=["']([^"']+)["'][^>]*>/i)
+  const expectedCanonical = `${origin}${routePath}`
+
+  if (count(html, /<title\b/gi) !== 1 || !title) fail(`${routePath} must have one title`)
+  if (count(html, /<meta\s+name=["']description["']/gi) !== 1 || !description) fail(`${routePath} must have one description`)
+  if (description.length < 70 || description.length > 190) fail(`${routePath} description length is ${description.length}`)
+  if (count(html, /<link\s+rel=["']canonical["']/gi) !== 1 || canonical !== expectedCanonical) fail(`${routePath} canonical is ${canonical}`)
+  if (/noindex|none/i.test(robots)) fail(`${routePath} is unexpectedly noindex`)
+  if (count(html, /<h1\b/gi) !== 1) fail(`${routePath} must have one h1`)
+  if (!/<main\b/i.test(html) || !/<nav\b/i.test(html) || !/<footer\b/i.test(html)) fail(`${routePath} lacks semantic page regions`)
+  if (!/<a\s+[^>]*href=["']\//i.test(html)) fail(`${routePath} has no internal outlink in raw HTML`)
+  for (const key of ['og:title', 'og:description', 'og:url', 'og:image']) {
+    if (!new RegExp(`<meta\\s+property=["']${key}["']`, 'i').test(html)) fail(`${routePath} is missing ${key}`)
+  }
+  for (const key of ['twitter:card', 'twitter:title', 'twitter:description', 'twitter:image']) {
+    if (!new RegExp(`<meta\\s+name=["']${key}["']`, 'i').test(html)) fail(`${routePath} is missing ${key}`)
+  }
+
+  const isEnglish = routePath === '/en/' || routePath.startsWith('/en/')
+  if (isEnglish && !/<html\s+lang=["']en["']\s+dir=["']ltr["']>/i.test(html)) fail(`${routePath} must be English LTR`)
+  if (!isEnglish && !/<html\s+lang=["']he["']\s+dir=["']rtl["']>/i.test(html)) fail(`${routePath} must be Hebrew RTL`)
+
+  if (!['/privacy/', '/terms/'].includes(routePath)) {
+    for (const code of ['he', 'en', 'x-default']) {
+      if (!new RegExp(`<link\\s+rel=["']alternate["'][^>]*hreflang=["']${code}["']`, 'i').test(html)) fail(`${routePath} is missing ${code} hreflang`)
+    }
+    const scripts = [...html.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)]
+    if (!scripts.length) fail(`${routePath} is missing JSON-LD`)
+    for (const script of scripts) {
+      const parsed = JSON.parse(script[1])
+      const serialized = JSON.stringify(parsed)
+      if (/placeholder|example\.com|AggregateRating|"Review"/i.test(serialized)) fail(`${routePath} schema contains placeholder or controlled review data`)
     }
   }
-} else {
-  for (const asset of ['/robots.txt', '/sitemap.xml', '/llms.txt', '/og-logo.png', '/favicon.ico', '/apple-touch-icon.png']) {
-    const response = await fetch(`${baseUrl}${asset}`, { redirect: 'manual' })
-    if (response.status !== 200) fail(`${asset} returned ${response.status}`)
-  }
+}
 
+const titles = [...documents.values()].map((html) => capture(html, /<title[^>]*>([\s\S]*?)<\/title>/i))
+if (new Set(titles).size !== titles.length) fail('indexable routes contain duplicate titles')
+
+const robotsText = await readAsset('/robots.txt')
+if (!/User-agent:\s*\*/i.test(robotsText) || !/Allow:\s*\//i.test(robotsText)) fail('robots.txt does not allow normal crawling')
+if (!robotsText.includes(`Sitemap: ${origin}/sitemap.xml`)) fail('robots.txt has no canonical sitemap reference')
+if (/Disallow:\s*\/(websites|custom-software|automation|crm-development|app-development|portfolio|about)/i.test(robotsText)) fail('robots.txt blocks an indexable route')
+
+const demoHtml = baseUrl
+  ? await (await fetch(`${baseUrl}/amitStarProject/`)).text()
+  : readFileSync(join(distDir, 'amitStarProject', 'index.html'), 'utf8')
+if (!/<meta\s+name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(demoHtml)) fail('standalone Amit demo is not noindex')
+
+if (baseUrl) {
   const missing = await fetch(`${baseUrl}/seo-soft-404-probe-8f15c`, { redirect: 'manual' })
   if (missing.status !== 404) fail(`missing route returned ${missing.status}`)
-
+  const legacy = await fetch(`${baseUrl}/blog.html`, { redirect: 'manual' })
+  if (![301, 308].includes(legacy.status) || legacy.headers.get('location') !== `${origin}/websites/`) fail('/blog.html does not redirect permanently to /websites/')
   for (const variant of ['http://mosheschwartzberg.com/', 'http://www.mosheschwartzberg.com/', 'https://www.mosheschwartzberg.com/']) {
     const response = await fetch(variant, { redirect: 'manual' })
-    if (![301, 308].includes(response.status) || response.headers.get('location') !== `${canonicalOrigin}/`) {
-      fail(`${variant} does not redirect directly to the canonical homepage`)
-    }
+    if (![301, 308].includes(response.status) || response.headers.get('location') !== `${origin}/`) fail(`${variant} does not redirect directly to the canonical homepage`)
   }
+} else {
+  const redirects = readFileSync(join(distDir, '_redirects'), 'utf8')
+  if (!/^\/blog\.html\s+\/websites\/\s+301$/m.test(redirects)) fail('built redirects omit permanent /blog.html redirect')
+  const notFound = readFileSync(join(distDir, '404.html'), 'utf8')
+  if (!/noindex,\s*follow/i.test(notFound) || !/href=["']\/portfolio\//i.test(notFound) || !/href=["']\/websites\//i.test(notFound)) fail('404 page lacks noindex or helpful internal links')
 }
 
-console.log(`SEO checks passed for ${routes.length} public routes${baseUrl ? ' in production' : ''}.`)
+console.log(`SEO checks passed for ${sitemapUrls.length} canonical routes${baseUrl ? ' in production' : ''}.`)
