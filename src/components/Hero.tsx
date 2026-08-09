@@ -174,12 +174,7 @@ export function Hero() {
       </div>
 
       <div className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10'>
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className='z-10'
-        >
+        <div className='z-10'>
           <WordReveal
             as='h1'
             text={t.hero.headline}
@@ -205,12 +200,9 @@ export function Hero() {
               {t.hero.ctaSecondary}
             </a>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 1, x: lang === 'he' ? -20 : 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.05, delay: 0.15 }}
+        <div
           className='relative mt-4 md:mt-0'
           aria-label={lang === 'he' ? 'משה שוורצברג' : 'Moshe Schwartzberg'}
         >
@@ -233,7 +225,7 @@ export function Hero() {
             <span className='hero-photo-accent hero-photo-accent-top' aria-hidden='true' />
             <span className='hero-photo-accent hero-photo-accent-bottom' aria-hidden='true' />
           </div>
-        </motion.div>
+        </div>
       </div>
     </header>
   )
