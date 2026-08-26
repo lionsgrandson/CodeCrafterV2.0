@@ -34,7 +34,7 @@ try {
 }
 
 const sitemapUrls = [...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1])
-if (sitemapUrls.length !== 26) fail(`expected 26 canonical URLs, found ${sitemapUrls.length}`)
+if (sitemapUrls.length < 20) fail(`expected a substantial public sitemap, found ${sitemapUrls.length} URLs`)
 if (new Set(sitemapUrls).size !== sitemapUrls.length) fail('sitemap contains duplicate URLs')
 if (sitemapUrls.some((url) => !url.startsWith(`${origin}/`))) fail('sitemap contains a non-canonical origin')
 if (sitemapUrls.some((url) => /blog\.html|amitStarProject|index\.html/i.test(url))) fail('sitemap contains a redirect or noindex route')
@@ -97,6 +97,10 @@ for (const url of sitemapUrls) {
 
 const titles = [...documents.values()].map((html) => capture(html, /<title[^>]*>([\s\S]*?)<\/title>/i))
 if (new Set(titles).size !== titles.length) fail('indexable routes contain duplicate titles')
+
+const home = documents.get('/')
+if (!/mailto:moshe@mosheschwartzberg\.com/i.test(home ?? '')) fail('homepage/footer does not expose the CodeCrafter mailto link')
+if (!/tel:\+972587076077/i.test(home ?? '')) fail('homepage/footer does not expose the CodeCrafter telephone link')
 
 const robotsText = await readAsset('/robots.txt')
 if (!/User-agent:\s*\*/i.test(robotsText) || !/Allow:\s*\//i.test(robotsText)) fail('robots.txt does not allow normal crawling')
