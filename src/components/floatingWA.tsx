@@ -52,7 +52,12 @@ export default function FloatingWA() {
       {open && (
         <section className='wa-panel' aria-label='WhatsApp'>
           <header className='wa-panel-header'>
-            <img src='/oldabout-photo-120.webp' alt='' width='48' height='48' />
+            <img
+              src='https://mosheschwartzberg.com/about-photo-1200.webp'
+              alt={lang === 'he' ? 'משה שוורצברג, CodeCrafter' : 'Moshe Schwartzberg, CodeCrafter'}
+              width='48'
+              height='48'
+            />
             <div>
               <strong>CodeCrafter</strong>
               <span>{copy.status}</span>
