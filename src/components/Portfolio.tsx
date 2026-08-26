@@ -65,6 +65,11 @@ type PortfolioProps = {
   standalone?: boolean
 }
 
+const normalizePortfolioLink = (link?: string) =>
+  link === 'https://rainbowasdv2.netlify.app/'
+    ? 'https://rainbow-asd.com/'
+    : link
+
 export function Portfolio({
   showAll = false,
   standalone = false,
@@ -91,17 +96,23 @@ export function Portfolio({
     { src: '/portfolio/omnifood-logo.png' },
   ]
 
-  const projects = t.portfolio.projects.map((project, idx) => ({
-    ...project,
-    media: projectMedia[idx],
-    externalLink: project.link || projectMedia[idx]?.src,
-    link: ({
+  const projects = t.portfolio.projects.map((project, idx) => {
+    const sourceLink = normalizePortfolioLink(project.link)
+    const externalLink = sourceLink || projectMedia[idx]?.src
+    const caseStudyLink = ({
       1: localizePath('portfolio/yuval-kadosh', lang),
       4: localizePath('portfolio/sumsup', lang),
       8: localizePath('portfolio/creative-intelligence', lang),
       10: localizePath('portfolio/coderecovery', lang),
-    } as Record<number, string>)[idx] || project.link || projectMedia[idx]?.src,
-  }))
+    } as Record<number, string>)[idx]
+
+    return {
+      ...project,
+      media: projectMedia[idx],
+      externalLink,
+      link: caseStudyLink || externalLink,
+    }
+  })
 
   return (
     <section
