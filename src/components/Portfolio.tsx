@@ -65,10 +65,15 @@ type PortfolioProps = {
   standalone?: boolean
 }
 
-const normalizePortfolioLink = (link?: string) =>
-  link === 'https://rainbowasdv2.netlify.app/'
-    ? 'https://rainbow-asd.com/'
-    : link
+const normalizePortfolioLink = (link?: string) => {
+  if (link === 'https://rainbowasdv2.netlify.app/') {
+    return 'https://rainbow-asd.com/'
+  }
+  if (link === 'https://eclectic-marigold-0fe508.netlify.app/') {
+    return 'https://shimonphotos.com/'
+  }
+  return link
+}
 
 export function Portfolio({
   showAll = false,
