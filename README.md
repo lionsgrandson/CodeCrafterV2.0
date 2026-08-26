@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>CodeCrafter V2.0</h1>
+  <h1>CodeCrafter</h1>
   <p><strong>Crafting Code. Crafting Solutions.</strong></p>
 </div>
 
