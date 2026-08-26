@@ -72,6 +72,12 @@ function absoluteUrl(routePath: string) {
   return `${origin}${routePath}`
 }
 
+function normalizePortfolioUrl(url?: string) {
+  if (url === 'https://rainbowasdv2.netlify.app/') return 'https://rainbow-asd.com/'
+  if (url === 'https://eclectic-marigold-0fe508.netlify.app/') return 'https://shimonphotos.com/'
+  return url
+}
+
 function languagePair(route: Route, lang: Language) {
   if (route.type === 'website') return localizePath('', lang)
   if (route.type === 'collection') return localizePath('portfolio', lang)
@@ -206,7 +212,7 @@ function schemaFor(route: Route) {
       '@id': `${url}#projects`,
       numberOfItems: translations[route.lang].portfolio.projects.length,
       itemListElement: translations[route.lang].portfolio.projects.map((project, index) => ({
-        '@type': 'ListItem', position: index + 1, name: project.title, url: project.link === 'https://rainbowasdv2.netlify.app/' ? 'https://rainbow-asd.com/' : project.link,
+        '@type': 'ListItem', position: index + 1, name: project.title, url: normalizePortfolioUrl(project.link),
       })),
     })
   }
