@@ -24,12 +24,12 @@ type Route = {
 
 const homeMetadata: Record<Language, Pick<Route, 'title' | 'description'>> = {
   he: {
-    title: 'CodeCrafter | בניית אתרים, מערכות ואוטומציות לעסקים',
-    description: 'CodeCrafter בונה לעסקים בישראל אתרים, מערכות ואוטומציות בהתאמה אישית שחוסכות זמן, משפרות תהליכים והופכות יותר פניות ללקוחות.',
+    title: 'CodeCrafter | מערכות, CRM, אוטומציות ואתרים לעסקים',
+    description: 'CodeCrafter מפתחת לעסקים קטנים ובינוניים בישראל ובאירופה מערכות מותאמות, CRM ו-CMS, אוטומציות, אינטגרציות, אפליקציות ואתרים שמייעלים תהליכים ותומכים בצמיחה.',
   },
   en: {
-    title: 'CodeCrafter | Websites, Systems, and Business Automation',
-    description: 'CodeCrafter builds custom websites, business systems, CRM workflows, apps, and automation that reduce friction and support sustainable growth.',
+    title: 'CodeCrafter | Custom Systems, CRM, Automation & Websites',
+    description: 'CodeCrafter builds custom business systems, CRM and CMS solutions, automation, integrations, apps, and websites for SMBs in Israel and Europe, with English and Hebrew support.',
   },
 }
 
@@ -40,7 +40,7 @@ const portfolioMetadata: Record<Language, Pick<Route, 'title' | 'description'>> 
   },
   en: {
     title: 'Portfolio and Digital Project Case Studies | CodeCrafter',
-    description: 'Explore websites, systems, and digital experiences built by CodeCrafter, with factual case studies and links to relevant development services.',
+    description: 'Explore websites, systems, automations, and digital experiences built by CodeCrafter, with factual case studies and links to relevant development services.',
   },
 }
 
@@ -62,6 +62,10 @@ for (const lang of ['he', 'en'] as const) {
 
 function escapeAttribute(value: string) {
   return value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+}
+
+function escapeXml(value: string) {
+  return value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&apos;')
 }
 
 function absoluteUrl(routePath: string) {
@@ -100,6 +104,11 @@ function breadcrumbItems(route: Route) {
   return items
 }
 
+const serviceAreas = [
+  { '@type': 'Country', name: 'Israel' },
+  { '@type': 'Place', name: 'Europe' },
+]
+
 function schemaFor(route: Route) {
   const url = absoluteUrl(route.path)
   const organization = {
@@ -111,6 +120,20 @@ function schemaFor(route: Route) {
     email: 'moshe@mosheschwartzberg.com',
     telephone: '+972587076077',
     founder: { '@id': `${origin}/#moshe-schwartzberg` },
+    areaServed: serviceAreas,
+    availableLanguage: ['he', 'en'],
+    knowsAbout: [
+      'Custom software development',
+      'Business systems',
+      'CRM development',
+      'CMS development',
+      'Business automation',
+      'Systems integration',
+      'Web application development',
+      'Mobile application development',
+      'Website development',
+      'Technical SEO',
+    ],
     sameAs: ['https://www.linkedin.com/in/moshe-schwartzberg-ab54401a7'],
   }
   const person = {
@@ -119,7 +142,7 @@ function schemaFor(route: Route) {
     name: 'Moshe Schwartzberg',
     alternateName: 'משה שוורצברג',
     url: absoluteUrl(localizePath('about', route.lang)),
-    image: `${origin}/about-photo-800.webp`,
+    image: `${origin}/about-photo-1200.webp`,
     worksFor: { '@id': `${origin}/#organization` },
   }
   const graph: Record<string, unknown>[] = [
@@ -162,7 +185,7 @@ function schemaFor(route: Route) {
       description: route.description,
       url,
       provider: { '@id': `${origin}/#organization` },
-      areaServed: { '@type': 'Country', name: 'Israel' },
+      areaServed: serviceAreas,
       availableLanguage: ['he', 'en'],
     })
   }
@@ -183,7 +206,7 @@ function schemaFor(route: Route) {
       '@id': `${url}#projects`,
       numberOfItems: translations[route.lang].portfolio.projects.length,
       itemListElement: translations[route.lang].portfolio.projects.map((project, index) => ({
-        '@type': 'ListItem', position: index + 1, name: project.title, url: project.link,
+        '@type': 'ListItem', position: index + 1, name: project.title, url: project.link === 'https://rainbowasdv2.netlify.app/' ? 'https://rainbow-asd.com/' : project.link,
       })),
     })
   }
@@ -193,22 +216,28 @@ function schemaFor(route: Route) {
 async function createDocument(route: Route) {
   const url = absoluteUrl(route.path)
   const image = route.page?.image ? absoluteUrl(route.page.image.src) : `${origin}/og-logo.png`
+  const imageAlt = route.page?.image?.alt ?? (route.lang === 'he' ? 'CodeCrafter - פתרונות תוכנה לעסקים' : 'CodeCrafter business software solutions')
   const locale = route.lang === 'he' ? 'he_IL' : 'en_US'
   let html = template.replace('<!--app-html-->', await render(route.path))
   html = html.replace(/<html\s+lang=["'][^"']+["']\s+dir=["'][^"']+["']>/i, `<html lang="${route.lang}" dir="${route.lang === 'he' ? 'rtl' : 'ltr'}">`)
   html = replaceTitle(html, route.title)
   html = setMeta(html, 'description', route.description)
-  html = setMeta(html, 'robots', 'index, follow, max-image-preview:large')
+  html = setMeta(html, 'robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1')
+  html = setMeta(html, 'googlebot', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1')
+  html = setMeta(html, 'bingbot', 'index, follow, max-image-preview:large')
   html = setMeta(html, 'og:type', route.type === 'case-study' ? 'article' : 'website', 'property')
   html = setMeta(html, 'og:locale', locale, 'property')
+  html = setMeta(html, 'og:site_name', 'CodeCrafter', 'property')
   html = setMeta(html, 'og:url', url, 'property')
   html = setMeta(html, 'og:title', route.title, 'property')
   html = setMeta(html, 'og:description', route.description, 'property')
   html = setMeta(html, 'og:image', image, 'property')
+  html = setMeta(html, 'og:image:alt', imageAlt, 'property')
   html = setMeta(html, 'twitter:card', 'summary_large_image')
   html = setMeta(html, 'twitter:title', route.title)
   html = setMeta(html, 'twitter:description', route.description)
   html = setMeta(html, 'twitter:image', image)
+  html = setMeta(html, 'twitter:image:alt', imageAlt)
   html = setCanonical(html, url)
   html = html.replace(/\s*<link\s+rel=["']alternate["'][^>]*hreflang=["'][^"']+["'][^>]*>/gi, '')
   const alternates = [
@@ -230,5 +259,16 @@ for (const route of routes) {
   await writeFile(outputPath, await createDocument(route))
 }
 
+const lastmod = new Date().toISOString().slice(0, 10)
+const sitemapPaths = [...new Set([
+  ...routes.map((route) => route.path),
+  '/privacy/',
+  '/terms/',
+])]
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapPaths
+  .map((routePath) => `  <url><loc>${escapeXml(absoluteUrl(routePath))}</loc><lastmod>${lastmod}</lastmod></url>`)
+  .join('\n')}\n</urlset>\n`
+await writeFile(path.join(distDir, 'sitemap.xml'), sitemap)
+
 await rm(path.join(distDir, 'server'), { recursive: true, force: true })
-console.log(`Prerendered ${routes.length} localized SEO routes`)
+console.log(`Prerendered ${routes.length} localized SEO routes and generated a ${sitemapPaths.length}-URL sitemap`)
