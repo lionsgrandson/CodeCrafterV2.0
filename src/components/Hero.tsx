@@ -16,6 +16,8 @@ export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
   const navItems = [
     { label: t.nav.solve, href: `${homeHashPrefix}#services` },
     { label: t.nav.work, href: localizePath('portfolio', lang) },
+    { label: lang === 'he' ? 'מחירים' : 'Pricing', href: localizePath('pricing', lang) },
+    { label: lang === 'he' ? 'אזורי שירות' : 'Areas', href: localizePath('locations', lang) },
     { label: t.nav.process, href: `${homeHashPrefix}#process` },
     { label: lang === 'he' ? 'אודות' : 'About', href: localizePath('about', lang) },
   ]
@@ -40,12 +42,12 @@ export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
             </span>
           </a>
         </div>
-        <div className='hidden md:flex space-x-8 rtl:space-x-reverse items-center'>
+        <div className='hidden md:flex space-x-5 rtl:space-x-reverse items-center'>
           {navItems.map((item) => (
             <a
               key={item.label}
               href={item.href}
-              className='font-headline tracking-tight text-sm uppercase font-semibold text-secondary hover:text-primary transition-colors duration-[375ms]'
+              className='font-headline tracking-tight text-xs lg:text-sm uppercase font-semibold text-secondary hover:text-primary transition-colors duration-[375ms] whitespace-nowrap'
             >
               {item.label}
             </a>
@@ -53,7 +55,7 @@ export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
 
           <button
             onClick={toggleLanguage}
-            className='interactive-link flex items-center gap-2 text-secondary font-headline text-sm font-semibold border-x border-outline-variant/20 px-4'
+            className='interactive-link flex items-center gap-2 text-secondary font-headline text-sm font-semibold border-x border-outline-variant/20 px-3'
             aria-label={lang === 'he' ? 'Switch to English' : 'מעבר לעברית'}
           >
             <Languages className='w-4 h-4' />
@@ -62,7 +64,7 @@ export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
 
           <a
             href={`${homeHashPrefix}#contact`}
-            className='button-primary px-6 py-2 text-sm'
+            className='button-primary px-5 py-2 text-sm whitespace-nowrap'
           >
             {t.nav.cta}
           </a>
@@ -128,6 +130,9 @@ export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
 
 export function Hero() {
   const { t, lang } = useLanguage()
+  const seoHeadline = lang === 'he'
+    ? 'פיתוח תוכנה, מערכות ואתרים בהתאמה אישית לעסקים'
+    : 'Web Development Company in Israel for Websites, Systems and Automation'
 
   return (
     <header className='viewport-section hero-section relative px-6 md:px-8 overflow-hidden bg-surface'>
@@ -178,7 +183,7 @@ export function Hero() {
         <div className='z-10'>
           <WordReveal
             as='h1'
-            text={t.hero.headline}
+            text={seoHeadline}
             className='text-5xl md:text-7xl text-editorial-hero mb-6'
           />
           <p className='subtitle-accent text-secondary text-lg md:text-xl max-w-xl mb-10 leading-relaxed'>
