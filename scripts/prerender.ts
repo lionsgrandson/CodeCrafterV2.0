@@ -1,7 +1,7 @@
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
-import { pagesByLanguage, localizePath, type Language, type SeoPage } from '../src/lib/seoPages.ts'
+import { pagesByLanguage, localizePath, type Language, type SeoPage } from '../src/lib/seoRegistry.ts'
 import { translations } from '../src/lib/translations.ts'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
@@ -24,12 +24,12 @@ type Route = {
 
 const homeMetadata: Record<Language, Pick<Route, 'title' | 'description'>> = {
   he: {
-    title: 'CodeCrafter | מערכות, CRM, אוטומציות ואתרים לעסקים',
-    description: 'CodeCrafter מפתחת לעסקים קטנים ובינוניים בישראל ובאירופה מערכות מותאמות, CRM ו-CMS, אוטומציות, אינטגרציות, אפליקציות ואתרים שמייעלים תהליכים ותומכים בצמיחה.',
+    title: 'פיתוח מערכות, CRM, אוטומציות ואתרים לעסקים | CodeCrafter',
+    description: 'פיתוח מערכות לעסקים, CRM ו-CMS, אוטומציות, אינטגרציות, אפליקציות ואתרים לעסקים קטנים ובינוניים בישראל ובאירופה, בעברית ובאנגלית.',
   },
   en: {
-    title: 'CodeCrafter | Custom Systems, CRM, Automation & Websites',
-    description: 'CodeCrafter builds custom business systems, CRM and CMS solutions, automation, integrations, apps, and websites for SMBs in Israel and Europe, with English and Hebrew support.',
+    title: 'Custom Software, CRM, Automation & Websites | CodeCrafter',
+    description: 'Custom business software, CRM and CMS development, automation, integrations, apps, and websites for SMBs in Israel and Europe, with English and Hebrew support.',
   },
 }
 
@@ -117,6 +117,7 @@ const serviceAreas = [
 
 function schemaFor(route: Route) {
   const url = absoluteUrl(route.path)
+  const linkedInProfile = 'https://il.linkedin.com/in/codecrafteril'
   const organization = {
     '@type': ['Organization', 'ProfessionalService'],
     '@id': `${origin}/#organization`,
@@ -128,6 +129,13 @@ function schemaFor(route: Route) {
     founder: { '@id': `${origin}/#moshe-schwartzberg` },
     areaServed: serviceAreas,
     availableLanguage: ['he', 'en'],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'sales and project enquiries',
+      email: 'moshe@mosheschwartzberg.com',
+      telephone: '+972587076077',
+      availableLanguage: ['he', 'en'],
+    },
     knowsAbout: [
       'Custom software development',
       'Business systems',
@@ -135,12 +143,13 @@ function schemaFor(route: Route) {
       'CMS development',
       'Business automation',
       'Systems integration',
+      'Business bot development',
       'Web application development',
       'Mobile application development',
       'Website development',
       'Technical SEO',
     ],
-    sameAs: ['https://www.linkedin.com/in/moshe-schwartzberg-ab54401a7'],
+    sameAs: [linkedInProfile],
   }
   const person = {
     '@type': 'Person',
@@ -150,6 +159,7 @@ function schemaFor(route: Route) {
     url: absoluteUrl(localizePath('about', route.lang)),
     image: `${origin}/about-photo-1200.webp`,
     worksFor: { '@id': `${origin}/#organization` },
+    sameAs: [linkedInProfile],
   }
   const graph: Record<string, unknown>[] = [
     organization,
@@ -163,7 +173,7 @@ function schemaFor(route: Route) {
       publisher: { '@id': `${origin}/#organization` },
     },
     {
-      '@type': route.type === 'collection' ? 'CollectionPage' : 'WebPage',
+      '@type': route.type === 'collection' ? 'CollectionPage' : route.type === 'about' ? 'ProfilePage' : 'WebPage',
       '@id': `${url}#webpage`,
       url,
       name: route.title,
@@ -171,6 +181,7 @@ function schemaFor(route: Route) {
       inLanguage: route.lang,
       isPartOf: { '@id': `${origin}/#website` },
       about: route.type === 'about' ? { '@id': `${origin}/#moshe-schwartzberg` } : { '@id': `${origin}/#organization` },
+      ...(route.type === 'about' ? { mainEntity: { '@id': `${origin}/#moshe-schwartzberg` } } : {}),
     },
   ]
 
@@ -204,6 +215,20 @@ function schemaFor(route: Route) {
       url,
       creator: { '@id': `${origin}/#organization` },
       image: route.page.image ? absoluteUrl(route.page.image.src) : `${origin}/og-logo.png`,
+    })
+  }
+  if (route.page?.faq?.length) {
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': `${url}#faq`,
+      mainEntity: route.page.faq.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer,
+        },
+      })),
     })
   }
   if (route.type === 'collection') {
