@@ -12,6 +12,13 @@ const projectLabels: Record<string, string> = {
   'creative-intelligence': 'Creative Intelligence',
 }
 
+const profileLinks = [
+  { label: 'LinkedIn', href: 'https://il.linkedin.com/in/codecrafteril' },
+  { label: 'Instagram', href: 'https://www.instagram.com/moshe_blackberg/' },
+  { label: 'Facebook', href: 'https://www.facebook.com/moshe.schwartzberg.92' },
+  { label: 'Google Business', href: 'https://share.google/3pvnxMoRbHllkET9G' },
+]
+
 type SeoPageProps = {
   page: SeoPageData
 }
@@ -83,6 +90,28 @@ export function SeoPage({ page }: SeoPageProps) {
             </section>
           ))}
         </div>
+
+        {page.kind === 'about' && (
+          <section className='seo-faq' aria-labelledby='verified-profile-heading'>
+            <span className='section-kicker'>{lang === 'he' ? 'פרופיל מאומת' : 'Verified profile'}</span>
+            <h2 id='verified-profile-heading'>{lang === 'he' ? 'עובדות על משה ו CodeCrafter' : 'Facts about Moshe and CodeCrafter'}</h2>
+            <ul>
+              <li>{lang === 'he' ? 'השם העסקי הציבורי: CodeCrafter Moshe Schwartzberg.' : 'Public business name: CodeCrafter Moshe Schwartzberg.'}</li>
+              <li>{lang === 'he' ? 'משה התחיל בתחום בשנת 2018 והוא המייסד והמפתח הראשי.' : 'Moshe started in 2018 and is the founder and lead developer.'}</li>
+              <li>{lang === 'he' ? 'ל CodeCrafter יש מעל 12 לקוחות מרוצים.' : 'CodeCrafter has more than 12 happy clients.'}</li>
+              <li>{lang === 'he' ? 'היו לקוחות בישראל, בבריטניה ובארצות הברית.' : 'Client history includes Israel, the United Kingdom, and the United States.'}</li>
+              <li>{lang === 'he' ? 'השיא האישי לבניית דף נחיתה הוא 8 שעות. זהו שיא אישי ולא זמן אספקה מובטח.' : 'The personal record for building a landing page is 8 hours. This is a record, not a guaranteed delivery time.'}</li>
+              <li>{lang === 'he' ? 'טלפון עסקי: 0587076077.' : 'Business phone: 0587076077.'}</li>
+            </ul>
+            <div className='flex flex-wrap gap-3 mt-5'>
+              {profileLinks.map((link) => (
+                <a key={link.href} href={link.href} target='_blank' rel='noopener noreferrer' className='inline-flex items-center gap-2 rounded-full border border-outline-variant/20 px-4 py-2 text-sm font-medium hover:border-primary/50 transition-colors'>
+                  {link.label}<ExternalLink className='w-3.5 h-3.5' aria-hidden='true' />
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
 
         {isPricingPage && (
           <section className='seo-faq' aria-labelledby='pricing-table-heading'>
@@ -172,6 +201,9 @@ export function SeoPage({ page }: SeoPageProps) {
                     <span>{lang === 'he' ? 'מחירון שירותים 2026' : '2026 service pricing'}</span><Arrow className='w-4 h-4' aria-hidden='true' />
                   </a>
                 )}
+                <a href={localizePath('locations', lang)}>
+                  <span>{lang === 'he' ? 'כל אזורי השירות' : 'All service areas'}</span><Arrow className='w-4 h-4' aria-hidden='true' />
+                </a>
                 {locationLinks[lang].map((location) => (
                   <a key={location.slug} href={localizePath(location.slug, lang)} aria-current={isLocationPage && page.slug === location.slug ? 'page' : undefined}>
                     <span className='inline-flex items-center gap-2'><MapPin className='w-4 h-4' aria-hidden='true' />{location.label}</span><Arrow className='w-4 h-4' aria-hidden='true' />
