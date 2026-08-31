@@ -1,7 +1,8 @@
-import { ArrowLeft, ArrowRight, ExternalLink, MessageSquare } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ExternalLink, MapPin, MessageSquare } from 'lucide-react'
 import { useLanguage } from '../App'
 import { getWhatsAppUrl } from '../lib/contact'
 import { localizePath, serviceLabels } from '../lib/seoRoutes'
+import { locationLinks, pricingRows } from '../lib/seoFactsPages'
 import type { SeoPage as SeoPageData } from '../lib/seoPages'
 
 const projectLabels: Record<string, string> = {
@@ -20,6 +21,8 @@ export function SeoPage({ page }: SeoPageProps) {
   const Arrow = lang === 'he' ? ArrowLeft : ArrowRight
   const servicesPath = localizePath('', lang) + '#services'
   const portfolioPath = localizePath('portfolio', lang)
+  const isPricingPage = page.slug === 'pricing'
+  const isLocationPage = page.slug.startsWith('locations/')
 
   return (
     <article className='seo-page pt-28 pb-24 px-6 md:px-8'>
@@ -81,6 +84,34 @@ export function SeoPage({ page }: SeoPageProps) {
           ))}
         </div>
 
+        {isPricingPage && (
+          <section className='seo-faq' aria-labelledby='pricing-table-heading'>
+            <span className='section-kicker'>{lang === 'he' ? 'מחירים בפועל' : 'Published prices'}</span>
+            <h2 id='pricing-table-heading'>{lang === 'he' ? 'מחירון שירותים מלא' : 'Full service pricing guide'}</h2>
+            <p>{lang === 'he' ? 'המחירים להלן נלקחו ממדריך השירותים והתמחור הנוכחי. מחיר שמסומן כמשוער עשוי להשתנות לאחר אפיון.' : 'The prices below come from the current services and pricing guide. A price marked as approximate may change after discovery.'}</p>
+            <div className='overflow-x-auto mt-5'>
+              <table className='w-full border-collapse text-start'>
+                <thead>
+                  <tr>
+                    <th className='p-3 border-b border-outline-variant/30 text-start'>{lang === 'he' ? 'שירות' : 'Service'}</th>
+                    <th className='p-3 border-b border-outline-variant/30 text-start'>{lang === 'he' ? 'מחיר' : 'Price'}</th>
+                    <th className='p-3 border-b border-outline-variant/30 text-start'>{lang === 'he' ? 'הערה' : 'Note'}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {pricingRows[lang].map((row) => (
+                    <tr key={row.service}>
+                      <th scope='row' className='p-3 border-b border-outline-variant/15 text-start font-semibold'>{row.service}</th>
+                      <td className='p-3 border-b border-outline-variant/15'>{row.price}</td>
+                      <td className='p-3 border-b border-outline-variant/15 text-secondary'>{row.note ?? (row.external ? (lang === 'he' ? 'ספק חיצוני' : 'External specialist') : '')}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
+
         {page.faq && (
           <section className='seo-faq' aria-labelledby='faq-heading'>
             <span className='section-kicker'>FAQ</span>
@@ -128,6 +159,26 @@ export function SeoPage({ page }: SeoPageProps) {
                 <ExternalLink className='w-4 h-4' aria-hidden='true' />
               </a>
             )}
+          </aside>
+        )}
+
+        {page.kind === 'service' && (
+          <aside className='seo-related' aria-label={lang === 'he' ? 'מחירון ואזורי שירות' : 'Pricing and service areas'}>
+            <div>
+              <h2>{lang === 'he' ? 'מחירון ואזורי שירות' : 'Pricing and service areas'}</h2>
+              <div className='seo-link-grid'>
+                {!isPricingPage && (
+                  <a href={localizePath('pricing', lang)}>
+                    <span>{lang === 'he' ? 'מחירון שירותים 2026' : '2026 service pricing'}</span><Arrow className='w-4 h-4' aria-hidden='true' />
+                  </a>
+                )}
+                {locationLinks[lang].map((location) => (
+                  <a key={location.slug} href={localizePath(location.slug, lang)} aria-current={isLocationPage && page.slug === location.slug ? 'page' : undefined}>
+                    <span className='inline-flex items-center gap-2'><MapPin className='w-4 h-4' aria-hidden='true' />{location.label}</span><Arrow className='w-4 h-4' aria-hidden='true' />
+                  </a>
+                ))}
+              </div>
+            </div>
           </aside>
         )}
 
