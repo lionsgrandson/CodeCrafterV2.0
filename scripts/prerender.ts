@@ -2,6 +2,7 @@ import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { pagesByLanguage, localizePath, type Language, type SeoPage } from '../src/lib/seoRegistry.ts'
+import { pricingRows } from '../src/lib/seoFactsPages.ts'
 import { translations } from '../src/lib/translations.ts'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
@@ -24,12 +25,12 @@ type Route = {
 
 const homeMetadata: Record<Language, Pick<Route, 'title' | 'description'>> = {
   he: {
-    title: 'פיתוח מערכות, CRM, אוטומציות ואתרים לעסקים | CodeCrafter',
-    description: 'פיתוח מערכות לעסקים, CRM ו-CMS, אוטומציות, אינטגרציות, אפליקציות ואתרים לעסקים קטנים ובינוניים בישראל ובאירופה, בעברית ובאנגלית.',
+    title: 'פיתוח תוכנה ומערכות בהתאמה אישית לעסקים | CodeCrafter',
+    description: 'CodeCrafter מפתחת תוכנה ומערכות בהתאמה אישית לעסקים בישראל, כולל אתרים, CRM, CMS, אוטומציות, אינטגרציות ואפליקציות.',
   },
   en: {
-    title: 'Custom Software, CRM, Automation & Websites | CodeCrafter',
-    description: 'Custom business software, CRM and CMS development, automation, integrations, apps, and websites for SMBs in Israel and Europe, with English and Hebrew support.',
+    title: 'Web Development Company Israel | CodeCrafter',
+    description: 'CodeCrafter is a web development company in Israel building custom websites, business systems, CRM, automation, integrations, and apps for SMBs.',
   },
 }
 
@@ -42,6 +43,23 @@ const portfolioMetadata: Record<Language, Pick<Route, 'title' | 'description'>> 
     title: 'Portfolio and Digital Project Case Studies | CodeCrafter',
     description: 'Explore websites, systems, automations, and digital experiences built by CodeCrafter, with factual case studies and links to relevant development services.',
   },
+}
+
+const homeFaq: Record<Language, { question: string; answer: string }[]> = {
+  he: [
+    { question: 'איך יודעים אם צריך אתר, מערכת או אוטומציה?', answer: 'מתחילים מהבעיה העסקית ולא מהטכנולוגיה. אם הבעיה היא הצגה ושיווק, אתר יכול להספיק. אם המידע והתהליך עצמם מפוזרים, ייתכן שצריך מערכת. אם התהליך כבר ברור אבל חוזר על עצמו, אוטומציה או אינטגרציה עשויות להיות הצעד הנכון.' },
+    { question: 'אפשר להתחיל קטן ולהרחיב בהמשך?', answer: 'כן. בפרויקטים רבים נכון להגדיר גרסה ראשונה שמכסה את הצורך המרכזי, לבדוק אותה בתהליך אמיתי ורק לאחר מכן להוסיף יכולות.' },
+    { question: 'האם אפשר לעבוד עם מערכות שכבר קיימות בעסק?', answer: 'במקרים רבים כן. בודקים קודם אילו APIs, Webhooks, אפשרויות ייצוא והרשאות קיימים בפועל. לא מבטיחים חיבור לפני שהגישה נבדקה.' },
+    { question: 'מה נבדק לפני השקה?', answer: 'לפי סוג הפרויקט נבדקים המסכים הרלוונטיים, מובייל ודסקטופ, טפסים, קישורים, הרשאות, מצבי שגיאה, נגישות בסיסית, ביצועים וחיבורי צד שלישי שנכללים בהיקף העבודה.' },
+    { question: 'האם CodeCrafter מבטיחה מקום ראשון בגוגל או תוצאה עסקית מסוימת?', answer: 'לא. אפשר לבנות תשתית טכנית ותוכן ברורים, למדוד ביצועים ולשפר על בסיס נתונים, אבל אין הבטחה אמינה למיקום מסוים בגוגל, לכמות לידים או להכנסה מסוימת.' },
+  ],
+  en: [
+    { question: 'How do we know whether we need a website, system, or automation?', answer: 'Start with the business problem rather than the technology. A presentation and marketing problem may need a website. Fragmented information and workflow may need a system. A clear but repetitive process may be a better fit for automation or integration.' },
+    { question: 'Can we start small and expand later?', answer: 'Yes. Many projects are better served by a first version that covers the central need, is tested in the real workflow, and is expanded only when the next requirement is clear.' },
+    { question: 'Can CodeCrafter work with systems the business already uses?', answer: 'Often yes. Available APIs, webhooks, exports, and permissions are checked first. A connection is not promised before access is verified.' },
+    { question: 'What is checked before launch?', answer: 'Depending on the project, relevant screens, mobile and desktop behavior, forms, links, permissions, error states, basic accessibility, performance, and in scope third party connections are checked before release.' },
+    { question: 'Does CodeCrafter guarantee a number one Google position or a specific business result?', answer: 'No. The site and product can be built with clear technical foundations, measured, and improved from real data, but a specific Google position, lead volume, or revenue outcome cannot be guaranteed credibly.' },
+  ],
 }
 
 const routes: Route[] = []
@@ -104,7 +122,12 @@ function setCanonical(html: string, url: string) {
 function breadcrumbItems(route: Route) {
   const homeName = route.lang === 'he' ? 'בית' : 'Home'
   const items = [{ name: homeName, url: absoluteUrl(localizePath('', route.lang)) }]
-  if (route.type === 'service') items.push({ name: route.lang === 'he' ? 'שירותים' : 'Services', url: `${absoluteUrl(localizePath('', route.lang))}#services` })
+  const slug = route.page?.slug ?? ''
+  if (slug.startsWith('locations/')) {
+    items.push({ name: route.lang === 'he' ? 'אזורי שירות' : 'Service areas', url: absoluteUrl(localizePath('locations', route.lang)) })
+  } else if (route.type === 'service') {
+    items.push({ name: route.lang === 'he' ? 'שירותים' : 'Services', url: `${absoluteUrl(localizePath('', route.lang))}#services` })
+  }
   if (route.type === 'case-study') items.push({ name: route.lang === 'he' ? 'תיק עבודות' : 'Portfolio', url: absoluteUrl(localizePath('portfolio', route.lang)) })
   if (route.type !== 'website') items.push({ name: route.page?.h1 ?? route.title, url: absoluteUrl(route.path) })
   return items
@@ -112,21 +135,47 @@ function breadcrumbItems(route: Route) {
 
 const serviceAreas = [
   { '@type': 'Country', name: 'Israel' },
-  { '@type': 'Place', name: 'Europe' },
+  { '@type': 'City', name: 'Tel Aviv' },
+  { '@type': 'City', name: 'Haifa' },
+  { '@type': 'City', name: 'Jerusalem' },
+  { '@type': 'City', name: 'Beer Sheva' },
+  { '@type': 'City', name: 'Karmiel' },
 ]
+
+const localAreaBySlug: Record<string, Record<string, string>> = {
+  'locations/tel-aviv': { '@type': 'City', name: 'Tel Aviv' },
+  'locations/haifa': { '@type': 'City', name: 'Haifa' },
+  'locations/jerusalem': { '@type': 'City', name: 'Jerusalem' },
+  'locations/beer-sheva': { '@type': 'City', name: 'Beer Sheva' },
+  'locations/karmiel': { '@type': 'City', name: 'Karmiel' },
+}
 
 function schemaFor(route: Route) {
   const url = absoluteUrl(route.path)
-  const linkedInProfile = 'https://il.linkedin.com/in/codecrafteril'
+  const personLinkedIn = 'https://il.linkedin.com/in/codecrafteril'
+  const organizationSameAs = [
+    'https://il.linkedin.com/company/codecrafterisrael',
+    'https://www.instagram.com/codecrafter_site/',
+    'https://www.facebook.com/profile.php?id=61591518676016',
+    'https://share.google/3pvnxMoRbHllkET9G',
+  ]
+  const personSameAs = [
+    personLinkedIn,
+    'https://www.instagram.com/moshe_blackberg/',
+    'https://www.facebook.com/moshe.schwartzberg.92',
+  ]
   const organization = {
     '@type': ['Organization', 'ProfessionalService'],
     '@id': `${origin}/#organization`,
-    name: 'CodeCrafter',
+    name: 'CodeCrafter Moshe Schwartzberg',
+    alternateName: 'CodeCrafter',
     url: `${origin}/`,
     logo: `${origin}/log-round.png`,
     email: 'moshe@mosheschwartzberg.com',
     telephone: '+972587076077',
+    foundingDate: '2018',
     founder: { '@id': `${origin}/#moshe-schwartzberg` },
+    numberOfEmployees: { '@type': 'QuantitativeValue', value: 1 },
     areaServed: serviceAreas,
     availableLanguage: ['he', 'en'],
     contactPoint: {
@@ -149,17 +198,18 @@ function schemaFor(route: Route) {
       'Website development',
       'Technical SEO',
     ],
-    sameAs: [linkedInProfile],
+    sameAs: organizationSameAs,
   }
   const person = {
     '@type': 'Person',
     '@id': `${origin}/#moshe-schwartzberg`,
     name: 'Moshe Schwartzberg',
     alternateName: 'משה שוורצברג',
+    jobTitle: 'Founder & Lead Developer',
     url: absoluteUrl(localizePath('about', route.lang)),
     image: `${origin}/about-photo-1200.webp`,
     worksFor: { '@id': `${origin}/#organization` },
-    sameAs: [linkedInProfile],
+    sameAs: personSameAs,
   }
   const graph: Record<string, unknown>[] = [
     organization,
@@ -194,7 +244,9 @@ function schemaFor(route: Route) {
       })),
     })
   }
-  if (route.type === 'service' && route.page) {
+
+  const slug = route.page?.slug ?? ''
+  if (route.type === 'service' && route.page && slug !== 'pricing' && slug !== 'locations') {
     graph.push({
       '@type': 'Service',
       '@id': `${url}#service`,
@@ -202,10 +254,29 @@ function schemaFor(route: Route) {
       description: route.description,
       url,
       provider: { '@id': `${origin}/#organization` },
-      areaServed: serviceAreas,
+      areaServed: localAreaBySlug[slug] ? [localAreaBySlug[slug]] : serviceAreas,
       availableLanguage: ['he', 'en'],
     })
   }
+
+  if (slug === 'pricing') {
+    graph.push({
+      '@type': 'ItemList',
+      '@id': `${url}#pricing`,
+      name: route.lang === 'he' ? 'מחירון שירותי CodeCrafter 2026' : 'CodeCrafter 2026 service pricing',
+      itemListElement: pricingRows[route.lang].map((row, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'Service',
+          name: row.service,
+          description: [row.price, row.note].filter(Boolean).join('. '),
+          provider: { '@id': `${origin}/#organization` },
+        },
+      })),
+    })
+  }
+
   if (route.type === 'case-study' && route.page) {
     graph.push({
       '@type': 'CreativeWork',
@@ -217,11 +288,13 @@ function schemaFor(route: Route) {
       image: route.page.image ? absoluteUrl(route.page.image.src) : `${origin}/og-logo.png`,
     })
   }
-  if (route.page?.faq?.length) {
+
+  const faqItems = route.type === 'website' ? homeFaq[route.lang] : route.page?.faq
+  if (faqItems?.length) {
     graph.push({
       '@type': 'FAQPage',
       '@id': `${url}#faq`,
-      mainEntity: route.page.faq.map((item) => ({
+      mainEntity: faqItems.map((item) => ({
         '@type': 'Question',
         name: item.question,
         acceptedAnswer: {
@@ -231,6 +304,7 @@ function schemaFor(route: Route) {
       })),
     })
   }
+
   if (route.type === 'collection') {
     graph.push({
       '@type': 'ItemList',
@@ -247,7 +321,7 @@ function schemaFor(route: Route) {
 async function createDocument(route: Route) {
   const url = absoluteUrl(route.path)
   const image = route.page?.image ? absoluteUrl(route.page.image.src) : `${origin}/og-logo.png`
-  const imageAlt = route.page?.image?.alt ?? (route.lang === 'he' ? 'CodeCrafter - פתרונות תוכנה לעסקים' : 'CodeCrafter business software solutions')
+  const imageAlt = route.page?.image?.alt ?? (route.lang === 'he' ? 'CodeCrafter פתרונות תוכנה לעסקים' : 'CodeCrafter business software solutions')
   const locale = route.lang === 'he' ? 'he_IL' : 'en_US'
   let html = template.replace('<!--app-html-->', await render(route.path))
   html = html.replace(/<html\s+lang=["'][^"']+["']\s+dir=["'][^"']+["']>/i, `<html lang="${route.lang}" dir="${route.lang === 'he' ? 'rtl' : 'ltr'}">`)
