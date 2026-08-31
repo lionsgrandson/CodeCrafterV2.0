@@ -5,6 +5,7 @@ import { Navbar, Hero } from './components/Hero'
 import { Services, Process } from './components/Services'
 import { Portfolio, Testimonials } from './components/Portfolio'
 import { WhyWorkWithMe, FinalCTA, Footer } from './components/Footer'
+import { HomepageSeo } from './components/HomepageSeo'
 import { SeoPage } from './components/SeoPage'
 import { translations } from './lib/translations'
 import { localizePath, type Language } from './lib/seoRoutes'
@@ -111,6 +112,7 @@ export default function App({ pathname, seoPage }: AppProps) {
             <>
               <Hero />
               <Services />
+              <HomepageSeo />
               <Process />
               <Portfolio />
               <Testimonials />
