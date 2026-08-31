@@ -51,16 +51,6 @@ export function WhyWorkWithMe() {
               </motion.li>
             ))}
           </ul>
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.625, delay: 0.6 }}
-            className='mt-4 md:mt-6 p-3 md:p-4 bg-surface/5 border border-surface/10 rounded-xl'
-          >
-            <p className='text-sm md:text-lg font-headline italic font-light opacity-90'>
-              {t.why.quote}
-            </p>
-          </motion.div>
         </div>
         <div className='relative flex justify-center'>
           <motion.div
@@ -353,8 +343,10 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
             {[
               { label: t.nav.solve, href: `${homeHashPrefix}#services` },
               { label: t.nav.work, href: localizePath('portfolio', lang) },
-              { label: lang === 'he' ? 'אודות משה ו-CodeCrafter' : 'About Moshe and CodeCrafter', href: localizePath('about', lang) },
+              { label: lang === 'he' ? 'אודות משה ו CodeCrafter' : 'About Moshe and CodeCrafter', href: localizePath('about', lang) },
               { label: t.nav.process, href: `${homeHashPrefix}#process` },
+              { label: lang === 'he' ? 'מחירון' : 'Pricing', href: localizePath('pricing', lang) },
+              { label: lang === 'he' ? 'אזורי שירות' : 'Service areas', href: localizePath('locations', lang) },
               ...serviceSlugs.map((slug) => ({ label: serviceLabels[lang][slug], href: localizePath(slug, lang) })),
             ].map((link) => (
               <li key={link.label}>
