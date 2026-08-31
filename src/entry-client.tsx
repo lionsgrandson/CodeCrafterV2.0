@@ -10,7 +10,7 @@ async function start() {
   const routeWithoutLanguage = normalizedPath.replace(/^\/en(?=\/|$)/, '') || '/';
   const needsSeoPage = !['/', '/portfolio'].includes(routeWithoutLanguage);
   const seoPage = needsSeoPage
-    ? (await import('./lib/seoPages')).getSeoPage(normalizedPath, lang)
+    ? (await import('./lib/seoRegistry')).getSeoPage(normalizedPath, lang)
     : undefined;
 
   const app = (
