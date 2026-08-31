@@ -8,7 +8,7 @@ export async function render(pathname = '/') {
   const routeWithoutLanguage = normalizedPath.replace(/^\/en(?=\/|$)/, '') || '/';
   const needsSeoPage = !['/', '/portfolio'].includes(routeWithoutLanguage);
   const seoPage = needsSeoPage
-    ? (await import('./lib/seoPages.ts')).getSeoPage(normalizedPath, lang)
+    ? (await import('./lib/seoRegistry.ts')).getSeoPage(normalizedPath, lang)
     : undefined;
 
   return renderToString(
