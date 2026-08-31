@@ -8,3 +8,5 @@ Disallow: /401.html
 Disallow: /403.html
 Disallow: /404.html
 Disallow: /200.html
+
+Sitemap: https://mosheschwartzberg.com/sitemap.xml
