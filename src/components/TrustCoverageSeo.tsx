@@ -30,6 +30,7 @@ export function TrustCoverageSeo() {
         ],
         locationsHeading: 'אזורי שירות בישראל',
         locationsIntro: 'CodeCrafter פועלת כעסק נותן שירות. אין כאן כתובות משרד מומצאות. בכל אזור מפורט אם העבודה היא פנים אל פנים, מרחוק או בשילוב.',
+        locationsAll: 'לכל אזורי השירות',
         pricing: 'מחירון שירותים 2026',
         authorityHeading: 'פרופילים וביקורות מחוץ לאתר',
         authorityIntro: 'קישורים חיצוניים עוזרים ללקוחות ולמנועי חיפוש לחבר בין האתר, משה ו CodeCrafter כישות אמיתית מחוץ לדומיין.',
@@ -48,6 +49,7 @@ export function TrustCoverageSeo() {
         ],
         locationsHeading: 'Service areas in Israel',
         locationsIntro: 'CodeCrafter operates as a service area business. No office addresses are invented. Each local page states whether delivery is in person, remote, or both.',
+        locationsAll: 'View all service areas',
         pricing: '2026 service pricing',
         authorityHeading: 'Profiles and reviews outside this website',
         authorityIntro: 'External profiles help customers and search engines connect this website, Moshe, and CodeCrafter to a real entity beyond this domain.',
@@ -104,7 +106,10 @@ export function TrustCoverageSeo() {
           </section>
 
           <section className='rounded-2xl border border-outline-variant/20 bg-surface-container-low p-6'>
-            <h3 className='text-2xl font-bold font-headline mb-3'>{copy.locationsHeading}</h3>
+            <div className='flex flex-wrap items-center justify-between gap-3 mb-3'>
+              <h3 className='text-2xl font-bold font-headline'>{copy.locationsHeading}</h3>
+              <a href={localizePath('locations', lang)} className='text-sm font-semibold text-primary hover:underline underline-offset-4'>{copy.locationsAll}</a>
+            </div>
             <p className='text-secondary leading-relaxed mb-5'>{copy.locationsIntro}</p>
             <div className='grid gap-3'>
               {locationLinks[lang].map((location) => (
