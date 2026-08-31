@@ -4,8 +4,13 @@ type Gtag = (
   parameters: Record<string, string>,
 ) => void;
 
+type TrackedWindow = Window & {
+  gtag?: Gtag;
+  __codecrafterContactTrackingInstalled?: boolean;
+};
+
 function getGtag() {
-  return (window as Window & { gtag?: Gtag }).gtag;
+  return (window as TrackedWindow).gtag;
 }
 
 export function trackContactLead() {
@@ -16,10 +21,9 @@ export function trackContactLead() {
 }
 
 export function installContactClickTracking() {
-  const marker = '__codecrafterContactTrackingInstalled';
-  const trackedWindow = window as Window & Record<string, unknown>;
-  if (trackedWindow[marker]) return;
-  trackedWindow[marker] = true;
+  const trackedWindow = window as TrackedWindow;
+  if (trackedWindow.__codecrafterContactTrackingInstalled) return;
+  trackedWindow.__codecrafterContactTrackingInstalled = true;
 
   document.addEventListener('click', (event) => {
     const target = event.target as Element | null;
