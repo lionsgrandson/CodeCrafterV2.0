@@ -1,4 +1,4 @@
-import { type FormEvent, useState } from 'react'
+import { type FormEvent, useRef, useState } from 'react'
 import { motion } from 'motion/react'
 import {
   Check,
@@ -10,7 +10,12 @@ import {
   Phone,
 } from 'lucide-react'
 import { useLanguage } from '../App'
-import { trackContactLead } from '../lib/analytics'
+import {
+  trackContactFormError,
+  trackContactFormStart,
+  trackContactFormSubmit,
+  trackContactLead,
+} from '../lib/analytics'
 import { contact, getWhatsAppUrl } from '../lib/contact'
 import { localizePath, serviceLabels, serviceSlugs } from '../lib/seoRoutes'
 import { WordReveal } from './WordReveal'
@@ -80,6 +85,7 @@ export function WhyWorkWithMe() {
 
 export function FinalCTA() {
   const { t, lang } = useLanguage()
+  const formStarted = useRef(false)
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -109,9 +115,23 @@ export function FinalCTA() {
           error: 'Something went wrong. Try again or message me on WhatsApp.',
         }
 
+  function markFormStarted() {
+    if (formStarted.current) return
+    formStarted.current = true
+    trackContactFormStart()
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+
+    if (!form.phone.trim() && !form.email.trim()) {
+      setStatus('error')
+      trackContactFormError('missing_contact_method')
+      return
+    }
+
     setStatus('sending')
+    trackContactFormSubmit()
 
     try {
       const response = await fetch('/api/contact', {
@@ -126,6 +146,7 @@ export function FinalCTA() {
       setForm({ name: '', email: '', phone: '', message: '', company: '' })
     } catch {
       setStatus('error')
+      trackContactFormError('request_failed')
     }
   }
 
@@ -160,6 +181,7 @@ export function FinalCTA() {
           </p>
           <form
             onSubmit={handleSubmit}
+            onFocus={markFormStarted}
             data-state={
               status === 'sent' || status === 'error' || status === 'sending'
                 ? status
@@ -186,62 +208,61 @@ export function FinalCTA() {
               />
             </div>
             <input
+              name='name'
               value={form.name}
               onChange={(event) =>
                 setForm((current) => ({ ...current, name: event.target.value }))
               }
               required
+              autoComplete='name'
               placeholder={copy.name}
               aria-label={copy.name}
               className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-3 text-on-surface outline-none transition duration-[200ms] hover:border-primary/60 focus:border-primary'
             />
             <input
+              name='email'
               type='email'
+              inputMode='email'
+              autoComplete='email'
               value={form.email}
               onChange={(event) =>
-                setForm((current) => ({
-                  ...current,
-                  email: event.target.value,
-                }))
+                setForm((current) => ({ ...current, email: event.target.value }))
               }
-              required
               placeholder={copy.email}
               aria-label={copy.email}
               className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-3 text-on-surface outline-none transition duration-[200ms] hover:border-primary/60 focus:border-primary'
             />
             <input
+              name='phone'
+              type='tel'
+              inputMode='tel'
+              autoComplete='tel'
               value={form.phone}
               onChange={(event) =>
-                setForm((current) => ({
-                  ...current,
-                  phone: event.target.value,
-                }))
+                setForm((current) => ({ ...current, phone: event.target.value }))
               }
               placeholder={copy.phone}
               aria-label={copy.phone}
-              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-3 text-on-surface outline-none transition duration-[200ms] hover:border-primary/60 focus:border-primary md:col-span-2'
+              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-3 text-start [direction:inherit] text-on-surface outline-none transition duration-[200ms] hover:border-primary/60 focus:border-primary md:col-span-2'
             />
             <textarea
+              name='message'
               value={form.message}
               onChange={(event) =>
-                setForm((current) => ({
-                  ...current,
-                  message: event.target.value,
-                }))
+                setForm((current) => ({ ...current, message: event.target.value }))
               }
-              required
               placeholder={copy.message}
               rows={3}
               aria-label={copy.message}
               className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-3 text-on-surface outline-none transition duration-[200ms] hover:border-primary/60 focus:border-primary md:col-span-2 resize-none'
             />
             {status === 'sent' && (
-              <p className='text-sm font-medium text-tertiary md:col-span-2'>
+              <p role='status' aria-live='polite' className='text-sm font-medium text-tertiary md:col-span-2'>
                 {copy.success}
               </p>
             )}
             {status === 'error' && (
-              <p className='text-sm font-medium text-primary md:col-span-2'>
+              <p role='alert' className='text-sm font-medium text-primary md:col-span-2'>
                 {copy.error}
               </p>
             )}
@@ -277,6 +298,7 @@ export function FinalCTA() {
                 href={getWhatsAppUrl(lang)}
                 target='_blank'
                 rel='noreferrer'
+                data-placement='homepage_contact_whatsapp'
                 className='bg-surface-container text-primary w-full md:w-auto px-5 md:px-8 py-3.5 rounded-lg font-headline font-bold text-base md:text-lg whitespace-nowrap flex items-center justify-center gap-3 hover:-translate-y-0.5 hover:bg-surface-container-high hover:shadow-md transition-all duration-[200ms] active:scale-95 border border-primary/10'
               >
                 <MessageSquare className='w-6 h-6 fill-current' />

@@ -111,11 +111,11 @@ export default function App({ pathname, seoPage }: AppProps) {
             <>
               <Hero />
               <Services />
+              <FinalCTA />
               <Process />
               <Portfolio />
               <Testimonials />
               <WhyWorkWithMe />
-              <FinalCTA />
             </>
           )}
         </main>

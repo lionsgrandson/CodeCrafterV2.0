@@ -111,10 +111,10 @@ app.post('/api/contact', async (req, res) => {
       .json({ error: 'Too many contact attempts. Please try again later.' })
   }
 
-  if (!name || !email || !message) {
+  if (!name || (!email && !phone)) {
     return res
       .status(400)
-      .json({ error: 'Please provide your name, email, and message.' })
+      .json({ error: 'Please provide your name and a phone number or email.' })
   }
 
   if (
@@ -122,7 +122,7 @@ app.post('/api/contact', async (req, res) => {
     email.length > 254 ||
     phone.length > 40 ||
     message.length > 5000 ||
-    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
   ) {
     return res.status(400).json({ error: 'Please check the submitted details.' })
   }
@@ -139,11 +139,11 @@ app.post('/api/contact', async (req, res) => {
     const { data, error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL,
       to: [to],
-      replyTo: email,
+      ...(email ? { replyTo: email } : {}),
       subject: `New CodeCrafter inquiry from ${name}`,
       text: [
         `Name: ${name}`,
-        `Email: ${email}`,
+        `Email: ${email || 'Not provided'}`,
         `Phone: ${phone || 'Not provided'}`,
         `Language: ${language}`,
         '',
@@ -152,11 +152,11 @@ app.post('/api/contact', async (req, res) => {
       html: `
       <h2>New CodeCrafter inquiry</h2>
       <p><strong>Name:</strong> ${escapeHtml(name)}</p>
-      <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(email || 'Not provided')}</p>
       <p><strong>Phone:</strong> ${escapeHtml(phone || 'Not provided')}</p>
       <p><strong>Language:</strong> ${language}</p>
       <p><strong>Message:</strong></p>
-      <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
+      <p>${escapeHtml(message || 'No message provided').replace(/\n/g, '<br>')}</p>
     `,
     })
 

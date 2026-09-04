@@ -289,7 +289,7 @@ function schemaFor(route: Route) {
     })
   }
 
-  const faqItems = route.type === 'website' ? homeFaq[route.lang] : route.page?.faq
+  const faqItems = route.type === 'website' ? undefined : route.page?.faq
   if (faqItems?.length) {
     graph.push({
       '@type': 'FAQPage',

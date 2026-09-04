@@ -103,7 +103,7 @@
 
 .viewport-section {
   height: auto;
-  min-height: 100svh;
+  min-height: 0;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -115,6 +115,7 @@
 }
 
 .hero-section {
+  min-height: 100svh;
   padding-top: clamp(5.5rem, 12svh, 8rem);
   padding-bottom: clamp(1.5rem, 6svh, 4rem);
 }
@@ -835,7 +836,7 @@ html[dir='rtl'] .crm-pop-heading p {
 
   .contact-section form input,
   .contact-section form textarea {
-    @apply px-3 py-2 text-sm;
+    @apply px-3 py-2.5 text-base;
   }
 
   .contact-section form input:nth-of-type(3),

@@ -138,7 +138,7 @@ export function Hero() {
     <header className='viewport-section hero-section relative px-6 md:px-8 overflow-hidden bg-surface'>
       <div className='absolute inset-0 z-0 pointer-events-none opacity-20'>
         <div className='absolute top-0 left-0 w-full h-full'>
-          {[...Array(6)].map((_, i) => (
+          {[...Array(3)].map((_, i) => (
             <motion.div
               key={i}
               className='absolute bg-primary/20 rounded-full blur-3xl'
@@ -192,6 +192,8 @@ export function Hero() {
           <div className='flex flex-col md:flex-row gap-4'>
             <a
               href='#contact'
+              data-analytics='cta_click'
+              data-placement='hero_primary'
               className='button-primary w-full md:w-auto px-6 md:px-8 py-4 md:py-5 text-base md:text-lg text-center'
             >
               {t.hero.ctaPrimary}
@@ -200,6 +202,7 @@ export function Hero() {
               href={getWhatsAppUrl(lang)}
               target='_blank'
               rel='noreferrer'
+              data-placement='hero_whatsapp'
               className='button-secondary w-full md:w-auto px-6 md:px-8 py-4 md:py-5 text-base md:text-lg'
             >
               <MessageSquare className='w-5 h-5 fill-current' />

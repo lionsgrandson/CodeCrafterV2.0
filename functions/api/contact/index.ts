@@ -59,9 +59,9 @@ export async function onRequestPost({ request, env }: PagesContext) {
 
   if (company) return json({ ok: true })
 
-  if (!name || !email || !message) {
+  if (!name || (!email && !phone)) {
     return json(
-      { error: 'Please provide your name, email, and message.' },
+      { error: 'Please provide your name and a phone number or email.' },
       400,
     )
   }
@@ -71,7 +71,7 @@ export async function onRequestPost({ request, env }: PagesContext) {
     email.length > 254 ||
     phone.length > 40 ||
     message.length > 5000 ||
-    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
   ) {
     return json({ error: 'Please check the submitted details.' }, 400)
   }
@@ -89,11 +89,11 @@ export async function onRequestPost({ request, env }: PagesContext) {
     body: JSON.stringify({
       from: env.RESEND_FROM_EMAIL,
       to: [env.CONTACT_NOTIFICATION_EMAIL || 'moshe@mosheschwartzberg.com'],
-      reply_to: email,
+      ...(email ? { reply_to: email } : {}),
       subject: `New CodeCrafter inquiry from ${name}`,
       text: [
         `Name: ${name}`,
-        `Email: ${email}`,
+        `Email: ${email || 'Not provided'}`,
         `Phone: ${phone || 'Not provided'}`,
         `Language: ${language}`,
         '',
@@ -102,11 +102,11 @@ export async function onRequestPost({ request, env }: PagesContext) {
       html: `
         <h2>New CodeCrafter inquiry</h2>
         <p><strong>Name:</strong> ${escapeHtml(name)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email || 'Not provided')}</p>
         <p><strong>Phone:</strong> ${escapeHtml(phone || 'Not provided')}</p>
         <p><strong>Language:</strong> ${language}</p>
         <p><strong>Message:</strong></p>
-        <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
+        <p>${escapeHtml(message || 'No message provided').replace(/\n/g, '<br>')}</p>
       `,
     }),
   })
