@@ -65,6 +65,16 @@ const duplicateUrls = sitemapUrls.filter((url, index) => sitemapUrls.indexOf(url
 if (duplicateUrls.length === 0) pass('sitemap has no duplicate URLs')
 else fail(`sitemap has duplicate URLs: ${[...new Set(duplicateUrls)].join(', ')}`)
 
+for (const expectedCaseStudy of [
+  `${baseUrl}/portfolio/rainbow-asd/`,
+  `${baseUrl}/portfolio/shimon-photography/`,
+  `${baseUrl}/en/portfolio/rainbow-asd/`,
+  `${baseUrl}/en/portfolio/shimon-photography/`,
+]) {
+  if (sitemapUrls.includes(expectedCaseStudy)) pass(`new case study is in sitemap: ${expectedCaseStudy}`)
+  else fail(`new case study missing from sitemap: ${expectedCaseStudy}`)
+}
+
 for (const url of sitemapUrls) {
   const result = await request(url)
   if (!result.response.ok) {
@@ -108,14 +118,22 @@ for (const obsoletePath of ['/favicon.svg', '/manifest.json']) {
   }
 }
 
+const rainbow = await request('/portfolio/rainbow-asd/')
+if (rainbow.response.ok && getCanonical(rainbow.body) === `${baseUrl}/portfolio/rainbow-asd/`) {
+  pass('historical Rainbow URL now serves a canonical case study')
+} else {
+  fail(`Rainbow case study is not serving canonically (${rainbow.response.status})`)
+}
+
 const redirectChecks = new Map([
   ['/blog.html', '/websites/'],
+  ['/portfolio/index.html', '/portfolio/'],
+  ['/about/index.html', '/about/'],
   ['/blog/free-domains-new-era-internet', '/websites/'],
   ['/blog/perfect-lighthouse', '/websites/'],
   ['/blog/backend-code-horror', '/custom-software/'],
   ['/blog/5-website-must-have', '/websites/'],
   ['/portfolio/idf-tech-maintenance-corps-v2', '/portfolio/'],
-  ['/portfolio/rainbow-asd', '/portfolio/'],
   ['/portfolio/nexa-automations-glass-ui', '/automation/'],
 ])
 
@@ -128,7 +146,7 @@ for (const [source, expectedPath] of redirectChecks) {
   else fail(`legacy redirect mismatch: ${source} returned ${result.response.status} location=${location || 'missing'}`)
 }
 
-const wwwResponse = await fetch(`https://www.mosheschwartzberg.com/`, { redirect: 'manual' })
+const wwwResponse = await fetch('https://www.mosheschwartzberg.com/', { redirect: 'manual' })
 const wwwLocation = wwwResponse.headers.get('location') || ''
 if ([301, 308].includes(wwwResponse.status) && wwwLocation.startsWith(baseUrl)) pass('www hostname permanently redirects to canonical hostname')
 else warn(`www canonical redirect was not confirmed (${wwwResponse.status}, ${wwwLocation || 'no location'})`)
