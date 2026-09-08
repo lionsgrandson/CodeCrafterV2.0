@@ -27,6 +27,9 @@ ErrorDocument 404 /404.html
   RewriteRule ^favicon\.svg$ - [R=410,L]
   RewriteRule ^manifest\.json$ - [R=410,L]
 
+  # Canonicalize the historical mixed-case Rainbow URL to the revived case study.
+  RewriteRule ^portfolio/Rainbow-asd/?$ /portfolio/rainbow-asd/ [R=301,L,NE]
+
   # Legacy indexed URLs. Keep these aligned with server.ts and public/_redirects.
   RewriteRule ^blog\.html$ /websites/ [R=301,L,NE,NC]
   RewriteRule ^index\.html$ / [R=301,L,NE,NC]
@@ -37,7 +40,6 @@ ErrorDocument 404 /404.html
   RewriteRule ^blog/backend-code-horror/?$ /custom-software/ [R=301,L,NE,NC]
   RewriteRule ^blog/5-website-must-have/?$ /websites/ [R=301,L,NE,NC]
   RewriteRule ^portfolio/idf-tech-maintenance-corps-v2/?$ /portfolio/ [R=301,L,NE,NC]
-  RewriteRule ^portfolio/rainbow-asd/?$ /portfolio/ [R=301,L,NE,NC]
   RewriteRule ^portfolio/nexa-automations-glass-ui/?$ /automation/ [R=301,L,NE,NC]
 
   # Keep real files and directories untouched.
