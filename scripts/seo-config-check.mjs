@@ -47,8 +47,8 @@ for (const status of ['401', '403', '404', '200']) {
 }
 
 expect(/X-Robots-Tag\s+"noindex"/i.test(rootHtaccess), 'Apache adds X-Robots-Tag noindex to non-page assets')
-expect(/favicon\\\.svg.*R=410/i.test(rootHtaccess), 'Apache returns 410 for obsolete favicon.svg')
-expect(/manifest\\\.json.*R=410/i.test(rootHtaccess), 'Apache returns 410 for obsolete manifest.json')
+expect(rootHtaccess.includes('RewriteRule ^favicon\\.svg$ - [R=410,L]'), 'Apache returns 410 for obsolete favicon.svg')
+expect(rootHtaccess.includes('RewriteRule ^manifest\\.json$ - [R=410,L]'), 'Apache returns 410 for obsolete manifest.json')
 expect(/X-Robots-Tag:\s*noindex/i.test(headers), 'static-host headers include noindex protection')
 expect(server.includes("res.setHeader('X-Robots-Tag', 'noindex')"), 'Node server adds X-Robots-Tag noindex')
 expect(server.includes("new Set(['/favicon.svg', '/manifest.json'])"), 'Node server treats obsolete asset URLs as gone')
@@ -66,8 +66,7 @@ const expectedRedirects = new Map([
 ])
 
 for (const [source, target] of expectedRedirects) {
-  const escaped = source.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  expect(new RegExp(`^${escaped}\\s+${target.replace('/', '\\/')}\\s+301$`, 'm').test(redirects), `_redirects maps ${source} to ${target}`)
+  expect(redirects.split(/\r?\n/).includes(`${source} ${target} 301`), `_redirects maps ${source} to ${target}`)
   expect(server.includes(`['${source}', '${target}']`), `server.ts maps ${source} to ${target}`)
 }
 
