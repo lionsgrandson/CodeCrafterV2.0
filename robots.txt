@@ -1,8 +1,5 @@
 User-agent: *
 Allow: /
-Allow: /assets/
-Allow: /favicon.ico
-Allow: /og-logo.png
 
 Disallow: /401.html
 Disallow: /403.html
