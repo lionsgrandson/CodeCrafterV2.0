@@ -13,9 +13,12 @@
     "start": "node --import tsx server.ts",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
-    "postbuild": "node scripts/seo-check.mjs --dist dist",
+    "postbuild": "node scripts/seo-check.mjs --dist dist && node scripts/seo-config-check.mjs",
     "seo:check": "node scripts/seo-check.mjs --dist dist",
-    "seo:check:production": "node scripts/seo-check.mjs --base-url https://mosheschwartzberg.com"
+    "seo:config": "node scripts/seo-config-check.mjs",
+    "seo:check:production": "node scripts/seo-check.mjs --base-url https://mosheschwartzberg.com",
+    "seo:audit:production": "node scripts/production-seo-audit.mjs",
+    "seo:cloudflare": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/cloudflare-seo-hardening.ps1"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",
