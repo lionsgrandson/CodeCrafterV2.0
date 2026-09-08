@@ -16,12 +16,13 @@ const maxContactAttempts = 5
 const legacyRedirects = new Map<string, string>([
   ['/blog.html', '/websites/'],
   ['/index.html', '/'],
+  ['/portfolio/index.html', '/portfolio/'],
+  ['/about/index.html', '/about/'],
   ['/blog/free-domains-new-era-internet', '/websites/'],
   ['/blog/perfect-lighthouse', '/websites/'],
   ['/blog/backend-code-horror', '/custom-software/'],
   ['/blog/5-website-must-have', '/websites/'],
   ['/portfolio/idf-tech-maintenance-corps-v2', '/portfolio/'],
-  ['/portfolio/rainbow-asd', '/portfolio/'],
   ['/portfolio/nexa-automations-glass-ui', '/automation/'],
 ])
 
@@ -53,7 +54,14 @@ app.use((req, res, next) => {
     return res.status(410).type('text/plain').send('Gone')
   }
 
-  const pathname = req.path.replace(/\/$/, '').toLowerCase() || '/'
+  const rawPath = req.path.replace(/\/$/, '') || '/'
+  const pathname = rawPath.toLowerCase()
+
+  // Preserve the historical Rainbow URL while canonicalizing old mixed-case links.
+  if (pathname === '/portfolio/rainbow-asd' && rawPath !== '/portfolio/rainbow-asd') {
+    return res.redirect(301, '/portfolio/rainbow-asd/')
+  }
+
   const redirectTarget = legacyRedirects.get(pathname)
   if (redirectTarget) {
     return res.redirect(301, redirectTarget)
