@@ -25,12 +25,32 @@ const legacyRedirects = new Map<string, string>([
   ['/portfolio/nexa-automations-glass-ui', '/automation/'],
 ])
 
+const obsoleteAssetPaths = new Set(['/favicon.svg', '/manifest.json'])
+const nonIndexableAssetExtensions = ['.js', '.mjs', '.css', '.map', '.json', '.webmanifest']
+
+function shouldNoIndexAsset(pathname: string) {
+  const normalized = pathname.toLowerCase()
+  return (
+    normalized === '/favicon.svg' ||
+    nonIndexableAssetExtensions.some((extension) => normalized.endsWith(extension))
+  )
+}
+
 app.use(express.json({ limit: '32kb' }))
 
 app.use((req, res, next) => {
   const host = req.headers.host?.toLowerCase().split(':')[0]
   if (host === 'www.mosheschwartzberg.com') {
     return res.redirect(301, `${canonicalOrigin}${req.originalUrl}`)
+  }
+
+  const lowerPath = req.path.toLowerCase()
+  if (shouldNoIndexAsset(lowerPath)) {
+    res.setHeader('X-Robots-Tag', 'noindex')
+  }
+
+  if (obsoleteAssetPaths.has(lowerPath)) {
+    return res.status(410).type('text/plain').send('Gone')
   }
 
   const pathname = req.path.replace(/\/$/, '').toLowerCase() || '/'
