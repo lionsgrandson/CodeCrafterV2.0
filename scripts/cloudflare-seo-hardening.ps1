@@ -14,6 +14,27 @@ function Fail([string]$Message) {
   exit 1
 }
 
+function Read-CloudflareToken {
+  if ($env:CLOUDFLARE_API_TOKEN) {
+    return
+  }
+
+  Write-Host 'A Cloudflare API token is required.' -ForegroundColor Yellow
+  Write-Host 'Use a scoped token with Zone:Read + Transform Rules:Edit. Add Cache Purge permission only if you want the purge step.'
+  $secureToken = Read-Host 'Paste Cloudflare API token (input is hidden)' -AsSecureString
+  $pointer = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($secureToken)
+  try {
+    $plainToken = [Runtime.InteropServices.Marshal]::PtrToStringBSTR($pointer)
+    if (-not $plainToken) {
+      Fail 'No Cloudflare API token was supplied.'
+    }
+    $env:CLOUDFLARE_API_TOKEN = $plainToken
+  }
+  finally {
+    [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($pointer)
+  }
+}
+
 function Invoke-CloudflareApi {
   param(
     [Parameter(Mandatory = $true)][ValidateSet('GET', 'POST', 'PATCH', 'PUT', 'DELETE')][string]$Method,
@@ -41,9 +62,7 @@ function Invoke-CloudflareApi {
   }
 }
 
-if (-not $env:CLOUDFLARE_API_TOKEN) {
-  Fail 'CLOUDFLARE_API_TOKEN is not set. Create a scoped token with Zone Read + Transform Rules Write. Add Cache Purge only if you want this script to purge cache.'
-}
+Read-CloudflareToken
 
 Write-Host "[1/5] Resolving Cloudflare zone for $Domain..."
 $zoneId = $env:CLOUDFLARE_ZONE_ID
