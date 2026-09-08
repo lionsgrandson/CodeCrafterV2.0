@@ -23,14 +23,22 @@ ErrorDocument 404 /404.html
   # Friendly status page URLs.
   RewriteRule ^(200|401|403|404)/?$ /$1.html [L]
 
-  # Legacy indexed URLs.
-  RewriteRule ^blog/free-domains-new-era-internet/?$ /#services [R=301,L,NE,NC]
-  RewriteRule ^blog/perfect-lighthouse/?$ /#services [R=301,L,NE,NC]
-  RewriteRule ^blog/backend-code-horror/?$ /#services [R=301,L,NE,NC]
-  RewriteRule ^blog/5-website-must-have/?$ /#services [R=301,L,NE,NC]
-  RewriteRule ^portfolio/idf-tech-maintenance-corps-v2/?$ /#portfolio [R=301,L,NE,NC]
-  RewriteRule ^portfolio/Rainbow-asd/?$ /#portfolio [R=301,L,NE,NC]
-  RewriteRule ^portfolio/nexa-automations-glass-ui/?$ /#services [R=301,L,NE,NC]
+  # Obsolete non-page URLs previously seen in search results.
+  RewriteRule ^favicon\.svg$ - [R=410,L]
+  RewriteRule ^manifest\.json$ - [R=410,L]
+
+  # Legacy indexed URLs. Keep these aligned with server.ts and public/_redirects.
+  RewriteRule ^blog\.html$ /websites/ [R=301,L,NE,NC]
+  RewriteRule ^index\.html$ / [R=301,L,NE,NC]
+  RewriteRule ^portfolio/index\.html$ /portfolio/ [R=301,L,NE,NC]
+  RewriteRule ^about/index\.html$ /about/ [R=301,L,NE,NC]
+  RewriteRule ^blog/free-domains-new-era-internet/?$ /websites/ [R=301,L,NE,NC]
+  RewriteRule ^blog/perfect-lighthouse/?$ /websites/ [R=301,L,NE,NC]
+  RewriteRule ^blog/backend-code-horror/?$ /custom-software/ [R=301,L,NE,NC]
+  RewriteRule ^blog/5-website-must-have/?$ /websites/ [R=301,L,NE,NC]
+  RewriteRule ^portfolio/idf-tech-maintenance-corps-v2/?$ /portfolio/ [R=301,L,NE,NC]
+  RewriteRule ^portfolio/rainbow-asd/?$ /portfolio/ [R=301,L,NE,NC]
+  RewriteRule ^portfolio/nexa-automations-glass-ui/?$ /automation/ [R=301,L,NE,NC]
 
   # Keep real files and directories untouched.
   RewriteCond %{REQUEST_FILENAME} -f [OR]
@@ -48,15 +56,21 @@ ErrorDocument 404 /404.html
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
   Header always set Content-Security-Policy "upgrade-insecure-requests"
 
+  # Crawlers may fetch these resources to render the site, but they should never
+  # become standalone search results.
+  <FilesMatch "\.(?:css|js|mjs|map|json|webmanifest)$">
+    Header always set X-Robots-Tag "noindex"
+  </FilesMatch>
+
   <FilesMatch "\.(?:css|js|mjs|png|jpg|jpeg|gif|svg|ico|webp|avif|woff2?)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
 
-  <FilesMatch "\.(?:html|txt)$">
+  <FilesMatch "\.(?:html|txt|xml)$">
     Header set Cache-Control "public, max-age=300"
   </FilesMatch>
 </IfModule>
 
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json image/svg+xml
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json image/svg+xml application/xml
 </IfModule>
