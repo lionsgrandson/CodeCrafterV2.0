@@ -16,14 +16,26 @@ const maxContactAttempts = 5
 const legacyRedirects = new Map<string, string>([
   ['/blog.html', '/websites/'],
   ['/index.html', '/'],
+  ['/portfolio/index.html', '/portfolio/'],
+  ['/about/index.html', '/about/'],
   ['/blog/free-domains-new-era-internet', '/websites/'],
   ['/blog/perfect-lighthouse', '/websites/'],
   ['/blog/backend-code-horror', '/custom-software/'],
   ['/blog/5-website-must-have', '/websites/'],
   ['/portfolio/idf-tech-maintenance-corps-v2', '/portfolio/'],
-  ['/portfolio/rainbow-asd', '/portfolio/'],
   ['/portfolio/nexa-automations-glass-ui', '/automation/'],
 ])
+
+const obsoleteAssetPaths = new Set(['/favicon.svg', '/manifest.json'])
+const nonIndexableAssetExtensions = ['.js', '.mjs', '.css', '.map', '.json', '.webmanifest']
+
+function shouldNoIndexAsset(pathname: string) {
+  const normalized = pathname.toLowerCase()
+  return (
+    normalized === '/favicon.svg' ||
+    nonIndexableAssetExtensions.some((extension) => normalized.endsWith(extension))
+  )
+}
 
 app.use(express.json({ limit: '32kb' }))
 
@@ -33,7 +45,23 @@ app.use((req, res, next) => {
     return res.redirect(301, `${canonicalOrigin}${req.originalUrl}`)
   }
 
-  const pathname = req.path.replace(/\/$/, '').toLowerCase() || '/'
+  const lowerPath = req.path.toLowerCase()
+  if (shouldNoIndexAsset(lowerPath)) {
+    res.setHeader('X-Robots-Tag', 'noindex')
+  }
+
+  if (obsoleteAssetPaths.has(lowerPath)) {
+    return res.status(410).type('text/plain').send('Gone')
+  }
+
+  const rawPath = req.path.replace(/\/$/, '') || '/'
+  const pathname = rawPath.toLowerCase()
+
+  // Preserve the historical Rainbow URL while canonicalizing old mixed-case links.
+  if (pathname === '/portfolio/rainbow-asd' && rawPath !== '/portfolio/rainbow-asd') {
+    return res.redirect(301, '/portfolio/rainbow-asd/')
+  }
+
   const redirectTarget = legacyRedirects.get(pathname)
   if (redirectTarget) {
     return res.redirect(301, redirectTarget)

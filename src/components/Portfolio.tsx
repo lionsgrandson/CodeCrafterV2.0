@@ -106,8 +106,10 @@ export function Portfolio({
     const externalLink = sourceLink || projectMedia[idx]?.src
     const caseStudyLink = ({
       1: localizePath('portfolio/yuval-kadosh', lang),
+      2: localizePath('portfolio/rainbow-asd', lang),
       4: localizePath('portfolio/sumsup', lang),
       8: localizePath('portfolio/creative-intelligence', lang),
+      9: localizePath('portfolio/shimon-photography', lang),
       10: localizePath('portfolio/coderecovery', lang),
     } as Record<number, string>)[idx]
 
