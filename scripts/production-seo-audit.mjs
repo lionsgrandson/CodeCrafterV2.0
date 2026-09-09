@@ -126,6 +126,8 @@ if (rainbow.response.ok && getCanonical(rainbow.body) === `${baseUrl}/portfolio/
 }
 
 const redirectChecks = new Map([
+  ['/portfolio/Rainbow-asd', '/portfolio/rainbow-asd/'],
+  ['/portfolio/Rainbow-asd/', '/portfolio/rainbow-asd/'],
   ['/blog.html', '/websites/'],
   ['/portfolio/index.html', '/portfolio/'],
   ['/about/index.html', '/about/'],
