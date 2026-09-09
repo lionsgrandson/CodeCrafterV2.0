@@ -2,6 +2,8 @@
 
 Production domain: `https://mosheschwartzberg.com/`
 
+Production hosting: Cloudflare only. DigitalOcean is no longer part of the production path for this site.
+
 ## One-command Windows workflow
 
 Run from the repository root:
@@ -19,7 +21,7 @@ The CMD file:
 5. Applies the scoped Cloudflare response-header rule for non-page assets.
 6. Purges Cloudflare cache when the API token permits it.
 7. Runs the live production SEO audit.
-8. Copies `docs/CODEX-SEO-CONSOLE-PROMPT.md` to the Windows clipboard and opens Search Console, Cloudflare, and DigitalOcean.
+8. Copies `docs/CODEX-SEO-CONSOLE-PROMPT.md` to the Windows clipboard and opens Search Console and Cloudflare.
 
 ## Local validation
 
@@ -53,9 +55,23 @@ The audit checks:
 - the revived `/portfolio/rainbow-asd/` URL
 - `www` to canonical-host redirect
 
-Do not remove a failing check only to get a green run. Fix the deployment or configuration that caused the failure.
+Do not remove a failing check only to get a green run. Fix the Cloudflare deployment, route, edge rule, or repository configuration that caused the failure.
 
-## Cloudflare
+## Cloudflare hosting
+
+Cloudflare is the sole production hosting/provider path for `mosheschwartzberg.com`.
+
+When validating a deployment:
+
+1. Identify the current Cloudflare hosting product/project actually serving the domain. It may be Pages or Workers; verify instead of assuming.
+2. Confirm production is deploying the intended GitHub `main` branch or current production source.
+3. Confirm the latest expected main commit is live.
+4. Confirm the production build serves the generated `dist` output.
+5. Confirm nested prerendered routes resolve correctly.
+6. Confirm a random nonexistent URL returns a real HTTP 404 instead of a soft-404 SPA response.
+7. Do not move the site to a different Cloudflare hosting product just for SEO if the existing setup is working.
+
+## Cloudflare edge SEO rule
 
 Run directly when needed:
 
@@ -91,3 +107,4 @@ After a meaningful SEO deployment:
 - Do not create location pages for cities without real differentiated service information.
 - Do not publish invented rankings, conversion data, testimonials, addresses, or client results.
 - Keep Hebrew and English canonical/hreflang pairs aligned.
+- Do not reintroduce DigitalOcean deployment steps for this site unless the hosting architecture changes again intentionally.
