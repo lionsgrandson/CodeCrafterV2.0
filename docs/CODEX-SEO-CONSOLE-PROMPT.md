@@ -3,8 +3,11 @@ You are operating my Windows desktop and browser to finish the production SEO ro
 Repository: https://github.com/lionsgrandson/CodeCrafterV2.0
 Local repository is normally under my development folders. Find it if needed.
 
+IMPORTANT HOSTING FACT
+mosheschwartzberg.com is hosted only on Cloudflare now. Do not look for, configure, deploy, or troubleshoot this site on DigitalOcean. If you encounter an old DigitalOcean reference in local notes/history, treat it as obsolete unless I explicitly tell you otherwise.
+
 GOAL
-Finish everything that requires account-level/browser access after the repository SEO hardening has been merged to main. Work through GitHub/local build, DigitalOcean App Platform, Cloudflare, and Google Search Console. Do not make unrelated visual/content changes. Do not weaken security or email/DNS settings.
+Finish everything that requires account-level/browser access after the repository SEO hardening has been merged to main. Work through GitHub/local build, Cloudflare hosting, Cloudflare DNS/edge rules, and Google Search Console. Do not make unrelated visual/content changes. Do not weaken security or email/DNS settings.
 
 IMPORTANT SAFETY / DO-NOT-DO RULES
 1. Never delete or alter MX, SPF, DKIM, DMARC, mail, Resend, or unrelated DNS records.
@@ -35,17 +38,16 @@ PHASE 1 — LOCAL REPOSITORY AND BUILD
    npm run build
 6. The build must pass the existing prerender SEO validation and the new SEO infrastructure validation. If it fails, diagnose and fix the actual repository issue, run the checks again, commit the fix to main, and push it. Do not bypass the checks.
 
-PHASE 2 — DIGITALOCEAN APP PLATFORM
-1. Open DigitalOcean App Platform and identify the production app/component that serves mosheschwartzberg.com.
-2. Confirm it is connected to lionsgrandson/CodeCrafterV2.0 main and is deploying the latest main commit. If auto-deploy is enabled and appropriate, keep it enabled.
-3. Inspect the production static-site settings/spec. The intended configuration is:
-   - build command: npm run build (or an equivalent command that actually creates the current dist output)
-   - output directory: dist
-   - index document: index.html
-   - custom error document: 404.html
-   - NOT a catch-all document that serves index.html or 200.html for every unknown path
-4. If a catch-all is currently configured for this main site, replace it with a proper 404 error document. Do not break the separate /amitStarProject application behavior if that path is handled separately.
-5. Trigger/redeploy the latest main commit if it is not already live.
+PHASE 2 — CLOUDFLARE HOSTING AND DEPLOYMENT
+1. Open Cloudflare and identify the production Cloudflare hosting product/project serving mosheschwartzberg.com. It may be Cloudflare Pages or Workers; verify the actual current setup instead of guessing.
+2. Confirm the production project is connected to lionsgrandson/CodeCrafterV2.0 and uses main as the production branch, or otherwise verify the currently configured production deployment source.
+3. Confirm the latest main commit is the version deployed to production. If auto-deploy from main is enabled and appropriate, keep it enabled. If the latest main commit is not live, trigger/redeploy it using the existing Cloudflare hosting workflow.
+4. Verify the build/output configuration is compatible with the repo's prerendered production output:
+   - build command must actually run the current production build, normally npm run build
+   - production output must serve the generated dist content
+   - prerendered nested routes must resolve to their generated HTML
+   - unknown URLs must return a real HTTP 404, never a generic index.html/200 catch-all
+5. Do not replace the current production architecture with a new hosting product merely because both Pages and Workers exist. Keep the existing Cloudflare hosting product unless there is a verified problem.
 6. Verify in the browser/devtools or terminal:
    - https://mosheschwartzberg.com/ returns 200
    - https://mosheschwartzberg.com/websites/ returns 200
@@ -54,11 +56,11 @@ PHASE 2 — DIGITALOCEAN APP PLATFORM
    - https://mosheschwartzberg.com/portfolio/shimon-photography/ returns 200
    - a random nonexistent URL such as /seo-test-this-must-not-exist-92741 returns a real 404, never 200
    - /404.html contains noindex
-7. Do not use a provider-level redirect that conflicts with the repository’s canonical URLs or revives a soft-404 problem.
+7. Do not create a provider-level redirect or route that conflicts with the repository's canonical URLs or revives a soft-404 problem.
 
-PHASE 3 — CLOUDFLARE
-1. Open Cloudflare for mosheschwartzberg.com.
-2. Verify the production A/AAAA/CNAME web records for the root domain and www are proxied through Cloudflare (orange cloud). Do not touch mail-related DNS records.
+PHASE 3 — CLOUDFLARE DNS AND EDGE RULES
+1. Stay in Cloudflare for mosheschwartzberg.com.
+2. Verify the production DNS/custom-domain setup for the root domain and www points to the actual Cloudflare-hosted production project. Do not touch mail-related DNS records.
 3. From the repository, run SEO-FULL-DEPLOY.cmd. If it asks for a Cloudflare API token and none exists:
    - create a scoped token limited to mosheschwartzberg.com
    - allow Zone Read
@@ -80,7 +82,7 @@ PHASE 4 — RUN THE LIVE AUDIT
 From the repo run:
    npm run seo:audit:production
 
-Treat failures as real issues to investigate. Fix provider or repo configuration and rerun until the critical failures are green. Warnings may be reviewed individually; do not silence or delete audit checks merely to get green output.
+Treat failures as real issues to investigate. Fix Cloudflare hosting, route, header, or repository configuration and rerun until the critical failures are green. Warnings may be reviewed individually; do not silence or delete audit checks merely to get green output.
 
 PHASE 5 — GOOGLE SEARCH CONSOLE
 1. Open Google Search Console for mosheschwartzberg.com. Prefer/use the Domain property if it is already verified; otherwise use the existing canonical HTTPS property without creating duplicate properties unnecessarily.
@@ -141,7 +143,8 @@ PHASE 6 — SEARCH CLEANUP AND VALIDATION
 PHASE 7 — FINAL REPORT
 When finished, give me one concise report containing:
 - latest GitHub main commit SHA you verified/deployed
-- DigitalOcean deployment status and exact static-site/error-document settings
+- Cloudflare hosting product/project and production deployment status
+- whether production is connected to main and whether the latest main commit is live
 - whether a random missing URL returns 404
 - Cloudflare SEO transform rule status
 - one example hashed JS URL and its X-Robots-Tag response

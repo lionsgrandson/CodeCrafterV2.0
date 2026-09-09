@@ -23,13 +23,17 @@ CodeCrafter V2.0 is about moving beyond a basic template and into a refined digi
 - Offer a faster, more modern development workflow
 - Help you present your capabilities clearly to clients, employers, and collaborators
 
+## Production hosting
+
+`mosheschwartzberg.com` is hosted on Cloudflare. DigitalOcean is no longer part of the production hosting path for this site.
+
 ## Project structure
 
 - `src/main.tsx` — application entry point
 - `src/App.tsx` — top-level app layout
 - `src/components/` — reusable page sections like Hero, Services, Portfolio, and Footer
 - `src/index.css` — global styling
-- `amitStarProject/` — separate static Vite/React art-gallery project with Firebase/Firestore backend support, built into `dist/amitStarProject/` for DigitalOcean Static Site hosting
+- `amitStarProject/` — separate static Vite/React art-gallery project with Firebase/Firestore backend support, built into `dist/amitStarProject/` as part of the Cloudflare-hosted production bundle
 
 ## Run locally
 
@@ -53,4 +57,4 @@ Run:
 
 `npm run build`
 
-Then serve the `dist` folder with any static hosting provider.
+The production build is served through the current Cloudflare hosting configuration.

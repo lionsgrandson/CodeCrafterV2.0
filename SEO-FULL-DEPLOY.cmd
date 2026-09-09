@@ -56,8 +56,8 @@ call npm run seo:audit:production
 if errorlevel 1 (
   echo.
   echo [WARNING] The live audit is not fully green yet.
-  echo This commonly means the latest GitHub commit has not been deployed by DigitalOcean yet,
-  echo or a provider-side route/header still needs to be corrected.
+  echo This commonly means the latest GitHub commit has not finished deploying on Cloudflare,
+  echo or a Cloudflare hosting/route/header setting still needs to be corrected.
   echo Use the Codex desktop prompt copied to your clipboard in the next step, then run this CMD again.
 ) else (
   echo [OK] Live production SEO audit passed.
@@ -74,7 +74,6 @@ if exist "docs\CODEX-SEO-CONSOLE-PROMPT.md" (
 
 start "" "https://search.google.com/search-console/"
 start "" "https://dash.cloudflare.com/"
-start "" "https://cloud.digitalocean.com/apps"
 
 echo.
 echo ============================================================
@@ -82,7 +81,7 @@ echo   AUTOMATED SEO WORK COMPLETE
 echo ============================================================
 echo.
 echo Next: paste the clipboard prompt into Codex desktop so it can verify
- echo DigitalOcean, Cloudflare and Google Search Console in the browser.
+ echo Cloudflare hosting, Cloudflare edge settings and Google Search Console.
 echo Then rerun SEO-FULL-DEPLOY.cmd to confirm the live audit is green.
 echo.
 pause
