@@ -4,6 +4,20 @@ Production domain: `https://mosheschwartzberg.com/`
 
 Production hosting: Cloudflare only. DigitalOcean is no longer part of the production path for this site.
 
+## Routed Worker crawler guardrail
+
+Both `mosheschwartzberg.com/*` and `www.mosheschwartzberg.com/*` pass through the separate Cloudflare Worker `moshe-visitor-location-tracker` before Cloudflare Pages. On 2026-09-17, that Worker was confirmed as the source of the Search Console `403 / ACCESS_FORBIDDEN` incident: version `1a9f9e15-9328-4beb-9f99-cefca383b157` had the plain-text binding `BLOCK_BOTS=true` and returned `403 Blocked automated request.` before Pages received the request.
+
+The recovery version `4f4342c9-4061-48ac-b3d1-6c0afb6486b4` changed only that binding to `BLOCK_BOTS=false`, preserving the Worker code, secret, D1 binding, routes, tracking settings, Cloudflare WAF, Browser Integrity Check, and AI crawler policy. Do not re-enable a user-agent or request-shape bot gate on the public site. Spoofable identification is not a safe access-control boundary and can block legitimate crawlers.
+
+After any change to this Worker or its routes:
+
+1. Confirm `BLOCK_BOTS` remains `false`.
+2. Run `npm run seo:audit:production`.
+3. Verify normal browser, desktop Googlebot, and smartphone Googlebot requests all receive public HTML without a challenge, `401`, `403`, or HTML `noindex`.
+4. Verify `/index.html` still returns a permanent redirect to `/`.
+5. Confirm genuine missing routes still return `404` and protected dashboard routes still require their intended authentication.
+
 ## One-command Windows workflow
 
 Run from the repository root:
@@ -54,6 +68,10 @@ The audit checks:
 - topical legacy redirects
 - the revived `/portfolio/rainbow-asd/` URL
 - `www` to canonical-host redirect
+- browser, desktop Googlebot, and smartphone Googlebot access to representative public routes
+- initial status, redirect, final status, `CF-Ray`, cache status, and `X-Robots-Tag` for crawler checks
+- Cloudflare challenge/interstitial markers and the historical `Blocked automated request` body
+- `/index.html` as a permanent redirect rather than a second indexable homepage
 
 Do not remove a failing check only to get a green run. Fix the Cloudflare deployment, route, edge rule, or repository configuration that caused the failure.
 
