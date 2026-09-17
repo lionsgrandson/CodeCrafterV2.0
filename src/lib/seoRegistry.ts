@@ -10,6 +10,8 @@ import { caseStudyExtrasByLanguage } from './seoCaseStudyExtras'
 import { extraPagesByLanguage } from './seoExtraPages'
 import { factsPagesByLanguage } from './seoFactsPages'
 import { locationHubByLanguage } from './seoLocationHub'
+import { systemsPagesByLanguage } from './seoSystemsPages'
+import { enhanceSeoPage } from './seoEnhancements'
 
 export { localizePath, serviceLabels, serviceSlugs, type Language, type SeoPage }
 
@@ -50,8 +52,8 @@ function withSearchConsoleMetadata(page: SeoPage, lang: Language): SeoPage {
 }
 
 export const pagesByLanguage: Record<Language, SeoPage[]> = {
-  he: [...corePagesByLanguage.he, ...caseStudyExtrasByLanguage.he, ...extraPagesByLanguage.he, ...locationHubByLanguage.he, ...factsPagesByLanguage.he].map((page) => withSearchConsoleMetadata(page, 'he')),
-  en: [...corePagesByLanguage.en, ...caseStudyExtrasByLanguage.en, ...extraPagesByLanguage.en, ...locationHubByLanguage.en, ...factsPagesByLanguage.en].map((page) => withSearchConsoleMetadata(page, 'en')),
+  he: [...corePagesByLanguage.he, ...caseStudyExtrasByLanguage.he, ...extraPagesByLanguage.he, ...systemsPagesByLanguage.he, ...locationHubByLanguage.he, ...factsPagesByLanguage.he].map((page) => enhanceSeoPage(withSearchConsoleMetadata(page, 'he'), 'he')),
+  en: [...corePagesByLanguage.en, ...caseStudyExtrasByLanguage.en, ...extraPagesByLanguage.en, ...systemsPagesByLanguage.en, ...locationHubByLanguage.en, ...factsPagesByLanguage.en].map((page) => enhanceSeoPage(withSearchConsoleMetadata(page, 'en'), 'en')),
 }
 
 export function getSeoPage(pathname: string, lang: Language) {

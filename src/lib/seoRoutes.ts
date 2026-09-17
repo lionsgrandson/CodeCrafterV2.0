@@ -9,6 +9,10 @@ export const serviceSlugs = [
   'cms-development',
   'integrations',
   'business-bots',
+  'erp-development',
+  'inventory-systems',
+  'business-portals',
+  'web-app-development',
 ] as const
 
 export const serviceLabels: Record<Language, Record<string, string>> = {
@@ -21,6 +25,10 @@ export const serviceLabels: Record<Language, Record<string, string>> = {
     'cms-development': 'פיתוח מערכת CMS בהתאמה לעסק',
     integrations: 'אינטגרציות בין מערכות לעסקים',
     'business-bots': 'פיתוח בוטים לעסקים',
+    'erp-development': 'פיתוח מערכת ERP לעסק',
+    'inventory-systems': 'מערכות מלאי ומחסנים',
+    'business-portals': 'פורטלים עסקיים',
+    'web-app-development': 'פיתוח Web Apps',
   },
   en: {
     websites: 'Business websites',
@@ -31,6 +39,10 @@ export const serviceLabels: Record<Language, Record<string, string>> = {
     'cms-development': 'Custom CMS development',
     integrations: 'Business systems integration',
     'business-bots': 'Business bot development',
+    'erp-development': 'Custom ERP development',
+    'inventory-systems': 'Inventory and warehouse systems',
+    'business-portals': 'Business portals',
+    'web-app-development': 'Web app development',
   },
 }
 
