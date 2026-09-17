@@ -98,6 +98,45 @@ for (const url of sitemapUrls) {
 const titles = [...documents.values()].map((html) => capture(html, /<title[^>]*>([\s\S]*?)<\/title>/i))
 if (new Set(titles).size !== titles.length) fail('indexable routes contain duplicate titles')
 
+for (const requiredPath of [
+  '/erp-development/', '/en/erp-development/',
+  '/inventory-systems/', '/en/inventory-systems/',
+  '/business-portals/', '/en/business-portals/',
+  '/web-app-development/', '/en/web-app-development/',
+  '/locations/north/', '/en/locations/north/',
+  '/locations/center/', '/en/locations/center/',
+]) {
+  if (!documents.has(requiredPath)) fail(`required commercial route is missing from sitemap and prerender output: ${requiredPath}`)
+}
+
+const erpPairs = [
+  ['/erp-development/', '/en/erp-development/'],
+  ['/inventory-systems/', '/en/inventory-systems/'],
+  ['/business-portals/', '/en/business-portals/'],
+  ['/web-app-development/', '/en/web-app-development/'],
+]
+for (const [hebrewPath, englishPath] of erpPairs) {
+  const hebrew = documents.get(hebrewPath) || ''
+  const english = documents.get(englishPath) || ''
+  if (!new RegExp(`<link\\s+rel=["']alternate["'][^>]*hreflang=["']en["'][^>]*href=["']${origin}${englishPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["']`, 'i').test(hebrew)) fail(`${hebrewPath} does not reciprocate to ${englishPath}`)
+  if (!new RegExp(`<link\\s+rel=["']alternate["'][^>]*hreflang=["']he["'][^>]*href=["']${origin}${hebrewPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["']`, 'i').test(english)) fail(`${englishPath} does not reciprocate to ${hebrewPath}`)
+}
+
+const erpHtml = documents.get('/erp-development/') || ''
+if (!/"@type":"Service"/.test(erpHtml) || !/"@type":"FAQPage"/.test(erpHtml)) fail('ERP page schema must include visible Service and FAQPage entities')
+for (const requiredTerm of ['מקור אמת יחיד', 'ERP לעומת CRM', 'מתי לא נכון לבנות ERP']) {
+  if (!erpHtml.includes(requiredTerm)) fail(`ERP prerendered content is missing: ${requiredTerm}`)
+}
+
+const ownerH1Paths = ['/erp-development/', '/inventory-systems/', '/crm-development/', '/custom-software/']
+const ownerH1s = ownerH1Paths.map((path) => capture(documents.get(path) || '', /<h1[^>]*>([\s\S]*?)<\/h1>/i))
+if (new Set(ownerH1s).size !== ownerH1s.length) fail('ERP, inventory, CRM, and custom software must have distinct H1 ownership')
+
+for (const targetPath of ['/erp-development/', '/inventory-systems/', '/business-portals/', '/web-app-development/']) {
+  const inbound = [...documents.entries()].filter(([sourcePath, html]) => sourcePath !== targetPath && new RegExp(`href=["']${targetPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["']`, 'i').test(html))
+  if (inbound.length < 2) fail(`${targetPath} needs at least two prerendered inbound links, found ${inbound.length}`)
+}
+
 const home = documents.get('/')
 if (!/mailto:moshe@mosheschwartzberg\.com/i.test(home ?? '')) fail('homepage/footer does not expose the CodeCrafter mailto link')
 if (!/tel:\+972587076077/i.test(home ?? '')) fail('homepage/footer does not expose the CodeCrafter telephone link')

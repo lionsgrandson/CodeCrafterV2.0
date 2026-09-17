@@ -10,10 +10,32 @@ Services:
 - Technical SEO, local SEO, and Google Business Profile optimization
 - Workflow automation and business process automation
 - Custom CRM, lead management, project, finance, and internal operating systems
+- Modular custom ERP and ERP extension or integration work
+- Inventory and warehouse systems with traceable stock movements
+- Customer, supplier, employee, and partner portals
+- Browser-based Web Apps, dashboards, and internal tools
 - Website maintenance, launch support, and ongoing technical guidance
+
+Commercial service pages:
+- https://mosheschwartzberg.com/websites/
+- https://mosheschwartzberg.com/custom-software/
+- https://mosheschwartzberg.com/crm-development/
+- https://mosheschwartzberg.com/erp-development/
+- https://mosheschwartzberg.com/inventory-systems/
+- https://mosheschwartzberg.com/business-portals/
+- https://mosheschwartzberg.com/web-app-development/
+- https://mosheschwartzberg.com/app-development/
+- https://mosheschwartzberg.com/cms-development/
+- https://mosheschwartzberg.com/automation/
+- https://mosheschwartzberg.com/integrations/
+
+ERP scope note:
+CodeCrafter builds modular business management systems and verified extensions or integrations. It does not claim to sell Oracle, SAP, or Priority, or to replace certified accounting, payroll, tax, manufacturing MRP, or regulatory products without an explicitly verified project scope.
 
 Service areas:
 - Israel
+- Northern Israel, delivered remotely with Karmiel meetings by arrangement
+- Central Israel, delivered remotely with Tel Aviv meetings by arrangement
 - United States
 - Remote and international clients
 
