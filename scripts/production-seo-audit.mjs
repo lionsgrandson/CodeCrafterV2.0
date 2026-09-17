@@ -43,6 +43,65 @@ function getTitle(html) {
 
 console.log(`Production SEO audit: ${baseUrl}\n`)
 
+const crawlerAgents = new Map([
+  ['browser', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/140.0.0.0 Safari/537.36'],
+  ['googlebot-desktop', 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'],
+  ['googlebot-smartphone', 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 Chrome/140.0.0.0 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'],
+])
+
+const crawlerRoutes = [
+  '/',
+  '/websites/',
+  '/crm-development/',
+  '/app-development/',
+  '/custom-software/',
+  '/automation/',
+  '/erp-development/',
+  '/inventory-systems/',
+  '/business-portals/',
+  '/web-app-development/',
+  '/en/',
+  '/pricing/',
+  '/index.html',
+]
+
+function challengeDetected(body) {
+  return /blocked automated request|cf-chl-|challenge-platform|attention required|just a moment\.\.\./i.test(body)
+}
+
+for (const [agentName, userAgent] of crawlerAgents) {
+  for (const route of crawlerRoutes) {
+    const initial = await request(route, {
+      redirect: 'manual',
+      headers: { 'user-agent': userAgent },
+    })
+    const location = initial.response.headers.get('location') || ''
+    const initialStatus = initial.response.status
+    const isIndexAlias = route === '/index.html'
+    const expectedInitial = isIndexAlias ? [301, 308].includes(initialStatus) : initialStatus === 200
+    if (!expectedInitial) {
+      fail(`crawler access ${agentName} ${route}: initial=${initialStatus} location=${location || '-'} cf-ray=${initial.response.headers.get('cf-ray') || '-'}`)
+      continue
+    }
+
+    const final = isIndexAlias
+      ? await request(new URL(location, baseUrl).href, { headers: { 'user-agent': userAgent } })
+      : initial
+    const contentType = final.response.headers.get('content-type') || ''
+    const robotsHeader = final.response.headers.get('x-robots-tag') || ''
+    const inaccessible = [401, 403].includes(final.response.status)
+      || final.response.status !== 200
+      || !/text\/html/i.test(contentType)
+      || challengeDetected(final.body)
+      || /noindex|none/i.test(robotsHeader)
+      || !/<(?:html|main)\b/i.test(final.body)
+
+    const trace = `initial=${initialStatus} redirect=${location || '-'} final=${final.response.status} cf-ray=${final.response.headers.get('cf-ray') || '-'} cf-cache=${final.response.headers.get('cf-cache-status') || '-'} x-robots=${robotsHeader || '-'}`
+    if (inaccessible) fail(`crawler access ${agentName} ${route}: ${trace}`)
+    else pass(`crawler access ${agentName} ${route}: ${trace}`)
+  }
+}
+
 const robots = await request('/robots.txt')
 if (robots.response.ok) pass('robots.txt returns 200')
 else fail(`robots.txt returned ${robots.response.status}`)

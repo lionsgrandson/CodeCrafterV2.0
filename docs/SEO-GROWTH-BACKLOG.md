@@ -39,6 +39,35 @@ Suggested Hebrew topics based on commercial intent around CodeCrafter services:
 - React, WordPress או Wix לעסק: איך בוחרים לפי הצורך ולא לפי טרנד?
 - מה צריך לבדוק לפני שמחברים WhatsApp, CRM, סליקה או מערכת דיוור?
 - מה בודקים לפני העלאת אתר או מערכת לפרודקשן?
+- מה זה ERP ואילו תהליכים הוא מחבר?
+- מה ההבדל בין ERP ל-CRM?
+- ERP מול מערכת ניהול מותאמת: איך מגדירים גבולות?
+- ERP מול Priority או SAP: מתי מרחיבים מערכת קיימת במקום להחליף?
+- ERP מול מערכת מלאי ומחסנים
+- מתי עסק קטן צריך ERP ומתי מערכת ממוקדת מספיקה?
+- איך מטמיעים ERP בשלבים בלי לעצור את העבודה?
+- ERP בענן מול מערכת מקומית
+- איך מחברים CRM, אתר או חנות ל-ERP?
+- איך מתכננים מיגרציית נתונים למערכת ERP?
+- כמה עולה מערכת ERP מותאמת ומה משפיע על ההיקף?
+- מהו מקור אמת יחיד ואיך מונעים כפילויות?
+- Web App מול אפליקציית מובייל
+- איך לבחור מערכת מלאי לפי תנועות ולא רק יתרה?
+- איך מתכננים הרשאות ותיעוד שינויים במערכת עסקית?
+
+These are supporting informational topics, not an instruction to create a separate commercial page for every phrase. Validate demand and Search Console ownership before publishing. ERP comparisons must remain neutral, factual, and free of unsupported product or implementation claims.
+
+## September 2026 commercial ownership map
+
+- `/erp-development/` owns integrated multi-department ERP and modular business-management intent.
+- `/inventory-systems/` owns stock, warehouse, location, and movement-history intent.
+- `/business-portals/` owns authenticated customer, supplier, employee, and partner self-service intent.
+- `/web-app-development/` owns interactive browser-software intent.
+- `/custom-software/` retains broad bespoke-software and single-workflow system intent.
+- `/crm-development/` retains lead, customer, sales, and service relationship intent.
+- Project-management and customer-service systems remain covered as modules within custom software, CRM, and ERP until evidence supports a genuinely distinct page.
+- Order management, procurement, suppliers, and reporting remain modules rather than thin standalone pages.
+- `/locations/north/` and `/locations/center/` are regional service pages with explicit delivery modes and no branch claims. Do not multiply them into near-duplicate city pages.
 
 English equivalents should be written for genuine English-language search intent, not mechanically translated only to create more URLs.
 

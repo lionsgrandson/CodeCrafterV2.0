@@ -61,6 +61,8 @@ export const pricingRows: Record<Language, PricingRow[]> = {
 
 export const locationLinks: Record<Language, { slug: string; label: string; mode: string }[]> = {
   he: [
+    { slug: 'locations/north', label: 'צפון ישראל', mode: 'עבודה מרחוק ופגישות בכרמיאל לפי תיאום' },
+    { slug: 'locations/center', label: 'מרכז ישראל', mode: 'עבודה מרחוק ופגישות בתל אביב לפי תיאום' },
     { slug: 'locations/tel-aviv', label: 'תל אביב', mode: 'פגישות פנים אל פנים' },
     { slug: 'locations/haifa', label: 'חיפה', mode: 'עבודה מרחוק' },
     { slug: 'locations/jerusalem', label: 'ירושלים', mode: 'פגישות פנים אל פנים ועבודה מרחוק' },
@@ -68,6 +70,8 @@ export const locationLinks: Record<Language, { slug: string; label: string; mode
     { slug: 'locations/karmiel', label: 'כרמיאל', mode: 'פגישות פנים אל פנים ועבודה מרחוק' },
   ],
   en: [
+    { slug: 'locations/north', label: 'Northern Israel', mode: 'Remote delivery and Karmiel meetings by arrangement' },
+    { slug: 'locations/center', label: 'Central Israel', mode: 'Remote delivery and Tel Aviv meetings by arrangement' },
     { slug: 'locations/tel-aviv', label: 'Tel Aviv', mode: 'In person meetings' },
     { slug: 'locations/haifa', label: 'Haifa', mode: 'Remote delivery' },
     { slug: 'locations/jerusalem', label: 'Jerusalem', mode: 'In person and remote' },

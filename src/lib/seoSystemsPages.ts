@@ -1,0 +1,281 @@
+import type { Language, SeoPage } from './seoPages'
+
+const hePages: SeoPage[] = [
+  {
+    kind: 'service',
+    slug: 'erp-development',
+    title: 'פיתוח מערכת ERP בהתאמה לעסק | CodeCrafter',
+    description: 'פיתוח מערכת ERP ומודולים לניהול עסקי משולב: לקוחות, הזמנות, רכש, מלאי, פרויקטים, הרשאות, דוחות ואינטגרציות סביב מקור מידע משותף.',
+    eyebrow: 'מערכות ניהול משולבות',
+    h1: 'פיתוח מערכת ERP ומערכת ניהול משאבים לעסק',
+    intro: [
+      'ERP היא מערכת שמחברת תהליכים עסקיים, משתמשים ונתונים בסביבה אחת. במקום להעתיק מידע בין גיליונות, תיבות דוא״ל וכלים שאינם מסונכרנים, מגדירים רשומות משותפות וזרימות עבודה שעוברות בין מכירות, הזמנות, רכש, מלאי, פרויקטים ושירות.',
+      'CodeCrafter בונה פלטפורמות ניהול מודולריות בהתאמה לתהליך העסק, וגם הרחבות ואינטגרציות סביב ERP קיים. זו אינה הבטחה להחליף מוצר ארגוני כמו Oracle, SAP או Priority: תחילה בודקים אילו מודולים באמת נחוצים, מה עדיף להשאיר במערכת קיימת ואיפה פיתוח מותאם יוצר ערך ברור.',
+    ],
+    sections: [
+      {
+        heading: 'מקור אמת יחיד במקום נתונים כפולים',
+        paragraphs: ['הליבה היא מודל נתונים מוסכם: לקוח, מוצר, ספק, הזמנה או פרויקט מזוהים באופן עקבי וכל מחלקה עובדת מול אותה רשומה בהתאם להרשאה. כך ניתן לצמצם כפילויות וסתירות, לשמור היסטוריה ולהפיק דוחות ממידע בעל הגדרות משותפות. מקור אמת יחיד אינו אומר שכל מידע חייב להישמר באותה אפליקציה; לעיתים מערכת קיימת נשארת בעלת המידע וה-ERP המותאם מסתנכרן אליה דרך API מבוקר.'],
+      },
+      {
+        heading: 'מודולים שאפשר לאפיין ולחבר',
+        items: ['לקוחות, לידים והיסטוריית קשר', 'מכירות, הצעות, הזמנות וסטטוסים', 'ספקים, בקשות רכש, אישורים והזמנות רכש', 'מוצרים, מחסנים, תנועות מלאי וספירות', 'פרויקטים, שלבים, משימות, מסמכים ואישורים', 'קריאות שירות, אחריות, שיוך וטיפול', 'משתמשים, תפקידים והרשאות לפי פעולה ונתון', 'דשבורדים, דוחות מסוננים וייצוא', 'התראות, תהליכים מתוזמנים ואוטומציות', 'חיבורים ל-CRM, אתר, חנות, פורטל ואפליקציה'],
+      },
+      {
+        heading: 'ERP לעומת CRM, מלאי ותוכנה מותאמת',
+        paragraphs: ['CRM מתמקד בקשר עם לידים ולקוחות ובתהליך המכירה והשירות. מערכת מלאי מתמחה בכמויות, מיקומים ותנועות. ERP מחבר כמה תחומים תפעוליים דרך נתונים ותהליכים משותפים. פיתוח תוכנה בהתאמה אישית הוא המונח הרחב לכל פתרון ייעודי; עמוד זה מיועד למערכת רב-מודולרית שחוצה מחלקות. לעסק שצריך רק CRM או מלאי, פתרון ממוקד יכול להיות פשוט ונכון יותר מ-ERP.'],
+      },
+      {
+        heading: 'מתי לשקול מערכת ERP מותאמת',
+        items: ['אותם נתונים מוזנים ידנית בכמה מערכות', 'העברת הזמנה לרכש, מלאי או שירות תלויה בהודעות פרטיות', 'אין דרך עקבית להבין מי אישר פעולה ומתי', 'דוחות דורשים איחוד ידני של קבצים', 'מערכת מדף מכריחה את הצוות לעקוף את התהליך בפועל', 'נדרש פורטל, אפליקציה או ממשק ייעודי סביב מערכת קיימת'],
+      },
+      {
+        heading: 'מתי לא נכון לבנות ERP חדש',
+        paragraphs: ['אם מוצר מדף מכסה היטב את התהליך, אם הדרישות עדיין אינן יציבות, או אם העסק זקוק לחשבונאות מוסמכת, שכר, דיווח מס, MRP יצרני או תאימות רגולטורית שאינם בתחום הפרויקט — עדיף להשתמש במוצר ייעודי ולבנות רק את החיבור או ההרחבה החסרים. לעיתים השלב הנכון הוא ניקוי נתונים, תיעוד תהליך או מודול קטן, לא החלפת כל המערכות.'],
+      },
+      {
+        heading: 'תהליך יישום שמתחיל בעבודה האמיתית',
+        paragraphs: ['ממפים בעלי תפקידים, החלטות, מסמכים, מצבי קצה ומקורות נתונים. לאחר מכן מגדירים בעלות על כל ישות, הרשאות, מעברי סטטוס, כללי אימות ודוחות. בונים גרסה מודולרית, בודקים אותה עם משתמשים אמיתיים, מתכננים ייבוא או סנכרון ומעלים בהדרגה. ההשקה כוללת בדיקות הרשאה, גיבוי, טיפול בשגיאות ותיעוד — לא רק מסכים.'],
+      },
+      {
+        heading: 'נתונים, הרשאות ובקרה',
+        paragraphs: ['המערכת יכולה לתעד מי יצר או שינה רשומה, להפריד בין צפייה, עריכה, אישור וייצוא, ולהגביל גישה לפי תפקיד או יחידה. לפני מעבר נתונים מגדירים שדות, מזהים, כפילויות וכללי ניקוי. גיבוי, שמירת היסטוריה, לוגים ומדיניות מחיקה נקבעים לפי רגישות המידע והיקף הפרויקט.'],
+      },
+      {
+        heading: 'ERP בענן, Web ואינטגרציות',
+        paragraphs: ['מערכת Web יכולה לאפשר עבודה מאובטחת בדפדפן ממחשב או מובייל, בהתאם להרשאות. APIs, Webhooks וסנכרון מתוזמן מחברים מערכות קיימות בלי להבטיח יכולת שאינה קיימת אצל הספק. לכל חיבור מתכננים אימות, מניעת כפילויות, ניסיונות חוזרים, לוגים והתראה על כשל.'],
+      },
+      {
+        heading: 'תמחור לפי מודולים והיקף',
+        paragraphs: ['אין מחיר מדף אמין ל-ERP מותאם. העלות מושפעת ממספר המודולים והמשתמשים, עומק ההרשאות, מיגרציית הנתונים, דוחות, אינטגרציות, דרישות אבטחה ותחזוקה. אפיון ממוקד מאפשר להפריד בין גרסה ראשונה, הרחבות עתידיות ומערכות שכדאי להשאיר כפי שהן.'],
+      },
+    ],
+    faq: [
+      { question: 'האם CodeCrafter מוכרת Oracle, SAP או Priority?', answer: 'לא. CodeCrafter מפתחת מערכת ניהול מודולרית בהתאמה, הרחבות וממשקים סביב מערכות קיימות. אינטגרציה למוצר מסוים נבדקת לפי ה-API, ההרשאות והרישוי הזמינים בפועל.' },
+      { question: 'האם ERP הוא רק תוכנת הנהלת חשבונות?', answer: 'לא. מידע פיננסי יכול להיות אחד התחומים, אך ERP מחבר גם תהליכים כמו הזמנות, רכש, מלאי, פרויקטים ושירות. CodeCrafter אינה מציגה את הפיתוח כתחליף אוטומטי למערכת חשבונאית מוסמכת.' },
+      { question: 'אפשר להתחיל רק ממודול אחד?', answer: 'כן. לעיתים נכון להתחיל בתהליך המרכזי, להגדיר נתונים והרשאות בצורה שתומכת בהמשך, ורק לאחר שימוש אמיתי להוסיף מודולים.' },
+      { question: 'איך מעבירים מידע מאקסל או ממערכת ישנה?', answer: 'ממפים את השדות, מנקים כפילויות, בודקים דוגמאות ומבצעים ייבוא ניסיוני לפני המעבר. היקף המיגרציה והיכולת לשמר היסטוריה תלויים באיכות ובגישה למקור.' },
+      { question: 'כמה עולה פיתוח מערכת ERP?', answer: 'המחיר נקבע לאחר אפיון מודולים, משתמשים, הרשאות, נתונים, דוחות ואינטגרציות. לא מוצג מחיר ERP מומצא לפני שההיקף ידוע.' },
+    ],
+    relatedServices: ['custom-software', 'crm-development', 'inventory-systems', 'automation', 'integrations', 'business-portals'],
+  },
+  {
+    kind: 'service',
+    slug: 'inventory-systems',
+    title: 'פיתוח מערכת ניהול מלאי ומחסנים | CodeCrafter',
+    description: 'פיתוח מערכת מלאי ומחסנים בהתאמה לעסק: מוצרים, SKU, מיקומים, קבלה, העברות, החזרות, ספירות, היסטוריית תנועות, הרשאות ואינטגרציות.',
+    eyebrow: 'מלאי ותפעול',
+    h1: 'פיתוח מערכת ניהול מלאי ומחסנים',
+    intro: [
+      'מערכת מלאי אמינה אינה שומרת רק מספר סופי. היא מתעדת למה הכמות השתנתה, מאיזה מיקום לאיזה מיקום, מי ביצע את הפעולה, לאיזה מסמך היא קשורה ומה היה המצב לפני ואחרי.',
+      'CodeCrafter מאפיינת ומפתחת מערכות מלאי מותאמות לעסק, או מודול מלאי כחלק ממערכת ERP רחבה יותר. ההיקף נקבע לפי סוג המוצרים, המחסנים, תהליך הרכש והמכירה והמערכות שכבר מנהלות חלק מהמידע.',
+    ],
+    sections: [
+      { heading: 'מודל מלאי שמייצג את העסק', items: ['מוצרים, וריאציות, SKU וקטגוריות', 'מחסנים, אזורים ומיקומים', 'יחידות מידה ומצב פריט כאשר נדרש', 'ספקים וקשר בין ספק לפריט', 'רמות מינימום, התראות וחוסרים', 'הרשאות לפי מחסן, פעולה או תפקיד'] },
+      { heading: 'כל שינוי הוא תנועה מתועדת', paragraphs: ['קבלה מספק, הקצאה להזמנה, ליקוט, העברה, החזרה, התאמה וספירה נרשמים כאירועים נפרדים. כך אפשר לחקור פער, לשחזר היסטוריה ולהפיק יתרה מתוך התנועות במקום לדרוס מספר בלי הסבר. אישורים או סיבת שינוי ניתנים להוספה כאשר התהליך דורש בקרה.'] },
+      { heading: 'קבלה, העברות וספירות', paragraphs: ['תהליך יכול להתחיל בהזמנת רכש, לעבור לקבלה מלאה או חלקית, לשיוך למיקום ולסגירת פערים. העברה בין מחסנים שומרת מצב יציאה וקליטה. ספירה יכולה להינעל, להיבדק מול הכמות הצפויה ולהפיק התאמה מאושרת במקום שינוי בלתי מתועד.'] },
+      { heading: 'הזמנות, מסחר וספקים', paragraphs: ['המלאי יכול להתחבר להזמנות, חנות, פורטל ספקים או מערכת מכירות. לפני כל סנכרון מגדירים איזו מערכת היא מקור האמת, איך מטפלים בהזמנה כפולה, מה קורה בכשל והאם הכמות המוצגת היא פיזית, זמינה או מוקצית.'] },
+      { heading: 'סריקה, ברקוד ו-QR לפי היקף', paragraphs: ['סריקה יכולה להאיץ קבלה, ליקוט וספירה, אך היא אינה תחליף למודל נתונים תקין. תמיכה במצלמה, סורק, ברקוד או QR נכללת רק כאשר סוגי הקוד, הציוד והתהליך מוגדרים ונבדקים.'] },
+      { heading: 'דוחות, הרשאות וביקורת', paragraphs: ['דוחות יכולים להציג יתרות לפי מחסן, תנועות בתקופה, פריטים מתחת לרמת הזמנה, פערי ספירה והיסטוריה לפריט. הרשאות מפרידות בין צפייה, קליטה, העברה, התאמה וייצוא, ולוג ביקורת מאפשר להבין מי עשה מה ומתי.'] },
+      { heading: 'מערכת מלאי לעומת ERP', paragraphs: ['מערכת מלאי מתמחה בתנועות, כמויות ומיקומים. ERP מחבר מלאי גם ללקוחות, הזמנות, רכש, פרויקטים ושירות דרך מודל רחב יותר. אם הבעיה ממוקדת במחסן, אין צורך להעמיס מערכת רב-מחלקתית; אם כל שינוי משפיע על כמה יחידות עסקיות, מודול ERP משולב עשוי להתאים יותר.'] },
+    ],
+    faq: [
+      { question: 'האם המערכת תומכת בכמה מחסנים?', answer: 'אפשר לתכנן כמה מחסנים ומיקומים, כולל העברות והרשאות, אם זה חלק מהאפיון.' },
+      { question: 'אפשר להתחבר לחנות קיימת?', answer: 'לעיתים כן. החיבור תלוי ב-API, בהרשאות ובמודל המלאי של פלטפורמת המסחר. לפני הבטחה בודקים את היכולות בפועל.' },
+      { question: 'האם אפשר להשתמש בברקוד?', answer: 'כן כאשר הברקודים, ציוד הסריקה והפעולות מוגדרים. זו יכולת אופציונלית ולא הנחה אוטומטית בכל פרויקט.' },
+      { question: 'איך יודעים למה הכמות השתנתה?', answer: 'המערכת מתוכננת סביב יומן תנועות עם סוג פעולה, כמות, מקור, יעד, משתמש, זמן ומסמך קשור לפי הצורך.' },
+    ],
+    relatedServices: ['erp-development', 'custom-software', 'automation', 'integrations', 'business-portals'],
+  },
+  {
+    kind: 'service',
+    slug: 'business-portals',
+    title: 'פיתוח פורטל לקוחות, ספקים ועובדים | CodeCrafter',
+    description: 'פיתוח פורטלים עסקיים מאובטחים ללקוחות, ספקים, עובדים ושותפים עם התחברות, תפקידים, מסמכים, בקשות, אישורים, סטטוסים ואינטגרציות.',
+    eyebrow: 'שירות עצמי מאובטח',
+    h1: 'פיתוח פורטלים עסקיים ללקוחות, ספקים ועובדים',
+    intro: [
+      'פורטל נותן לכל משתמש מקום מסודר לצפות במידע שמותר לו, להגיש בקשה, לצרף מסמך ולעקוב אחר סטטוס. הוא מצמצם חיפושים בשיחות, בדוא״ל ובקבצים ומאפשר לצוות לטפל בפניות בתוך תהליך מתועד.',
+      'הפורטל נבנה סביב הקהל והפעולות האמיתיות: אזור לקוחות, סביבת ספקים, פורטל עובדים או ממשק לשותפים. הוא יכול לעמוד בפני עצמו או להיות שכבת שירות מעל CRM, ERP, CMS או מערכת מותאמת.',
+    ],
+    sections: [
+      { heading: 'למי הפורטל מיועד', items: ['לקוחות שרוצים לצפות בבקשות, מסמכים וסטטוסים', 'ספקים שמגישים פרטים, הצעות או מסמכי אספקה', 'עובדים שמבצעים פעולות ומקבלים מידע לפי תפקיד', 'שותפים שמנהלים לקוחות, הזמנות או תכנים מורשים'] },
+      { heading: 'יכולות אפשריות', items: ['הרשמה, הזמנה והתחברות', 'תפקידים והרשאות לרשומה ולפעולה', 'פרופיל ונתונים אישיים', 'טפסים, בקשות, אישורים וסטטוסים', 'מסמכים, קבצים והיסטוריית פעילות', 'התראות בדוא״ל או בערוץ מוסכם', 'חיבור ל-CRM, ERP, CMS, סליקה או מערכת שירות בהתאם ל-API'] },
+      { heading: 'פחות בקשות סטטוס ומסמכים חוזרות', paragraphs: ['כאשר מקור המידע ברור, המשתמש יכול לראות מה התקבל, מה חסר ומה השלב הבא בלי לפנות בכל פעם לנציג. הצוות עדיין שומר שליטה: מגדירים מה מוצג, מתי מידע מתפרסם ואילו פעולות דורשות אישור אנושי.'] },
+      { heading: 'זהות, הרשאות ופרטיות', paragraphs: ['מתכננים מחזור חיים של משתמש, שחזור גישה, נעילת חשבון, הפרדת לקוחות והרשאות מינימליות. מידע רגיש אינו נחשף רק משום שקישור ניחש; כל בקשה נבדקת בצד השרת. לוגים, שמירה ומחיקה נקבעים לפי רגישות המידע והצורך העסקי.'] },
+      { heading: 'אינטגרציה בלי לשכפל בעלות על מידע', paragraphs: ['מחליטים איזו מערכת אחראית על לקוח, מסמך או סטטוס. הפורטל יכול לקרוא או לעדכן דרך API, Webhook או תהליך מתוזמן, עם אימות, ולידציה, מניעת כפילויות והתראה על כשל. כך הפורטל אינו הופך לעוד מאגר מנותק.'] },
+      { heading: 'תהליך פיתוח', paragraphs: ['מגדירים קהלים ותרחישים, בונים מטריצת הרשאות, מתכננים מסכים ומצבי שגיאה, מחברים מקור נתונים ובודקים עם משתמשים מכל תפקיד. לפני השקה נבדקים מובייל, נגישות בסיסית, מסמכים, התראות, הרשאות וקישורים ישירים.'] },
+    ],
+    faq: [
+      { question: 'מה ההבדל בין פורטל לאתר?', answer: 'אתר מציג בעיקר תוכן ציבורי. פורטל כולל משתמשים מזוהים, מידע אישי ופעולות שמושפעות מהרשאה ומסטטוס.' },
+      { question: 'האם הפורטל יכול להתחבר ל-CRM או ERP?', answer: 'כן כאשר קיימת גישה מתאימה. תחילה מגדירים את מקור האמת ובודקים את ה-API, ההרשאות ומגבלות הספק.' },
+      { question: 'אפשר ליצור פורטל נפרד לכל לקוח?', answer: 'אפשר לבנות סביבה רב-לקוחית עם הפרדה והרשאות, או חוויות שונות לפי סוג משתמש. הארכיטקטורה נקבעת לפי היקף וסיכון.' },
+      { question: 'האם פורטל מחליף שירות אנושי?', answer: 'לא בהכרח. הוא מתאים לפעולות חוזרות ומידע מובנה, ומאפשר לצוות להתמקד במקרים שדורשים שיקול דעת.' },
+    ],
+    relatedServices: ['erp-development', 'crm-development', 'cms-development', 'custom-software', 'app-development', 'integrations'],
+  },
+  {
+    kind: 'service',
+    slug: 'web-app-development',
+    title: 'פיתוח Web App ומערכות Web לעסקים | CodeCrafter',
+    description: 'פיתוח Web Apps ומערכות דפדפן לעסקים: משתמשים, הרשאות, בסיס נתונים, טפסים, תהליכים, דשבורדים, דוחות, APIs ואינטגרציות.',
+    eyebrow: 'תוכנה בדפדפן',
+    h1: 'פיתוח Web App ומערכות Web לעסקים',
+    intro: [
+      'Web App היא תוכנה אינטראקטיבית שפועלת בדפדפן: מערכת ניהול, דשבורד, כלי פנימי, אזור אישי או פורטל. בניגוד לאתר שמטרתו העיקרית היא הצגת תוכן, יישום Web מנהל משתמשים, נתונים ופעולות מתמשכות.',
+      'CodeCrafter מתכננת ומפתחת Web Apps סביב תהליך עסקי מוגדר, מהמסכים וההרשאות ועד השרת, בסיס הנתונים והאינטגרציות. המוצר יכול לשמש צוות פנימי, לקוחות או שותפים ולהתרחב באופן מודולרי.',
+    ],
+    sections: [
+      { heading: 'אתר, Web App או אפליקציה לנייד', paragraphs: ['אתר מתאים להצגת שירותים ותוכן. Web App מתאים לעבודה אינטראקטיבית בדפדפן עם חשבונות, נתונים ותהליכים. אפליקציית מובייל מותקנת מתאימה כאשר חוויית המכשיר, התראות, עבודה בשטח או יכולות חומרה הן מרכזיות. לעיתים פתרון רספונסיבי בדפדפן מספיק ומונע תחזוקה כפולה.'] },
+      { heading: 'מה אפשר לבנות', items: ['מערכות ניהול ותפעול', 'כלים פנימיים לצוותים', 'דשבורדים ודוחות', 'אזורי חשבון ושירות עצמי', 'פורטלים ללקוחות, ספקים או עובדים', 'טפסים ותהליכי אישור', 'מערכות פרויקט, שירות או הזמנות', 'מוצר ראשון שניתן לבדוק ולהרחיב'] },
+      { heading: 'משתמשים והרשאות כחלק מהליבה', paragraphs: ['מגדירים מי יכול לצפות, ליצור, לערוך, לאשר, למחוק ולייצא — ולא מסתפקים בהסתרת כפתור במסך. בדיקות הרשאה מתבצעות בצד השרת, והפרדה בין לקוחות או צוותים נלקחת בחשבון במודל הנתונים.'] },
+      { heading: 'Backend, בסיס נתונים ו-API', paragraphs: ['השרת מטפל בכללים העסקיים, אימות, הרשאות, שמירה ואינטגרציות. בסיס הנתונים מתוכנן סביב הישויות והקשרים האמיתיים. API ברור מאפשר למסכים, לאפליקציה או למערכות אחרות להשתמש באותם כללים בלי שכפול לוגיקה.'] },
+      { heading: 'איכות, אבטחה ותחזוקה', paragraphs: ['מתכננים ולידציה, טיפול בשגיאות, לוגים, גיבוי, ניטור ועדכונים. בודקים תרחישים מרכזיים, מובייל ודסקטופ, מצבי רשת וטעינה והרשאות. רמת הבדיקות והאבטחה מותאמת לרגישות המידע ולהיקף המוצר.'] },
+      { heading: 'מגרסה ראשונה למערכת יציבה', paragraphs: ['מגדירים תוצאה עסקית וזרימה מרכזית, בונים גרסה שמאפשרת שימוש אמיתי ואוספים משוב. לאחר שהמודל מוכח מוסיפים דוחות, אוטומציות, אינטגרציות ותפקידי משתמש. כך ההשקעה מתמקדת במה שנבדק ולא ברשימת יכולות תיאורטית.'] },
+    ],
+    faq: [
+      { question: 'האם Web App צריך התקנה?', answer: 'בדרך כלל לא. הוא נפתח בדפדפן ויכול להיות מותאם למחשב ולמובייל. יכולות התקנה או PWA נבחנות לפי הצורך.' },
+      { question: 'מתי עדיפה אפליקציית מובייל?', answer: 'כאשר חוויית מובייל ייעודית, התראות Push, שימוש תכוף במצלמה או קבצים, עבודה בשטח או הפצה בחנויות הם צורך מרכזי.' },
+      { question: 'האם אפשר לחבר מערכת קיימת?', answer: 'כן אם קיימים API, Webhooks או אפשרות ייצוא מתאימה. קודם בודקים גישה, מגבלות ובעלות על הנתונים.' },
+      { question: 'אפשר להתחיל ב-MVP?', answer: 'כן. מגדירים את הזרימה המרכזית והסיכון העיקרי, בונים גרסה שימושית ומרחיבים לאחר משוב אמיתי.' },
+    ],
+    relatedServices: ['custom-software', 'app-development', 'business-portals', 'crm-development', 'erp-development', 'integrations'],
+  },
+  {
+    kind: 'service',
+    slug: 'locations/north',
+    title: 'פיתוח אתרים ומערכות לעסקים בצפון ישראל | CodeCrafter',
+    description: 'בניית אתרים, CRM, ERP, מערכות, אפליקציות ואוטומציות לעסקים בצפון ישראל, עם עבודה מרחוק ופגישות אפשריות בכרמיאל לפי תיאום.',
+    eyebrow: 'אזור שירות: צפון ישראל',
+    h1: 'פיתוח אתרים ומערכות לעסקים בצפון ישראל',
+    intro: ['CodeCrafter נותנת שירות לעסקים בצפון באמצעות תהליך עבודה מרחוק, ובכרמיאל ניתן לתאם גם פגישה פנים אל פנים. השירות כולל אתרים, CRM, מערכות ERP מודולריות, תוכנה מותאמת, אפליקציות ואוטומציות.', 'זהו אזור שירות ולא טענה לסניפים בחיפה או בערי הצפון. אופן העבודה נקבע לפי הפרויקט, הצורך בפגישות והמערכות שכבר קיימות בעסק.'],
+    sections: [
+      { heading: 'שירותים לעסקים בצפון', items: ['אתרים ודפי שירות בעברית ובאנגלית', 'CRM ומערכות ניהול בהתאמה', 'ERP מודולרי ומערכות מלאי', 'Web Apps, פורטלים ואפליקציות', 'אינטגרציות ואוטומציה'] },
+      { heading: 'חיפה וכרמיאל', paragraphs: ['לעסקים בחיפה השירות ניתן מרחוק. בכרמיאל אפשר לשלב פגישה בתיאום עם עבודה דיגיטלית שוטפת. בשני המקרים האפיון, המסמכים, המשוב והבדיקות נשמרים בתהליך מתועד.'] },
+      { heading: 'איך פרויקט מרחוק נשאר ברור', paragraphs: ['מגדירים נקודת קשר, מטרות, גרסה ראשונה, מועדי משוב ודרך לאישור החלטות. הדגמות מתבצעות לאורך הדרך והמסירה כוללת בדיקות ותיעוד בהתאם להיקף.'] },
+      { heading: 'ללא כתובת משרד מומצאת', paragraphs: ['CodeCrafter אינה מציגה משרד פיזי בחיפה או סניפים אזוריים. העמוד מסביר את אזור השירות ואת אופן המסירה בפועל.'] },
+    ],
+    relatedServices: ['websites', 'crm-development', 'erp-development', 'custom-software', 'app-development', 'automation'],
+  },
+  {
+    kind: 'service',
+    slug: 'locations/center',
+    title: 'פיתוח אתרים ומערכות לעסקים במרכז ישראל | CodeCrafter',
+    description: 'בניית אתרים, CRM, ERP, מערכות, אפליקציות ואוטומציות לעסקים במרכז ישראל, עם עבודה מרחוק ופגישות בתל אביב לפי תיאום.',
+    eyebrow: 'אזור שירות: מרכז ישראל',
+    h1: 'פיתוח אתרים ומערכות לעסקים במרכז ישראל',
+    intro: ['CodeCrafter עובדת עם עסקים במרכז על אתרים, CRM, ERP מודולרי, מערכות מותאמות, Web Apps, אפליקציות ואוטומציות. בתל אביב ניתן לתאם פגישה, ורוב תהליך האפיון והפיתוח יכול להתנהל מרחוק.', 'זהו תיאור של אזור שירות וצורת עבודה, לא הצהרה על משרד או סניף במרכז.'],
+    sections: [
+      { heading: 'פתרונות שמתאימים לעבודה עסקית', items: ['אתרים שמציגים שירות ומחברים לפניות', 'CRM לניהול לידים, לקוחות ושירות', 'ERP ומערכות ניהול רב-תהליכיות', 'פורטלים, Web Apps ואפליקציות', 'אינטגרציות ואוטומציה בין כלים'] },
+      { heading: 'תל אביב והמרכז', paragraphs: ['פגישה בתל אביב אפשרית לפי תיאום כאשר היא מקדמת אפיון או החלטה. שאר העבודה מתועדת ומנוהלת בדיגיטל כדי שהפרויקט לא יהיה תלוי בזמינות פיזית.'] },
+      { heading: 'התאמה לעסק ולא למיקום', paragraphs: ['הפתרון נבחר לפי הבעיה, המשתמשים, הנתונים והאינטגרציות. המיקום משפיע על צורת המפגש, אך אינו סיבה להעתיק תוכן או לבנות עמודי עיר דקים.'] },
+      { heading: 'שקיפות לגבי נוכחות פיזית', paragraphs: ['CodeCrafter אינה טוענת שיש לה משרד בתל אביב או בערי המרכז. השירות ניתן מרחוק ובפגישות מתואמות לפי הצורך.'] },
+    ],
+    relatedServices: ['websites', 'crm-development', 'erp-development', 'custom-software', 'app-development', 'automation'],
+  },
+]
+
+const enPages: SeoPage[] = [
+  {
+    kind: 'service', slug: 'erp-development', title: 'Custom ERP Development Israel | CodeCrafter', description: 'Custom ERP development and modular business management software for shared customer, order, procurement, inventory, project, service, permission, and reporting workflows.', eyebrow: 'Connected business systems', h1: 'Custom ERP and business management system development',
+    intro: ['ERP connects business processes, people, and data in one operating environment. Instead of repeatedly copying information between spreadsheets, inboxes, and disconnected tools, the business can define shared records and workflows across sales, orders, procurement, inventory, projects, and service.', 'CodeCrafter builds modular management platforms around the real workflow and develops integrations or extensions around an existing ERP. This is not a claim to replace enterprise products such as Oracle, SAP, or Priority. Discovery establishes which modules should be custom, which systems should remain in place, and where integration is the safer choice.'],
+    sections: [
+      { heading: 'A single source of truth without needless duplication', paragraphs: ['The core is an agreed data model. A customer, product, supplier, order, or project has a consistent identity, while each role receives the access it needs. One source of truth does not require every datum to live in one app; an existing platform may remain authoritative while the custom system synchronizes through a controlled API.'] },
+      { heading: 'Modules that can be scoped and connected', items: ['Customers, leads, and communication history', 'Sales, quotations, orders, and statuses', 'Suppliers, purchase requests, approvals, and purchase orders', 'Products, warehouses, stock movements, and counts', 'Projects, stages, tasks, documents, and approvals', 'Service requests, assignment, and history', 'Users, roles, permissions, and audit history', 'Dashboards, filtered reports, and exports', 'Notifications, scheduled workflows, and automation', 'Connections to CRM, websites, ecommerce, portals, and apps'] },
+      { heading: 'ERP versus CRM, inventory, and custom software', paragraphs: ['CRM owns the lead, customer, sales, and service relationship. Inventory software specializes in quantities, locations, and movements. ERP connects several operational areas through shared data and workflows. Custom software is the broader category; this page owns multi-module, cross-department management intent. A focused CRM or inventory product may be better when that is the only material need.'] },
+      { heading: 'Signals that a modular ERP may be useful', items: ['The same records are entered manually in multiple systems', 'An order reaches purchasing, inventory, or service through private messages', 'Approvals and ownership are difficult to audit', 'Reports require manual spreadsheet consolidation', 'A packaged product forces teams to work around the actual process', 'A portal or app is needed around an existing ERP'] },
+      { heading: 'When not to build a new ERP', paragraphs: ['A packaged product is often better when it fits the process, requirements are still unstable, or the organization needs certified accounting, payroll, statutory tax reporting, manufacturing MRP, or regulated capabilities outside the project scope. CodeCrafter can keep the specialist system and build only a verified extension or integration.'] },
+      { heading: 'Implementation follows the real workflow', paragraphs: ['Discovery maps roles, decisions, documents, edge cases, and data sources. The project then defines ownership, permissions, status transitions, validation, and reports. A modular release is tested with real users before migration and rollout. Permission tests, backups, error handling, and documentation are part of delivery.'] },
+      { heading: 'Data, permissions, and auditability', paragraphs: ['The system can separate viewing, editing, approval, and export, with history for material changes. Migration begins with field mapping, identifiers, duplicate handling, and sample imports. Backup, retention, logging, and deletion rules are chosen for the sensitivity and scope of the data.'] },
+      { heading: 'Cloud delivery and integrations', paragraphs: ['A web-based system can provide controlled browser access on desktop and mobile. APIs, webhooks, and scheduled synchronization connect existing tools only after access and provider constraints are verified. Authentication, validation, deduplication, retries, logs, and failure alerts are designed for each connection.'] },
+      { heading: 'Scope-based ERP pricing', paragraphs: ['There is no credible single price for custom ERP work. Cost depends on modules, users, permissions, migration, reports, integrations, security, and maintenance. Discovery separates the first useful release from later modules and from systems that should remain unchanged.'] },
+    ],
+    faq: [
+      { question: 'Does CodeCrafter sell Oracle, SAP, or Priority?', answer: 'No. CodeCrafter builds modular custom systems, extensions, and integrations. A connection to a named product is offered only after its API, permissions, and licensing are verified.' },
+      { question: 'Is ERP the same as accounting software?', answer: 'No. Finance may be one domain, while ERP also connects orders, procurement, inventory, projects, and service. CodeCrafter does not present custom development as an automatic substitute for certified accounting software.' },
+      { question: 'Can the project start with one module?', answer: 'Yes. A central workflow can launch first if its data model and permissions are designed to support later expansion.' },
+      { question: 'Can data be migrated from spreadsheets or a legacy system?', answer: 'Often yes. Fields, identifiers, duplicates, and sample records are checked before a trial import. The available history depends on source quality and access.' },
+      { question: 'How much does custom ERP development cost?', answer: 'Pricing follows the modules, users, permissions, data, reports, and integrations agreed during discovery. CodeCrafter does not invent a flat ERP price before scope is known.' },
+    ], relatedServices: ['custom-software', 'crm-development', 'inventory-systems', 'automation', 'integrations', 'business-portals'],
+  },
+  {
+    kind: 'service', slug: 'inventory-systems', title: 'Custom Inventory and Warehouse Systems Israel | CodeCrafter', description: 'Custom inventory and warehouse systems for products, SKUs, locations, receiving, transfers, returns, counts, movement history, permissions, reporting, and integrations.', eyebrow: 'Inventory operations', h1: 'Custom inventory and warehouse system development',
+    intro: ['Reliable inventory software records more than a final number. It explains why stock changed, where it moved, who performed the action, which document it belongs to, and what the balance was before and after.', 'CodeCrafter develops focused inventory systems or inventory modules within a wider ERP. Scope follows the products, warehouses, purchasing and sales process, and the systems that already own part of the data.'],
+    sections: [
+      { heading: 'An inventory model that matches operations', items: ['Products, variants, SKUs, and categories', 'Warehouses, zones, and locations', 'Units and item condition when required', 'Suppliers and supplier-item relationships', 'Reorder thresholds, alerts, and shortages', 'Permissions by warehouse, action, or role'] },
+      { heading: 'Every change becomes a traceable movement', paragraphs: ['Receiving, allocation, picking, transfers, returns, adjustments, and counts are separate events. This makes discrepancies investigable and preserves history instead of overwriting a quantity without context. Approval or adjustment reasons can be required where control matters.'] },
+      { heading: 'Receiving, transfers, and counts', paragraphs: ['A workflow may begin with a purchase order, continue through partial receiving and put-away, and close with discrepancy handling. Transfers preserve dispatch and receipt states. Counts can be locked, compared with expected stock, and converted into an approved adjustment.'] },
+      { heading: 'Orders, ecommerce, and suppliers', paragraphs: ['Inventory may connect to orders, ecommerce, or a supplier portal. Each integration defines the authoritative source, duplicate handling, failure behavior, and whether displayed stock means physical, available, or allocated quantity.'] },
+      { heading: 'Barcode and QR scanning when scoped', paragraphs: ['Scanning may accelerate receiving, picking, and counts, but does not replace a sound data model. Camera, scanner, barcode, or QR support is included only when code formats, hardware, and workflow are defined and tested.'] },
+      { heading: 'Reports, permissions, and audit', paragraphs: ['Reports can cover balances by warehouse, movements over time, low-stock items, count differences, and product history. Permissions separate viewing, receiving, transferring, adjusting, and exporting, while an audit log records responsibility.'] },
+      { heading: 'Inventory system versus ERP', paragraphs: ['Inventory software specializes in movements, quantities, and locations. ERP connects inventory to customers, orders, purchasing, projects, and service. A focused system is leaner when the warehouse is the main problem; a shared ERP module is stronger when each movement affects several departments.'] },
+    ],
+    faq: [
+      { question: 'Can the system support multiple warehouses?', answer: 'Yes, if multiple warehouses, locations, transfers, and relevant permissions are part of the scope.' },
+      { question: 'Can it connect to an existing ecommerce store?', answer: 'Often. The store API, permissions, and stock model must be reviewed before the synchronization is promised.' },
+      { question: 'Can barcode scanning be included?', answer: 'Yes when formats, devices, and user actions are defined. It is an optional capability rather than a default claim.' },
+      { question: 'How can users see why stock changed?', answer: 'The system is designed around a movement ledger containing action type, quantity, source, destination, user, time, and related document where needed.' },
+    ], relatedServices: ['erp-development', 'custom-software', 'automation', 'integrations', 'business-portals'],
+  },
+  {
+    kind: 'service', slug: 'business-portals', title: 'Customer, Supplier, and Employee Portal Development | CodeCrafter', description: 'Secure business portal development for customers, suppliers, employees, and partners with authentication, roles, documents, requests, approvals, statuses, and integrations.', eyebrow: 'Secure self-service', h1: 'Business portals for customers, suppliers, and employees',
+    intro: ['A portal gives each user a controlled place to view permitted information, submit requests, attach documents, and track status. It reduces repeated searches across messages, email, and files while giving the team a documented workflow.', 'CodeCrafter builds customer areas, supplier environments, employee portals, and partner interfaces. The portal can stand alone or act as a service layer over CRM, ERP, CMS, or custom software.'],
+    sections: [
+      { heading: 'Who the portal can serve', items: ['Customers viewing requests, documents, and statuses', 'Suppliers submitting information, quotations, or delivery documents', 'Employees completing actions and accessing role-specific data', 'Partners managing authorized customers, orders, or content'] },
+      { heading: 'Possible capabilities', items: ['Invitation, registration, and sign-in', 'Record- and action-level roles and permissions', 'Profiles and personal data', 'Forms, requests, approvals, and statuses', 'Documents, files, and activity history', 'Email or agreed-channel notifications', 'CRM, ERP, CMS, payment, or service integrations where APIs permit'] },
+      { heading: 'Fewer repeated status and document requests', paragraphs: ['When the source is clear, a user can see what was received, what is missing, and what happens next without asking a representative every time. The team retains control over what is published and which steps still require human approval.'] },
+      { heading: 'Identity, permissions, and privacy', paragraphs: ['User lifecycle, recovery, lockout, tenant separation, and least privilege are designed explicitly. Sensitive data is protected by server-side authorization rather than hidden buttons. Logging, retention, and deletion follow the data sensitivity and business need.'] },
+      { heading: 'Integration without another isolated database', paragraphs: ['The project identifies which system owns each customer, document, or status. APIs, webhooks, or scheduled jobs read or update the source with authentication, validation, deduplication, and failure alerts.'] },
+      { heading: 'A portal delivery process', paragraphs: ['Audiences and scenarios lead to a permission matrix, screens, error states, and integrations. Users from each role test key journeys. Mobile behavior, basic accessibility, documents, notifications, authorization, and direct links are checked before release.'] },
+    ],
+    faq: [
+      { question: 'How is a portal different from a website?', answer: 'A website primarily publishes public content. A portal includes identified users, personal data, and actions governed by permissions and status.' },
+      { question: 'Can a portal connect to CRM or ERP?', answer: 'Yes when suitable access exists. The authoritative source, API, permissions, and provider constraints are verified first.' },
+      { question: 'Can each customer have a separate workspace?', answer: 'A multi-customer environment with data separation can be designed, or experiences can vary by user role. Architecture follows the scope and risk.' },
+      { question: 'Does a portal replace human service?', answer: 'Not necessarily. It handles repeatable actions and structured information so the team can focus on cases that need judgment.' },
+    ], relatedServices: ['erp-development', 'crm-development', 'cms-development', 'custom-software', 'app-development', 'integrations'],
+  },
+  {
+    kind: 'service', slug: 'web-app-development', title: 'Web App Development Israel | CodeCrafter', description: 'Web application development in Israel for browser-based business systems, users, permissions, databases, forms, workflows, dashboards, reports, APIs, and integrations.', eyebrow: 'Software in the browser', h1: 'Web app development for business workflows',
+    intro: ['A web app is interactive software that runs in a browser: a management system, dashboard, internal tool, account area, or portal. Unlike a content-led website, it manages users, data, and ongoing actions.', 'CodeCrafter designs and develops web applications around a defined business process, from screens and permissions to backend, database, and integrations. Products can support an internal team, customers, or partners and expand in modules.'],
+    sections: [
+      { heading: 'Website, web app, or mobile app', paragraphs: ['A website is suited to presenting services and content. A web app supports interactive browser work with accounts, data, and workflows. An installed mobile app is useful when device experience, push notifications, field use, or hardware capabilities are central. A responsive web product may be enough when installation adds little value.'] },
+      { heading: 'What can be built', items: ['Operational and management systems', 'Internal team tools', 'Dashboards and reports', 'Account and self-service areas', 'Customer, supplier, or employee portals', 'Forms and approval workflows', 'Project, service, or order systems', 'A focused first product that can be tested and expanded'] },
+      { heading: 'Users and permissions are core architecture', paragraphs: ['The project defines who may view, create, edit, approve, delete, and export. Authorization is enforced on the server rather than relying on a hidden button, and the data model accounts for team or customer separation.'] },
+      { heading: 'Backend, database, and API', paragraphs: ['The backend enforces business rules, authentication, authorization, persistence, and integrations. The database represents real entities and relationships. A clear API lets screens, mobile clients, and other systems use the same rules without duplicating logic.'] },
+      { heading: 'Quality, security, and maintenance', paragraphs: ['Validation, error handling, logs, backups, monitoring, and updates are planned to fit the product. Key journeys, desktop and mobile behavior, loading and network states, and permissions are tested in proportion to data sensitivity and scope.'] },
+      { heading: 'From first release to a stable product', paragraphs: ['The project starts with one business outcome and central journey. A usable release produces real feedback before additional reports, automation, integrations, and roles are added.'] },
+    ],
+    faq: [
+      { question: 'Does a web app need to be installed?', answer: 'Usually not. It opens in a browser and can adapt to desktop and mobile. Installable or PWA behavior is evaluated only when useful.' },
+      { question: 'When is a mobile app a better choice?', answer: 'When a dedicated mobile experience, push notifications, frequent camera or file use, field work, or app-store distribution is central.' },
+      { question: 'Can it connect to an existing system?', answer: 'Yes when an API, webhook, or suitable export exists. Access, limits, and data ownership are checked first.' },
+      { question: 'Can we begin with an MVP?', answer: 'Yes. The first release can cover the central journey and highest risk, then expand after real user feedback.' },
+    ], relatedServices: ['custom-software', 'app-development', 'business-portals', 'crm-development', 'erp-development', 'integrations'],
+  },
+  {
+    kind: 'service', slug: 'locations/north', title: 'Web and Business System Development in Northern Israel | CodeCrafter', description: 'Website, CRM, ERP, custom software, app, and automation development for businesses in Northern Israel, delivered remotely with Karmiel meetings by arrangement.', eyebrow: 'Service area: Northern Israel', h1: 'Web and business system development in Northern Israel',
+    intro: ['CodeCrafter serves Northern Israel through a documented remote process, with in-person meetings available in Karmiel by arrangement. Services include websites, CRM, modular ERP, custom systems, apps, and automation.', 'This is a service area, not a claim of branches in Haifa or other northern cities. Delivery mode follows the project and the practical need for meetings.'],
+    sections: [
+      { heading: 'Services for northern businesses', items: ['Hebrew and English websites', 'Custom CRM and management systems', 'Modular ERP and inventory systems', 'Web apps, portals, and mobile apps', 'Integrations and workflow automation'] },
+      { heading: 'Haifa and Karmiel delivery', paragraphs: ['Haifa projects are delivered remotely. Karmiel work may combine an arranged meeting with ongoing digital delivery. Discovery, decisions, feedback, and testing remain documented in both cases.'] },
+      { heading: 'How remote work stays clear', paragraphs: ['The project defines a contact, objectives, first release, feedback points, and approval method. Demonstrations happen throughout delivery, with testing and documentation appropriate to scope.'] },
+      { heading: 'No invented local branch', paragraphs: ['CodeCrafter does not present an office in Haifa or regional branches. This page states the real service area and delivery model.'] },
+    ], relatedServices: ['websites', 'crm-development', 'erp-development', 'custom-software', 'app-development', 'automation'],
+  },
+  {
+    kind: 'service', slug: 'locations/center', title: 'Web and Business System Development in Central Israel | CodeCrafter', description: 'Website, CRM, ERP, custom software, app, and automation development for businesses in Central Israel, with remote delivery and Tel Aviv meetings by arrangement.', eyebrow: 'Service area: Central Israel', h1: 'Web and business system development in Central Israel',
+    intro: ['CodeCrafter works with businesses in Central Israel on websites, CRM, modular ERP, custom systems, web apps, mobile apps, and automation. Meetings can be arranged in Tel Aviv while most discovery and development can run remotely.', 'This describes a genuine service area and delivery method, not an office or branch claim.'],
+    sections: [
+      { heading: 'Solutions for business operations', items: ['Websites that explain services and connect enquiries', 'CRM for leads, customers, and service', 'ERP and cross-process management systems', 'Portals, web apps, and mobile apps', 'Integrations and automation between tools'] },
+      { heading: 'Tel Aviv and central-area delivery', paragraphs: ['A Tel Aviv meeting can be arranged when it materially helps discovery or a decision. The wider process remains digitally documented so delivery does not depend on physical availability.'] },
+      { heading: 'Fit is based on workflow, not location', paragraphs: ['The solution follows the problem, users, data, and integrations. Location affects meeting format, but it is not a reason to duplicate thin city pages.'] },
+      { heading: 'Transparent physical presence', paragraphs: ['CodeCrafter does not claim an office in Tel Aviv or other central cities. Services are provided remotely and through arranged meetings where appropriate.'] },
+    ], relatedServices: ['websites', 'crm-development', 'erp-development', 'custom-software', 'app-development', 'automation'],
+  },
+]
+
+export const systemsPagesByLanguage: Record<Language, SeoPage[]> = {
+  he: hePages,
+  en: enPages,
+}

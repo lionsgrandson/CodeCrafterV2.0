@@ -143,6 +143,8 @@ const serviceAreas = [
 ]
 
 const localAreaBySlug: Record<string, Record<string, string>> = {
+  'locations/north': { '@type': 'AdministrativeArea', name: 'Northern Israel' },
+  'locations/center': { '@type': 'AdministrativeArea', name: 'Central Israel' },
   'locations/tel-aviv': { '@type': 'City', name: 'Tel Aviv' },
   'locations/haifa': { '@type': 'City', name: 'Haifa' },
   'locations/jerusalem': { '@type': 'City', name: 'Jerusalem' },
@@ -193,6 +195,9 @@ function schemaFor(route: Route) {
       'Business automation',
       'Systems integration',
       'Business bot development',
+      'Custom ERP development',
+      'Inventory and warehouse systems',
+      'Business portal development',
       'Web application development',
       'Mobile application development',
       'Website development',
