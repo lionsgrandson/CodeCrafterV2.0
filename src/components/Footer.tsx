@@ -17,7 +17,7 @@ import {
   trackContactLead,
 } from '../lib/analytics'
 import { contact, getWhatsAppUrl } from '../lib/contact'
-import { localizePath, serviceLabels, serviceSlugs } from '../lib/seoRoutes'
+import { localizePath } from '../lib/seoRoutes'
 import { WordReveal } from './WordReveal'
 
 export function WhyWorkWithMe() {
@@ -369,7 +369,6 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
               { label: t.nav.process, href: `${homeHashPrefix}#process` },
               { label: lang === 'he' ? 'מחירון' : 'Pricing', href: localizePath('pricing', lang) },
               { label: lang === 'he' ? 'אזורי שירות' : 'Service areas', href: localizePath('locations', lang) },
-              ...serviceSlugs.map((slug) => ({ label: serviceLabels[lang][slug], href: localizePath(slug, lang) })),
             ].map((link) => (
               <li key={link.label}>
                 <a
