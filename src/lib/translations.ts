@@ -242,7 +242,7 @@ export const translations = {
     },
     footer: {
       desc: 'מתכננים את העתיד הדיגיטלי לעסקים שאפתניים. מערכת אחת בכל פעם.',
-      explore: 'מפת אתר',
+      explore: 'ניווט',
       legal: 'משפטי',
       privacy: 'מדיניות פרטיות',
       terms: 'תנאי שימוש',
@@ -511,7 +511,7 @@ export const translations = {
     },
     footer: {
       desc: 'Planning the digital future for ambitious businesses. One system at a time.',
-      explore: 'Site Map',
+      explore: 'Navigation',
       legal: 'Legal',
       privacy: 'Privacy Policy',
       terms: 'Terms of Service',
