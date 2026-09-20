@@ -26,8 +26,9 @@ type SeoPageProps = {
 export function SeoPage({ page }: SeoPageProps) {
   const { lang } = useLanguage()
   const Arrow = lang === 'he' ? ArrowLeft : ArrowRight
-  const servicesPath = localizePath('', lang) + '#services'
+  const servicesPath = localizePath('services', lang)
   const portfolioPath = localizePath('portfolio', lang)
+  const isServicesHub = page.slug === 'services'
   const isPricingPage = page.slug === 'pricing'
   const isLocationPage = page.slug.startsWith('locations/')
 
@@ -38,7 +39,7 @@ export function SeoPage({ page }: SeoPageProps) {
           <ol>
             <li><a href={localizePath('', lang)}>{lang === 'he' ? 'בית' : 'Home'}</a></li>
             <li aria-hidden='true'>/</li>
-            {page.kind === 'service' ? (
+            {page.kind === 'service' && !isServicesHub ? (
               <li><a href={servicesPath}>{lang === 'he' ? 'שירותים' : 'Services'}</a></li>
             ) : page.kind === 'case-study' ? (
               <li><a href={portfolioPath}>{lang === 'he' ? 'תיק עבודות' : 'Portfolio'}</a></li>
@@ -160,11 +161,11 @@ export function SeoPage({ page }: SeoPageProps) {
           <aside className='seo-related' aria-label={lang === 'he' ? 'קישורים קשורים' : 'Related links'}>
             {page.relatedServices?.length ? (
               <div>
-                <h2>{lang === 'he' ? 'שירותים קשורים' : 'Related services'}</h2>
+                <h2>{isServicesHub ? (lang === 'he' ? 'כל השירותים' : 'All services') : (lang === 'he' ? 'שירותים קשורים' : 'Related services')}</h2>
                 <div className='seo-link-grid'>
                   {page.relatedServices.map((slug) => (
                     <a key={slug} href={localizePath(slug, lang)}>
-                      <span>{serviceLabels[lang][slug]}</span><Arrow className='w-4 h-4' aria-hidden='true' />
+                      <span>{serviceLabels[lang][slug] ?? slug}</span><Arrow className='w-4 h-4' aria-hidden='true' />
                     </a>
                   ))}
                 </div>
@@ -196,6 +197,11 @@ export function SeoPage({ page }: SeoPageProps) {
             <div>
               <h2>{lang === 'he' ? 'מחירון ואזורי שירות' : 'Pricing and service areas'}</h2>
               <div className='seo-link-grid'>
+                {!isServicesHub && (
+                  <a href={servicesPath}>
+                    <span>{lang === 'he' ? 'כל שירותי הפיתוח' : 'All development services'}</span><Arrow className='w-4 h-4' aria-hidden='true' />
+                  </a>
+                )}
                 {!isPricingPage && (
                   <a href={localizePath('pricing', lang)}>
                     <span>{lang === 'he' ? 'מחירון שירותים 2026' : '2026 service pricing'}</span><Arrow className='w-4 h-4' aria-hidden='true' />

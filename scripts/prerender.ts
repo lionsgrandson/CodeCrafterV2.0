@@ -125,8 +125,8 @@ function breadcrumbItems(route: Route) {
   const slug = route.page?.slug ?? ''
   if (slug.startsWith('locations/')) {
     items.push({ name: route.lang === 'he' ? 'אזורי שירות' : 'Service areas', url: absoluteUrl(localizePath('locations', route.lang)) })
-  } else if (route.type === 'service') {
-    items.push({ name: route.lang === 'he' ? 'שירותים' : 'Services', url: `${absoluteUrl(localizePath('', route.lang))}#services` })
+  } else if (route.type === 'service' && slug !== 'services') {
+    items.push({ name: route.lang === 'he' ? 'שירותים' : 'Services', url: absoluteUrl(localizePath('services', route.lang)) })
   }
   if (route.type === 'case-study') items.push({ name: route.lang === 'he' ? 'תיק עבודות' : 'Portfolio', url: absoluteUrl(localizePath('portfolio', route.lang)) })
   if (route.type !== 'website') items.push({ name: route.page?.h1 ?? route.title, url: absoluteUrl(route.path) })
