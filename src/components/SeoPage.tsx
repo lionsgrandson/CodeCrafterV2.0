@@ -85,7 +85,6 @@ export function SeoPage({ page }: SeoPageProps) {
   const portfolioPath = localizePath('portfolio', lang)
   const isServicesHub = page.slug === 'services'
   const isPricingPage = page.slug === 'pricing'
-  const isLocationPage = page.slug.startsWith('locations/')
 
   return (
     <article className='seo-page pt-28 pb-24 px-6 md:px-8'>
@@ -110,8 +109,10 @@ export function SeoPage({ page }: SeoPageProps) {
             <h1>{page.h1}</h1>
             {page.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             <div className='seo-page-actions'>
-              <a className='button-primary px-7 py-4' href='#contact-page'>
-                {lang === 'he' ? 'בואו נדבר על הפרויקט' : 'Discuss your project'}
+              <a className='button-primary px-7 py-4' href={isServicesHub ? localizePath('pricing', lang) : '#contact-page'}>
+                {isServicesHub
+                  ? (lang === 'he' ? 'למחירון' : 'View pricing')
+                  : (lang === 'he' ? 'בואו נדבר על הפרויקט' : 'Discuss your project')}
               </a>
               <a className='button-secondary px-7 py-4' href={getWhatsAppUrl(lang)} target='_blank' rel='noreferrer'>
                 <MessageSquare className='w-5 h-5' aria-hidden='true' />
