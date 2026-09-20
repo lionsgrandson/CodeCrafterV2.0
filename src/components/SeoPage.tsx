@@ -1,8 +1,8 @@
-import { ArrowLeft, ArrowRight, ExternalLink, MapPin, MessageSquare } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ExternalLink, MessageSquare } from 'lucide-react'
 import { useLanguage } from '../App'
 import { getWhatsAppUrl } from '../lib/contact'
 import { localizePath, serviceLabels } from '../lib/seoRoutes'
-import { locationLinks, pricingRows } from '../lib/seoFactsPages'
+import { pricingRows } from '../lib/seoFactsPages'
 import type { SeoPage as SeoPageData } from '../lib/seoPages'
 
 const projectLabels: Record<string, string> = {
@@ -19,6 +19,61 @@ const profileLinks = [
   { label: 'Google Business', href: 'https://share.google/3pvnxMoRbHllkET9G' },
 ]
 
+const serviceNavigationGroups = {
+  he: [
+    {
+      title: 'אתר, דף נחיתה או חנות',
+      description: 'להציג את העסק, למכור אונליין או לבנות מסלול ברור מפעילות שיווקית לפנייה.',
+      primary: ['websites', 'ecommerce-development', 'landing-page-development'],
+      more: ['shopify-development', 'wordpress-development', 'wix-development', 'website-maintenance'],
+    },
+    {
+      title: 'מערכת לניהול העסק',
+      description: 'לרכז לקוחות, תפעול, מלאי, תוכן או תהליכים במקום אחד במקום לעבוד בין קבצים וכלים נפרדים.',
+      primary: ['custom-software', 'crm-development', 'erp-development'],
+      more: ['inventory-systems', 'cms-development'],
+    },
+    {
+      title: 'אפליקציה או פורטל',
+      description: 'כאשר עובדים, לקוחות או משתמשים צריכים ממשק ייעודי במובייל או בדפדפן.',
+      primary: ['app-development', 'web-app-development', 'business-portals'],
+      more: [],
+    },
+    {
+      title: 'לחבר ולאוטומט מערכות',
+      description: 'להעביר מידע בצורה אמינה בין כלים, לצמצם עבודה ידנית ולבנות Backend או API משותף.',
+      primary: ['automation', 'integrations', 'api-development'],
+      more: ['crm-integrations', 'crm-migration', 'business-bots'],
+    },
+  ],
+  en: [
+    {
+      title: 'Website, landing page, or store',
+      description: 'Present the business, sell online, or create a clear path from marketing activity to an enquiry.',
+      primary: ['websites', 'ecommerce-development', 'landing-page-development'],
+      more: ['shopify-development', 'wordpress-development', 'wix-development', 'website-maintenance'],
+    },
+    {
+      title: 'A system to manage the business',
+      description: 'Centralize customers, operations, inventory, content, or workflows instead of working across disconnected files and tools.',
+      primary: ['custom-software', 'crm-development', 'erp-development'],
+      more: ['inventory-systems', 'cms-development'],
+    },
+    {
+      title: 'App or portal',
+      description: 'For employees, customers, or users who need a dedicated mobile or browser-based interface.',
+      primary: ['app-development', 'web-app-development', 'business-portals'],
+      more: [],
+    },
+    {
+      title: 'Connect and automate systems',
+      description: 'Move data reliably between tools, reduce manual work, and build shared backend or API capabilities.',
+      primary: ['automation', 'integrations', 'api-development'],
+      more: ['crm-integrations', 'crm-migration', 'business-bots'],
+    },
+  ],
+} as const
+
 type SeoPageProps = {
   page: SeoPageData
 }
@@ -30,7 +85,6 @@ export function SeoPage({ page }: SeoPageProps) {
   const portfolioPath = localizePath('portfolio', lang)
   const isServicesHub = page.slug === 'services'
   const isPricingPage = page.slug === 'pricing'
-  const isLocationPage = page.slug.startsWith('locations/')
 
   return (
     <article className='seo-page pt-28 pb-24 px-6 md:px-8'>
@@ -55,8 +109,10 @@ export function SeoPage({ page }: SeoPageProps) {
             <h1>{page.h1}</h1>
             {page.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             <div className='seo-page-actions'>
-              <a className='button-primary px-7 py-4' href='#contact-page'>
-                {lang === 'he' ? 'בואו נדבר על הפרויקט' : 'Discuss your project'}
+              <a className='button-primary px-7 py-4' href={isServicesHub ? localizePath('pricing', lang) : '#contact-page'}>
+                {isServicesHub
+                  ? (lang === 'he' ? 'למחירון' : 'View pricing')
+                  : (lang === 'he' ? 'בואו נדבר על הפרויקט' : 'Discuss your project')}
               </a>
               <a className='button-secondary px-7 py-4' href={getWhatsAppUrl(lang)} target='_blank' rel='noreferrer'>
                 <MessageSquare className='w-5 h-5' aria-hidden='true' />
@@ -78,19 +134,85 @@ export function SeoPage({ page }: SeoPageProps) {
           )}
         </header>
 
-        <div className='seo-page-sections'>
-          {page.sections.map((section) => (
-            <section key={section.heading}>
-              <h2>{section.heading}</h2>
-              {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-              {section.items && (
-                <ul>
-                  {section.items.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-              )}
-            </section>
-          ))}
-        </div>
+        {isServicesHub ? (
+          <section className='mt-10' aria-labelledby='service-choice-heading'>
+            <div className='mb-7 max-w-3xl'>
+              <span className='section-kicker'>{lang === 'he' ? 'מתחילים מהצורך' : 'Start with the need'}</span>
+              <h2 id='service-choice-heading' className='text-3xl md:text-4xl font-bold font-headline text-on-surface mt-3 mb-3'>
+                {lang === 'he' ? 'מה אתם מנסים לבנות?' : 'What are you trying to build?'}
+              </h2>
+              <p className='text-secondary leading-relaxed'>
+                {lang === 'he'
+                  ? 'בחרו את הקבוצה שהכי קרובה לבעיה שלכם. לא צריך לדעת מראש את שם הטכנולוגיה או המערכת.'
+                  : 'Choose the group closest to the problem. You do not need to know the technology or product name in advance.'}
+              </p>
+            </div>
+
+            <div className='grid md:grid-cols-2 gap-5'>
+              {serviceNavigationGroups[lang].map((group) => (
+                <article key={group.title} className='rounded-2xl border border-outline-variant/20 bg-surface p-5 md:p-6'>
+                  <h3 className='text-xl md:text-2xl font-bold font-headline text-on-surface mb-2'>{group.title}</h3>
+                  <p className='text-secondary leading-relaxed mb-5'>{group.description}</p>
+
+                  <div className='space-y-2'>
+                    {group.primary.map((slug) => (
+                      <a
+                        key={slug}
+                        href={localizePath(slug, lang)}
+                        className='flex items-center justify-between gap-3 rounded-xl border border-outline-variant/15 px-4 py-3 font-semibold text-on-surface transition-colors hover:border-primary/40 hover:text-primary'
+                      >
+                        <span>{serviceLabels[lang][slug]}</span>
+                        <Arrow className='w-4 h-4 shrink-0' aria-hidden='true' />
+                      </a>
+                    ))}
+                  </div>
+
+                  {group.more.length > 0 && (
+                    <details className='mt-4 rounded-xl bg-surface-container-low px-4 py-3'>
+                      <summary className='cursor-pointer font-semibold text-primary'>
+                        {lang === 'he' ? 'אפשרויות נוספות' : 'More specific options'}
+                      </summary>
+                      <div className='mt-3 flex flex-col gap-2'>
+                        {group.more.map((slug) => (
+                          <a key={slug} href={localizePath(slug, lang)} className='inline-flex items-center justify-between gap-3 py-2 text-sm font-medium text-secondary hover:text-primary'>
+                            <span>{serviceLabels[lang][slug]}</span>
+                            <Arrow className='w-4 h-4 shrink-0' aria-hidden='true' />
+                          </a>
+                        ))}
+                      </div>
+                    </details>
+                  )}
+                </article>
+              ))}
+            </div>
+
+            <nav className='mt-6 flex flex-wrap gap-3' aria-label={lang === 'he' ? 'קישורים שימושיים' : 'Useful links'}>
+              <a className='button-primary px-5 py-3' href={localizePath('pricing', lang)}>
+                {lang === 'he' ? 'מחירים' : 'Pricing'}
+              </a>
+              <a className='button-secondary px-5 py-3' href={localizePath('portfolio', lang)}>
+                {lang === 'he' ? 'עבודות ומקרי בוחן' : 'Portfolio and case studies'}
+              </a>
+              <a className='button-secondary px-5 py-3' href={localizePath('locations', lang)}>
+                {lang === 'he' ? 'אזורי שירות' : 'Service areas'}
+              </a>
+            </nav>
+          </section>
+        ) : (
+          <div className='seo-page-sections'>
+            {page.sections.map((section) => (
+              <section key={section.heading}>
+                <h2>{section.heading}</h2>
+                {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                {section.items && (
+                  <ul>
+                    {section.items.map((item) => <li key={item}>{item}</li>)}
+                  </ul>
+                )}
+              </section>
+            ))}
+          </div>
+        )}
 
         {page.kind === 'about' && (
           <section className='seo-faq' aria-labelledby='verified-profile-heading'>
@@ -157,7 +279,7 @@ export function SeoPage({ page }: SeoPageProps) {
           </section>
         )}
 
-        {(page.relatedServices?.length || page.relatedProjects?.length || page.externalUrl) && (
+        {!isServicesHub && (page.relatedServices?.length || page.relatedProjects?.length || page.externalUrl) && (
           <aside className='seo-related' aria-label={lang === 'he' ? 'קישורים קשורים' : 'Related links'}>
             {page.relatedServices?.length ? (
               <div>
@@ -192,16 +314,14 @@ export function SeoPage({ page }: SeoPageProps) {
           </aside>
         )}
 
-        {page.kind === 'service' && (
-          <aside className='seo-related' aria-label={lang === 'he' ? 'מחירון ואזורי שירות' : 'Pricing and service areas'}>
+        {page.kind === 'service' && !isServicesHub && (
+          <aside className='seo-related' aria-label={lang === 'he' ? 'קישורים שימושיים' : 'Useful links'}>
             <div>
-              <h2>{lang === 'he' ? 'מחירון ואזורי שירות' : 'Pricing and service areas'}</h2>
+              <h2>{lang === 'he' ? 'קישורים שימושיים' : 'Useful links'}</h2>
               <div className='seo-link-grid'>
-                {!isServicesHub && (
-                  <a href={servicesPath}>
-                    <span>{lang === 'he' ? 'כל שירותי הפיתוח' : 'All development services'}</span><Arrow className='w-4 h-4' aria-hidden='true' />
-                  </a>
-                )}
+                <a href={servicesPath}>
+                  <span>{lang === 'he' ? 'כל שירותי הפיתוח' : 'All development services'}</span><Arrow className='w-4 h-4' aria-hidden='true' />
+                </a>
                 {!isPricingPage && (
                   <a href={localizePath('pricing', lang)}>
                     <span>{lang === 'he' ? 'מחירון שירותים 2026' : '2026 service pricing'}</span><Arrow className='w-4 h-4' aria-hidden='true' />
@@ -210,11 +330,6 @@ export function SeoPage({ page }: SeoPageProps) {
                 <a href={localizePath('locations', lang)}>
                   <span>{lang === 'he' ? 'כל אזורי השירות' : 'All service areas'}</span><Arrow className='w-4 h-4' aria-hidden='true' />
                 </a>
-                {locationLinks[lang].map((location) => (
-                  <a key={location.slug} href={localizePath(location.slug, lang)} aria-current={isLocationPage && page.slug === location.slug ? 'page' : undefined}>
-                    <span className='inline-flex items-center gap-2'><MapPin className='w-4 h-4' aria-hidden='true' />{location.label}</span><Arrow className='w-4 h-4' aria-hidden='true' />
-                  </a>
-                ))}
               </div>
             </div>
           </aside>

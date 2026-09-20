@@ -9,8 +9,7 @@ const he: SeoPage = {
   eyebrow: 'כל השירותים במקום אחד',
   h1: 'שירותי פיתוח לעסקים',
   intro: [
-    'העמוד הזה מרכז את שירותי CodeCrafter בלי להעמיס את עמוד הבית. אפשר לעבור מכאן לשירות הראשי שמתאים לצורך, לשירותים משלימים ולמחירון המרכזי.',
-    'אם עדיין לא ברור אם צריך אתר, CRM, ERP, אפליקציה, API או אוטומציה, מתחילים מהתהליך העסקי ומהמידע שצריך לנהל. עמודי השירות מסבירים את ההבדלים ואת החיבורים ביניהם.',
+    'בחרו לפי מה שהעסק צריך להשיג — אתר ומכירה, מערכת ניהול, אפליקציה או חיבור ואוטומציה בין מערכות. משם אפשר להיכנס לשירות המדויק או ישר למחירון.',
   ],
   sections: [
     { heading: 'נוכחות דיגיטלית ומכירה', items: ['אתרים ודפי נחיתה', 'חנויות ecommerce', 'Shopify', 'WordPress', 'Wix', 'תחזוקה ושיפור אתרים'] },
@@ -34,8 +33,7 @@ const en: SeoPage = {
   eyebrow: 'All services in one place',
   h1: 'Development services for business',
   intro: [
-    'This page brings CodeCrafter services together without adding more sections to the homepage. From here you can reach the primary service, supporting capabilities, and the central pricing guide.',
-    'If it is not yet clear whether the business needs a website, CRM, ERP, app, API, or automation, start with the workflow and information that need to be managed. The service pages explain the differences and how the parts connect.',
+    'Choose by what the business needs to achieve — website and commerce, a management system, an app, or connections and automation. From there you can open the exact service or go straight to pricing.',
   ],
   sections: [
     { heading: 'Digital presence and commerce', items: ['Websites and landing pages', 'Ecommerce stores', 'Shopify', 'WordPress', 'Wix', 'Website maintenance and improvement'] },
