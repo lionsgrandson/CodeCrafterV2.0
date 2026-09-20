@@ -363,7 +363,7 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
           </p>
           <ul className='space-y-2 text-sm'>
             {[
-              { label: t.nav.solve, href: `${homeHashPrefix}#services` },
+              { label: t.nav.solve, href: localizePath('services', lang) },
               { label: t.nav.work, href: localizePath('portfolio', lang) },
               { label: lang === 'he' ? 'אודות משה ו CodeCrafter' : 'About Moshe and CodeCrafter', href: localizePath('about', lang) },
               { label: t.nav.process, href: `${homeHashPrefix}#process` },
@@ -411,7 +411,7 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
         </p>
         <div className='flex flex-wrap items-center justify-center gap-2'>
           <a
-            href={`${homeHashPrefix}#services`}
+            href={localizePath('services', lang)}
             className='footer-trust-link'
           >
             <Globe className='w-4 h-4' />
