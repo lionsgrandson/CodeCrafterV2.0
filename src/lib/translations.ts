@@ -181,6 +181,11 @@ export const translations = {
       headline: 'מילים מאנשים שעבדתי איתם.',
       items: [
         {
+          name: 'שמעון כהן',
+          role: 'צלם',
+          text: '"אני נפגשתי עם משה על מנת לפתח אתר תיק עבודות לעסק הצילום שלי ומבלי שהתחלתי בכלל לדבר הוא כבר הראה לי סקיצה ראשונית, כאילו קלע בול לטעם שלי. אחרי שפצורים והוספות פתאום יש לי אתר משלי, ככה בשנייה! ואני גם יודע שיש לי תמיד למי לפנות אם אני צריך עזרה. מקצוען במלוא מובן המילה!"',
+        },
+        {
           name: 'Gabby',
           role: 'CEO of SumsUp',
           text: '"פגשתי את משה דרך קבוצת נטוורקינג והייתה לי חוויה יוצאת מן הכלל בעבודה איתו על האתר שלנו. התקשורת שלו הייתה ברורה, יוזמת וישירה מתחילת התהליך ועד סופו. ב-13 שנות עבודה עם חברות דומות, אני יכולה לומר בכנות שמעולם לא הייתה לי חוויה חלקה כל כך. הכל הרגיש קל, יעיל ומחושב היטב - והתוצאה הסופית משקפת את זה. בהחלט אחזור ל-CodeCrafter לפרויקטים עתידיים. מומלץ בחום."',
@@ -448,6 +453,11 @@ export const translations = {
     testimonials: {
       headline: "Words from people I've worked with.",
       items: [
+        {
+          name: 'Shimon Cohen',
+          role: 'Photographer',
+          text: '"I met with Moshe to develop a portfolio website for my photography business and before I even started talking he had already shown me an initial sketch, as if he had hit the nail on the head for my taste. After some tweaks and additions, suddenly I had my own website, just like that! And I also know that I always have someone to turn to if I need help. A professional in every sense of the word!"',
+        },
         {
           name: 'Gabby',
           role: 'CEO of SumsUp',
