@@ -7,6 +7,7 @@ import {
   Shield,
   Verified,
   Mail,
+  MapPin,
   Phone,
 } from 'lucide-react'
 import { useLanguage } from '../App'
@@ -354,6 +355,15 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
             >
               <MessageSquare className='w-4 h-4 fill-current' />
               WhatsApp
+            </a>
+            <a
+              href='https://share.google/GUNNWxtqfc6vJjqt5'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-primary hover:underline underline-offset-4 transition-all duration-[200ms] font-medium inline-flex items-center gap-2'
+            >
+              <MapPin className='w-4 h-4' aria-hidden='true' />
+              {lang === 'he' ? 'Google Business וביקורות' : 'Google Business & reviews'}
             </a>
           </div>
         </div>
