@@ -200,11 +200,6 @@ export const translations = {
           role: 'Graphic Designer',
           text: '"פניתי למשה כי רציתי להבין איך להפוך את האתר וה-SEO שלי לכלים שעובדים טוב יותר בשביל העסק. אני מבינה במיתוג ועיצוב, אבל בצד הטכני והקוד הייתי צריכה מישהו שבאמת מבין. משה הוא בדיוק זה. בשיחה של שעה הוא ניתח את האתר שלי עם מגוון כלים, הסביר איך גוגל באמת עובד, ועבר איתי על הכל בסבלנות ובבהירות - בלי ז׳רגון, רק הסברים אמיתיים ושימושיים. הוא אפילו עבר על פרופיל Google Business שלי ונתן לי רשימת פעולות מפורטת שיכולתי ליישם מיד. כמות התובנות שקיבלתי בפגישה אחת הייתה מדהימה. הוא ידידותי, מקצועי, והופך דברים מורכבים לפשוטים. אם האתר שלכם אמור להביא לידים והכנסות, משה הוא האדם להתקשר אליו. מומלץ מאוד מאוד."',
         },
-        {
-          name: 'Rabbi Amos Azizoff',
-          role: 'Chabad rep',
-          text: '"משה הוא אדם נפלא. הוא אוהב לעזור ותמיד זמין בטלפון כדי לתת תמיכה. אני ממליץ בחום על האיש היקר הזה."',
-        },
       ],
     },
     why: {
@@ -472,11 +467,6 @@ export const translations = {
           name: 'Elisheva Eizenbach',
           role: 'Graphic Designer',
           text: '"I turned to Moshe because I wanted to understand how to make my website and SEO work harder for my business. I know branding and design, but when it comes to the tech and code side of things, I needed someone who really gets it. Moshe is exactly that. During a one-hour call, he analyzed my site using a variety of tools, explained how Google really works, and walked me through everything with patience and clarity - no jargon, just real, useful explanations. He even went over my Google Business profile and gave me a detailed, actionable checklist of things I could implement immediately. The amount of insight I got in just one session was incredible. He\'s friendly, professional, and makes the complex stuff simple. If your website is supposed to bring you leads and revenue, Moshe is the person to call. Highly, highly recommend."',
-        },
-        {
-          name: 'Rabbi Amos Azizoff',
-          role: 'Chabad rep',
-          text: '"Moshe is a wonderful person. He loves to help and is always available on the phone to offer support. I warmly recommend this dear man."',
         },
       ],
     },
