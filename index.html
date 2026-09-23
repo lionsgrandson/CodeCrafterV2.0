@@ -49,6 +49,7 @@
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
     <link rel="preconnect" href="https://www.clarity.ms" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link
       rel="preload"
       href="/fonts/assistant-hebrew.woff2"
@@ -125,5 +126,7 @@
   <body>
     <div id="root"><!--app-html--></div>
     <script type="module" src="/src/entry-client.tsx"></script>
+    <!-- External accessibility controls (Sienna, pinned version). This supplements semantic accessibility; it does not replace accessible source markup. -->
+    <script src="https://cdn.jsdelivr.net/npm/sienna-accessibility@2.2.333" defer></script>
   </body>
 </html>
