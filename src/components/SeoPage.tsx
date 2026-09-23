@@ -4,6 +4,7 @@ import { getWhatsAppUrl } from '../lib/contact'
 import { localizePath, serviceLabels } from '../lib/seoRoutes'
 import { pricingRows } from '../lib/seoFactsPages'
 import type { SeoPage as SeoPageData } from '../lib/seoPages'
+import { FaqAccordion } from './FaqAccordion'
 
 const projectLabels: Record<string, string> = {
   sumsup: 'SumsUp',
@@ -173,6 +174,23 @@ export function SeoPage({ page }: SeoPageProps) {
           )}
         </header>
 
+        {!isServicesHub && page.sections.length > 2 && (
+          <nav
+            className='seo-page-jump-nav'
+            aria-label={lang === 'he' ? 'תוכן העמוד' : 'Page contents'}
+          >
+            <p>{lang === 'he' ? 'מה תמצאו בעמוד' : 'On this page'}</p>
+            <div>
+              {page.sections.slice(0, 8).map((section, index) => (
+                <a key={section.heading} href={`#page-section-${index + 1}`}>
+                  <span aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span>
+                  {section.heading}
+                </a>
+              ))}
+            </div>
+          </nav>
+        )}
+
         {isServicesHub ? (
           <section className='mt-10' aria-labelledby='service-choice-heading'>
             <div className='mb-7 max-w-3xl'>
@@ -188,8 +206,11 @@ export function SeoPage({ page }: SeoPageProps) {
             </div>
 
             <div className='grid md:grid-cols-2 gap-5'>
-              {serviceNavigationGroups[lang].map((group) => (
-                <article key={group.title} className='rounded-2xl border border-outline-variant/20 bg-surface p-5 md:p-6'>
+              {serviceNavigationGroups[lang].map((group, index) => (
+                <article
+                  key={group.title}
+                  className={`service-hub-card service-hub-card-${index % 4} rounded-2xl border border-outline-variant/20 p-5 md:p-6`}
+                >
                   <h3 className='text-xl md:text-2xl font-bold font-headline text-on-surface mb-2'>{group.title}</h3>
                   <p className='text-secondary leading-relaxed mb-5'>{group.description}</p>
 
@@ -247,8 +268,9 @@ export function SeoPage({ page }: SeoPageProps) {
 
               return (
                 <section
+                  id={`page-section-${index + 1}`}
                   key={section.heading}
-                  className={`relative overflow-hidden ${accentClass} ${isWide ? 'md:col-span-2' : ''}`}
+                  className={`seo-content-card relative scroll-mt-28 overflow-hidden ${accentClass} ${isWide ? 'md:col-span-2' : ''}`}
                   style={{
                     borderRadius: `${sectionRadius}px`,
                     backgroundImage: `radial-gradient(circle at ${sectionGlowX}% 0%, hsla(${pageHue}, 70%, 55%, 0.065), transparent 15rem)`,
@@ -327,14 +349,7 @@ export function SeoPage({ page }: SeoPageProps) {
           <section className='seo-faq' aria-labelledby='faq-heading'>
             <span className='section-kicker'>FAQ</span>
             <h2 id='faq-heading'>{lang === 'he' ? 'שאלות נפוצות' : 'Frequently asked questions'}</h2>
-            <div className='seo-faq-list'>
-              {page.faq.map((item) => (
-                <details key={item.question}>
-                  <summary>{item.question}</summary>
-                  <p>{item.answer}</p>
-                </details>
-              ))}
-            </div>
+            <FaqAccordion items={page.faq} />
           </section>
         )}
 
