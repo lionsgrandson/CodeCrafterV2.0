@@ -123,7 +123,7 @@ export function Portfolio({
 
   return (
     <section
-      className={`${standalone ? 'pt-32 pb-24' : 'py-24'} px-6 md:px-8 bg-surface-container-low`}
+      className={`${standalone ? 'portfolio-standalone pt-28 md:pt-32 pb-20 md:pb-24' : 'py-24'} px-4 sm:px-6 md:px-8 bg-surface-container-low`}
       id='portfolio'
     >
       <div className='max-w-7xl mx-auto'>
@@ -141,7 +141,7 @@ export function Portfolio({
           </a>
         )}
         {standalone ? (
-          <header className='mb-16 max-w-3xl'>
+          <header className='portfolio-standalone-header mb-10 md:mb-14 max-w-4xl rounded-3xl border border-outline-variant/20 p-6 md:p-9'>
             <h1 className='text-4xl md:text-6xl font-bold mb-5 tracking-tight font-headline text-on-surface'>
               {t.portfolio.allHeadline}
             </h1>
@@ -155,7 +155,7 @@ export function Portfolio({
             className='text-4xl md:text-5xl font-bold mb-16 tracking-tight font-headline text-on-surface'
           />
         )}
-        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+        <div className={`grid md:grid-cols-2 lg:grid-cols-3 ${standalone ? 'gap-4 md:gap-6' : 'gap-8'}`}>
           {projects.map((project, idx) => {
             const isHomepageExtra = !showAll && idx >= 20
 
@@ -170,7 +170,7 @@ export function Portfolio({
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.5, delay: (idx % 3) * 0.1 }}
                 viewport={{ once: true }}
-                className={`${isHomepageExtra ? 'hidden' : 'flex'} bg-surface-container-lowest rounded-xl overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-[625ms] border border-outline-variant/10 flex-col h-full text-start cursor-pointer`}
+                className={`${isHomepageExtra ? 'hidden' : 'flex'} ${standalone ? `portfolio-inner-card portfolio-inner-card-${idx % 3}` : 'bg-surface-container-lowest'} rounded-xl overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-[625ms] border border-outline-variant/10 flex-col h-full text-start cursor-pointer`}
               >
                 <ProjectMedia
                   src={showAll || idx < 20 ? project.media?.src : undefined}
