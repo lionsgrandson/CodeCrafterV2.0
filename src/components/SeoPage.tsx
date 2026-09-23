@@ -16,7 +16,7 @@ const profileLinks = [
   { label: 'LinkedIn', href: 'https://il.linkedin.com/in/codecrafteril' },
   { label: 'Instagram', href: 'https://www.instagram.com/moshe_blackberg/' },
   { label: 'Facebook', href: 'https://www.facebook.com/moshe.schwartzberg.92' },
-  { label: 'Google Business', href: 'https://share.google/3pvnxMoRbHllkET9G' },
+  { label: 'Google Business', href: 'https://share.google/GUNNWxtqfc6vJjqt5' },
 ]
 
 const serviceNavigationGroups = {
@@ -78,6 +78,21 @@ type SeoPageProps = {
   page: SeoPageData
 }
 
+const hashPageSlug = (slug: string) =>
+  [...slug].reduce(
+    (total, char, index) => total + char.charCodeAt(0) * (index + 7),
+    0,
+  )
+
+const sectionAccentClasses = [
+  'border-s-4 border-s-primary/55',
+  'border-t-4 border-t-primary/45',
+  'ring-1 ring-primary/10',
+  'shadow-lg shadow-primary/5',
+  'border-e-4 border-e-secondary/30',
+  'border-b-4 border-b-primary/25',
+]
+
 export function SeoPage({ page }: SeoPageProps) {
   const { lang } = useLanguage()
   const Arrow = lang === 'he' ? ArrowLeft : ArrowRight
@@ -85,10 +100,26 @@ export function SeoPage({ page }: SeoPageProps) {
   const portfolioPath = localizePath('portfolio', lang)
   const isServicesHub = page.slug === 'services'
   const isPricingPage = page.slug === 'pricing'
+  const pageSeed = hashPageSlug(page.slug)
+  const layoutVariant = pageSeed % 5
+  const pageHue = 205 + (pageSeed % 42)
+  const pageGlowX = 15 + (pageSeed % 70)
+  const pageMaxWidth = 980 + (pageSeed % 260)
+  const heroRadius = 20 + (pageSeed % 24)
+  const heroImageFirst = Boolean(page.image) && pageSeed % 2 === 1
+  const heroPadding = 24 + (pageSeed % 17)
+  const fullWidthEvery = 2 + (pageSeed % 3)
 
   return (
-    <article className='seo-page pt-28 pb-24 px-6 md:px-8'>
-      <div className='max-w-5xl mx-auto'>
+    <article
+      className='seo-page pt-28 pb-24 px-6 md:px-8'
+      data-page-slug={page.slug}
+      data-layout-variant={layoutVariant}
+      style={{
+        backgroundImage: `radial-gradient(circle at ${pageGlowX}% 6%, hsla(${pageHue}, 72%, 56%, 0.12), transparent 30rem), linear-gradient(180deg, transparent, hsla(${pageHue}, 65%, 48%, 0.025) 55%, transparent)`,
+      }}
+    >
+      <div className='mx-auto' style={{ maxWidth: `${pageMaxWidth}px` }}>
         <nav className='breadcrumbs' aria-label={lang === 'he' ? 'פירורי לחם' : 'Breadcrumbs'}>
           <ol>
             <li><a href={localizePath('', lang)}>{lang === 'he' ? 'בית' : 'Home'}</a></li>
@@ -103,8 +134,16 @@ export function SeoPage({ page }: SeoPageProps) {
           </ol>
         </nav>
 
-        <header className='seo-page-hero'>
-          <div className='min-w-0'>
+        <header
+          className={`seo-page-hero relative overflow-hidden ${layoutVariant === 1 ? 'bg-surface-container-low' : layoutVariant === 2 ? 'bg-surface-container-high/55' : layoutVariant === 3 ? 'bg-white/55' : layoutVariant === 4 ? 'bg-primary/[0.035]' : 'bg-transparent'}`}
+          style={{
+            borderRadius: `${heroRadius}px`,
+            padding: `${heroPadding}px`,
+            borderInlineStartWidth: layoutVariant === 2 ? '4px' : undefined,
+            borderInlineStartColor: layoutVariant === 2 ? `hsla(${pageHue}, 68%, 50%, 0.38)` : undefined,
+          }}
+        >
+          <div className={`min-w-0 ${heroImageFirst ? 'md:order-2' : ''}`}>
             <span className='section-kicker'>{page.eyebrow}</span>
             <h1>{page.h1}</h1>
             {page.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
@@ -121,7 +160,7 @@ export function SeoPage({ page }: SeoPageProps) {
             </div>
           </div>
           {page.image && (
-            <figure className={`seo-page-image seo-page-image-${page.image.kind ?? 'logo'}`}>
+            <figure className={`seo-page-image seo-page-image-${page.image.kind ?? 'logo'} ${heroImageFirst ? 'md:order-1' : ''}`}>
               <img
                 src={page.image.src}
                 alt={page.image.alt}
@@ -199,18 +238,38 @@ export function SeoPage({ page }: SeoPageProps) {
             </nav>
           </section>
         ) : (
-          <div className='seo-page-sections'>
-            {page.sections.map((section) => (
-              <section key={section.heading}>
-                <h2>{section.heading}</h2>
-                {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-                {section.items && (
-                  <ul>
-                    {section.items.map((item) => <li key={item}>{item}</li>)}
-                  </ul>
-                )}
-              </section>
-            ))}
+          <div className={`seo-page-sections ${layoutVariant === 3 ? 'md:grid-cols-1' : ''}`}>
+            {page.sections.map((section, index) => {
+              const accentClass = sectionAccentClasses[(pageSeed + index) % sectionAccentClasses.length]
+              const isWide = layoutVariant !== 3 && (index + 1) % fullWidthEvery === 0
+              const sectionRadius = 16 + ((pageSeed + index * 11) % 20)
+              const sectionGlowX = 8 + ((pageSeed + index * 17) % 84)
+
+              return (
+                <section
+                  key={section.heading}
+                  className={`relative overflow-hidden ${accentClass} ${isWide ? 'md:col-span-2' : ''}`}
+                  style={{
+                    borderRadius: `${sectionRadius}px`,
+                    backgroundImage: `radial-gradient(circle at ${sectionGlowX}% 0%, hsla(${pageHue}, 70%, 55%, 0.065), transparent 15rem)`,
+                  }}
+                >
+                  <div className={`mb-4 flex items-center gap-3 ${layoutVariant === 4 && index % 2 === 1 ? 'md:justify-end md:text-end' : ''}`}>
+                    <span className='inline-flex h-8 min-w-8 items-center justify-center rounded-full bg-primary/10 px-2 font-headline text-xs font-extrabold text-primary'>
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <div className='h-px flex-1 bg-outline-variant/20' aria-hidden='true' />
+                  </div>
+                  <h2>{section.heading}</h2>
+                  {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                  {section.items && (
+                    <ul className={layoutVariant === 1 && section.items.length > 4 ? 'grid gap-3 sm:grid-cols-2' : undefined}>
+                      {section.items.map((item) => <li key={item}>{item}</li>)}
+                    </ul>
+                  )}
+                </section>
+              )
+            })}
           </div>
         )}
 
