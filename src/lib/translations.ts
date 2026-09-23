@@ -456,7 +456,7 @@ export const translations = {
         {
           name: 'Shimon Cohen',
           role: 'Photographer',
-          text: '"I met with Moshe to develop a portfolio website for my photography business and before I even started talking he had already shown me an initial sketch, as if he had hit the nail on the head for my taste. After some tweaks and additions, suddenly I had my own website, just like that! And I also know that I always have someone to turn to if I need help. A professional in every sense of the word!"',
+          text: '"I met with Moshe to develop a portfolio website for my photography business and before I even started talking he already showed me an initial sketch, as if he had hit the nail on the head for my taste. After some tweaks and additions, suddenly I have my own website, in a second! And I also know that I always have someone to turn to if I need help. A professional in every sense of the word!"',
         },
         {
           name: 'Gabby',
