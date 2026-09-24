@@ -20,30 +20,50 @@ export { localizePath, serviceLabels, serviceSlugs, type Language, type SeoPage 
 const searchConsoleOverrides: Record<Language, Record<string, Partial<Pick<SeoPage, 'title' | 'description'>>>> = {
   he: {
     'custom-software': {
-      title: 'פיתוח תוכנה בהתאמה אישית לעסקים | CodeCrafter',
-      description: 'פיתוח תוכנה בהתאמה אישית לעסקים בישראל: מערכות Web, פורטלים, דשבורדים וכלים פנימיים שנבנים סביב תהליך העבודה האמיתי של העסק.',
+      title: 'פיתוח תוכנה בהתאמה אישית ומערכות לעסקים | CodeCrafter',
+      description: 'פיתוח תוכנה בהתאמה אישית לעסקים בישראל: מערכות Web, פורטלים, דשבורדים, תהליכי עבודה ואינטגרציות שנבנים סביב הצורך והתהליך העסקי.',
     },
     'app-development': {
-      title: 'פיתוח אפליקציה לעסק ופיתוח אפליקציות לעסקים | CodeCrafter',
-      description: 'פיתוח אפליקציה לעסק ופיתוח אפליקציות לעסקים ל Android ו iOS, עם אפיון, ממשק, חיבור למערכות קיימות ובדיקות לפי הצורך.',
+      title: 'פיתוח אפליקציה לעסק | אפליקציות לנייד | CodeCrafter',
+      description: 'פיתוח אפליקציה לעסק ופיתוח אפליקציות לנייד ל-Android ול-iOS, כולל אפיון, UX/UI, חיבור למערכות קיימות, API, בדיקות והשקה לפי הצורך.',
     },
     'crm-development': {
       title: 'פיתוח מערכת CRM בהתאמה אישית | CodeCrafter',
-      description: 'פיתוח מערכת CRM בהתאמה אישית לעסק לניהול לידים, לקוחות, משימות, הרשאות, דוחות ותהליכי מכירה ושירות במקום אחד.',
+      description: 'פיתוח CRM מותאם אישית לעסק לניהול לידים, לקוחות, משימות, הרשאות, דוחות, אוטומציות ואינטגרציות — לפי תהליך העבודה ולא לפי תבנית קבועה.',
+    },
+    automation: {
+      title: 'אוטומציה לעסקים | חיבור מערכות ותהליכי עבודה | CodeCrafter',
+      description: 'אוטומציות לעסקים שמחברות טפסים, CRM, דוא״ל, WhatsApp, מסמכים ו-API כדי לצמצם עבודה ידנית, להעביר מידע בצורה אמינה ולשמור על בקרה.',
     },
   },
   en: {
     websites: {
-      title: 'Website Development Company Israel | CodeCrafter',
-      description: 'Website development in Israel for businesses that need fast, clear, custom websites, landing pages, ecommerce, integrations, and a strong technical SEO foundation.',
+      title: 'Custom Website Development Services Israel | CodeCrafter',
+      description: 'Custom website development services in Israel for business websites, landing pages and ecommerce, with responsive UX, integrations, performance and technical SEO built in.',
     },
     'custom-software': {
-      title: 'Custom Software Development Israel | CodeCrafter',
-      description: 'Custom software development in Israel for business systems, portals, dashboards, internal tools, workflow management, and integrations built around real processes.',
+      title: 'Custom Software Development Israel | Business Systems | CodeCrafter',
+      description: 'Custom software development in Israel for business systems, portals, dashboards, internal tools and integrations built around real workflows, users and permissions.',
     },
     'crm-development': {
       title: 'Custom CRM Development Israel | CodeCrafter',
-      description: 'Custom CRM development in Israel for leads, customers, tasks, permissions, reporting, and integrations, designed around the business workflow instead of a fixed template.',
+      description: 'Custom CRM development in Israel for SMBs: leads, customers, tasks, permissions, reporting, automation and integrations built around your actual workflow.',
+    },
+    'erp-development': {
+      title: 'Custom ERP Software Israel | ERP Development | CodeCrafter',
+      description: 'Custom ERP software development in Israel for connected business processes, including CRM, orders, inventory, purchasing, projects, reporting and integrations.',
+    },
+    'app-development': {
+      title: 'Mobile App Development Israel | Business Apps | CodeCrafter',
+      description: 'Mobile app development in Israel for business and customer apps, from product definition and UX/UI to APIs, integrations, testing and Android/iOS delivery.',
+    },
+    automation: {
+      title: 'Business Automation Israel | Workflow Automation | CodeCrafter',
+      description: 'Business automation in Israel for CRM, forms, email, documents, APIs and AI-assisted workflows, designed with monitoring, error handling and human control.',
+    },
+    integrations: {
+      title: 'API Integration Services Israel | Systems Integration | CodeCrafter',
+      description: 'API integration services in Israel for connecting websites, CRM, ERP, email, calendars, payments and other business systems with reliable data flows.',
     },
   },
 }
