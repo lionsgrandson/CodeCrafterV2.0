@@ -122,6 +122,7 @@ const projectData: Record<'he' | 'en', Project[]> = {
         'Investigated link behavior from the user flow instead of treating code-level correctness as sufficient.',
       ],
       technologies: ['Manual QA', 'E2E Testing', 'React SPA', 'Technical SEO', 'Sitemaps', 'hreflang', 'Debugging'],
+      links: [{ label: 'Live', href: 'https://tovhaaretz.com/' }],
     },
     {
       title: 'Student Transcribe',
@@ -149,10 +150,7 @@ const projectData: Record<'he' | 'en', Project[]> = {
         'Excel/CSV import-export, printable quotes, team permissions, MFA and mobile packaging through Capacitor.',
       ],
       technologies: ['React 19', 'TypeScript', 'Supabase', 'PostgreSQL', 'Gemini', 'Google APIs', 'Capacitor'],
-      links: [
-        { label: 'Live', href: 'https://codecraftercrm.netlify.app' },
-        { label: 'GitHub', href: 'https://github.com/lionsgrandson/CodeCrafterCRM' },
-      ],
+      links: [{ label: 'Live', href: 'https://codecraftercrm.netlify.app' }],
     },
     {
       title: 'RAM Engineering CRM',
