@@ -242,7 +242,7 @@ const experienceData: Record<'he' | 'en', Experience[]> = {
         'Led a development team and provided technical direction at corps headquarters.',
         'Instruction for B.Sc. electronics students / trainees.',
       ],
-      tags: ['Full Stack', 'Team Lead', 'Software Development', 'Training', 'Electronics', 'GIS'],
+      tags: ['Full Stack', 'Team Lead', 'Software Development', 'Training', 'Electronics'],
     },
   ],
 }
