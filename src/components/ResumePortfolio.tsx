@@ -1,13 +1,18 @@
 import {
   ArrowUpRight,
   BriefcaseBusiness,
+  Bug,
   Cloud,
   Code2,
   Database,
   ExternalLink,
-  Github,
+  Headphones,
+  MonitorCog,
+  Radio,
+  Search,
   ShieldCheck,
   Sparkles,
+  Wrench,
 } from 'lucide-react'
 import { useLanguage } from '../App'
 import { localizePath } from '../lib/seoRoutes'
@@ -20,6 +25,15 @@ type Project = {
   technologies: string[]
   href?: string
   linkLabel?: string
+}
+
+type Experience = {
+  role: string
+  organization: string
+  description: string
+  bullets: string[]
+  tags: string[]
+  current?: boolean
 }
 
 const projectData: Record<'he' | 'en', Project[]> = {
@@ -36,6 +50,19 @@ const projectData: Record<'he' | 'en', Project[]> = {
         'מסלולי הפצה ל-Cloudflare, Desktop עם Tauri ו-Mobile עם Capacitor.',
       ],
       technologies: ['React 19', 'TypeScript', 'Supabase', 'PostgreSQL', 'Cloudflare', 'Tauri', 'Capacitor'],
+    },
+    {
+      title: 'Tov Ha’aretz',
+      type: 'QA · Technical SEO · Production flow',
+      description:
+        'עבודת QA ואבחון טכני למערכת תוכן מבוססת React/SPA, כולל בדיקות End-to-End, תהליכי פרסום, תרגומים ו-SEO טכני.',
+      highlights: [
+        'בדיקת End-to-End של תהליך יצירה, עריכה ופרסום ותיעוד תקלות שחוסמות או פוגעות בזרימת העבודה.',
+        'בדיקת בעיות SPA/SEO כולל sitemap, canonical, hreflang, crawlability ותוכן מתורגם.',
+        'בדיקת התנהגות fallback ו-cache בתרגומים כדי לוודא שעריכות לא מציגות תוכן ישן או שפה לא נכונה.',
+        'בדיקת בעיות קישורים והתנהגות בפועל מתוך תהליכי משתמש ולא רק מתוך הקוד.',
+      ],
+      technologies: ['Manual QA', 'E2E Testing', 'React SPA', 'Technical SEO', 'Sitemaps', 'hreflang', 'Debugging'],
     },
     {
       title: 'Student Transcribe',
@@ -83,6 +110,19 @@ const projectData: Record<'he' | 'en', Project[]> = {
       technologies: ['React 19', 'TypeScript', 'Supabase', 'PostgreSQL', 'Cloudflare', 'Tauri', 'Capacitor'],
     },
     {
+      title: 'Tov Ha’aretz',
+      type: 'QA · Technical SEO · Production flow',
+      description:
+        'QA and technical analysis for a React/SPA content platform, covering end-to-end publishing, translations and technical SEO.',
+      highlights: [
+        'Tested the end-to-end create, edit and publish workflow and documented defects affecting production use.',
+        'Audited SPA/SEO issues including sitemap behavior, canonicals, hreflang, crawlability and translated content.',
+        'Checked translation fallback and cache behavior so edits do not surface stale content or the wrong language.',
+        'Investigated link behavior from the user flow instead of treating code-level correctness as sufficient.',
+      ],
+      technologies: ['Manual QA', 'E2E Testing', 'React SPA', 'Technical SEO', 'Sitemaps', 'hreflang', 'Debugging'],
+    },
+    {
       title: 'Student Transcribe',
       type: 'AI / transcription / local-first',
       description:
@@ -115,20 +155,71 @@ const projectData: Record<'he' | 'en', Project[]> = {
   ],
 }
 
+const experienceData: Record<'he' | 'en', Experience[]> = {
+  he: [
+    {
+      role: 'טכנאי AV — Audio & Video',
+      organization: 'VidCo · תמיכה עבור WZO, KKL-JNF ו-JAFI',
+      description:
+        'תפקיד טכני שוטף בסביבת Audio/Video, עם תמיכה תפעולית וטיפול בתקלות עבור ארגונים גדולים.',
+      bullets: [
+        'הקמה, הפעלה ותמיכה במערכות Audio/Video בסביבת עבודה מקצועית.',
+        'Troubleshooting בזמן אמת ומתן תמיכה טכנית למשתמשים ולצוותים.',
+        'עבודה בסביבה שבה אמינות, תגובה מהירה ופתרון בעיות חשובים לא פחות מהידע הטכני.',
+      ],
+      tags: ['AV', 'Technical Support', 'Troubleshooting', 'User Support'],
+      current: true,
+    },
+    {
+      role: 'Software Developer / Technical Roles',
+      organization: 'צה״ל',
+      description:
+        'שירות טכנולוגי שכלל פיתוח תוכנה, הדרכה ועבודה טכנית, בנוסף לניסיון מוקדם יותר בסביבת GIS.',
+      bullets: [
+        'פיתוח תוכנה במסגרת השירות הצבאי.',
+        'הדרכת סטודנטים / חניכים במסלול B.Sc. באלקטרוניקה.',
+        'ניסיון קודם ביחידת 9900 בסביבת GIS ומידע גאוגרפי.',
+        'עבודה בצוותים טכניים, פתרון בעיות והעברת ידע למשתמשים ולאנשי מקצוע.',
+      ],
+      tags: ['Software Development', 'Training', 'Electronics', 'GIS', 'Technical Operations'],
+    },
+  ],
+  en: [
+    {
+      role: 'AV Technician — Audio & Video',
+      organization: 'VidCo · supporting WZO, KKL-JNF and JAFI',
+      description:
+        'Hands-on AV technical operations and troubleshooting support in professional organizational environments.',
+      bullets: [
+        'Setup, operation and support of audio/video systems in a professional workplace environment.',
+        'Real-time troubleshooting and technical assistance for users and teams.',
+        'Work where reliability, fast response and practical problem solving are as important as technical knowledge.',
+      ],
+      tags: ['AV', 'Technical Support', 'Troubleshooting', 'User Support'],
+      current: true,
+    },
+    {
+      role: 'Software Developer / Technical Roles',
+      organization: 'Israel Defense Forces',
+      description:
+        'Technology-focused military service including software development, technical instruction and earlier GIS-related work.',
+      bullets: [
+        'Software development during military service.',
+        'Instruction for B.Sc. electronics students / trainees.',
+        'Earlier experience in Unit 9900 in a GIS and geospatial information environment.',
+        'Technical teamwork, troubleshooting and knowledge transfer to users and technical personnel.',
+      ],
+      tags: ['Software Development', 'Training', 'Electronics', 'GIS', 'Technical Operations'],
+    },
+  ],
+}
+
 const websites = [
   { title: 'Rainbow ASD', href: 'https://rainbow-asd.com/', stack: 'Responsive service website' },
   { title: 'Shimon Cohen Photography', href: 'https://shimonphotos.com/', stack: 'Photography portfolio' },
   { title: 'Yuval Kadosh', href: 'https://ykadosh.co.il', stack: 'Content & personal brand website' },
   { title: 'SumsUp', href: 'https://sumsup.co', stack: 'White-label product website' },
   { title: 'CodeRecovery', href: 'https://simplyrecovery.netlify.app/', stack: 'Technical service website' },
-]
-
-const githubProjects = [
-  { title: 'StudentTranscribe', href: 'https://github.com/lionsgrandson/StudentTranscribe' },
-  { title: 'CodeCrafterV2.0', href: 'https://github.com/lionsgrandson/CodeCrafterV2.0' },
-  { title: 'WA-automation', href: 'https://github.com/lionsgrandson/WA-automation' },
-  { title: 'transcribeChats', href: 'https://github.com/lionsgrandson/transcribeChats' },
-  { title: 'DevDesk', href: 'https://github.com/lionsgrandson/DevDesk----a-mini-Jira---CRM---client-portal' },
 ]
 
 function ProjectCard({ project }: { project: Project }) {
@@ -184,60 +275,115 @@ export function ResumePortfolio() {
   const copy =
     lang === 'he'
       ? {
-          eyebrow: 'תיק עבודות למגייסים',
-          title: 'משה שוורצברג — Software Developer',
+          eyebrow: 'פרופיל טכני למגייסים',
+          title: 'משה שוורצברג — Software · QA · IT Support · AV',
           intro:
-            'פיתוח Full-stack, מערכות CRM, כלי AI, אינטגרציות, Cloud deployment ואתרי Production. הדף הזה מרכז פרויקטים שמדגימים עבודה טכנית מעבר לעיצוב UI.',
-          github: 'לפרופיל GitHub',
+            'ניסיון מעשי בפיתוח תוכנה, מערכות CRM, QA, Help Desk ותמיכה טכנית, SEO טכני, אינטגרציות, Cloud deployment ו-Audio/Video. המטרה כאן היא להראות את טווח העבודה הטכנית שלי — מפיתוח ועד איתור תקלות ותמיכה במשתמשים.',
           selected: 'פרויקטים נבחרים',
-          selectedSub: 'מערכות ואפליקציות שמציגות ארכיטקטורה, Backend, Data, אינטגרציות ופריסה.',
+          selectedSub: 'מערכות ועבודות שמציגות פיתוח, QA, debugging, data, integrations ו-production delivery.',
+          experienceTitle: 'ניסיון טכני',
+          experienceSub: 'פיתוח, תמיכה, הדרכה ו-AV בסביבות שבהן צריך להבין מערכת, לאבחן בעיה ולפתור אותה בפועל.',
+          capabilitiesTitle: 'QA · Help Desk · SEO · Technical Operations',
+          capabilitiesSub: 'התחומים הטכניים שאני מביא בנוסף לפיתוח תוכנה.',
           websitesTitle: 'אתרי Production',
-          websitesSub: 'מספר אתרים פעילים שבניתי עבור לקוחות ופרויקטים.',
-          githubTitle: 'GitHub ופרויקטים נוספים',
-          githubSub:
-            'הפרופיל כולל פרויקטים ציבוריים נוספים. חלק ממערכות הלקוחות וה-CRM הן private repositories ולכן אינן מופיעות כולן בפרופיל הציבורי.',
+          websitesSub: 'מספר אתרים פעילים שבניתי או עבדתי עליהם עבור לקוחות ופרויקטים.',
           noteTitle: 'אפשר להעמיק בראיון',
           note:
-            'בפרויקטים פרטיים אפשר לעבור יחד על ארכיטקטורה, החלטות מימוש, integrations, deployment והחלקים שבניתי בפועל.',
+            'בפרויקטים פרטיים אפשר לעבור יחד על ארכיטקטורה, תקלות שאובחנו, תהליכי QA, integrations, deployment והחלקים שבניתי או בדקתי בפועל.',
         }
       : {
-          eyebrow: 'Recruiter engineering portfolio',
-          title: 'Moshe Schwartzberg — Software Developer',
+          eyebrow: 'Technical profile for recruiters',
+          title: 'Moshe Schwartzberg — Software · QA · IT Support · AV',
           intro:
-            'Full-stack development, CRM systems, AI tooling, integrations, cloud deployment and production websites. This page focuses on engineering work beyond UI design.',
-          github: 'Open GitHub profile',
+            'Hands-on experience across software development, CRM systems, QA, Help Desk and technical support, technical SEO, integrations, cloud delivery and audio/video operations. The goal here is to show the full technical range — from building systems to diagnosing problems and supporting users.',
           selected: 'Selected engineering work',
-          selectedSub: 'Applications and systems demonstrating architecture, backend, data, integrations and production delivery.',
+          selectedSub: 'Projects demonstrating development, QA, debugging, data, integrations and production delivery.',
+          experienceTitle: 'Technical experience',
+          experienceSub: 'Development, support, instruction and AV work where understanding the system, diagnosing the issue and solving it in practice all matter.',
+          capabilitiesTitle: 'QA · Help Desk · SEO · Technical Operations',
+          capabilitiesSub: 'Technical capabilities I bring in addition to software development.',
           websitesTitle: 'Production websites',
-          websitesSub: 'A selection of live client and project websites I built.',
-          githubTitle: 'GitHub & additional projects',
-          githubSub:
-            'The public profile contains additional projects. Some client systems and CRM repositories are private, so GitHub does not represent the full body of work.',
+          websitesSub: 'A selection of live client and project websites I built or worked on.',
           noteTitle: 'More detail is available in an interview',
           note:
-            'For private projects I can walk through architecture, implementation decisions, integrations, deployment and the specific parts I built.',
+            'For private projects I can walk through architecture, defects investigated, QA flows, integrations, deployment and the specific work I built or tested.',
         }
 
   const skillGroups = [
     {
       icon: Code2,
-      title: 'Frontend',
-      items: 'React · Next.js · TypeScript · JavaScript · Vite',
+      title: 'Software Development',
+      items: 'React · Next.js · TypeScript · JavaScript · Node.js · REST APIs',
+    },
+    {
+      icon: Bug,
+      title: 'QA & Debugging',
+      items: 'Manual QA · E2E · Regression · Reproduction · Browser DevTools · API checks',
+    },
+    {
+      icon: Headphones,
+      title: 'Help Desk / IT Support',
+      items: 'Windows · Microsoft setup · Gmail · Printers · Routers/Wi-Fi · User support',
+    },
+    {
+      icon: Search,
+      title: 'Technical SEO',
+      items: 'Sitemaps · robots.txt · canonical · hreflang · SPA/SSR · crawlability · metadata',
     },
     {
       icon: Database,
       title: 'Backend & Data',
-      items: 'Node.js · Supabase · PostgreSQL · MongoDB · REST APIs',
+      items: 'Supabase · PostgreSQL · MongoDB · Auth · RBAC · RLS',
     },
     {
       icon: Cloud,
       title: 'Cloud & Delivery',
-      items: 'Cloudflare Workers · R2 · Netlify · CI/CD · Production deployment',
+      items: 'Cloudflare · R2 · Netlify · deployment · production troubleshooting',
+    },
+    {
+      icon: Radio,
+      title: 'AV / Technical Operations',
+      items: 'Audio/video systems · setup · operation · real-time troubleshooting · user support',
     },
     {
       icon: ShieldCheck,
       title: 'Systems & Security',
-      items: 'OAuth · RBAC · MFA · RLS · Audit logs · Integrations',
+      items: 'OAuth · MFA · permissions · audit logs · integrations · secure file handling',
+    },
+  ]
+
+  const capabilityCards = [
+    {
+      icon: Bug,
+      title: lang === 'he' ? 'QA ובדיקות' : 'QA & Testing',
+      text:
+        lang === 'he'
+          ? 'בדיקות ידניות, End-to-End, Regression, שחזור תקלות, בדיקת flows אמיתיים, הרשאות, קישורים, שפות, API והתנהגות production.'
+          : 'Manual QA, end-to-end and regression testing, defect reproduction, real user flows, permissions, links, localization, APIs and production behavior.',
+    },
+    {
+      icon: Headphones,
+      title: lang === 'he' ? 'Help Desk ותמיכה' : 'Help Desk & Support',
+      text:
+        lang === 'he'
+          ? 'פתרון בעיות Windows, חשבונות Microsoft/Gmail, מדפסות, ראוטרים ו-Wi-Fi, הגדרות משתמש ותקלות יום-יומיות מול משתמשים לא טכניים.'
+          : 'Troubleshooting Windows, Microsoft/Gmail accounts, printers, routers and Wi-Fi, user setup and day-to-day issues with non-technical users.',
+    },
+    {
+      icon: Search,
+      title: 'Technical SEO',
+      text:
+        lang === 'he'
+          ? 'Audits ויישום של sitemap, robots, canonical, hreflang, metadata, crawlability, SPA/SSR, accessibility בסיסית ותקלות אינדוקס.'
+          : 'Audits and implementation work covering sitemaps, robots, canonicals, hreflang, metadata, crawlability, SPA/SSR, basic accessibility and indexing issues.',
+    },
+    {
+      icon: Wrench,
+      title: lang === 'he' ? 'Implementation / Technical Operations' : 'Implementation / Technical Operations',
+      text:
+        lang === 'he'
+          ? 'חיבור בין לקוח, מערכת וצוות פיתוח: הבנת דרישה, reproduction, logs/debugging, configuration, integrations, rollout ופתרון בעיות.'
+          : 'Bridging users, systems and development: requirements, reproduction, logs/debugging, configuration, integrations, rollout and troubleshooting.',
     },
   ]
 
@@ -250,27 +396,22 @@ export function ResumePortfolio() {
         </div>
 
         <div className='relative z-10 mx-auto max-w-7xl'>
-          <div className='max-w-4xl'>
+          <div className='max-w-5xl'>
             <span className='section-kicker'>{copy.eyebrow}</span>
-            <h1 className='mt-6 max-w-4xl text-4xl font-black leading-tight text-on-surface md:text-6xl'>
+            <h1 className='mt-6 max-w-5xl text-4xl font-black leading-tight text-on-surface md:text-6xl'>
               {copy.title}
             </h1>
-            <p className='mt-6 max-w-3xl text-lg leading-8 text-on-surface-variant md:text-xl'>
+            <p className='mt-6 max-w-4xl text-lg leading-8 text-on-surface-variant md:text-xl'>
               {copy.intro}
             </p>
 
             <div className='mt-8 flex flex-wrap gap-3'>
-              <a
-                href='https://github.com/lionsgrandson'
-                target='_blank'
-                rel='noreferrer'
-                className='button-primary px-6 py-3'
-              >
-                <Github className='h-5 w-5' />
-                {copy.github}
+              <a href='#experience' className='button-primary px-6 py-3'>
+                <BriefcaseBusiness className='h-5 w-5' />
+                {copy.experienceTitle}
               </a>
               <a href='#engineering-work' className='button-secondary px-6 py-3'>
-                <BriefcaseBusiness className='h-5 w-5' />
+                <MonitorCog className='h-5 w-5' />
                 {copy.selected}
               </a>
             </div>
@@ -293,6 +434,85 @@ export function ResumePortfolio() {
         </div>
       </section>
 
+      <section id='experience' className='px-6 py-20 md:px-8'>
+        <div className='mx-auto max-w-7xl'>
+          <div className='mb-10 max-w-3xl'>
+            <p className='text-sm font-extrabold uppercase tracking-[0.16em] text-primary'>
+              {copy.experienceTitle}
+            </p>
+            <h2 className='mt-2 text-3xl font-black text-on-surface md:text-5xl'>
+              {lang === 'he' ? 'ניסיון מקצועי וטכני' : 'Professional & technical experience'}
+            </h2>
+            <p className='mt-4 text-lg leading-7 text-on-surface-variant'>{copy.experienceSub}</p>
+          </div>
+
+          <div className='grid gap-6 lg:grid-cols-2'>
+            {experienceData[lang].map((item) => (
+              <article
+                key={item.role}
+                className='rounded-2xl border border-outline-variant/20 bg-surface-container-lowest p-6 shadow-sm md:p-8'
+              >
+                <div className='flex flex-wrap items-center gap-3'>
+                  <h3 className='text-2xl font-extrabold text-on-surface'>{item.role}</h3>
+                  {item.current && (
+                    <span className='rounded-full bg-tertiary/10 px-3 py-1 text-xs font-extrabold text-tertiary'>
+                      {lang === 'he' ? 'כיום' : 'Current'}
+                    </span>
+                  )}
+                </div>
+                <p className='mt-2 font-bold text-primary'>{item.organization}</p>
+                <p className='mt-4 leading-7 text-on-surface-variant'>{item.description}</p>
+                <ul className='mt-5 space-y-2'>
+                  {item.bullets.map((bullet) => (
+                    <li key={bullet} className='flex gap-3 text-sm leading-6 text-on-surface-variant'>
+                      <span className='mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary' />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className='mt-6 flex flex-wrap gap-2'>
+                  {item.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className='rounded-full border border-primary/15 bg-primary/5 px-3 py-1 text-xs font-bold'
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className='bg-surface-container-low px-6 py-20 md:px-8'>
+        <div className='mx-auto max-w-7xl'>
+          <div className='mb-10 max-w-3xl'>
+            <p className='text-sm font-extrabold uppercase tracking-[0.16em] text-primary'>
+              {copy.capabilitiesTitle}
+            </p>
+            <h2 className='mt-2 text-3xl font-black text-on-surface md:text-5xl'>
+              {lang === 'he' ? 'מעבר לפיתוח תוכנה' : 'Beyond software development'}
+            </h2>
+            <p className='mt-4 text-lg leading-7 text-on-surface-variant'>{copy.capabilitiesSub}</p>
+          </div>
+
+          <div className='grid gap-4 md:grid-cols-2'>
+            {capabilityCards.map(({ icon: Icon, title, text }) => (
+              <article
+                key={title}
+                className='rounded-2xl border border-white/70 bg-white/75 p-6 shadow-sm backdrop-blur'
+              >
+                <Icon className='h-7 w-7 text-primary' />
+                <h3 className='mt-4 text-xl font-extrabold text-on-surface'>{title}</h3>
+                <p className='mt-3 leading-7 text-on-surface-variant'>{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id='engineering-work' className='px-6 py-20 md:px-8'>
         <div className='mx-auto max-w-7xl'>
           <div className='mb-10 max-w-3xl'>
@@ -300,7 +520,7 @@ export function ResumePortfolio() {
               {copy.selected}
             </p>
             <h2 className='mt-2 text-3xl font-black text-on-surface md:text-5xl'>
-              {lang === 'he' ? 'מערכות, CRM וכלי AI' : 'Systems, CRM and AI tooling'}
+              {lang === 'he' ? 'פיתוח, QA ומערכות Production' : 'Development, QA and production systems'}
             </h2>
             <p className='mt-4 text-lg leading-7 text-on-surface-variant'>{copy.selectedSub}</p>
           </div>
@@ -347,46 +567,7 @@ export function ResumePortfolio() {
         </div>
       </section>
 
-      <section className='px-6 py-20 md:px-8'>
-        <div className='mx-auto max-w-7xl rounded-3xl bg-on-surface p-7 text-surface md:p-10'>
-          <div className='grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center'>
-            <div>
-              <div className='flex items-center gap-3'>
-                <Github className='h-8 w-8 text-white' />
-                <h2 className='text-3xl font-black text-white'>{copy.githubTitle}</h2>
-              </div>
-              <p className='mt-4 max-w-3xl leading-7 text-white/70'>{copy.githubSub}</p>
-
-              <div className='mt-6 flex flex-wrap gap-2'>
-                {githubProjects.map((project) => (
-                  <a
-                    key={project.title}
-                    href={project.href}
-                    target='_blank'
-                    rel='noreferrer'
-                    className='inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-2 text-sm font-bold text-white transition hover:bg-white/10'
-                  >
-                    <Code2 className='h-4 w-4' />
-                    {project.title}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            <a
-              href='https://github.com/lionsgrandson'
-              target='_blank'
-              rel='noreferrer'
-              className='inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 font-bold text-on-surface transition hover:bg-surface-container-high'
-            >
-              github.com/lionsgrandson
-              <ExternalLink className='h-4 w-4' />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className='border-t border-outline-variant/15 bg-surface-container-low px-6 py-14 text-center md:px-8'>
+      <section className='border-t border-outline-variant/15 bg-surface px-6 py-14 text-center md:px-8'>
         <div className='mx-auto max-w-3xl'>
           <Sparkles className='mx-auto h-7 w-7 text-primary' />
           <h2 className='mt-4 text-2xl font-black text-on-surface'>{copy.noteTitle}</h2>
