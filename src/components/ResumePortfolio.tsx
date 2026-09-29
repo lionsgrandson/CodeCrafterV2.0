@@ -23,8 +23,7 @@ type Project = {
   description: string
   highlights: string[]
   technologies: string[]
-  href?: string
-  linkLabel?: string
+  links?: { label: string; href: string }[]
 }
 
 type Experience = {
@@ -50,6 +49,7 @@ const projectData: Record<'he' | 'en', Project[]> = {
         'מסלולי הפצה ל-Cloudflare, Desktop עם Tauri ו-Mobile עם Capacitor.',
       ],
       technologies: ['React 19', 'TypeScript', 'Supabase', 'PostgreSQL', 'Cloudflare', 'Tauri', 'Capacitor'],
+      links: [{ label: 'GitHub', href: 'https://github.com/lionsgrandson/Creative-CRM' }],
     },
     {
       title: 'Tov Ha’aretz',
@@ -76,8 +76,44 @@ const projectData: Record<'he' | 'en', Project[]> = {
         'Cloudflare Worker ששומר את מפתח Gemini בצד השרת ולא חושף אותו לדפדפן.',
       ],
       technologies: ['React 19', 'TypeScript', 'Gemini', 'Cloudflare Workers', 'IndexedDB', 'OPFS'],
-      href: 'https://github.com/lionsgrandson/StudentTranscribe',
-      linkLabel: 'GitHub',
+      links: [
+        { label: 'Live', href: 'https://student-transcribe.mosheschwartzberg.workers.dev' },
+        { label: 'GitHub', href: 'https://github.com/lionsgrandson/StudentTranscribe' },
+      ],
+    },
+    {
+      title: 'CodeCrafter CRM',
+      type: 'CRM · Business Operations · AI',
+      description:
+        'מערכת CRM עסקית מלאה עבור CodeCrafter שמרכזת לקוחות, מכירות, פרויקטים, משימות, מסמכים, הצעות מחיר, דיווחים, צוות ואינטגרציות.',
+      highlights: [
+        'ניהול לקוחות ולידים, Pipeline מכירות, Project workspace, Kanban, תזכורות, קבצים, דוחות ו-Audit Log.',
+        'Supabase Auth, PostgreSQL, RLS, Realtime ואחסון קבצים פרטי.',
+        'Gmail, Google Calendar ו-Google Drive דרך OAuth, לצד Gemini דרך Supabase Edge Functions.',
+        'יבוא/יצוא Excel ו-CSV, PDF quotes, הרשאות צוות, MFA ויכולות Mobile דרך Capacitor.',
+      ],
+      technologies: ['React 19', 'TypeScript', 'Supabase', 'PostgreSQL', 'Gemini', 'Google APIs', 'Capacitor'],
+      links: [
+        { label: 'Live', href: 'https://codecraftercrm.netlify.app' },
+        { label: 'GitHub', href: 'https://github.com/lionsgrandson/CodeCrafterCRM' },
+      ],
+    },
+    {
+      title: 'RAM Engineering CRM',
+      type: 'CRM · Project Management · Engineering Operations',
+      description:
+        'מערכת CRM וניהול פרויקטים בעברית עבור ר.א.ם הנדסה, עם דגש על אתרי עבודה, משימות, דוחות פיקוח, קבצים, משתמשים והרשאות.',
+      highlights: [
+        'ניהול פרויקטים לפי אתר/כתובת, משימות ותתי-משימות, סטטוסים, אחראים, תאריכים ודוחות פיקוח.',
+        'Supabase Auth, RLS, Realtime, Storage ותפקידי developer, admin, assistant, inspector, engineer ו-viewer.',
+        'תשתית Google Workspace ל-Gmail, Calendar ו-Drive, כולל OAuth per-user.',
+        'Cloudflare Worker שמגיש את ה-Frontend וה-API, לצד לקוח Windows ותמיכה ב-Capacitor.',
+      ],
+      technologies: ['React', 'TypeScript', 'Supabase', 'Cloudflare Workers', 'Google Workspace', 'RBAC', 'Realtime'],
+      links: [
+        { label: 'Live', href: 'https://rameng-crm.rameng-crm-worker.workers.dev' },
+        { label: 'GitHub', href: 'https://github.com/lionsgrandson/RAMeng' },
+      ],
     },
     {
       title: 'GuestAtlas',
@@ -91,8 +127,7 @@ const projectData: Record<'he' | 'en', Project[]> = {
         'Pipeline פריסה עם TypeScript checks, self-tests, schema verification ו-dry-run.',
       ],
       technologies: ['Next.js', 'React', 'TypeScript', 'Supabase', 'PostgreSQL', 'Cloudflare R2', 'Security'],
-      href: 'https://guestatlas.mosheschwartzberg.workers.dev',
-      linkLabel: 'Live',
+      links: [{ label: 'Live', href: 'https://guestatlas.mosheschwartzberg.workers.dev' }],
     },
   ],
   en: [
@@ -222,6 +257,20 @@ const websites = [
   { title: 'CodeRecovery', href: 'https://simplyrecovery.netlify.app/', stack: 'Technical service website' },
 ]
 
+const repositories = [
+  { title: 'Creative-CRM', href: 'https://github.com/lionsgrandson/Creative-CRM' },
+  { title: 'StudentTranscribe', href: 'https://github.com/lionsgrandson/StudentTranscribe' },
+  { title: 'CodeCrafterV2.0', href: 'https://github.com/lionsgrandson/CodeCrafterV2.0' },
+  { title: 'WA-automation', href: 'https://github.com/lionsgrandson/WA-automation' },
+  { title: 'transcribeChats', href: 'https://github.com/lionsgrandson/transcribeChats' },
+  { title: 'DevDesk', href: 'https://github.com/lionsgrandson/DevDesk----a-mini-Jira---CRM---client-portal' },
+  { title: 'Toby-Android', href: 'https://github.com/lionsgrandson/Toby-Android' },
+  { title: 'placePicker', href: 'https://github.com/lionsgrandson/placePicker' },
+  { title: 'Tic-Tac-Toe React', href: 'https://github.com/lionsgrandson/Tic-Tac-Toe---React' },
+  { title: 'GetCodeExcel', href: 'https://github.com/lionsgrandson/GetCodeExcel' },
+  { title: 'LEDSWITCH', href: 'https://github.com/lionsgrandson/LEDSWITCH' },
+]
+
 function ProjectCard({ project }: { project: Project }) {
   return (
     <article className='rounded-2xl border border-outline-variant/20 bg-surface-container-lowest p-6 shadow-sm md:p-8'>
@@ -232,17 +281,22 @@ function ProjectCard({ project }: { project: Project }) {
           </p>
           <h3 className='text-2xl font-extrabold text-on-surface'>{project.title}</h3>
         </div>
-        {project.href && (
-          <a
-            href={project.href}
-            target='_blank'
-            rel='noreferrer'
-            className='interactive-link inline-flex shrink-0 items-center gap-2 text-sm font-bold text-primary'
-          >
-            {project.linkLabel}
-            <ExternalLink className='h-4 w-4' />
-          </a>
-        )}
+        {project.links?.length ? (
+          <div className='flex flex-wrap gap-3'>
+            {project.links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target='_blank'
+                rel='noreferrer'
+                className='interactive-link inline-flex shrink-0 items-center gap-2 text-sm font-bold text-primary'
+              >
+                {link.label}
+                <ExternalLink className='h-4 w-4' />
+              </a>
+            ))}
+          </div>
+        ) : null}
       </div>
 
       <p className='mt-4 max-w-4xl leading-7 text-on-surface-variant'>{project.description}</p>
@@ -287,6 +341,8 @@ export function ResumePortfolio() {
           capabilitiesSub: 'התחומים הטכניים שאני מביא בנוסף לפיתוח תוכנה.',
           websitesTitle: 'אתרי Production',
           websitesSub: 'מספר אתרים פעילים שבניתי או עבדתי עליהם עבור לקוחות ופרויקטים.',
+          repositoriesTitle: 'Selected GitHub repositories',
+          repositoriesSub: 'פרויקטים ציבוריים שמציגים טווח רחב יותר של עבודה — Web, Android, אוטומציה, כלים פנימיים ואלקטרוניקה.',
           noteTitle: 'אפשר להעמיק בראיון',
           note:
             'בפרויקטים פרטיים אפשר לעבור יחד על ארכיטקטורה, תקלות שאובחנו, תהליכי QA, integrations, deployment והחלקים שבניתי או בדקתי בפועל.',
@@ -304,6 +360,8 @@ export function ResumePortfolio() {
           capabilitiesSub: 'Technical capabilities I bring in addition to software development.',
           websitesTitle: 'Production websites',
           websitesSub: 'A selection of live client and project websites I built or worked on.',
+          repositoriesTitle: 'Selected GitHub repositories',
+          repositoriesSub: 'Public projects showing a wider range of work across web, Android, automation, internal tools and electronics.',
           noteTitle: 'More detail is available in an interview',
           note:
             'For private projects I can walk through architecture, defects investigated, QA flows, integrations, deployment and the specific work I built or tested.',
@@ -561,6 +619,36 @@ export function ResumePortfolio() {
                   </div>
                   <ArrowUpRight className='h-5 w-5 shrink-0 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
                 </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className='px-6 py-20 md:px-8'>
+        <div className='mx-auto max-w-7xl'>
+          <div className='mb-8 max-w-3xl'>
+            <p className='text-sm font-extrabold uppercase tracking-[0.16em] text-primary'>
+              {copy.repositoriesTitle}
+            </p>
+            <h2 className='mt-2 text-3xl font-black text-on-surface md:text-5xl'>
+              {lang === 'he' ? 'קוד ופרויקטים נוספים' : 'Additional code & projects'}
+            </h2>
+            <p className='mt-4 text-lg leading-7 text-on-surface-variant'>{copy.repositoriesSub}</p>
+          </div>
+
+          <div className='flex flex-wrap gap-3'>
+            {repositories.map((repository) => (
+              <a
+                key={repository.href}
+                href={repository.href}
+                target='_blank'
+                rel='noreferrer'
+                className='inline-flex items-center gap-2 rounded-xl border border-outline-variant/20 bg-surface-container-lowest px-4 py-3 text-sm font-bold text-on-surface shadow-sm transition hover:-translate-y-0.5 hover:border-primary/30 hover:text-primary hover:shadow-md'
+              >
+                <Code2 className='h-4 w-4' />
+                {repository.title}
+                <ExternalLink className='h-3.5 w-3.5' />
               </a>
             ))}
           </div>
