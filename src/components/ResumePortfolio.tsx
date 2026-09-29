@@ -143,6 +143,7 @@ const projectData: Record<'he' | 'en', Project[]> = {
         'Cloudflare deployment plus desktop/mobile packaging paths using Tauri and Capacitor.',
       ],
       technologies: ['React 19', 'TypeScript', 'Supabase', 'PostgreSQL', 'Cloudflare', 'Tauri', 'Capacitor'],
+      links: [{ label: 'GitHub', href: 'https://github.com/lionsgrandson/Creative-CRM' }],
     },
     {
       title: 'Tov Ha’aretz',
@@ -169,8 +170,44 @@ const projectData: Record<'he' | 'en', Project[]> = {
         'Cloudflare Worker keeps the Gemini API key server-side and out of the browser.',
       ],
       technologies: ['React 19', 'TypeScript', 'Gemini', 'Cloudflare Workers', 'IndexedDB', 'OPFS'],
-      href: 'https://github.com/lionsgrandson/StudentTranscribe',
-      linkLabel: 'GitHub',
+      links: [
+        { label: 'Live', href: 'https://student-transcribe.mosheschwartzberg.workers.dev' },
+        { label: 'GitHub', href: 'https://github.com/lionsgrandson/StudentTranscribe' },
+      ],
+    },
+    {
+      title: 'CodeCrafter CRM',
+      type: 'CRM · Business Operations · AI',
+      description:
+        'A full business CRM for CodeCrafter combining clients, sales, projects, tasks, documents, quotes, reporting, team operations and integrations.',
+      highlights: [
+        'Client/lead management, sales pipeline, project workspace, Kanban, reminders, files, reports and audit history.',
+        'Supabase Auth, PostgreSQL, RLS, Realtime and private file storage.',
+        'Gmail, Google Calendar and Google Drive through OAuth, plus Gemini through Supabase Edge Functions.',
+        'Excel/CSV import-export, printable quotes, team permissions, MFA and mobile packaging through Capacitor.',
+      ],
+      technologies: ['React 19', 'TypeScript', 'Supabase', 'PostgreSQL', 'Gemini', 'Google APIs', 'Capacitor'],
+      links: [
+        { label: 'Live', href: 'https://codecraftercrm.netlify.app' },
+        { label: 'GitHub', href: 'https://github.com/lionsgrandson/CodeCrafterCRM' },
+      ],
+    },
+    {
+      title: 'RAM Engineering CRM',
+      type: 'CRM · Project Management · Engineering Operations',
+      description:
+        'A Hebrew-first CRM and project management platform for RAM Engineering focused on job sites, tasks, inspection reports, files, users and permissions.',
+      highlights: [
+        'Project management by site/address, tasks and subtasks, statuses, assignees, dates and inspection reports.',
+        'Supabase Auth, RLS, Realtime, Storage and developer/admin/assistant/inspector/engineer/viewer roles.',
+        'Google Workspace infrastructure for Gmail, Calendar and Drive with per-user OAuth connections.',
+        'Cloudflare Worker serving the frontend and API, plus a Windows desktop client and Capacitor support.',
+      ],
+      technologies: ['React', 'TypeScript', 'Supabase', 'Cloudflare Workers', 'Google Workspace', 'RBAC', 'Realtime'],
+      links: [
+        { label: 'Live', href: 'https://rameng-crm.rameng-crm-worker.workers.dev' },
+        { label: 'GitHub', href: 'https://github.com/lionsgrandson/RAMeng' },
+      ],
     },
     {
       title: 'GuestAtlas',
@@ -184,8 +221,7 @@ const projectData: Record<'he' | 'en', Project[]> = {
         'Deployment pipeline with TypeScript checks, self-tests, schema verification and dry-run gates.',
       ],
       technologies: ['Next.js', 'React', 'TypeScript', 'Supabase', 'PostgreSQL', 'Cloudflare R2', 'Security'],
-      href: 'https://guestatlas.mosheschwartzberg.workers.dev',
-      linkLabel: 'Live',
+      links: [{ label: 'Live', href: 'https://guestatlas.mosheschwartzberg.workers.dev' }],
     },
   ],
 }
