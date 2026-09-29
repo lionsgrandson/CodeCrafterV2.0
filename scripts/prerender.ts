@@ -19,7 +19,7 @@ type Route = {
   lang: Language
   title: string
   description: string
-  type: 'website' | 'collection' | 'service' | 'about' | 'case-study'
+  type: 'website' | 'collection' | 'service' | 'about' | 'case-study' | 'resume'
   page?: SeoPage
 }
 
@@ -45,6 +45,17 @@ const portfolioMetadata: Record<Language, Pick<Route, 'title' | 'description'>> 
   },
 }
 
+const resumeMetadata: Record<Language, Pick<Route, 'title' | 'description'>> = {
+  he: {
+    title: 'משה שוורצברג | Software Developer — תיק עבודות למגייסים',
+    description: 'תיק עבודות טכני של משה שוורצברג: מערכות CRM, אפליקציות Full-stack, כלי AI, Cloudflare, Supabase, React, TypeScript ואתרי Production.',
+  },
+  en: {
+    title: 'Moshe Schwartzberg | Software Developer — Engineering Portfolio',
+    description: 'Recruiter engineering portfolio for Moshe Schwartzberg: CRM systems, full-stack apps, AI tooling, Cloudflare, Supabase, React, TypeScript and production websites.',
+  },
+}
+
 const homeFaq: Record<Language, { question: string; answer: string }[]> = {
   he: [
     { question: 'איך יודעים אם צריך אתר, מערכת או אוטומציה?', answer: 'מתחילים מהבעיה העסקית ולא מהטכנולוגיה. אם הבעיה היא הצגה ושיווק, אתר יכול להספיק. אם המידע והתהליך עצמם מפוזרים, ייתכן שצריך מערכת. אם התהליך כבר ברור אבל חוזר על עצמו, אוטומציה או אינטגרציה עשויות להיות הצעד הנכון.' },
@@ -66,6 +77,7 @@ const routes: Route[] = []
 for (const lang of ['he', 'en'] as const) {
   routes.push({ path: localizePath('', lang), lang, ...homeMetadata[lang], type: 'website' })
   routes.push({ path: localizePath('portfolio', lang), lang, ...portfolioMetadata[lang], type: 'collection' })
+  routes.push({ path: localizePath('resume', lang), lang, ...resumeMetadata[lang], type: 'resume' })
   for (const page of pagesByLanguage[lang]) {
     routes.push({
       path: localizePath(page.slug, lang),
@@ -99,6 +111,7 @@ function normalizePortfolioUrl(url?: string) {
 function languagePair(route: Route, lang: Language) {
   if (route.type === 'website') return localizePath('', lang)
   if (route.type === 'collection') return localizePath('portfolio', lang)
+  if (route.type === 'resume') return localizePath('resume', lang)
   return localizePath(route.page?.slug ?? '', lang)
 }
 
@@ -228,15 +241,15 @@ function schemaFor(route: Route) {
       publisher: { '@id': `${origin}/#organization` },
     },
     {
-      '@type': route.type === 'collection' ? 'CollectionPage' : route.type === 'about' ? 'ProfilePage' : 'WebPage',
+      '@type': route.type === 'collection' ? 'CollectionPage' : route.type === 'about' || route.type === 'resume' ? 'ProfilePage' : 'WebPage',
       '@id': `${url}#webpage`,
       url,
       name: route.title,
       description: route.description,
       inLanguage: route.lang,
       isPartOf: { '@id': `${origin}/#website` },
-      about: route.type === 'about' ? { '@id': `${origin}/#moshe-schwartzberg` } : { '@id': `${origin}/#organization` },
-      ...(route.type === 'about' ? { mainEntity: { '@id': `${origin}/#moshe-schwartzberg` } } : {}),
+      about: route.type === 'about' || route.type === 'resume' ? { '@id': `${origin}/#moshe-schwartzberg` } : { '@id': `${origin}/#organization` },
+      ...(route.type === 'about' || route.type === 'resume' ? { mainEntity: { '@id': `${origin}/#moshe-schwartzberg` } } : {}),
     },
   ]
 
