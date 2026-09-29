@@ -139,10 +139,7 @@ const projectData: Record<'he' | 'en', Project[]> = {
         'Cloudflare Worker keeps the Gemini API key server-side and out of the browser.',
       ],
       technologies: ['React 19', 'TypeScript', 'Gemini', 'Cloudflare Workers', 'IndexedDB', 'OPFS'],
-      links: [
-        { label: 'Live', href: 'https://student-transcribe.mosheschwartzberg.workers.dev' },
-        { label: 'GitHub', href: 'https://github.com/lionsgrandson/StudentTranscribe' },
-      ],
+      links: [{ label: 'Live', href: 'https://student-transcribe.mosheschwartzberg.workers.dev' }],
     },
     {
       title: 'CodeCrafter CRM',
