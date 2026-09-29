@@ -76,10 +76,7 @@ const projectData: Record<'he' | 'en', Project[]> = {
         'יבוא/יצוא Excel ו-CSV, PDF quotes, הרשאות צוות, MFA ויכולות Mobile דרך Capacitor.',
       ],
       technologies: ['React 19', 'TypeScript', 'Supabase', 'PostgreSQL', 'Gemini', 'Google APIs', 'Capacitor'],
-      links: [
-        { label: 'Live', href: 'https://codecraftercrm.netlify.app' },
-        { label: 'GitHub', href: 'https://github.com/lionsgrandson/CodeCrafterCRM' },
-      ],
+      links: [{ label: 'Live', href: 'https://codecraftercrm.netlify.app' }],
     },
     {
       title: 'RAM Engineering CRM',
@@ -248,7 +245,7 @@ const experienceData: Record<'he' | 'en', Experience[]> = {
 }
 
 const websites = [
-  { title: 'Rainbow ASD', href: 'https://rainbow-asd.com/', stack: 'Responsive service website' },
+  { title: 'Creative Intelligence', href: 'https://creative-intell.netlify.app/', stack: 'Business / technology website' },
   { title: 'Shimon Cohen Photography', href: 'https://shimonphotos.com/', stack: 'Photography portfolio' },
   { title: 'Yuval Kadosh', href: 'https://ykadosh.co.il', stack: 'Content & personal brand website' },
   { title: 'SumsUp', href: 'https://sumsup.co', stack: 'White-label product website' },
@@ -644,13 +641,6 @@ export function ResumePortfolio() {
               <ExternalLink className='h-4 w-4' />
             </a>
           </div>
-          <a
-            href={localizePath('portfolio', lang)}
-            className='interactive-link mt-6 inline-flex items-center gap-2 font-bold text-primary'
-          >
-            {lang === 'he' ? 'לתיק העבודות המלא' : 'Open the full client portfolio'}
-            <ArrowUpRight className='h-4 w-4' />
-          </a>
         </div>
       </section>
     </div>
