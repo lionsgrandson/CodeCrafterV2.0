@@ -47,12 +47,12 @@ const portfolioMetadata: Record<Language, Pick<Route, 'title' | 'description'>> 
 
 const resumeMetadata: Record<Language, Pick<Route, 'title' | 'description'>> = {
   he: {
-    title: 'משה שוורצברג | Software Developer — תיק עבודות למגייסים',
-    description: 'תיק עבודות טכני של משה שוורצברג: מערכות CRM, אפליקציות Full-stack, כלי AI, Cloudflare, Supabase, React, TypeScript ואתרי Production.',
+    title: 'משה שוורצברג | Software, QA, Help Desk & AV — תיק עבודות למגייסים',
+    description: 'פרופיל טכני ותיק עבודות של משה שוורצברג: פיתוח תוכנה, QA, Help Desk, Technical SEO, מערכות CRM, Cloudflare, Supabase, React, TypeScript ו-AV.',
   },
   en: {
-    title: 'Moshe Schwartzberg | Software Developer — Engineering Portfolio',
-    description: 'Recruiter engineering portfolio for Moshe Schwartzberg: CRM systems, full-stack apps, AI tooling, Cloudflare, Supabase, React, TypeScript and production websites.',
+    title: 'Moshe Schwartzberg | Software, QA, Help Desk & AV — Technical Portfolio',
+    description: 'Technical recruiter portfolio for Moshe Schwartzberg covering software development, QA, Help Desk, technical SEO, CRM systems, Cloudflare, Supabase, React, TypeScript and AV operations.',
   },
 }
 
