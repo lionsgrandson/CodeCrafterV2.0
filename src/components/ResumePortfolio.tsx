@@ -215,9 +215,8 @@ const experienceData: Record<'he' | 'en', Experience[]> = {
         'פיתוח Full Stack במסגרת השירות הצבאי.',
         'הובלת צוות פיתוח והכוונה טכנית במסגרת מפקדת חיל הטנ״א.',
         'הדרכת סטודנטים / חניכים במסלול B.Sc. באלקטרוניקה.',
-        'ניסיון קודם ביחידת 9900 בסביבת GIS ומידע גאוגרפי.',
       ],
-      tags: ['Full Stack', 'Team Lead', 'Software Development', 'Training', 'Electronics', 'GIS'],
+      tags: ['Full Stack', 'Team Lead', 'Software Development', 'Training', 'Electronics'],
     },
   ],
   en: [
@@ -242,7 +241,6 @@ const experienceData: Record<'he' | 'en', Experience[]> = {
         'Full-stack software development during military service.',
         'Led a development team and provided technical direction at corps headquarters.',
         'Instruction for B.Sc. electronics students / trainees.',
-        'Earlier experience in Unit 9900 in a GIS and geospatial information environment.',
       ],
       tags: ['Full Stack', 'Team Lead', 'Software Development', 'Training', 'Electronics', 'GIS'],
     },
@@ -255,18 +253,6 @@ const websites = [
   { title: 'Yuval Kadosh', href: 'https://ykadosh.co.il', stack: 'Content & personal brand website' },
   { title: 'SumsUp', href: 'https://sumsup.co', stack: 'White-label product website' },
   { title: 'CodeRecovery', href: 'https://simplyrecovery.netlify.app/', stack: 'Technical service website' },
-]
-
-const repositories = [
-  { title: 'CodeCrafterV2.0', href: 'https://github.com/lionsgrandson/CodeCrafterV2.0' },
-  { title: 'WA-automation', href: 'https://github.com/lionsgrandson/WA-automation' },
-  { title: 'transcribeChats', href: 'https://github.com/lionsgrandson/transcribeChats' },
-  { title: 'DevDesk', href: 'https://github.com/lionsgrandson/DevDesk----a-mini-Jira---CRM---client-portal' },
-  { title: 'Toby-Android', href: 'https://github.com/lionsgrandson/Toby-Android' },
-  { title: 'placePicker', href: 'https://github.com/lionsgrandson/placePicker' },
-  { title: 'Tic-Tac-Toe React', href: 'https://github.com/lionsgrandson/Tic-Tac-Toe---React' },
-  { title: 'GetCodeExcel', href: 'https://github.com/lionsgrandson/GetCodeExcel' },
-  { title: 'LEDSWITCH', href: 'https://github.com/lionsgrandson/LEDSWITCH' },
 ]
 
 function ProjectCard({ project }: { project: Project }) {
@@ -341,8 +327,6 @@ export function ResumePortfolio() {
           capabilitiesSub: 'התחומים הטכניים שאני מביא בנוסף לפיתוח תוכנה.',
           websitesTitle: 'אתרי Production',
           websitesSub: 'מספר אתרים פעילים שבניתי או עבדתי עליהם עבור לקוחות ופרויקטים.',
-          repositoriesTitle: 'Selected GitHub repositories',
-          repositoriesSub: 'פרויקטים ציבוריים שמציגים טווח רחב יותר של עבודה — Web, Android, אוטומציה, כלים פנימיים ואלקטרוניקה.',
           noteTitle: 'אפשר להעמיק בראיון',
           note:
             'בפרויקטים פרטיים אפשר לעבור יחד על ארכיטקטורה, תקלות שאובחנו, תהליכי QA, integrations, deployment והחלקים שבניתי או בדקתי בפועל.',
@@ -362,8 +346,6 @@ export function ResumePortfolio() {
           capabilitiesSub: 'Technical capabilities I bring in addition to software development.',
           websitesTitle: 'Production websites',
           websitesSub: 'A selection of live client and project websites I built or worked on.',
-          repositoriesTitle: 'Selected GitHub repositories',
-          repositoriesSub: 'Public projects showing a wider range of work across web, Android, automation, internal tools and electronics.',
           noteTitle: 'More detail is available in an interview',
           note:
             'For private projects I can walk through architecture, defects investigated, QA flows, integrations, deployment and the specific work I built or tested.',
@@ -640,36 +622,6 @@ export function ResumePortfolio() {
                   </div>
                   <ArrowUpRight className='h-5 w-5 shrink-0 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
                 </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className='px-6 py-20 md:px-8'>
-        <div className='mx-auto max-w-7xl'>
-          <div className='mb-8 max-w-3xl'>
-            <p className='text-sm font-extrabold uppercase tracking-[0.16em] text-primary'>
-              {copy.repositoriesTitle}
-            </p>
-            <h2 className='mt-2 text-3xl font-black text-on-surface md:text-5xl'>
-              {lang === 'he' ? 'קוד ופרויקטים נוספים' : 'Additional code & projects'}
-            </h2>
-            <p className='mt-4 text-lg leading-7 text-on-surface-variant'>{copy.repositoriesSub}</p>
-          </div>
-
-          <div className='flex flex-wrap gap-3'>
-            {repositories.map((repository) => (
-              <a
-                key={repository.href}
-                href={repository.href}
-                target='_blank'
-                rel='noreferrer'
-                className='inline-flex items-center gap-2 rounded-xl border border-outline-variant/20 bg-surface-container-lowest px-4 py-3 text-sm font-bold text-on-surface shadow-sm transition hover:-translate-y-0.5 hover:border-primary/30 hover:text-primary hover:shadow-md'
-              >
-                <Code2 className='h-4 w-4' />
-                {repository.title}
-                <ExternalLink className='h-3.5 w-3.5' />
               </a>
             ))}
           </div>
