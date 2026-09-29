@@ -15,7 +15,6 @@ import {
   Wrench,
 } from 'lucide-react'
 import { useLanguage } from '../App'
-import { localizePath } from '../lib/seoRoutes'
 
 type Project = {
   title: string
