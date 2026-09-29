@@ -6,6 +6,7 @@ import { Services, Process } from './components/Services'
 import { Portfolio, Testimonials } from './components/Portfolio'
 import { WhyWorkWithMe, FinalCTA, Footer } from './components/Footer'
 import { SeoPage } from './components/SeoPage'
+import { ResumePortfolio } from './components/ResumePortfolio'
 import { translations } from './lib/translations'
 import { localizePath, type Language } from './lib/seoRoutes'
 import type { SeoPage as SeoPageData } from './lib/seoPages'
@@ -71,6 +72,7 @@ export default function App({ pathname, seoPage }: AppProps) {
   const localizedPath = normalizedPath.replace(/^\/en(?=\/|$)/, '') || '/'
   const isHomePage = localizedPath === '/'
   const isPortfolioPage = localizedPath === '/portfolio'
+  const isResumePage = localizedPath === '/resume'
   const homeHashPrefix = isHomePage ? '' : localizePath('', lang)
 
   const setLang = (nextLanguage: Language) => {
@@ -107,6 +109,8 @@ export default function App({ pathname, seoPage }: AppProps) {
             <SeoPage page={seoPage} />
           ) : isPortfolioPage ? (
             <Portfolio showAll standalone />
+          ) : isResumePage ? (
+            <ResumePortfolio />
           ) : (
             <>
               <Hero />
