@@ -32,25 +32,10 @@ type Experience = {
   description: string
   bullets: string[]
   tags: string[]
-  current?: boolean
 }
 
 const projectData: Record<'he' | 'en', Project[]> = {
   he: [
-    {
-      title: 'Creative CRM — Creative Intelligence',
-      type: 'מערכת CRM מלאה',
-      description:
-        'מערכת עבודה עסקית שמרכזת לקוחות, לידים, מכירות, פרויקטים, משימות, מסמכים, הצעות מחיר, דוחות, צוות ואינטגרציות במקום אחד.',
-      highlights: [
-        'React + TypeScript עם מסכי Dashboard, Pipeline, Projects, Kanban, Reports וניהול הרשאות.',
-        'Supabase עבור Auth, PostgreSQL, Row Level Security, סנכרון נתונים ואחסון קבצים פרטי.',
-        'אינטגרציות Gmail ו-Google Calendar, תזכורות, PDF, יבוא/יצוא, Audit Log וכלי AI.',
-        'מסלולי הפצה ל-Cloudflare, Desktop עם Tauri ו-Mobile עם Capacitor.',
-      ],
-      technologies: ['React 19', 'TypeScript', 'Supabase', 'PostgreSQL', 'Cloudflare', 'Tauri', 'Capacitor'],
-      links: [{ label: 'GitHub', href: 'https://github.com/lionsgrandson/Creative-CRM' }],
-    },
     {
       title: 'Tov Ha’aretz',
       type: 'QA · Technical SEO · Production flow',
@@ -63,6 +48,7 @@ const projectData: Record<'he' | 'en', Project[]> = {
         'בדיקת בעיות קישורים והתנהגות בפועל מתוך תהליכי משתמש ולא רק מתוך הקוד.',
       ],
       technologies: ['Manual QA', 'E2E Testing', 'React SPA', 'Technical SEO', 'Sitemaps', 'hreflang', 'Debugging'],
+      links: [{ label: 'Live', href: 'https://tovhaaretz.com/' }],
     },
     {
       title: 'Student Transcribe',
@@ -76,10 +62,7 @@ const projectData: Record<'he' | 'en', Project[]> = {
         'Cloudflare Worker ששומר את מפתח Gemini בצד השרת ולא חושף אותו לדפדפן.',
       ],
       technologies: ['React 19', 'TypeScript', 'Gemini', 'Cloudflare Workers', 'IndexedDB', 'OPFS'],
-      links: [
-        { label: 'Live', href: 'https://student-transcribe.mosheschwartzberg.workers.dev' },
-        { label: 'GitHub', href: 'https://github.com/lionsgrandson/StudentTranscribe' },
-      ],
+      links: [{ label: 'Live', href: 'https://student-transcribe.mosheschwartzberg.workers.dev' }],
     },
     {
       title: 'CodeCrafter CRM',
@@ -131,20 +114,6 @@ const projectData: Record<'he' | 'en', Project[]> = {
     },
   ],
   en: [
-    {
-      title: 'Creative CRM — Creative Intelligence',
-      type: 'Full CRM / business workspace',
-      description:
-        'A production-oriented workspace combining clients, leads, sales, projects, tasks, documents, quotes, reporting, team operations and integrations.',
-      highlights: [
-        'React + TypeScript dashboards, sales pipeline, project workspace, Kanban tasks, reports and role-aware workflows.',
-        'Supabase for authentication, PostgreSQL, Row Level Security, synchronized data and private file storage.',
-        'Gmail and Google Calendar integrations, reminders, PDFs, import/export, audit history and AI-assisted workflows.',
-        'Cloudflare deployment plus desktop/mobile packaging paths using Tauri and Capacitor.',
-      ],
-      technologies: ['React 19', 'TypeScript', 'Supabase', 'PostgreSQL', 'Cloudflare', 'Tauri', 'Capacitor'],
-      links: [{ label: 'GitHub', href: 'https://github.com/lionsgrandson/Creative-CRM' }],
-    },
     {
       title: 'Tov Ha’aretz',
       type: 'QA · Technical SEO · Production flow',
@@ -232,27 +201,26 @@ const experienceData: Record<'he' | 'en', Experience[]> = {
       role: 'טכנאי AV — Audio & Video',
       organization: 'VidCo · תמיכה עבור WZO, KKL-JNF ו-JAFI',
       description:
-        'תפקיד טכני שוטף בסביבת Audio/Video, עם תמיכה תפעולית וטיפול בתקלות עבור ארגונים גדולים.',
+        'תפקיד טכני בסביבת Audio/Video דרך VidCo, עם תמיכה תפעולית עבור WZO, KKL-JNF ו-JAFI.',
       bullets: [
-        'הקמה, הפעלה ותמיכה במערכות Audio/Video בסביבת עבודה מקצועית.',
+        'עזרתי לתפעל פגישות דיגיטליות ב-Zoom ולחבר מערכות Audio ו-Video.',
+        'הקמה, הפעלה ותמיכה במערכות AV בסביבת עבודה מקצועית.',
         'Troubleshooting בזמן אמת ומתן תמיכה טכנית למשתמשים ולצוותים.',
-        'עבודה בסביבה שבה אמינות, תגובה מהירה ופתרון בעיות חשובים לא פחות מהידע הטכני.',
       ],
       tags: ['AV', 'Technical Support', 'Troubleshooting', 'User Support'],
-      current: true,
     },
     {
-      role: 'Software Developer / Technical Roles',
-      organization: 'צה״ל',
+      role: 'Full-Stack Software Developer & Team Lead',
+      organization: 'צה״ל · מפקדת חיל הטנ״א',
       description:
-        'שירות טכנולוגי שכלל פיתוח תוכנה, הדרכה ועבודה טכנית, בנוסף לניסיון מוקדם יותר בסביבת GIS.',
+        'שירתתי כמפתח Full Stack וכ-Team Lead במפקדת חיל הטנ״א, עם אחריות על פיתוח תוכנה, הובלה טכנית ועבודה בצוות.',
       bullets: [
-        'פיתוח תוכנה במסגרת השירות הצבאי.',
+        'פיתוח Full Stack במסגרת השירות הצבאי.',
+        'הובלת צוות פיתוח והכוונה טכנית במסגרת מפקדת חיל הטנ״א.',
         'הדרכת סטודנטים / חניכים במסלול B.Sc. באלקטרוניקה.',
         'ניסיון קודם ביחידת 9900 בסביבת GIS ומידע גאוגרפי.',
-        'עבודה בצוותים טכניים, פתרון בעיות והעברת ידע למשתמשים ולאנשי מקצוע.',
       ],
-      tags: ['Software Development', 'Training', 'Electronics', 'GIS', 'Technical Operations'],
+      tags: ['Full Stack', 'Team Lead', 'Software Development', 'Training', 'Electronics', 'GIS'],
     },
   ],
   en: [
@@ -260,27 +228,26 @@ const experienceData: Record<'he' | 'en', Experience[]> = {
       role: 'AV Technician — Audio & Video',
       organization: 'VidCo · supporting WZO, KKL-JNF and JAFI',
       description:
-        'Hands-on AV technical operations and troubleshooting support in professional organizational environments.',
+        'Hands-on audio/video technical operations through VidCo, supporting WZO, KKL-JNF and JAFI.',
       bullets: [
-        'Setup, operation and support of audio/video systems in a professional workplace environment.',
+        'Helped operate digital meetings in Zoom and connect audio and video systems.',
+        'Setup, operation and support of AV systems in a professional workplace environment.',
         'Real-time troubleshooting and technical assistance for users and teams.',
-        'Work where reliability, fast response and practical problem solving are as important as technical knowledge.',
       ],
       tags: ['AV', 'Technical Support', 'Troubleshooting', 'User Support'],
-      current: true,
     },
     {
-      role: 'Software Developer / Technical Roles',
-      organization: 'Israel Defense Forces',
+      role: 'Full-Stack Software Developer & Team Lead',
+      organization: 'Israel Defense Forces · Technological and Maintenance Corps HQ',
       description:
-        'Technology-focused military service including software development, technical instruction and earlier GIS-related work.',
+        'Served as a Full-Stack Software Developer and Team Lead at the Technological and Maintenance Corps headquarters, combining hands-on development with technical leadership.',
       bullets: [
-        'Software development during military service.',
+        'Full-stack software development during military service.',
+        'Led a development team and provided technical direction at corps headquarters.',
         'Instruction for B.Sc. electronics students / trainees.',
         'Earlier experience in Unit 9900 in a GIS and geospatial information environment.',
-        'Technical teamwork, troubleshooting and knowledge transfer to users and technical personnel.',
       ],
-      tags: ['Software Development', 'Training', 'Electronics', 'GIS', 'Technical Operations'],
+      tags: ['Full Stack', 'Team Lead', 'Software Development', 'Training', 'Electronics', 'GIS'],
     },
   ],
 }
@@ -294,8 +261,6 @@ const websites = [
 ]
 
 const repositories = [
-  { title: 'Creative-CRM', href: 'https://github.com/lionsgrandson/Creative-CRM' },
-  { title: 'StudentTranscribe', href: 'https://github.com/lionsgrandson/StudentTranscribe' },
   { title: 'CodeCrafterV2.0', href: 'https://github.com/lionsgrandson/CodeCrafterV2.0' },
   { title: 'WA-automation', href: 'https://github.com/lionsgrandson/WA-automation' },
   { title: 'transcribeChats', href: 'https://github.com/lionsgrandson/transcribeChats' },
@@ -368,7 +333,9 @@ export function ResumePortfolio() {
           eyebrow: 'פרופיל טכני למגייסים',
           title: 'משה שוורצברג — Software · QA · IT Support · AV',
           intro:
-            'ניסיון מעשי בפיתוח תוכנה, מערכות CRM, QA, Help Desk ותמיכה טכנית, SEO טכני, אינטגרציות, Cloud deployment ו-Audio/Video. המטרה כאן היא להראות את טווח העבודה הטכנית שלי — מפיתוח ועד איתור תקלות ותמיכה במשתמשים.',
+            'אני מפתח Full Stack עם רקע רחב גם ב-QA, Help Desk, SEO טכני, אינטגרציות, Cloud ו-AV. אני אוהב להבין מערכת לעומק — לבנות אותה, לבדוק אותה, לאבחן תקלות ולפתור אותן בפועל.',
+          businessNote:
+            'האתר הראשי הוא האתר של העסק שלי, CodeCrafter. במקביל אני מחפש תפקיד כשכיר שבו אוכל להביא את הניסיון שלי בפיתוח, QA, Implementation ותמיכה טכנית.',
           selected: 'פרויקטים נבחרים',
           selectedSub: 'מערכות ועבודות שמציגות פיתוח, QA, debugging, data, integrations ו-production delivery.',
           experienceTitle: 'ניסיון טכני',
@@ -387,7 +354,9 @@ export function ResumePortfolio() {
           eyebrow: 'Technical profile for recruiters',
           title: 'Moshe Schwartzberg — Software · QA · IT Support · AV',
           intro:
-            'Hands-on experience across software development, CRM systems, QA, Help Desk and technical support, technical SEO, integrations, cloud delivery and audio/video operations. The goal here is to show the full technical range — from building systems to diagnosing problems and supporting users.',
+            'I am a Full-Stack Developer with broader hands-on experience in QA, Help Desk, technical SEO, integrations, cloud delivery and AV. I like understanding systems end-to-end — building them, testing them, diagnosing failures and solving practical problems.',
+          businessNote:
+            'The main website is for my business, CodeCrafter. In parallel, I am actively looking for an employed role where I can bring my development, QA, implementation and technical-support experience.',
           selected: 'Selected engineering work',
           selectedSub: 'Projects demonstrating development, QA, debugging, data, integrations and production delivery.',
           experienceTitle: 'Technical experience',
@@ -489,7 +458,7 @@ export function ResumePortfolio() {
           <div className='absolute -start-20 bottom-0 h-72 w-72 rounded-full bg-tertiary/10 blur-3xl' />
         </div>
 
-        <div className='relative z-10 mx-auto max-w-7xl'>
+        <div className='relative z-10 mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-center'>
           <div className='max-w-5xl'>
             <span className='section-kicker'>{copy.eyebrow}</span>
             <h1 className='mt-6 max-w-5xl text-4xl font-black leading-tight text-on-surface md:text-6xl'>
@@ -497,6 +466,9 @@ export function ResumePortfolio() {
             </h1>
             <p className='mt-6 max-w-4xl text-lg leading-8 text-on-surface-variant md:text-xl'>
               {copy.intro}
+            </p>
+            <p className='mt-5 max-w-4xl rounded-2xl border border-primary/15 bg-white/70 px-5 py-4 text-sm font-semibold leading-7 text-on-surface-variant shadow-sm backdrop-blur'>
+              {copy.businessNote}
             </p>
 
             <div className='mt-8 flex flex-wrap gap-3'>
@@ -509,6 +481,27 @@ export function ResumePortfolio() {
                 {copy.selected}
               </a>
             </div>
+          </div>
+
+          <div className='mx-auto w-full max-w-[320px]'>
+            <div className='overflow-hidden rounded-3xl border-[6px] border-white bg-white shadow-2xl shadow-primary/10'>
+              <img
+                src='/moshe-prague-768.webp'
+                srcSet='/moshe-prague-480.webp 480w, /moshe-prague-768.webp 768w, /moshe-prague-1052.webp 1052w'
+                sizes='(max-width: 1023px) 320px, 320px'
+                alt={lang === 'he' ? 'משה שוורצברג' : 'Moshe Schwartzberg'}
+                className='aspect-[4/5] w-full object-cover'
+                width='768'
+                height='945'
+                loading='eager'
+                decoding='async'
+              />
+            </div>
+            <p className='mt-4 text-center text-sm leading-6 text-on-surface-variant'>
+              {lang === 'he'
+                ? 'מפתח Full Stack עם ניסיון בהובלה טכנית, QA, תמיכה ופתרון בעיות.'
+                : 'Full-Stack Developer with experience in technical leadership, QA, support and troubleshooting.'}
+            </p>
           </div>
         </div>
       </section>
@@ -548,11 +541,6 @@ export function ResumePortfolio() {
               >
                 <div className='flex flex-wrap items-center gap-3'>
                   <h3 className='text-2xl font-extrabold text-on-surface'>{item.role}</h3>
-                  {item.current && (
-                    <span className='rounded-full bg-tertiary/10 px-3 py-1 text-xs font-extrabold text-tertiary'>
-                      {lang === 'he' ? 'כיום' : 'Current'}
-                    </span>
-                  )}
                 </div>
                 <p className='mt-2 font-bold text-primary'>{item.organization}</p>
                 <p className='mt-4 leading-7 text-on-surface-variant'>{item.description}</p>
@@ -696,6 +684,17 @@ export function ResumePortfolio() {
           <Sparkles className='mx-auto h-7 w-7 text-primary' />
           <h2 className='mt-4 text-2xl font-black text-on-surface'>{copy.noteTitle}</h2>
           <p className='mt-3 leading-7 text-on-surface-variant'>{copy.note}</p>
+          <div className='mt-5 flex flex-wrap justify-center gap-5'>
+            <a
+              href='https://github.com/lionsgrandson'
+              target='_blank'
+              rel='noreferrer'
+              className='interactive-link inline-flex items-center gap-2 font-bold text-primary'
+            >
+              GitHub · lionsgrandson
+              <ExternalLink className='h-4 w-4' />
+            </a>
+          </div>
           <a
             href={localizePath('portfolio', lang)}
             className='interactive-link mt-6 inline-flex items-center gap-2 font-bold text-primary'
