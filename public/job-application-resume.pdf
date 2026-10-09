@@ -1,0 +1,200 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 4 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 7 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 7 0 R >> >> /Contents 6 0 R >>
+endobj
+5 0 obj
+<< /Length 3100 >>
+stream
+BT
+/F1 10 Tf
+/F1 18 Tf
+1 0 0 1 40 805 Tm
+(MOSHE SCHWARTZBERG) Tj
+/F1 11 Tf
+1 0 0 1 40 781 Tm
+(Technical Implementation & Integration Specialist | Full Stack Engineer) Tj
+/F1 9.5 Tf
+1 0 0 1 40 764 Tm
+(Kfar Saba, Israel | +972 58 707 6077 | moshe@mosheschwartzberg.com) Tj
+/F1 9.5 Tf
+1 0 0 1 40 751 Tm
+(Portfolio / Resume: https://mosheschwartzberg.com/resume) Tj
+/F1 11 Tf
+1 0 0 1 40 730 Tm
+(PROFESSIONAL SUMMARY) Tj
+/F1 9.5 Tf
+1 0 0 1 40 713 Tm
+(Technical implementation and integration professional with full-stack software development) Tj
+/F1 9.5 Tf
+1 0 0 1 40 700 Tm
+(and electrical/electronics engineering background. Experienced translating business and user) Tj
+/F1 9.5 Tf
+1 0 0 1 40 687 Tm
+(requirements into working systems, configuring CRM/business applications, integrating APIs and) Tj
+/F1 9.5 Tf
+1 0 0 1 40 674 Tm
+(third-party services, troubleshooting production issues, supporting users, and coordinating) Tj
+/F1 9.5 Tf
+1 0 0 1 40 661 Tm
+(between technical and non-technical stakeholders.) Tj
+/F1 11 Tf
+1 0 0 1 40 640 Tm
+(CORE SKILLS) Tj
+/F1 9.5 Tf
+1 0 0 1 40 623 Tm
+(Implementation: technical implementation, requirements analysis, CRM/CMS, workflows, RBAC,) Tj
+/F1 9.5 Tf
+1 0 0 1 40 610 Tm
+(onboarding, rollout, user support, troubleshooting) Tj
+/F1 9.5 Tf
+1 0 0 1 40 597 Tm
+(APIs & Integrations: REST, HTTP, JSON, OAuth, Google Workspace APIs, Postman, SaaS integrations) Tj
+/F1 9.5 Tf
+1 0 0 1 40 584 Tm
+(Databases & Backend: PostgreSQL, MySQL, MongoDB, Supabase, authentication, RLS, backend services) Tj
+/F1 9.5 Tf
+1 0 0 1 40 571 Tm
+(Development: JavaScript, TypeScript, Node.js, React, Next.js, Python, PHP, HTML, CSS) Tj
+/F1 9.5 Tf
+1 0 0 1 40 558 Tm
+(QA: manual QA, E2E, regression, issue reproduction, Browser DevTools, API checks, root-cause analysis) Tj
+/F1 9.5 Tf
+1 0 0 1 40 545 Tm
+(Cloud: Cloudflare, Workers, AWS, Firebase, Netlify, Docker, DNS, SSL, deployments) Tj
+/F1 9.5 Tf
+1 0 0 1 40 532 Tm
+(IT: Windows, TCP/IP, networking fundamentals, Linux fundamentals, Microsoft 365, Entra ID,) Tj
+/F1 9.5 Tf
+1 0 0 1 40 519 Tm
+(Intune, Active Directory, Salesforce, Priority/CRM exposure) Tj
+/F1 11 Tf
+1 0 0 1 40 498 Tm
+(PROFESSIONAL EXPERIENCE) Tj
+/F1 9.5 Tf
+1 0 0 1 40 481 Tm
+(CodeCrafter | Founder & Full Stack Engineer - Business Systems, Integrations & Automation | 2015-Present) Tj
+/F1 9.5 Tf
+1 0 0 1 40 468 Tm
+(- Design, develop and implement CRM platforms, internal systems, portals and automation workflows.) Tj
+/F1 9.5 Tf
+1 0 0 1 40 455 Tm
+(- Translate client requirements into technical configurations, workflows and software solutions.) Tj
+/F1 9.5 Tf
+1 0 0 1 40 442 Tm
+(- Integrate applications, APIs, databases, email systems, Google Workspace and third-party SaaS.) Tj
+/F1 9.5 Tf
+1 0 0 1 40 429 Tm
+(- Configure authentication, roles, permissions, business logic and data access for multi-user systems.) Tj
+/F1 9.5 Tf
+1 0 0 1 40 416 Tm
+(- Troubleshoot frontend, backend, API, authentication, database and cloud infrastructure issues.) Tj
+/F1 9.5 Tf
+1 0 0 1 40 403 Tm
+(- Perform production QA, deployments, rollout support and direct client technical support.) Tj
+ET
+endstream
+endobj
+6 0 obj
+<< /Length 2495 >>
+stream
+BT
+/F1 10 Tf
+/F1 18 Tf
+1 0 0 1 40 805 Tm
+(AI Robotics Startup | Software Development Consultant & Mobile Architect | 2024-2025) Tj
+/F1 11 Tf
+1 0 0 1 40 781 Tm
+(- Supported software and technical operations in a distributed development environment.) Tj
+/F1 9.5 Tf
+1 0 0 1 40 764 Tm
+(- Investigated integration issues spanning mobile apps, APIs, backend services and connected devices.) Tj
+/F1 9.5 Tf
+1 0 0 1 40 751 Tm
+(- Assisted with development environments, access configuration and technical troubleshooting.) Tj
+/F1 9.5 Tf
+1 0 0 1 40 730 Tm
+(IDF Technology Branch | Full Stack Software Developer & Team Leader | 2023-2024) Tj
+/F1 9.5 Tf
+1 0 0 1 40 717 Tm
+(- Developed and maintained full-stack internal software systems and databases.) Tj
+/F1 9.5 Tf
+1 0 0 1 40 704 Tm
+(- Led a four-person development team and provided technical guidance and troubleshooting support.) Tj
+/F1 9.5 Tf
+1 0 0 1 40 691 Tm
+(- Worked between user requirements and software implementation to improve internal workflows.) Tj
+/F1 9.5 Tf
+1 0 0 1 40 678 Tm
+(- Built reusable database/MySQL infrastructure and supported users of internal applications.) Tj
+/F1 11 Tf
+1 0 0 1 40 657 Tm
+(ADDITIONAL TECHNICAL EXPERIENCE) Tj
+/F1 9.5 Tf
+1 0 0 1 40 640 Tm
+(VidCo | AV Technician - Technical Support & Operations) Tj
+/F1 9.5 Tf
+1 0 0 1 40 627 Tm
+(- Set up and operated professional audio/video systems and digital meetings.) Tj
+/F1 9.5 Tf
+1 0 0 1 40 614 Tm
+(- Performed real-time troubleshooting and direct technical assistance for users and teams.) Tj
+/F1 11 Tf
+1 0 0 1 40 593 Tm
+(SELECTED IMPLEMENTATION PROJECTS) Tj
+/F1 9.5 Tf
+1 0 0 1 40 576 Tm
+(CodeCrafter CRM: React/TypeScript, Supabase Auth, PostgreSQL, RLS, Realtime, Google APIs, MFA.) Tj
+/F1 9.5 Tf
+1 0 0 1 40 563 Tm
+(RAM Engineering CRM: project/task workflows, multiple roles, Supabase, Google Workspace, Cloudflare.) Tj
+/F1 9.5 Tf
+1 0 0 1 40 550 Tm
+(Tov Ha'aretz: E2E QA, permissions, translations, caching, production troubleshooting and technical SEO.) Tj
+/F1 11 Tf
+1 0 0 1 40 529 Tm
+(EDUCATION) Tj
+/F1 9.5 Tf
+1 0 0 1 40 512 Tm
+(B.S. Electrical & Electronics Engineering | Boys' Town Jerusalem | 2020-2022) Tj
+/F1 9.5 Tf
+1 0 0 1 40 499 Tm
+(Relevant studies: hardware/software integration, C, Python, Assembly, VHDL, microcontrollers, PCB design.) Tj
+/F1 11 Tf
+1 0 0 1 40 478 Tm
+(LANGUAGES) Tj
+/F1 9.5 Tf
+1 0 0 1 40 461 Tm
+(Hebrew: Native | English: Fluent) Tj
+/F1 9.5 Tf
+1 0 0 1 40 440 Tm
+(Additional project examples: https://mosheschwartzberg.com/resume) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000247 00000 n 
+0000000373 00000 n 
+0000003524 00000 n 
+0000006070 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+6140
+%%EOF
