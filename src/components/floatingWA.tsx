@@ -1,6 +1,7 @@
 import { MessageCircle, Send, X } from 'lucide-react'
 import { type FormEvent, useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../App'
+import { trackEvent } from '../lib/analytics'
 
 export default function FloatingWA() {
   const { lang } = useLanguage()
@@ -44,6 +45,7 @@ export default function FloatingWA() {
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const text = message.trim() || (lang === 'he' ? 'היי משה, אשמח להתייעץ לגבי פרויקט.' : 'Hi Moshe, I would like to discuss a project.')
+    trackEvent('whatsapp_click', { cta_location: 'floating_widget' })
     window.open(`https://wa.me/972587076077?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer')
   }
 
@@ -67,7 +69,7 @@ export default function FloatingWA() {
             </button>
           </header>
           <div className='wa-message'>{copy.greeting}</div>
-          <form onSubmit={submit}>
+          <form onSubmit={submit} data-clarity-mask='true'>
             <label className='sr-only' htmlFor='wa-message'>{copy.placeholder}</label>
             <input
               id='wa-message'

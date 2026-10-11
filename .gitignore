@@ -7,3 +7,6 @@ coverage/
 change-log.txt
 .env*
 !.env.example
+
+test-results/
+playwright-report/

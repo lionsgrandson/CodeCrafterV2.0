@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+
 import { ArrowLeft, ArrowRight, Star } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../App'
@@ -66,6 +66,8 @@ type PortfolioProps = {
 }
 
 const normalizePortfolioLink = (link?: string) => {
+  // Keep the project visible while its previous public preview returns 404.
+  if (link === 'https://mahagonyisrael.netlify.app/') return undefined
   if (link === 'https://rainbowasdv2.netlify.app/') {
     return 'https://rainbow-asd.com/'
   }
@@ -103,7 +105,7 @@ export function Portfolio({
 
   const projects = t.portfolio.projects.map((project, idx) => {
     const sourceLink = normalizePortfolioLink(project.link)
-    const externalLink = sourceLink || projectMedia[idx]?.src
+    const externalLink = sourceLink
     const caseStudyLink = ({
       1: localizePath('portfolio/yuval-kadosh', lang),
       2: localizePath('portfolio/rainbow-asd', lang),
@@ -156,24 +158,19 @@ export function Portfolio({
           />
         )}
         <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
-          {projects.map((project, idx) => {
-            const isHomepageExtra = !showAll && idx >= 20
+          {(showAll ? projects : projects.filter((_, index) => [1, 2, 4].includes(index))).map((project, idx) => {
+            const Card = project.link ? 'a' : 'article'
 
             return (
-              <motion.a
+              <Card
                 key={project.link || project.title}
                 href={project.link}
                 target={project.link === project.externalLink ? '_blank' : undefined}
                 rel={project.link === project.externalLink ? 'noopener noreferrer' : undefined}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.5, delay: (idx % 3) * 0.1 }}
-                viewport={{ once: true }}
-                className={`${isHomepageExtra ? 'hidden' : 'flex'} bg-surface-container-lowest rounded-xl overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-[625ms] border border-outline-variant/10 flex-col h-full text-start cursor-pointer`}
+                className={`flex bg-surface-container-lowest rounded-xl overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-[625ms] border border-outline-variant/10 flex-col h-full text-start ${project.link ? 'cursor-pointer' : ''}`}
               >
                 <ProjectMedia
-                  src={showAll || idx < 20 ? project.media?.src : undefined}
+                  src={project.media?.src}
                   title={project.title}
                   kind={project.media?.kind}
                 />
@@ -182,22 +179,14 @@ export function Portfolio({
                     <p className='text-on-surface-variant text-sm font-light leading-relaxed'>
                       {project.desc}
                     </p>
+                    {!project.link && <p className='mt-3 text-sm text-secondary'>{lang === 'he' ? 'תצוגת האתר אינה זמינה כרגע' : 'Live preview is currently unavailable'}</p>}
                   </div>
                 </div>
-              </motion.a>
+              </Card>
             )
           })}
         </div>
-        {/* {!showAll && (
-          <div className='mt-10 flex justify-center'>
-            <a
-              href='/portfolio/'
-              className='inline-flex min-h-12 items-center justify-center rounded-lg bg-primary-gradient px-7 py-3 text-center font-headline font-bold text-white shadow-lg shadow-primary/20 transition-all duration-[250ms] hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/30 active:scale-95'
-            >
-              {t.portfolio.seeAll}
-            </a>
-          </div>
-        )} */}
+        {!showAll && <div className='mt-8 text-center'><a className='button-secondary px-6 py-3' href={localizePath('portfolio', lang)}>{t.portfolio.seeAll}</a></div>}
       </div>
     </section>
   )
@@ -222,12 +211,8 @@ export function Testimonials() {
         />
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5'>
           {reviews.map((review, idx) => (
-            <motion.div
+            <div
               key={idx}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.75, delay: idx * 0.1 }}
-              viewport={{ once: true }}
               className={`testimonial-card p-4 md:p-5 rounded-xl flex flex-col shadow-sm border-t-4 transition-all duration-[200ms] hover:-translate-y-1 hover:shadow-lg ${review.featured ? 'bg-surface-container-high border-primary' : 'bg-surface-container-low border-transparent'}`}
             >
               <div className='flex text-primary mb-2 md:mb-3'>
@@ -254,7 +239,7 @@ export function Testimonials() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

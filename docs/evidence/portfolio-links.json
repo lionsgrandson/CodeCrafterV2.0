@@ -1,0 +1,78 @@
+[
+  {
+    "project": "Mahagony Israel",
+    "url": "https://mahagonyisrael.netlify.app/",
+    "status": 404,
+    "finalUrl": "https://mahagonyisrael.netlify.app/"
+  },
+  {
+    "project": "Yuval Kadosh",
+    "url": "https://ykadosh.co.il",
+    "status": "unreachable_in_test"
+  },
+  {
+    "project": "Rainbow - ASD",
+    "url": "https://rainbow-asd.com/",
+    "status": "unreachable_in_test"
+  },
+  {
+    "project": "Chicago Trauma Therapy",
+    "url": "https://chicagotraumatherapy.com/",
+    "status": 200,
+    "finalUrl": "https://chicagotraumatherapy.com/"
+  },
+  {
+    "project": "SumsUp",
+    "url": "https://sumsup.co",
+    "status": 200,
+    "finalUrl": "https://sumsup.co/"
+  },
+  {
+    "project": "Amit Kadosh Portfolio",
+    "url": "http://localhost:4173/amitStarProject/",
+    "status": 200,
+    "finalUrl": "http://localhost:4173/amitStarProject/"
+  },
+  {
+    "project": "Technology & Maintenance Corps",
+    "url": "https://flourishing-toffee-be2e06.netlify.app/",
+    "status": 200,
+    "finalUrl": "https://flourishing-toffee-be2e06.netlify.app/"
+  },
+  {
+    "project": "Big Sale",
+    "url": "https://sarit-beauity.netlify.app/",
+    "status": 200,
+    "finalUrl": "https://sarit-beauity.netlify.app/"
+  },
+  {
+    "project": "Creative Intelligence",
+    "url": "https://creative-intell.netlify.app/",
+    "status": 200,
+    "finalUrl": "https://creative-intell.netlify.app/"
+  },
+  {
+    "project": "Shimon Cohen Photography",
+    "url": "https://shimonphotos.com/",
+    "status": 200,
+    "finalUrl": "https://shimonphotos.com/"
+  },
+  {
+    "project": "CodeRecovery",
+    "url": "https://simplyrecovery.netlify.app/",
+    "status": 200,
+    "finalUrl": "https://simplyrecovery.netlify.app/"
+  },
+  {
+    "project": "AI Pro",
+    "url": "https://ai-pro.co.il/",
+    "status": 200,
+    "finalUrl": "https://ai-pro.co.il/"
+  },
+  {
+    "project": "Omnifood",
+    "url": "https://omnifood.dev/",
+    "status": 200,
+    "finalUrl": "https://omnifood.dev/"
+  }
+]

@@ -1,23 +1,23 @@
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'motion/react'
+
 import { Languages, Menu, MessageSquare, X } from 'lucide-react'
 import { useLanguage } from '../App'
 import { getWhatsAppUrl } from '../lib/contact'
 import { localizePath } from '../lib/seoRoutes'
-import { WordReveal } from './WordReveal'
+import { trackEvent } from '../lib/analytics'
 
 type NavbarProps = {
   homeHashPrefix?: string
+  contactHref?: string
 }
 
-export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
+export function Navbar({ homeHashPrefix = '', contactHref = `${homeHashPrefix}#contact` }: NavbarProps) {
   const { t, lang, setLang } = useLanguage()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const navItems = [
     { label: t.nav.solve, href: `${homeHashPrefix}#services` },
     { label: t.nav.work, href: localizePath('portfolio', lang) },
     { label: lang === 'he' ? 'מחירים' : 'Pricing', href: localizePath('pricing', lang) },
-    { label: lang === 'he' ? 'אזורי שירות' : 'Areas', href: localizePath('locations', lang) },
     { label: t.nav.process, href: `${homeHashPrefix}#process` },
     { label: lang === 'he' ? 'אודות' : 'About', href: localizePath('about', lang) },
   ]
@@ -42,7 +42,7 @@ export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
             </span>
           </a>
         </div>
-        <div className='hidden md:flex space-x-5 rtl:space-x-reverse items-center'>
+        <div className='hidden lg:flex space-x-5 rtl:space-x-reverse items-center'>
           {navItems.map((item) => (
             <a
               key={item.label}
@@ -63,13 +63,13 @@ export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
           </button>
 
           <a
-            href={`${homeHashPrefix}#contact`}
+            href={contactHref}
             className='button-primary px-5 py-2 text-sm whitespace-nowrap'
           >
             {t.nav.cta}
           </a>
         </div>
-        <div className='flex items-center gap-2 md:hidden'>
+        <div className='flex items-center gap-2 lg:hidden'>
           <button
             onClick={toggleLanguage}
             className='icon-button'
@@ -78,7 +78,7 @@ export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
             <Languages className='w-5 h-5' />
           </button>
           <button
-            onClick={() => setIsMenuOpen((open) => !open)}
+            onClick={() => { if (!isMenuOpen) trackEvent('mobile_menu_open'); setIsMenuOpen(open => !open) }}
             className='icon-button'
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMenuOpen}
@@ -92,15 +92,11 @@ export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
           </button>
         </div>
       </div>
-      <AnimatePresence>
+      <>
         {isMenuOpen && (
-          <motion.div
+          <div
             id='mobile-menu'
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.225 }}
-            className='md:hidden border-t border-outline-variant/10 bg-surface/95 backdrop-blur-[20px] shadow-lg'
+            className='lg:hidden border-t border-outline-variant/10 bg-surface/95 backdrop-blur-[20px] shadow-lg'
           >
             <div className='px-6 py-4 flex flex-col gap-1'>
               {navItems.map((item) => (
@@ -114,52 +110,28 @@ export function Navbar({ homeHashPrefix = '' }: NavbarProps) {
                 </a>
               ))}
               <a
-                href={`${homeHashPrefix}#contact`}
+                href={contactHref}
                 onClick={() => setIsMenuOpen(false)}
                 className='button-primary mt-3 px-6 py-3 text-sm text-center'
               >
                 {t.nav.cta}
               </a>
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
+      </>
     </nav>
   )
 }
 
 export function Hero() {
   const { t, lang } = useLanguage()
-  const seoHeadline = lang === 'he'
-    ? 'פיתוח תוכנה, מערכות ואתרים בהתאמה אישית לעסקים'
-    : 'Web Development Company in Israel for Websites, Systems and Automation'
+  const seoHeadline = t.hero.headline
 
   return (
     <header className='viewport-section hero-section relative px-6 md:px-8 overflow-hidden bg-surface'>
       <div className='absolute inset-0 z-0 pointer-events-none opacity-20'>
         <div className='absolute top-0 left-0 w-full h-full'>
-          {[...Array(3)].map((_, i) => (
-            <motion.div
-              key={i}
-              className='absolute bg-primary/20 rounded-full blur-3xl'
-              animate={{
-                x: [0, 100, -100, 0],
-                y: [0, -50, 50, 0],
-                scale: [1, 1.2, 0.8, 1],
-              }}
-              transition={{
-                duration: 25 + i * 6.25,
-                repeat: Infinity,
-                ease: 'linear',
-              }}
-              style={{
-                width: `${200 + i * 100}px`,
-                height: `${200 + i * 100}px`,
-                left: `${(i * 30) % 100}%`,
-                top: `${(i * 20) % 100}%`,
-              }}
-            />
-          ))}
           <svg className='absolute inset-0 w-full h-full opacity-10'>
             <pattern
               id='grid'
@@ -181,11 +153,8 @@ export function Hero() {
 
       <div className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10'>
         <div className='z-10'>
-          <WordReveal
-            as='h1'
-            text={seoHeadline}
-            className='text-5xl md:text-7xl text-editorial-hero mb-6'
-          />
+          <p className='section-kicker mb-4'>{lang === 'he' ? 'CodeCrafter · משה שוורצברג' : 'CodeCrafter · Moshe Schwartzberg'}</p>
+          <h1 className='text-5xl md:text-7xl text-editorial-hero mb-6'>{seoHeadline}</h1>
           <p className='subtitle-accent text-secondary text-lg md:text-xl max-w-xl mb-10 leading-relaxed'>
             {t.hero.subline}
           </p>
@@ -209,6 +178,7 @@ export function Hero() {
               {t.hero.ctaSecondary}
             </a>
           </div>
+          <p className='text-sm text-secondary mt-5'>{lang === 'he' ? 'עבודה ישירה עם המפתח · עברית ואנגלית · תכנון, פיתוח וליווי' : 'Work directly with the developer · Hebrew and English · Planning, development, and support'}</p>
         </div>
 
         <div
@@ -216,6 +186,8 @@ export function Hero() {
           aria-label={lang === 'he' ? 'משה שוורצברג' : 'Moshe Schwartzberg'}
         >
           <div className='hero-photo-frame'>
+            <picture>
+            <source media='(max-width: 767px)' srcSet='/moshe-prague-480.webp' />
             <img
               src='/moshe-prague-768.webp'
               srcSet='/moshe-prague-480.webp 480w, /moshe-prague-768.webp 768w, /moshe-prague-1052.webp 1052w'
@@ -231,6 +203,7 @@ export function Hero() {
               fetchPriority='high'
               decoding='async'
             />
+            </picture>
             <span className='hero-photo-accent hero-photo-accent-top' aria-hidden='true' />
             <span className='hero-photo-accent hero-photo-accent-bottom' aria-hidden='true' />
           </div>

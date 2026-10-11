@@ -6,43 +6,24 @@ export const translations = {
       work: 'פרויקטים',
       process: 'איך אני עובד',
       success: 'לקוחות ממליצים',
-      cta: 'אני כאן לייעוץ',
+      cta: 'הצעת מחיר לאתר',
     },
     hero: {
       eyebrow: 'בונים קוד. יוצרים פתרונות.',
-      headline: 'בניית אתרים, מערכות ואוטומציות לעסקים',
-      subline: 'פתרונות דיגיטליים שמותאמים לתהליך העבודה שלך — כדי לחסוך זמן, לייצר יותר פניות ולבנות עסק מסודר ויעיל יותר.',
-      ctaPrimary: 'אני כאן לייעוץ',
+      headline: 'בניית אתרים ודפי נחיתה שמקדמים את העסק שלכם',
+      subline: 'אתרי תדמית, דפי נחיתה ופיתוח Web בהתאמה אישית לעסקים ולנותני שירות. מסר ברור, חוויית מובייל נוחה ודרך פשוטה לפנות — משיחת ההיכרות ועד להשקה.',
+      ctaPrimary: 'בואו נדבר על האתר שלכם',
       ctaSecondary: 'שלח הודעה ב-WhatsApp',
       lead: '',
       alt: 'משה שוורצברג ברחוב עירוני בפראג',
     },
     services: {
-      // eyebrow: 'השירותים שלי',
-      headline: 'פתרונות דיגיטליים שבנויים לעסק שלך',
-      subline:
-        'מאתר ומערכת ועד אפליקציה ואוטומציה – כל פתרון נבנה בהתאמה אישית.\nכדי לחסוך זמן ולעזור לעסק שלך להתקדם.',
+      headline: 'האתר הנכון לצעד הבא של העסק',
+      subline: 'נגדיר יחד מה הלקוחות צריכים להבין ולעשות — ונבנה סביב זה את האתר.',
       items: [
-        {
-          title: 'אתרים ומערכות Web',
-          desc: 'אתרי תדמית, אתרי מכירות ומערכות Web בהתאמה אישית, עם דגש על ביצועים, חוויית משתמש ותוצאות.',
-        },
-        {
-          title: 'מערכות CRM / CMS',
-          desc: 'פיתוח מערכות לניהול לקוחות, תוכן ותהליכים עסקיים, בהתאמה מלאה לצרכים של העסק שלך.',
-        },
-        {
-          title: 'אפליקציות מובייל',
-          desc: 'אפליקציות ל-iOS ולאנדרואיד עם חוויית משתמש מודרנית וחיבור למערכות הקיימות בעסק.',
-        },
-        {
-          title: 'אוטומציות ואינטגרציות',
-          desc: 'חיבור בין מערכות, אוטומציה של תהליכים והפחתת עבודה ידנית כדי לחסוך זמן ולייעל את העסק.',
-        },
-        {
-          title: 'בוטים לעסקים',
-          desc: 'בוטים ל-WhatsApp, Instagram, Facebook ו-Telegram המספקים מענה מהיר, אוספים לידים ומבצעים פעולות באופן אוטומטי.',
-        },
+        { title: 'אתר תדמית לעסק', desc: 'בית מקצועי לשירותים שלכם, עם תוכן ברור, עבודות והמלצות שמסייעים ללקוחות להבין אם אתם מתאימים להם.' },
+        { title: 'דף נחיתה ממוקד', desc: 'עמוד לקמפיין או לשירות אחד, עם מסר ממוקד, הוכחות רלוונטיות ופעולה ברורה ליצירת קשר.' },
+        { title: 'פיתוח Web בהתאמה אישית', desc: 'כשהאתר צריך יותר: הזמנות, אזור אישי או חיבור למערכות קיימות, בהתאם להיקף שנגדיר יחד.' },
       ],
     },
     process: {
@@ -241,7 +222,7 @@ export const translations = {
       secondary: 'שלח הודעה ב-WhatsApp',
     },
     footer: {
-      desc: 'מתכננים את העתיד הדיגיטלי לעסקים שאפתניים. מערכת אחת בכל פעם.',
+      desc: 'אתרים ודפי נחיתה לעסקים, עם תוכן ברור, פיתוח בהתאמה אישית וליווי לאורך הדרך.',
       explore: 'מפת אתר',
       legal: 'משפטי',
       privacy: 'מדיניות פרטיות',
@@ -256,43 +237,24 @@ export const translations = {
       work: 'Projects',
       process: 'How I Work',
       success: 'Client Testimonials',
-      cta: "I'm Here for a Consultation",
+      cta: 'Request a quote',
     },
     hero: {
       eyebrow: 'Building Code. Creating Solutions.',
-      headline: 'Websites, Systems, and Automation for Businesses',
-      subline: 'Digital solutions built around your workflow to save time, improve processes, and turn more opportunities into customers.',
-      ctaPrimary: "I'm Here for a Consultation",
+      headline: 'Business websites and landing pages built for your next step',
+      subline: 'Custom websites, landing pages, and web development for businesses and service providers in Israel. Clear messaging, a smooth mobile experience, and an easy way to get in touch — from our first conversation to launch.',
+      ctaPrimary: 'Discuss your website',
       ctaSecondary: 'Send a Message on WhatsApp',
       lead: '',
       alt: 'Moshe Schwartzberg on a city street in Prague',
     },
     services: {
-      eyebrow: 'My Services',
-      headline: 'Digital Solutions Built Around Your Business',
-      subline:
-        'From websites and systems to apps and automation, every solution is custom-built.\nBuilt to save time and help your business move forward.',
+      headline: 'The right website for your next business step',
+      subline: 'We define what customers need to understand and do, then build the website around it.',
       items: [
-        {
-          title: 'Websites & Web Systems',
-          desc: 'Custom marketing sites, online stores, and web systems with a focus on performance, user experience, and results.',
-        },
-        {
-          title: 'CRM / CMS Systems',
-          desc: 'Systems for managing customers, content, and business processes, fully tailored to your business needs.',
-        },
-        {
-          title: 'Mobile Apps',
-          desc: 'iOS and Android apps with a modern user experience and connections to the systems already in your business.',
-        },
-        {
-          title: 'Automation & Integrations',
-          desc: 'Connecting systems, automating workflows, and reducing manual work to save time and make your business more efficient.',
-        },
-        {
-          title: 'Business Bots',
-          desc: 'Bots for WhatsApp, Instagram, Facebook, and Telegram that answer quickly, collect leads, and perform actions automatically.',
-        },
+        { title: 'Business websites', desc: 'A professional home for your services, with clear content, work samples, and testimonials that help customers decide whether you fit their needs.' },
+        { title: 'Focused landing pages', desc: 'A page for one campaign or service, with a focused message, relevant proof, and a clear action to get in touch.' },
+        { title: 'Custom web development', desc: 'When your site needs more: bookings, a customer area, or connections to existing systems, based on the scope we agree together.' },
       ],
     },
     process: {
@@ -510,7 +472,7 @@ export const translations = {
       secondary: 'Send a Message on WhatsApp',
     },
     footer: {
-      desc: 'Planning the digital future for ambitious businesses. One system at a time.',
+      desc: 'Business websites and landing pages, with clear content, custom development, and support throughout the process.',
       explore: 'Site Map',
       legal: 'Legal',
       privacy: 'Privacy Policy',

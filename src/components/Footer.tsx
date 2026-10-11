@@ -1,5 +1,5 @@
-import { type FormEvent, useRef, useState } from 'react'
-import { motion } from 'motion/react'
+import { ContactForm } from './ContactForm'
+
 import {
   Check,
   MessageSquare,
@@ -10,12 +10,6 @@ import {
   Phone,
 } from 'lucide-react'
 import { useLanguage } from '../App'
-import {
-  trackContactFormError,
-  trackContactFormStart,
-  trackContactFormSubmit,
-  trackContactLead,
-} from '../lib/analytics'
 import { contact, getWhatsAppUrl } from '../lib/contact'
 import { localizePath, serviceLabels, serviceSlugs } from '../lib/seoRoutes'
 import { WordReveal } from './WordReveal'
@@ -34,12 +28,8 @@ export function WhyWorkWithMe() {
           />
           <ul className='space-y-2.5 md:space-y-4'>
             {points.map((point, idx) => (
-              <motion.li
+              <li
                 key={idx}
-                initial={{ opacity: 0, x: -18 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.625, delay: idx * 0.1 }}
-                viewport={{ once: true }}
                 className='flex gap-3 md:gap-4 items-start'
               >
                 <div className='mt-1 w-6 h-6 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-sm'>
@@ -53,16 +43,12 @@ export function WhyWorkWithMe() {
                     {point.desc}
                   </p>
                 </div>
-              </motion.li>
+              </li>
             ))}
           </ul>
         </div>
         <div className='relative flex justify-center'>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
+          <div
             className='w-full max-h-[62svh] aspect-[4/5] bg-primary/20 rounded-2xl relative overflow-hidden ring-1 ring-white/10'
           >
             <img
@@ -76,241 +62,14 @@ export function WhyWorkWithMe() {
               width='1200'
               height='800'
             />
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
   )
 }
 
-export function FinalCTA() {
-  const { t, lang } = useLanguage()
-  const formStarted = useRef(false)
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-    company: '',
-  })
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>(
-    'idle',
-  )
-  const copy =
-    lang === 'he'
-      ? {
-          name: 'שם',
-          email: 'אימייל',
-          phone: 'טלפון',
-          message: 'ספרו לי בקצרה על הפרויקט',
-          success: 'ההודעה נשלחה. אחזור אליכם בהקדם.',
-          error: 'משהו השתבש בשליחה. אפשר לנסות שוב או לשלוח WhatsApp.',
-        }
-      : {
-          name: 'Name',
-          email: 'Email',
-          phone: 'Phone',
-          message: 'Tell me briefly about the project',
-          success: 'Message sent. I will get back to you soon.',
-          error: 'Something went wrong. Try again or message me on WhatsApp.',
-        }
-
-  function markFormStarted() {
-    if (formStarted.current) return
-    formStarted.current = true
-    trackContactFormStart()
-  }
-
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-
-    if (!form.phone.trim() && !form.email.trim()) {
-      setStatus('error')
-      trackContactFormError('missing_contact_method')
-      return
-    }
-
-    setStatus('sending')
-    trackContactFormSubmit()
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, language: lang }),
-      })
-
-      if (!response.ok) throw new Error('Contact request failed')
-      trackContactLead()
-      setStatus('sent')
-      setForm({ name: '', email: '', phone: '', message: '', company: '' })
-    } catch {
-      setStatus('error')
-      trackContactFormError('request_failed')
-    }
-  }
-
-  return (
-    <section
-      className='viewport-section contact-section px-6 md:px-8 bg-surface-container-low'
-      id='contact'
-    >
-      <div className='max-w-4xl mx-auto text-center'>
-        <WordReveal
-          text={t.cta.headline}
-          className='text-3xl md:text-5xl font-bold mb-3 md:mb-4 tracking-tight font-headline text-on-surface'
-        />
-        <p className='text-secondary text-sm md:text-lg mb-4 md:mb-6 font-light'>
-          {t.cta.subline}
-        </p>
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.625 }}
-          className='bg-surface-container-lowest p-5 md:p-7 rounded-2xl shadow-2xl relative overflow-hidden border border-outline-variant/10'
-        >
-          <div className='absolute top-0 start-0 p-8 opacity-5'>
-            <Globe className='w-32 h-32 text-primary' />
-          </div>
-          <h3 className='text-2xl md:text-3xl font-bold mb-2 font-headline text-on-surface'>
-            {t.cta.cardTitle}
-          </h3>
-          <p className='text-secondary text-sm md:text-base mb-4 font-light'>
-            {t.cta.cardSubline}
-          </p>
-          <form
-            onSubmit={handleSubmit}
-            onFocus={markFormStarted}
-            data-state={
-              status === 'sent' || status === 'error' || status === 'sending'
-                ? status
-                : Object.values(form).some(Boolean)
-                  ? 'filled'
-                  : 'blank'
-            }
-            className='relative z-10 grid grid-cols-1 md:grid-cols-2 gap-4 text-start'
-          >
-            <div className='absolute -start-[10000px]' aria-hidden='true'>
-              <label htmlFor='company'>Company</label>
-              <input
-                id='company'
-                name='company'
-                value={form.company}
-                onChange={(event) =>
-                  setForm((current) => ({
-                    ...current,
-                    company: event.target.value,
-                  }))
-                }
-                tabIndex={-1}
-                autoComplete='off'
-              />
-            </div>
-            <input
-              name='name'
-              value={form.name}
-              onChange={(event) =>
-                setForm((current) => ({ ...current, name: event.target.value }))
-              }
-              required
-              autoComplete='name'
-              placeholder={copy.name}
-              aria-label={copy.name}
-              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-3 text-on-surface outline-none transition duration-[200ms] hover:border-primary/60 focus:border-primary'
-            />
-            <input
-              name='email'
-              type='email'
-              inputMode='email'
-              autoComplete='email'
-              value={form.email}
-              onChange={(event) =>
-                setForm((current) => ({ ...current, email: event.target.value }))
-              }
-              placeholder={copy.email}
-              aria-label={copy.email}
-              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-3 text-on-surface outline-none transition duration-[200ms] hover:border-primary/60 focus:border-primary'
-            />
-            <input
-              name='phone'
-              type='tel'
-              inputMode='tel'
-              autoComplete='tel'
-              value={form.phone}
-              onChange={(event) =>
-                setForm((current) => ({ ...current, phone: event.target.value }))
-              }
-              placeholder={copy.phone}
-              aria-label={copy.phone}
-              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-3 text-start [direction:inherit] text-on-surface outline-none transition duration-[200ms] hover:border-primary/60 focus:border-primary md:col-span-2'
-            />
-            <textarea
-              name='message'
-              value={form.message}
-              onChange={(event) =>
-                setForm((current) => ({ ...current, message: event.target.value }))
-              }
-              placeholder={copy.message}
-              rows={3}
-              aria-label={copy.message}
-              className='w-full rounded-lg border border-outline-variant/30 bg-surface px-4 py-3 text-on-surface outline-none transition duration-[200ms] hover:border-primary/60 focus:border-primary md:col-span-2 resize-none'
-            />
-            {status === 'sent' && (
-              <p role='status' aria-live='polite' className='text-sm font-medium text-tertiary md:col-span-2'>
-                {copy.success}
-              </p>
-            )}
-            {status === 'error' && (
-              <p role='alert' className='text-sm font-medium text-primary md:col-span-2'>
-                {copy.error}
-              </p>
-            )}
-            <p className='text-xs text-secondary md:col-span-2 text-center'>
-              {lang === 'he' ? 'בשליחת הטופס אני מאשר/ת את' : 'By submitting, I agree to the'}{' '}
-              <a className='hover:text-primary underline' href='/privacy/'>
-                {t.footer.privacy}
-              </a>{' '}
-              {lang === 'he' ? 'ואת' : 'and'}{' '}
-              <a className='hover:text-primary underline' href='/terms/'>
-                {t.footer.terms}
-              </a>
-              .
-            </p>
-            <div className='flex flex-col md:flex-row gap-4 justify-center md:col-span-2'>
-              <button
-                type='submit'
-                disabled={status === 'sending'}
-                className='bg-primary-gradient text-white w-full md:w-auto px-5 md:px-8 py-3.5 rounded-lg font-headline font-bold text-base md:text-lg whitespace-nowrap shadow-lg hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 transition-all duration-[200ms] active:scale-95 text-center disabled:opacity-70 disabled:hover:translate-y-0'
-              >
-                {status === 'sending' ? (
-                  <span className='inline-flex items-center gap-3'>
-                    <span className='h-2.5 w-24 rounded-full bg-white/35 animate-pulse [animation-duration:2.5s]' />
-                    <span className='sr-only'>
-                      {lang === 'he' ? 'שולח...' : 'Sending...'}
-                    </span>
-                  </span>
-                ) : (
-                  t.cta.primary
-                )}
-              </button>
-              <a
-                href={getWhatsAppUrl(lang)}
-                target='_blank'
-                rel='noreferrer'
-                data-placement='homepage_contact_whatsapp'
-                className='bg-surface-container text-primary w-full md:w-auto px-5 md:px-8 py-3.5 rounded-lg font-headline font-bold text-base md:text-lg whitespace-nowrap flex items-center justify-center gap-3 hover:-translate-y-0.5 hover:bg-surface-container-high hover:shadow-md transition-all duration-[200ms] active:scale-95 border border-primary/10'
-              >
-                <MessageSquare className='w-6 h-6 fill-current' />
-                {t.cta.secondary}
-              </a>
-            </div>
-          </form>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
+export function FinalCTA() { return <ContactForm /> }
 
 type FooterProps = {
   homeHashPrefix?: string

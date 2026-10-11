@@ -120,6 +120,23 @@
   padding-bottom: clamp(1.5rem, 6svh, 4rem);
 }
 
+.skip-link { position: fixed; top: -100px; inset-inline-start: 1rem; z-index: 100; background: white; padding: 1rem; color: #94442e; }
+.skip-link:focus { top: 1rem; }
+:focus-visible { outline: 3px solid #00685d; outline-offset: 4px; }
+section[id] { scroll-margin-top: 7rem; }
+.contact-form { position: relative; background: white; border: 1px solid #dbc1ba; border-radius: 1.25rem; padding: clamp(1.25rem, 4vw, 2rem); }
+.contact-form input, .contact-form textarea { width: 100%; border: 1px solid #a38a83; background: #fbf9f4; border-radius: .5rem; padding: .8rem 1rem; }
+.contact-form [aria-invalid='true'] { border: 2px solid #94442e; }
+.consent-panel { position: fixed; bottom: 3.5rem; inset-inline-start: 1rem; width: min(35rem, calc(100vw - 2rem)); z-index: 70; background: white; border: 1px solid #dbc1ba; padding: 1.25rem; box-shadow: 0 8px 40px #1b1c1929; border-radius: 1rem; max-height: 70svh; overflow-y: auto; }
+.consent-panel h2 { font-size: 1.25rem; margin-bottom: .5rem; }
+.consent-panel p { font-size: .9rem; margin-bottom: 1rem; }
+.consent-panel a { text-decoration: underline; }
+.consent-settings { position: fixed; bottom: .6rem; inset-inline-start: .6rem; z-index: 60; border: 1px solid #dbc1ba; background: white; border-radius: .5rem; padding: .5rem .75rem; font-size: .8rem; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
 .testimonials-section,
 .about-section,
 .contact-section {
@@ -687,7 +704,7 @@ html[dir='rtl'] .crm-pop-heading p {
 
   .hero-section {
     min-height: 100svh;
-    padding-top: 5.25rem;
+    padding-top: 7.25rem;
     padding-bottom: 2.5rem;
   }
 

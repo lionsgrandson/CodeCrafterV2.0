@@ -1,3 +1,4 @@
+import { ContactForm } from './ContactForm'
 import { ArrowLeft, ArrowRight, ExternalLink, MapPin, MessageSquare } from 'lucide-react'
 import { useLanguage } from '../App'
 import { getWhatsAppUrl } from '../lib/contact'
@@ -24,7 +25,7 @@ type SeoPageProps = {
 }
 
 export function SeoPage({ page }: SeoPageProps) {
-  const { lang } = useLanguage()
+  const { lang, t } = useLanguage()
   const Arrow = lang === 'he' ? ArrowLeft : ArrowRight
   const servicesPath = localizePath('', lang) + '#services'
   const portfolioPath = localizePath('portfolio', lang)
@@ -78,8 +79,8 @@ export function SeoPage({ page }: SeoPageProps) {
         </header>
 
         <div className='seo-page-sections'>
-          {page.sections.map((section) => (
-            <section key={section.heading}>
+          {page.sections.map((section, index) => (
+            <section key={section.heading} data-section={`service_section_${index + 1}`}>
               <h2>{section.heading}</h2>
               {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               {section.items && (
@@ -156,6 +157,13 @@ export function SeoPage({ page }: SeoPageProps) {
           </section>
         )}
 
+        {page.slug === 'websites' && <section className='seo-faq' data-section='testimonial'>
+          <h2>{lang === 'he' ? 'מה אומרים אחרי ההשקה' : 'What a client says after launch'}</h2>
+          <blockquote className='mt-5 text-lg leading-relaxed'>{t.testimonials.items[0].text}</blockquote>
+          <p className='mt-3 font-semibold'>Gabby · CEO of SumsUp</p>
+          <a href={localizePath('portfolio/sumsup', lang)} className='underline'>{lang === 'he' ? 'למקרה הבוחן של SumsUp' : 'Read the SumsUp case study'}</a>
+        </section>}
+
         {(page.relatedServices?.length || page.relatedProjects?.length || page.externalUrl) && (
           <aside className='seo-related' aria-label={lang === 'he' ? 'קישורים קשורים' : 'Related links'}>
             {page.relatedServices?.length ? (
@@ -214,14 +222,7 @@ export function SeoPage({ page }: SeoPageProps) {
           </aside>
         )}
 
-        <section className='seo-contact-card' id='contact-page'>
-          <h2>{lang === 'he' ? 'יש תהליך שאפשר לשפר?' : 'Have a workflow worth improving?'}</h2>
-          <p>{lang === 'he' ? 'ספרו בקצרה מה העסק צריך. נבדוק יחד אם הפתרון הנכון הוא אתר, מערכת, אוטומציה, אפליקציה או שינוי ממוקד יותר.' : 'Share what the business needs. We can determine whether the right next step is a website, system, automation, app, or a smaller focused change.'}</p>
-          <div className='seo-page-actions'>
-            <a className='button-primary px-7 py-4' href='mailto:moshe@mosheschwartzberg.com'>moshe@mosheschwartzberg.com</a>
-            <a className='button-secondary px-7 py-4' href={getWhatsAppUrl(lang)} target='_blank' rel='noreferrer'>WhatsApp</a>
-          </div>
-        </section>
+        <ContactForm id='contact-page' title={lang === 'he' ? `בואו נדבר על ${page.h1}` : `Let’s discuss ${page.h1}`} description={lang === 'he' ? 'ספרו מה העסק צריך. אחזור אליכם לשיחת היכרות כדי להגדיר היקף, התאמה והצעת מחיר לפרויקט.' : 'Share what your business needs. I’ll reply for an introductory conversation about scope, fit, and a project quote.'} />
       </div>
     </article>
   )

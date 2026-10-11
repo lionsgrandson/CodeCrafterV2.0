@@ -20,7 +20,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
@@ -31,3 +31,12 @@ jobs:
 
       - name: Build and SEO validation
         run: npm run build
+
+      - name: Contact and scroll unit tests
+        run: npm test
+
+      - name: Install browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser and accessibility checks
+        run: npm run test:e2e

@@ -27,6 +27,8 @@
     "src",
     "scripts",
     "server.ts",
+    "server",
+    "functions",
     "vite.config.ts"
   ],
   "exclude": [

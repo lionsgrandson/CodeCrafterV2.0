@@ -2,7 +2,7 @@ import 'dotenv/config'
 import express from 'express'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { Resend } from 'resend'
+import { handleContact } from './server/contact'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const isProduction = process.env.NODE_ENV === 'production'
@@ -70,146 +70,23 @@ app.use((req, res, next) => {
   next()
 })
 
-type ContactPayload = {
-  name?: string
-  email?: string
-  phone?: string
-  message?: string
-  company?: string
-  language?: string
-}
-
-function clean(value: unknown) {
-  return typeof value === 'string' ? value.trim() : ''
-}
-
-function escapeHtml(value: string) {
-  return value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
-}
-
-function isRateLimited(ip: string) {
-  const now = Date.now()
-  const recentAttempts = (contactAttempts.get(ip) || []).filter(
-    (timestamp) => now - timestamp < contactWindowMs,
-  )
-
-  if (recentAttempts.length >= maxContactAttempts) {
-    contactAttempts.set(ip, recentAttempts)
-    return true
-  }
-
-  contactAttempts.set(ip, [...recentAttempts, now])
-  return false
-}
-
 app.get('/api/contact/health', (_req, res) => {
-  res.json({
-    ok: true,
-    providerConfigured: Boolean(
-      process.env.RESEND_API_KEY && process.env.RESEND_FROM_EMAIL,
-    ),
-  })
+  res.setHeader('Cache-Control', 'no-store')
+  res.json({ ok: true, providerConfigured: Boolean(process.env.RESEND_API_KEY && process.env.RESEND_FROM_EMAIL) })
 })
-
 app.post('/api/contact', async (req, res) => {
-  const body = req.body as ContactPayload
-  const name = clean(body.name)
-  const email = clean(body.email)
-  const phone = clean(body.phone)
-  const message = clean(body.message)
-  const company = clean(body.company)
-  const language = clean(body.language) === 'en' ? 'en' : 'he'
-  const ip =
-    clean(req.headers['cf-connecting-ip']) ||
-    clean(req.headers['x-forwarded-for']).split(',')[0] ||
-    req.ip
-
-  if (company) {
-    return res.json({ ok: true })
-  }
-
-  if (isRateLimited(ip)) {
-    return res
-      .status(429)
-      .json({ error: 'Too many contact attempts. Please try again later.' })
-  }
-
-  if (!name || (!email && !phone)) {
-    return res
-      .status(400)
-      .json({ error: 'Please provide your name and a phone number or email.' })
-  }
-
-  if (
-    name.length > 120 ||
-    email.length > 254 ||
-    phone.length > 40 ||
-    message.length > 5000 ||
-    (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-  ) {
-    return res.status(400).json({ error: 'Please check the submitted details.' })
-  }
-
-  if (!process.env.RESEND_API_KEY || !process.env.RESEND_FROM_EMAIL) {
-    return res.status(500).json({ error: 'Email delivery is not configured.' })
-  }
-
-  const to =
-    process.env.CONTACT_NOTIFICATION_EMAIL || 'moshe@mosheschwartzberg.com'
-  const resend = new Resend(process.env.RESEND_API_KEY)
-
-  try {
-    const { data, error } = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL,
-      to: [to],
-      ...(email ? { replyTo: email } : {}),
-      subject: `New CodeCrafter inquiry from ${name}`,
-      text: [
-        `Name: ${name}`,
-        `Email: ${email || 'Not provided'}`,
-        `Phone: ${phone || 'Not provided'}`,
-        `Language: ${language}`,
-        '',
-        message,
-      ].join('\n'),
-      html: `
-      <h2>New CodeCrafter inquiry</h2>
-      <p><strong>Name:</strong> ${escapeHtml(name)}</p>
-      <p><strong>Email:</strong> ${escapeHtml(email || 'Not provided')}</p>
-      <p><strong>Phone:</strong> ${escapeHtml(phone || 'Not provided')}</p>
-      <p><strong>Language:</strong> ${language}</p>
-      <p><strong>Message:</strong></p>
-      <p>${escapeHtml(message || 'No message provided').replace(/\n/g, '<br>')}</p>
-    `,
-    })
-
-    if (error) {
-      console.error('Resend rejected the email:', error)
-
-      return res.status(500).json({
-        error: 'Email provider rejected the message.',
-        details: error.message,
-      })
-    }
-
-    console.log('Email sent successfully:', data)
-
-    return res.json({
-      ok: true,
-      emailId: data?.id,
-    })
-  } catch (error) {
-    console.error('Unexpected contact-email error:', error)
-
-    return res.status(500).json({
-      error: 'Could not send your message right now.',
-    })
-  }
+  const ip = req.ip || 'unknown'
+  const now = Date.now()
+  const recent = (contactAttempts.get(ip) || []).filter(time => now - time < contactWindowMs)
+  if (recent.length >= maxContactAttempts) return res.status(429).json({ error: 'Too many contact attempts.' })
+  contactAttempts.set(ip, [...recent, now])
+  for (const [key, times] of contactAttempts) if (times.every(time => now - time >= contactWindowMs)) contactAttempts.delete(key)
+  const response = await handleContact(new Request('http://localhost/api/contact', {
+    method: 'POST', headers: { 'Content-Type': 'application/json', 'Idempotency-Key': String(req.headers['idempotency-key'] || '') },
+    body: JSON.stringify(req.body),
+  }), process.env)
+  response.headers.forEach((value, key) => res.setHeader(key, value))
+  res.status(response.status).send(await response.text())
 })
 
 if (isProduction) {

@@ -1,24 +1,14 @@
-import { motion } from 'motion/react'
-import { Bot, Braces, Database, Smartphone, Workflow } from 'lucide-react'
+
+import { Braces, Globe, LayoutTemplate } from 'lucide-react'
 import { useLanguage } from '../App'
 import { WordReveal } from './WordReveal'
-import { localizePath, serviceSlugs } from '../lib/seoRoutes'
-
-const reveal = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0 },
-}
+import { localizePath } from '../lib/seoRoutes'
 
 export function Services() {
   const { t, lang } = useLanguage()
-  const icons = [Braces, Database, Smartphone, Workflow, Bot]
-  const cardLayouts = [
-    'lg:col-span-3',
-    'lg:col-span-3',
-    'lg:col-span-2',
-    'lg:col-span-2',
-    'lg:col-span-2',
-  ]
+  const icons = [Globe, LayoutTemplate, Braces]
+  const destinations = ['websites', 'websites', 'web-app-development']
+  const cardLayouts = ['lg:col-span-2', 'lg:col-span-2', 'lg:col-span-2']
 
   return (
     <section
@@ -28,12 +18,7 @@ export function Services() {
       <div className='services-orb services-orb-one' aria-hidden='true' />
       <div className='services-orb services-orb-two' aria-hidden='true' />
       <div className='max-w-7xl mx-auto relative z-10'>
-        <motion.div
-          variants={reveal}
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.8 }}
+        <div
           className='mb-14 text-center max-w-4xl mx-auto'
         >
           {/* <span className='section-kicker'>{t.services.eyebrow}</span> */}
@@ -44,24 +29,18 @@ export function Services() {
           <p className='section-subtitle-panel text-secondary text-lg md:text-xl whitespace-pre-line'>
             {t.services.subline}
           </p>
-        </motion.div>
+        </div>
 
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-5'>
           {t.services.items.map((service, idx) => {
             const Icon = icons[idx]
 
             return (
-              <motion.article
+              <article
                 key={service.title}
-                variants={reveal}
-                initial='hidden'
-                whileInView='visible'
-                whileHover={{ y: -6 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.625, delay: idx * 0.07 }}
                 className={`service-card service-card-${idx + 1} ${cardLayouts[idx]} group`}
               >
-                <a className='service-card-link' href={localizePath(serviceSlugs[idx], lang)}>
+                <a className='service-card-link' href={localizePath(destinations[idx], lang)}>
                   <div className='service-icon' aria-hidden='true'>
                     <Icon className='w-6 h-6' />
                   </div>
@@ -76,7 +55,7 @@ export function Services() {
                   </span>
                 </a>
                 <div className='service-card-beam' aria-hidden='true' />
-              </motion.article>
+              </article>
             )
           })}
         </div>
@@ -94,12 +73,7 @@ export function Process() {
       id='process'
     >
       <div className='max-w-7xl mx-auto'>
-        <motion.div
-          variants={reveal}
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.8 }}
+        <div
           className='max-w-3xl mx-auto text-center mb-14'
         >
           <WordReveal
@@ -109,7 +83,7 @@ export function Process() {
           <p className='text-lg text-secondary leading-relaxed'>
             {t.process.subline}
           </p>
-        </motion.div>
+        </div>
 
         <div className='grid md:grid-cols-3 gap-5 relative'>
           <div
@@ -118,14 +92,8 @@ export function Process() {
           />
 
           {t.process.steps.map((step, idx) => (
-            <motion.article
+            <article
               key={step.title}
-              variants={reveal}
-              initial='hidden'
-              whileInView='visible'
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.625, delay: idx * 0.1 }}
-              viewport={{ once: true, amount: 0.3 }}
               className='process-card group'
             >
               <div className='process-number'>{idx + 1}</div>
@@ -136,7 +104,7 @@ export function Process() {
               <p className='text-secondary leading-relaxed text-[0.95rem]'>
                 {step.desc}
               </p>
-            </motion.article>
+            </article>
           ))}
         </div>
       </div>

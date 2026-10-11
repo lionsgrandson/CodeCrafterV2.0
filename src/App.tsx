@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
+
 import { ArrowUp } from 'lucide-react'
 import { Navbar, Hero } from './components/Hero'
 import { Services, Process } from './components/Services'
@@ -9,6 +9,9 @@ import { SeoPage } from './components/SeoPage'
 import { translations } from './lib/translations'
 import { localizePath, type Language } from './lib/seoRoutes'
 import type { SeoPage as SeoPageData } from './lib/seoPages'
+import { AnalyticsConsent } from './components/AnalyticsConsent'
+
+import { trackEvent } from './lib/analytics'
 import FloatingWA from './components/floatingWA'
 
 interface LanguageContextType {
@@ -39,21 +42,17 @@ function ScrollToTop() {
   }, [])
 
   return (
-    <AnimatePresence>
+    <>
       {show && (
-        <motion.button
-          initial={{ opacity: 0, scale: 0.5, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.5, y: 20 }}
-          transition={{ duration: 0.3 }}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })}
           className='fixed bottom-28 end-8 z-50 p-4 bg-primary text-white rounded-full shadow-2xl hover:bg-primary-container hover:-translate-y-1 transition-all duration-[250ms] active:scale-90'
           aria-label={lang === 'he' ? 'חזרה לראש הדף' : 'Scroll to top'}
         >
           <ArrowUp className='w-6 h-6' />
-        </motion.button>
+        </button>
       )}
-    </AnimatePresence>
+    </>
   )
 }
 
@@ -82,6 +81,7 @@ export default function App({ pathname, seoPage }: AppProps) {
     }
 
     const routeWithoutLanguage = window.location.pathname.replace(/^\/en(?=\/|$)/, '') || '/'
+    trackEvent('language_switch')
     const nextPath = localizePath(routeWithoutLanguage, nextLanguage)
     window.location.assign(`${nextPath}${window.location.hash}`)
   }
@@ -100,8 +100,9 @@ export default function App({ pathname, seoPage }: AppProps) {
   return (
     <LanguageContext.Provider value={value}>
       <div className='min-h-screen bg-surface'>
+        <a href='#main-content' className='skip-link'>{lang === 'he' ? 'דילוג לתוכן' : 'Skip to content'}</a>
         <ScrollToTop />
-        <Navbar homeHashPrefix={homeHashPrefix} />
+        <Navbar homeHashPrefix={homeHashPrefix} contactHref={seoPage ? '#contact-page' : undefined} />
         <main id='main-content'>
           {seoPage ? (
             <SeoPage page={seoPage} />
@@ -111,16 +112,17 @@ export default function App({ pathname, seoPage }: AppProps) {
             <>
               <Hero />
               <Services />
-              <FinalCTA />
               <Process />
               <Portfolio />
               <Testimonials />
               <WhyWorkWithMe />
+              <FinalCTA />
             </>
           )}
         </main>
         <FloatingWA />
         <Footer homeHashPrefix={homeHashPrefix} />
+        <AnalyticsConsent />
       </div>
     </LanguageContext.Provider>
   )

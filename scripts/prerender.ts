@@ -25,12 +25,12 @@ type Route = {
 
 const homeMetadata: Record<Language, Pick<Route, 'title' | 'description'>> = {
   he: {
-    title: 'פיתוח תוכנה ומערכות בהתאמה אישית לעסקים | CodeCrafter',
-    description: 'CodeCrafter מפתחת תוכנה ומערכות בהתאמה אישית לעסקים בישראל, כולל אתרים, CRM, CMS, אוטומציות, אינטגרציות ואפליקציות.',
+    title: 'בניית אתרים ודפי נחיתה לעסקים | CodeCrafter',
+    description: 'בניית אתרים לעסקים ודפי נחיתה בהתאמה אישית עם CodeCrafter: תוכן ברור, חוויית מובייל, תשתית SEO וליווי ישיר משיחת ההיכרות ועד ההשקה.',
   },
   en: {
     title: 'Web Development Company Israel | CodeCrafter',
-    description: 'CodeCrafter is a web development company in Israel building custom websites, business systems, CRM, automation, integrations, and apps for SMBs.',
+    description: 'CodeCrafter builds business websites and landing pages in Israel, with clear content, mobile usability, technical SEO, and direct developer support from discovery to launch.',
   },
 }
 
