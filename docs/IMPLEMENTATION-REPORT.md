@@ -1,6 +1,6 @@
 # CodeCrafter implementation report — 2026-10-11
 
-The redesign and main-site measurement architecture are implemented and release checks pass against the latest production content. Production publication is authorized by the user on October 11 and in progress. Full external acceptance remains pending: live GA4/Clarity ingestion and account settings, approved staging delivery of the revised handler, field performance and legal/privacy review. Historical existing email delivery was verified without sending production leads.
+The redesign is live at https://mosheschwartzberg.com following explicit publication approval on October 11. Current production content was integrated before release. Cloudflare deployment e559c775-c0b4-41f4-ba2c-0ae257818f4f (commit debe22f) completed successfully at 10:08:15 UTC. The live SEO audit passed 399 checks with two informational structured-data warnings for the legal pages and zero failures. Live browser checks passed in both languages on desktop/mobile, with no pre-consent vendor requests or JavaScript errors. GA4 key-event/reporting settings and Clarity strict masking were configured in the existing accounts. Live event ingestion, approved staging inbox delivery, field performance and legal/privacy review remain separate follow-up checks. Historical existing email delivery was verified without sending production leads.
 
 ## Implemented changes
 
@@ -34,19 +34,19 @@ Portfolio, about, pricing, locations, additional service pages, legacy redirects
 
 TypeScript, five unit groups, production build, 84 canonical-route checks and 44 deployment rules pass. Fourteen Chromium scenarios cover all routes in both languages at desktop/mobile widths, accessible sampled pages, form success/failure/validation/idempotency, refusal/vendor failures, lead privacy, scroll/history, navigation, FAQ and language preservation. Mocked vendor assertions validate dispatch, not ingestion into account reports. Evidence and precise limitations are in `TESTING.md` and `docs/evidence/`.
 
-Lighthouse mobile lab: performance 95 → 96; accessibility 100 → 100; SEO 100 → 100; simulated LCP about 2.713 → 2.716 seconds, effectively unchanged; TBT 27 → 0 ms; CLS remains below 0.001. Measured transfer weight fell about 28%, from 534 KB to 383 KB. LCP still needs further work to reach the good 2.5-second threshold; field INP and consent-granted vendor loading require real staging/field assessment. The separate Amit bundle warning and existing dependency findings remain documented.
+Pre-integration Lighthouse mobile lab (historical design comparison): performance 95 → 96; accessibility 100 → 100; SEO 100 → 100; simulated LCP about 2.713 → 2.716 seconds, effectively unchanged; TBT 27 → 0 ms; CLS remains below 0.001. Measured transfer weight fell about 28%, from 534 KB to 383 KB. LCP still needs further work to reach the good 2.5-second threshold; field INP and consent-granted vendor loading require real staging/field assessment. The separate Amit bundle warning and existing dependency findings remain documented.
 
 The existing production health endpoint reports delivery configured. Read-only inbox headers verify an existing inquiry received on October 5, 2026 through the current Resend path. Revised email logic passes mocked transport tests; a provider-accepted message is not an inbox-confirmed or qualified lead. No unwanted production inquiry was generated.
 
 ## External acceptance and known limitations
 
-1. Use existing GA4 permissions to mark generate_lead as a key event, register dimensions and prevent automatic form/history/scroll double counting. Verify staging through DebugView/Realtime.
-2. Verify Clarity ingestion, consent flags, strict masking, events and tags in a consenting staging recording. Automated tests block vendor network traffic deliberately.
+1. Completed in existing GA4 property 546129674, stream 15283151293: generate_lead marked as a key event; 16 event dimensions and duration_ms/metric_value custom metrics registered; enhanced scroll, outbound clicks, site search, forms and history page-change events disabled. Video/file-download measurement preserved. Live DebugView/Realtime verification of the new events remains pending.
+2. Existing Clarity project ogbt355cwc confirmed; strict masking selected and the interface confirmed “Masking mode set.” Changes may take up to an hour and do not apply retroactively. Verify consent flags/events/tags in a consenting staging recording; automated tests block vendor traffic deliberately.
 3. GSC Wizard returned payment_required. Use direct Search Console or free exports; the repository's August 31 baseline is historical, not a fresh query/volume assessment.
 4. Test the revised email path against an approved staging recipient and inspect delivered/bounced evidence. No live delivery webhook or automatic lead qualification is implemented.
 5. Query removal protects recordings and telemetry but currently sacrifices UTM/gclid campaign attribution. Referrer/direct acquisition remains. Add an approved enumerated campaign mapping if needed.
 6. Public examples for ERP/bots/CMS/integrations and service-specific testimonials should be supplied before adding unsupported case results. No fabricated search volumes, outcomes, visitors' exact queries or testimonials were introduced.
-7. Review privacy law/disclosures/translations, external portfolio reachability, platform rate limiting, dependency findings and field performance before production release. These limits are not hidden by an overall completion claim.
+7. Review privacy law/disclosures/translations, external portfolio reachability, platform rate limiting, dependency findings and field performance as follow-up operational work. These limits are not hidden by an overall completion claim.
 
 ## Recommended future experiments
 

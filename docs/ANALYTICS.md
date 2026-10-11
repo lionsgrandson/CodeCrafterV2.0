@@ -26,7 +26,7 @@ All custom events have `page_path`, `page_type`, `service_category`, `language`;
 | service_section_view | Named section entering central viewport; section_name | Element once per page view |
 | portfolio_card_click | Case-study card/link; cta_location | Each click |
 | outbound_project_click | Project external link; cta_location | Each click; no URL sent |
-| faq_expand | Native details opens; section_name=faq | Open only; repeated deliberate reopening is another action |
+| faq_expand | FAQ accordion or native details opens; section_name=faq | Open only; repeated deliberate reopening is another action |
 | contact_form_view | Real form enters viewport | Form element once per page view |
 | form_start | First public field focus | Once per form instance |
 | form_field_focus | Public field first focused; field_name | Each field once per form instance; no values or keystrokes |
@@ -65,9 +65,15 @@ Privacy-policy copy now names Microsoft Clarity, consent controls, masking and w
 3. Register event-scoped custom dimensions: page_type, service_category, section_name, cta_location, cta_type, field_name, error_type, scroll_percent, experiment_id, experiment_variant, delivery_status. Use numeric custom metrics for latency/vital values as needed. Respect property quota; do not register built-in page/device/source dimensions twice.
 4. Verify staging through GA4 DebugView (using a test-only debug configuration), Realtime and Clarity recordings/custom-event filters. Use a staging stream/project or exclude test traffic before sending diagnostics. Mocked tests prove the call contract, not vendor ingestion.
 5. In Clarity, verify strict masking, both form types, consent status, page/service/language tags and event filters. Check all contact fields in a consenting staging recording without real personal information.
-6. Restore direct Search Console/free-export access or optional existing connector subscription only at the owner's choice. No account was changed, no new properties created, no paid service purchased.
+6. Restore direct Search Console/free-export access or optional existing connector subscription only at the owner's choice. No new properties were created and no paid service was purchased. Existing-account release changes are recorded below.
 7. Provider acceptance is not delivery confirmation. A future signed Resend delivered/bounced webhook needs secure storage and server-side correlation before reporting delivery outcomes; it is not implemented or fabricated here.
 
 ## Verification
 
 Run `npm test`, `npm run build`, `npm run test:e2e`. Browser spies capture calls to each vendor, assert consent gating and withdrawal, lead uniqueness, no private input, milestones and page history. Network vendor scripts are blocked in tests. The form tests intercept only local `/api/contact`; the test server has mail credentials cleared. `docs/evidence/browser-results.json` records results.
+
+## Existing account release configuration — 2026-10-11
+
+GA4 property 546129674 / stream 15283151293 / G-TJ3C0BBH0F verified. `generate_lead` is now a key event. Automatic scroll/outbound/search/form collection and history page-change events were disabled to avoid duplicates and URL-value collection. Video and file downloads remain enabled; application page_view uses send_page_view=false. Registered 16 event dimensions: page_type, service_category, language (Content language), section_name, cta_location, cta_type, contact_channel, target_service, field_name, error_type, scroll_percent, delivery_status, experiment_id, experiment_variant, metric_name, metric_rating. Registered duration_ms in milliseconds and metric_value as standard; always filter Vital name before comparing mixed vital units. New definitions need processing time; no causal conversion improvement is asserted.
+
+Clarity project ogbt355cwc verified and strict masking selected with confirmation. Masking changes can take an hour and cannot be applied retroactively. Actual new-event ingestion and consent-tag/recording checks remain pending; no fabricated production inquiry or test lead was sent. Evidence screenshots are in docs/evidence.
