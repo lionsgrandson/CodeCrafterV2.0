@@ -6,6 +6,7 @@ import { Services, Process } from './components/Services'
 import { Portfolio, Testimonials } from './components/Portfolio'
 import { WhyWorkWithMe, FinalCTA, Footer } from './components/Footer'
 import { SeoPage } from './components/SeoPage'
+import { ResumePortfolio } from './components/ResumePortfolio'
 import { translations } from './lib/translations'
 import { localizePath, type Language } from './lib/seoRoutes'
 import type { SeoPage as SeoPageData } from './lib/seoPages'
@@ -46,7 +47,7 @@ function ScrollToTop() {
       {show && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })}
-          className='fixed bottom-28 end-8 z-50 p-4 bg-primary text-white rounded-full shadow-2xl hover:bg-primary-container hover:-translate-y-1 transition-all duration-[250ms] active:scale-90'
+          className='fixed bottom-44 end-8 z-50 p-4 bg-primary text-white rounded-full shadow-2xl hover:bg-primary-container hover:-translate-y-1 transition-all duration-[250ms] active:scale-90'
           aria-label={lang === 'he' ? 'חזרה לראש הדף' : 'Scroll to top'}
         >
           <ArrowUp className='w-6 h-6' />
@@ -70,6 +71,7 @@ export default function App({ pathname, seoPage }: AppProps) {
   const localizedPath = normalizedPath.replace(/^\/en(?=\/|$)/, '') || '/'
   const isHomePage = localizedPath === '/'
   const isPortfolioPage = localizedPath === '/portfolio'
+  const isResumePage = localizedPath === '/resume'
   const homeHashPrefix = isHomePage ? '' : localizePath('', lang)
 
   const setLang = (nextLanguage: Language) => {
@@ -108,6 +110,8 @@ export default function App({ pathname, seoPage }: AppProps) {
             <SeoPage page={seoPage} />
           ) : isPortfolioPage ? (
             <Portfolio showAll standalone />
+          ) : isResumePage ? (
+            <ResumePortfolio />
           ) : (
             <>
               <Hero />

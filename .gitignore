@@ -10,3 +10,4 @@ change-log.txt
 
 test-results/
 playwright-report/
+.wrangler/

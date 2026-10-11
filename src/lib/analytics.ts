@@ -13,7 +13,7 @@ let resetPage: (() => void) | undefined
 let experiment: { experiment_id: string; experiment_variant: string } | undefined
 const leadIds = new Set<string>()
 const allowedKeys = new Set(['section_name', 'cta_location', 'cta_type', 'contact_channel', 'field_name', 'error_type', 'scroll_percent', 'duration_ms', 'status_code', 'metric_name', 'metric_value', 'metric_rating', 'target_service', 'experiment_id', 'experiment_variant', 'delivery_status'])
-const knownPaths = new Set(['', ...serviceSlugs, 'about', 'pricing', 'portfolio', 'locations',
+const knownPaths = new Set(['', ...serviceSlugs, 'services', 'resume', 'about', 'pricing', 'portfolio', 'locations',
   ...['sumsup', 'coderecovery', 'yuval-kadosh', 'creative-intelligence', 'rainbow-asd', 'shimon-photography'].map(slug => `portfolio/${slug}`),
   ...['north', 'center', 'tel-aviv', 'haifa', 'jerusalem', 'beer-sheva', 'karmiel'].map(slug => `locations/${slug}`)])
 export function getPageContext() {
@@ -43,7 +43,7 @@ export function readConsent(): 'granted' | 'denied' | null {
 function sanitizeLocation() {
   // Clarity observes the real URL. Remove query values before any recording starts.
   // This application does not use query strings for routing or functionality.
-  const hash = /^#(?:contact(?:-page)?|main-content|services|portfolio|process|faq-heading)$/.test(window.location.hash) ? window.location.hash : ''
+  const hash = /^#(?:contact(?:-page)?|main-content|services|portfolio|process|faq-heading|business-faq|page-section-\d{1,2})$/.test(window.location.hash) ? window.location.hash : ''
   if (window.location.search || window.location.hash !== hash) history.replaceState(history.state, '', window.location.pathname + hash)
 }
 function consentCommands(granted: boolean) {

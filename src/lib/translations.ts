@@ -63,7 +63,7 @@ export const translations = {
           desc: 'חברת ריהוט יוקרה המתמחה בפריטי עץ איכותיים ובהזמנה אישית.',
           before: 'קטלוג רהיטים שהזמין חוויה עשירה יותר',
           after: 'קטלוג מוצרים ב-3D עם חוויית לקוח סוחפת',
-          link: 'https://mahagonyisrael.netlify.app/',
+          link: 'https://mahagonyisraeldidntpay.netlify.app/',
         },
         {
           title: 'יובל קדוש',
@@ -162,6 +162,11 @@ export const translations = {
       headline: 'מילים מאנשים שעבדתי איתם.',
       items: [
         {
+          name: 'שמעון כהן',
+          role: 'צלם',
+          text: '"אני נפגשתי עם משה על מנת לפתח אתר תיק עבודות לעסק הצילום שלי ומבלי שהתחלתי בכלל לדבר הוא כבר הראה לי סקיצה ראשונית, כאילו קלע בול לטעם שלי. אחרי שפצורים והוספות פתאום יש לי אתר משלי, ככה בשנייה! ואני גם יודע שיש לי תמיד למי לפנות אם אני צריך עזרה. מקצוען במלוא מובן המילה!"',
+        },
+        {
           name: 'Gabby',
           role: 'CEO of SumsUp',
           text: '"פגשתי את משה דרך קבוצת נטוורקינג והייתה לי חוויה יוצאת מן הכלל בעבודה איתו על האתר שלנו. התקשורת שלו הייתה ברורה, יוזמת וישירה מתחילת התהליך ועד סופו. ב-13 שנות עבודה עם חברות דומות, אני יכולה לומר בכנות שמעולם לא הייתה לי חוויה חלקה כל כך. הכל הרגיש קל, יעיל ומחושב היטב - והתוצאה הסופית משקפת את זה. בהחלט אחזור ל-CodeCrafter לפרויקטים עתידיים. מומלץ בחום."',
@@ -175,11 +180,6 @@ export const translations = {
           name: 'Elisheva Eizenbach',
           role: 'Graphic Designer',
           text: '"פניתי למשה כי רציתי להבין איך להפוך את האתר וה-SEO שלי לכלים שעובדים טוב יותר בשביל העסק. אני מבינה במיתוג ועיצוב, אבל בצד הטכני והקוד הייתי צריכה מישהו שבאמת מבין. משה הוא בדיוק זה. בשיחה של שעה הוא ניתח את האתר שלי עם מגוון כלים, הסביר איך גוגל באמת עובד, ועבר איתי על הכל בסבלנות ובבהירות - בלי ז׳רגון, רק הסברים אמיתיים ושימושיים. הוא אפילו עבר על פרופיל Google Business שלי ונתן לי רשימת פעולות מפורטת שיכולתי ליישם מיד. כמות התובנות שקיבלתי בפגישה אחת הייתה מדהימה. הוא ידידותי, מקצועי, והופך דברים מורכבים לפשוטים. אם האתר שלכם אמור להביא לידים והכנסות, משה הוא האדם להתקשר אליו. מומלץ מאוד מאוד."',
-        },
-        {
-          name: 'Rabbi Amos Azizoff',
-          role: 'Chabad rep',
-          text: '"משה הוא אדם נפלא. הוא אוהב לעזור ותמיד זמין בטלפון כדי לתת תמיכה. אני ממליץ בחום על האיש היקר הזה."',
         },
       ],
     },
@@ -223,7 +223,7 @@ export const translations = {
     },
     footer: {
       desc: 'אתרים ודפי נחיתה לעסקים, עם תוכן ברור, פיתוח בהתאמה אישית וליווי לאורך הדרך.',
-      explore: 'מפת אתר',
+      explore: 'ניווט',
       legal: 'משפטי',
       privacy: 'מדיניות פרטיות',
       terms: 'תנאי שימוש',
@@ -294,7 +294,7 @@ export const translations = {
           desc: 'Luxury furniture company specializing in high-end wooden and custom-made pieces',
           before: 'A product catalog ready for a richer visual experience',
           after: '3D product catalog with immersive client experience',
-          link: 'https://mahagonyisrael.netlify.app/',
+          link: 'https://mahagonyisraeldidntpay.netlify.app/',
         },
         {
           title: 'Yuval Kadosh',
@@ -411,6 +411,11 @@ export const translations = {
       headline: "Words from people I've worked with.",
       items: [
         {
+          name: 'Shimon Cohen',
+          role: 'Photographer',
+          text: '"I met with Moshe to develop a portfolio website for my photography business and before I even started talking he already showed me an initial sketch, as if he had hit the nail on the head for my taste. After some tweaks and additions, suddenly I have my own website, in a second! And I also know that I always have someone to turn to if I need help. A professional in every sense of the word!"',
+        },
+        {
           name: 'Gabby',
           role: 'CEO of SumsUp',
           text: '"I met Moshe through a networking group and had an OUTSTANDING experience working with him on our website. His communication was incredibly clear, proactive and straightforward from start to finish. In my 13 years of working with similar companies, I can honestly say I\'ve never had such a seamless experience. Genuinely made everything feel easy, efficient and well thought out - and the final results reflect that. I\'ll absolutely be coming back to CodeCrafter for future projects. Highly recommend."',
@@ -424,11 +429,6 @@ export const translations = {
           name: 'Elisheva Eizenbach',
           role: 'Graphic Designer',
           text: '"I turned to Moshe because I wanted to understand how to make my website and SEO work harder for my business. I know branding and design, but when it comes to the tech and code side of things, I needed someone who really gets it. Moshe is exactly that. During a one-hour call, he analyzed my site using a variety of tools, explained how Google really works, and walked me through everything with patience and clarity - no jargon, just real, useful explanations. He even went over my Google Business profile and gave me a detailed, actionable checklist of things I could implement immediately. The amount of insight I got in just one session was incredible. He\'s friendly, professional, and makes the complex stuff simple. If your website is supposed to bring you leads and revenue, Moshe is the person to call. Highly, highly recommend."',
-        },
-        {
-          name: 'Rabbi Amos Azizoff',
-          role: 'Chabad rep',
-          text: '"Moshe is a wonderful person. He loves to help and is always available on the phone to offer support. I warmly recommend this dear man."',
         },
       ],
     },
@@ -473,7 +473,7 @@ export const translations = {
     },
     footer: {
       desc: 'Business websites and landing pages, with clear content, custom development, and support throughout the process.',
-      explore: 'Site Map',
+      explore: 'Navigation',
       legal: 'Legal',
       privacy: 'Privacy Policy',
       terms: 'Terms of Service',

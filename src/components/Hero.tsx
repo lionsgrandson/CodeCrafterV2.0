@@ -15,7 +15,7 @@ export function Navbar({ homeHashPrefix = '', contactHref = `${homeHashPrefix}#c
   const { t, lang, setLang } = useLanguage()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const navItems = [
-    { label: t.nav.solve, href: `${homeHashPrefix}#services` },
+    { label: t.nav.solve, href: localizePath('services', lang) },
     { label: t.nav.work, href: localizePath('portfolio', lang) },
     { label: lang === 'he' ? 'מחירים' : 'Pricing', href: localizePath('pricing', lang) },
     { label: t.nav.process, href: `${homeHashPrefix}#process` },

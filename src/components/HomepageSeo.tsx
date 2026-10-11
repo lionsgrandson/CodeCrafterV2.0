@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, MessageSquare } from 'lucide-react'
 import { useLanguage } from '../App'
 import { getWhatsAppUrl } from '../lib/contact'
 import { localizePath } from '../lib/seoRoutes'
+import { FaqAccordion } from './FaqAccordion'
 
 const solutionLinks = {
   he: [
@@ -129,14 +130,9 @@ export function HomepageSeo() {
 
         <section id='business-faq' className='scroll-mt-28 mt-12 max-w-5xl mx-auto'>
           <h3 className='text-2xl md:text-3xl font-bold mb-6 font-headline text-on-surface'>{copy.faqHeading}</h3>
-          <div className='space-y-3'>
-            {faqs[lang].map(([question, answer]) => (
-              <details key={question} className='rounded-xl border border-outline-variant/20 bg-surface p-5'>
-                <summary className='cursor-pointer font-bold text-on-surface'>{question}</summary>
-                <p className='text-secondary leading-relaxed mt-3'>{answer}</p>
-              </details>
-            ))}
-          </div>
+          <FaqAccordion
+            items={faqs[lang].map(([question, answer]) => ({ question, answer }))}
+          />
         </section>
 
         <section className='mt-12 text-center rounded-2xl border border-primary/20 bg-surface p-6 md:p-8'>

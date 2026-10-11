@@ -7,11 +7,12 @@ import {
   Shield,
   Verified,
   Mail,
+  MapPin,
   Phone,
 } from 'lucide-react'
 import { useLanguage } from '../App'
 import { contact, getWhatsAppUrl } from '../lib/contact'
-import { localizePath, serviceLabels, serviceSlugs } from '../lib/seoRoutes'
+import { localizePath } from '../lib/seoRoutes'
 import { WordReveal } from './WordReveal'
 
 export function WhyWorkWithMe() {
@@ -114,6 +115,15 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
               <MessageSquare className='w-4 h-4 fill-current' />
               WhatsApp
             </a>
+            <a
+              href='https://share.google/GUNNWxtqfc6vJjqt5'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-primary hover:underline underline-offset-4 transition-all duration-[200ms] font-medium inline-flex items-center gap-2'
+            >
+              <MapPin className='w-4 h-4' aria-hidden='true' />
+              {lang === 'he' ? 'Google Business וביקורות' : 'Google Business & reviews'}
+            </a>
           </div>
         </div>
         <div>
@@ -122,13 +132,12 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
           </p>
           <ul className='space-y-2 text-sm'>
             {[
-              { label: t.nav.solve, href: `${homeHashPrefix}#services` },
+              { label: t.nav.solve, href: localizePath('services', lang) },
               { label: t.nav.work, href: localizePath('portfolio', lang) },
               { label: lang === 'he' ? 'אודות משה ו CodeCrafter' : 'About Moshe and CodeCrafter', href: localizePath('about', lang) },
               { label: t.nav.process, href: `${homeHashPrefix}#process` },
               { label: lang === 'he' ? 'מחירון' : 'Pricing', href: localizePath('pricing', lang) },
               { label: lang === 'he' ? 'אזורי שירות' : 'Service areas', href: localizePath('locations', lang) },
-              ...serviceSlugs.map((slug) => ({ label: serviceLabels[lang][slug], href: localizePath(slug, lang) })),
             ].map((link) => (
               <li key={link.label}>
                 <a
@@ -171,7 +180,7 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
         </p>
         <div className='flex flex-wrap items-center justify-center gap-2'>
           <a
-            href={`${homeHashPrefix}#services`}
+            href={localizePath('services', lang)}
             className='footer-trust-link'
           >
             <Globe className='w-4 h-4' />

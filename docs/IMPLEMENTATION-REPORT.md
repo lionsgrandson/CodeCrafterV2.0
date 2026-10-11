@@ -1,6 +1,6 @@
 # CodeCrafter implementation report — 2026-10-11
 
-The redesign and main-site measurement architecture are implemented locally. Production was not deployed. Full external acceptance remains pending: live GA4/Clarity ingestion and account settings, approved staging delivery of the revised handler, field performance and legal/privacy review. Historical existing email delivery was verified without sending production leads.
+The redesign and main-site measurement architecture are implemented and release checks pass against the latest production content. Production publication is authorized by the user on October 11 and in progress. Full external acceptance remains pending: live GA4/Clarity ingestion and account settings, approved staging delivery of the revised handler, field performance and legal/privacy review. Historical existing email delivery was verified without sending production leads.
 
 ## Implemented changes
 
@@ -9,12 +9,12 @@ The redesign and main-site measurement architecture are implemented locally. Pro
 - Shared Node/Cloudflare contact handler validates name and contact methods, safely escapes email HTML, preserves configured recipient/reply-to, catches provider/network errors, requires a provider email ID and forwards an idempotency key. The form provides persistent labels, field errors, focused error recovery, preserved input, loading and explicit acceptance states. Suppression and HTTP success without acceptance cannot become leads.
 - GA4/Clarity use existing verified IDs behind a reversible consent choice. Events cover navigation, CTAs/channels, services, portfolio, FAQ, form stages/errors/abandonment/latency, sanitized application/API errors and Web Vitals. Five scroll milestones deduplicate per page view, handle history and changing heights, and map to Clarity events. Private fields are masked and values/URLs/errors are excluded from custom telemetry.
 - SEO home intent/metadata improved; canonicals, bilingual alternates, sitemap, structured data and redirects preserved. Mobile navigation overlap fixed, skip/focus/reduced-motion behavior improved, mobile image payload reduced and entrance-animation runtime removed while CSS interaction transitions remain.
-- The known 404 Mahagony preview no longer sends visitors to a broken site; its project remains visible with unavailable-preview text. Two other external destinations need independent hosting verification.
+- Preserved the latest production Mahagony preview URL, verified HTTP 200. The obsolete 404 URL remains excluded. Latest service directory, commercial landing pages, recruiter portfolio, metadata and accessibility controls were integrated from production before release.
 - Future experiment exposure support is inactive; reporting/dashboard specifications and required account settings are documented. No new paid reporting infrastructure or property was created.
 
 ## Routes
 
-No new URLs or competing service pages. Updated homepage `/` and `/en/`; shared improvements cover all 62 existing canonical URLs. Requested service pairs remain:
+No new URLs or competing service pages. Updated homepage `/` and `/en/`; shared improvements cover all 84 existing canonical URLs. Requested service pairs remain:
 
 | Hebrew | English |
 | --- | --- |
@@ -32,7 +32,7 @@ Portfolio, about, pricing, locations, additional service pages, legacy redirects
 
 ## Test and performance results
 
-TypeScript, five unit groups, production build, 62 canonical-route checks and 44 deployment rules pass. Fourteen Chromium scenarios cover all routes in both languages at desktop/mobile widths, accessible sampled pages, form success/failure/validation/idempotency, refusal/vendor failures, lead privacy, scroll/history, navigation, FAQ and language preservation. Mocked vendor assertions validate dispatch, not ingestion into account reports. Evidence and precise limitations are in `TESTING.md` and `docs/evidence/`.
+TypeScript, five unit groups, production build, 84 canonical-route checks and 44 deployment rules pass. Fourteen Chromium scenarios cover all routes in both languages at desktop/mobile widths, accessible sampled pages, form success/failure/validation/idempotency, refusal/vendor failures, lead privacy, scroll/history, navigation, FAQ and language preservation. Mocked vendor assertions validate dispatch, not ingestion into account reports. Evidence and precise limitations are in `TESTING.md` and `docs/evidence/`.
 
 Lighthouse mobile lab: performance 95 → 96; accessibility 100 → 100; SEO 100 → 100; simulated LCP about 2.713 → 2.716 seconds, effectively unchanged; TBT 27 → 0 ms; CLS remains below 0.001. Measured transfer weight fell about 28%, from 534 KB to 383 KB. LCP still needs further work to reach the good 2.5-second threshold; field INP and consent-granted vendor loading require real staging/field assessment. The separate Amit bundle warning and existing dependency findings remain documented.
 

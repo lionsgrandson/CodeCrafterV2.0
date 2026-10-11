@@ -17,7 +17,7 @@ for (const lang of ['he', 'en'] as const) {
     test(`${lang} ${viewport.width}: all routes, metadata, forms and overflow`, async ({ page }) => {
       test.setTimeout(120000)
       await analytics(page, 'denied'); await page.setViewportSize(viewport)
-      for (const path of [localizePath('', lang), localizePath('portfolio', lang), ...pagesByLanguage[lang].map(p => localizePath(p.slug, lang))]) {
+      for (const path of [localizePath('', lang), localizePath('portfolio', lang), localizePath('resume', lang), ...pagesByLanguage[lang].map(p => localizePath(p.slug, lang))]) {
         const response = await page.goto(path)
         expect(response?.status(), path).toBe(200)
         await expect(page.locator('html')).toHaveAttribute('dir', lang === 'he' ? 'rtl' : 'ltr')
@@ -116,13 +116,13 @@ test('navigation, FAQ, portfolio, vendor failures and service links', async ({ p
   expect((await events(page, 'mobile_menu_open')).length).toBe(1)
   await page.getByRole('button', { name: 'Close menu', exact: true }).click()
   await page.locator('#services a').first().click(); await expect(page).toHaveURL(/\/en\/websites\/$/)
-  await page.locator('summary').first().click(); await expect.poll(async () => (await events(page, 'faq_expand')).length).toBe(1)
+  await page.locator('.faq-accordion-trigger').first().click(); await expect.poll(async () => (await events(page, 'faq_expand')).length).toBe(1)
   await page.evaluate(() => { (window as any).gtag = () => { throw Error('vendor failure') } })
-  await page.locator('summary').first().click(); await page.locator('summary').first().click()
+  await page.locator('.faq-accordion-trigger').first().click(); await page.locator('.faq-accordion-trigger').first().click()
   const localLinks = await page.locator('a[href^="/"]').evaluateAll(links => [...new Set(links.map(a => a.getAttribute('href')!.split('#')[0]))])
   for (const url of localLinks.filter(Boolean)) expect((await page.request.get(url)).status(), url).toBe(200)
   await page.goto('/en/portfolio/')
-  await expect(page.locator('article').filter({ hasText: 'Mahagony Israel' })).toContainText('Live preview is currently unavailable')
+  await expect(page.locator('a[href="https://mahagonyisraeldidntpay.netlify.app/"]')).toBeVisible()
   await expect(page.locator('a[href="https://mahagonyisrael.netlify.app/"]')).toHaveCount(0)
 })
 test('existing redirects, unknown route and nonconfigured local backend', async ({ request }) => {

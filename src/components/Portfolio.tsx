@@ -125,7 +125,7 @@ export function Portfolio({
 
   return (
     <section
-      className={`${standalone ? 'pt-32 pb-24' : 'py-24'} px-6 md:px-8 bg-surface-container-low`}
+      className={`${standalone ? 'portfolio-standalone pt-28 md:pt-32 pb-20 md:pb-24' : 'py-24'} px-4 sm:px-6 md:px-8 bg-surface-container-low`}
       id='portfolio'
     >
       <div className='max-w-7xl mx-auto'>
@@ -143,7 +143,7 @@ export function Portfolio({
           </a>
         )}
         {standalone ? (
-          <header className='mb-16 max-w-3xl'>
+          <header className='portfolio-standalone-header mb-10 md:mb-14 max-w-4xl rounded-3xl border border-outline-variant/20 p-6 md:p-9'>
             <h1 className='text-4xl md:text-6xl font-bold mb-5 tracking-tight font-headline text-on-surface'>
               {t.portfolio.allHeadline}
             </h1>
@@ -157,7 +157,7 @@ export function Portfolio({
             className='text-4xl md:text-5xl font-bold mb-16 tracking-tight font-headline text-on-surface'
           />
         )}
-        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+        <div className={`grid md:grid-cols-2 lg:grid-cols-3 ${standalone ? 'gap-4 md:gap-6' : 'gap-8'}`}>
           {(showAll ? projects : projects.filter((_, index) => [1, 2, 4].includes(index))).map((project, idx) => {
             const Card = project.link ? 'a' : 'article'
 
@@ -167,7 +167,7 @@ export function Portfolio({
                 href={project.link}
                 target={project.link === project.externalLink ? '_blank' : undefined}
                 rel={project.link === project.externalLink ? 'noopener noreferrer' : undefined}
-                className={`flex bg-surface-container-lowest rounded-xl overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-[625ms] border border-outline-variant/10 flex-col h-full text-start ${project.link ? 'cursor-pointer' : ''}`}
+                className={`flex ${standalone ? `portfolio-inner-card portfolio-inner-card-${idx % 3}` : 'bg-surface-container-lowest'} rounded-xl overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-[625ms] border border-outline-variant/10 flex-col h-full text-start ${project.link ? 'cursor-pointer' : ''}`}
               >
                 <ProjectMedia
                   src={project.media?.src}
@@ -209,7 +209,7 @@ export function Testimonials() {
           text={t.testimonials.headline}
           className='text-4xl md:text-5xl font-bold mb-8 md:mb-10 text-center tracking-tight font-headline text-on-surface'
         />
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5'>
+        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5'>
           {reviews.map((review, idx) => (
             <div
               key={idx}
