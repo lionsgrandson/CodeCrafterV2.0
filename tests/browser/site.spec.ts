@@ -38,7 +38,7 @@ for (const lang of ['he', 'en'] as const) {
     }
   })
 }
-test('consent gate, explicit opt-in, sensitive URL removal and withdrawal', async ({ page }) => {
+test('first-visit consent, saved choice, sensitive URL removal and cross-tab withdrawal', async ({ page }) => {
   const requests: string[] = []
   await page.addInitScript(() => { if (!sessionStorage.getItem('initialized')) { localStorage.clear(); sessionStorage.setItem('initialized', 'true') } })
   await page.route(/googletagmanager|clarity\.ms/, route => { requests.push(route.request().url()); return route.abort() })
@@ -47,11 +47,20 @@ test('consent gate, explicit opt-in, sensitive URL removal and withdrawal', asyn
   await page.getByRole('button', { name: 'Allow analytics' }).click()
   await expect.poll(() => requests.length).toBe(2)
   expect(new URL(page.url()).search).toBe('')
-  await page.getByRole('button', { name: 'Analytics preferences' }).click()
-  await page.getByRole('button', { name: 'Decline analytics' }).click()
-  await page.waitForLoadState('domcontentloaded')
+  await page.reload()
+  await expect(page.locator('.consent-panel')).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Analytics preferences' })).toHaveCount(0)
+  await page.goto('/en/websites/')
+  await expect(page.locator('.consent-panel')).toHaveCount(0)
+  await Promise.all([
+    page.waitForNavigation({ waitUntil: 'domcontentloaded' }),
+    page.evaluate(() => { localStorage.setItem('codecrafter-analytics-consent-v1', 'denied'); window.dispatchEvent(new StorageEvent('storage', { key: 'codecrafter-analytics-consent-v1', newValue: 'denied' })) }),
+  ])
   expect(await page.evaluate(() => localStorage.getItem('codecrafter-analytics-consent-v1'))).toBe('denied')
   expect(await page.locator('#ga4-script, #clarity-script').count()).toBe(0)
+  await expect(page.locator('.consent-panel')).toHaveCount(0)
+  await page.reload()
+  await expect(page.locator('.consent-panel')).toHaveCount(0)
 })
 test('validation, error preservation, retry idempotency and lead privacy', async ({ page }) => {
   await analytics(page); await page.goto('/en/')
