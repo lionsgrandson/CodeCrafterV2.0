@@ -130,7 +130,7 @@ export function Portfolio({
     ...additionalPortfolioProjects.map(project => ({
       title: project.title[lang],
       desc: project.description[lang],
-      media: { src: project.image, kind: 'screenshot' as const },
+      media: { src: project.image, kind: project.id === 'ilan-shachar' ? 'logo' as const : 'screenshot' as const },
       externalLink: project.link,
       link: project.link,
       featured: project.id === 'codesite',

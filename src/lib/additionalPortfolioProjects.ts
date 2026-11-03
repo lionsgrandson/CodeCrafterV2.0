@@ -1,4 +1,4 @@
-// Projects present on CodeSite but absent from the existing portfolio, plus CodeSite itself.
+// Additional portfolio projects, with localized descriptions and project media.
 export const additionalPortfolioProjects = [
   {
     "id": "codesite",
@@ -24,20 +24,7 @@ export const additionalPortfolioProjects = [
       "en": "A polished financial-services website for Ilan Shachar, presenting pension, finance, and insurance services with clear navigation, trust-building content, accessibility, and responsive design."
     },
     "link": "https://ilanshacar.netlify.app/",
-    "image": "/portfolio/ilan-shachar-office.webp"
-  },
-  {
-    "id": "gcp",
-    "title": {
-      "he": "G.C.P",
-      "en": "G.C.P"
-    },
-    "description": {
-      "he": "אתר מסעדה מעודן שנבנה כדי להציג את האווירה, ההיצע וחוויית המותג בצורה נקייה ומזמינה.",
-      "en": "A refined restaurant website built to present the atmosphere, offering, and brand experience in a clean and inviting way."
-    },
-    "link": "https://gcpweb.netlify.app/",
-    "image": "/portfolio/gcp-screenshot-800.webp"
+    "image": "/portfolio/ilan-shachar-logo.webp"
   },
   {
     "id": "alex-rivera-insurance",
@@ -77,18 +64,5 @@ export const additionalPortfolioProjects = [
     },
     "link": "https://nexaautomation.netlify.app/",
     "image": "/portfolio/nexa-automation-screenshot-800.webp"
-  },
-  {
-    "id": "printout",
-    "title": {
-      "he": "פרינטאטוט בע\"מ",
-      "en": "Printout"
-    },
-    "description": {
-      "he": "דף נחיתה מקצועי המציג את שירותי הדפוס של Printout, מגוון המוצרים והנוכחות המבוססת שלה בתעשיית הדפוס בישראל.",
-      "en": "A professional landing page showcasing Printout's printing services, product range, and established presence in Israel's print industry."
-    },
-    "link": "https://printoutweb.netlify.app/",
-    "image": "/portfolio/printout-screenshot-800.webp"
   }
 ] as const
