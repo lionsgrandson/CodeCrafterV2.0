@@ -115,11 +115,11 @@ export const translations = {
           link: 'https://sarit-beauity.netlify.app/',
         },
         {
-          title: 'Creative Intelligence',
+          title: 'Project Orion',
           desc: 'אתר תדמית דיסקרטי וסמכותי שמציג ייעוץ אסטרטגי, מודיעין עסקי, סייבר ופתרונות אבטחה ומוביל לקוחות מתאימים ליצירת קשר.',
           before: 'מומחיות רגישה ומורכבת שחיכתה להצגה אמינה ומדויקת',
           after: 'נוכחות דיגיטלית בטוחה שמחזקת אמון ומייצרת פניות איכותיות',
-          link: 'https://creative-intell.netlify.app/',
+          link: 'https://project-orion.mosheschwartzberg.workers.dev/',
         },
         {
           title: 'שמעון כהן Photography',
@@ -353,13 +353,13 @@ export const translations = {
           link: 'https://sarit-beauity.netlify.app/',
         },
         {
-          title: 'Creative Intelligence',
+          title: 'Project Orion',
           desc: 'A discreet, authoritative website that presents strategic consulting, business intelligence, cyber, and security solutions while guiding qualified clients toward contact.',
           before:
             'Sensitive expertise ready for a credible and precise presentation',
           after:
             'A secure digital presence that builds trust and generates qualified inquiries',
-          link: 'https://creative-intell.netlify.app/',
+          link: 'https://project-orion.mosheschwartzberg.workers.dev/',
         },
         {
           title: 'Shimon Cohen Photography',

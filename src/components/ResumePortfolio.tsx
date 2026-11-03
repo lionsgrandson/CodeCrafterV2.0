@@ -242,7 +242,7 @@ const experienceData: Record<'he' | 'en', Experience[]> = {
 }
 
 const websites = [
-  { title: 'Creative Intelligence', href: 'https://creative-intell.netlify.app/', stack: 'Business / technology website' },
+  { title: 'Project Orion', href: 'https://project-orion.mosheschwartzberg.workers.dev/', stack: 'Business / technology website' },
   { title: 'Shimon Cohen Photography', href: 'https://shimonphotos.com/', stack: 'Photography portfolio' },
   { title: 'Yuval Kadosh', href: 'https://ykadosh.co.il', stack: 'Content & personal brand website' },
   { title: 'SumsUp', href: 'https://sumsup.co', stack: 'White-label product website' },

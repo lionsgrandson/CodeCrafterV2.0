@@ -14,7 +14,7 @@ let experiment: { experiment_id: string; experiment_variant: string } | undefine
 const leadIds = new Set<string>()
 const allowedKeys = new Set(['section_name', 'cta_location', 'cta_type', 'contact_channel', 'field_name', 'error_type', 'scroll_percent', 'duration_ms', 'status_code', 'metric_name', 'metric_value', 'metric_rating', 'target_service', 'experiment_id', 'experiment_variant', 'delivery_status'])
 const knownPaths = new Set(['', ...serviceSlugs, 'services', 'resume', 'about', 'pricing', 'portfolio', 'locations',
-  ...['sumsup', 'coderecovery', 'yuval-kadosh', 'creative-intelligence', 'rainbow-asd', 'shimon-photography'].map(slug => `portfolio/${slug}`),
+  ...['sumsup', 'coderecovery', 'yuval-kadosh', 'project-orion', 'rainbow-asd', 'shimon-photography'].map(slug => `portfolio/${slug}`),
   ...['north', 'center', 'tel-aviv', 'haifa', 'jerusalem', 'beer-sheva', 'karmiel'].map(slug => `locations/${slug}`)])
 export function getPageContext() {
   const path = window.location.pathname.replace(/^\/en(?=\/|$)/, '').replace(/^\/+|\/+$/g, '')

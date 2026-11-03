@@ -222,13 +222,13 @@ const sharedPages: Record<Language, SeoPage[]> = {
       ], relatedServices: ['websites'], image: { src: '/portfolio/yuval-kadosh-logo.png', alt: 'לוגו האתר של יובל קדוש' }, externalUrl: 'https://ykadosh.co.il',
     },
     {
-      kind: 'case-study', slug: 'portfolio/creative-intelligence', title: 'Creative Intelligence | מקרה בוחן לאתר ייעוץ', description: 'מקרה בוחן: אתר תדמית דיסקרטי לייעוץ אסטרטגי, מודיעין עסקי, סייבר ופתרונות אבטחה.', eyebrow: 'מקרה בוחן', h1: 'Creative Intelligence — נוכחות דיגיטלית דיסקרטית',
-      intro: ['Creative Intelligence מציגה שירותים בתחומי ייעוץ אסטרטגי, מודיעין עסקי, סייבר ואבטחה. האתגר היה להציג מומחיות רגישה ומורכבת בצורה סמכותית ומאופקת, בלי להעמיס פרטים ובלי לפגוע בתחושת הדיסקרטיות.', 'האתר נבנה כנוכחות תדמיתית שמאפשרת ללקוח מתאים להבין את תחומי הפעילות ולעבור ליצירת קשר.'],
+      kind: 'case-study', slug: 'portfolio/project-orion', title: 'Project Orion | מקרה בוחן לאתר ייעוץ', description: 'מקרה בוחן: אתר תדמית דיסקרטי לייעוץ אסטרטגי, מודיעין עסקי, סייבר ופתרונות אבטחה.', eyebrow: 'מקרה בוחן', h1: 'Project Orion — נוכחות דיגיטלית דיסקרטית',
+      intro: ['Project Orion מציגה שירותים בתחומי ייעוץ אסטרטגי, מודיעין עסקי, סייבר ואבטחה. האתגר היה להציג מומחיות רגישה ומורכבת בצורה סמכותית ומאופקת, בלי להעמיס פרטים ובלי לפגוע בתחושת הדיסקרטיות.', 'האתר נבנה כנוכחות תדמיתית שמאפשרת ללקוח מתאים להבין את תחומי הפעילות ולעבור ליצירת קשר.'],
       sections: [
         { heading: 'דרישות עסקיות', items: ['שפה ויזואלית מקצועית ומאופקת', 'הפרדה ברורה בין תחומי השירות', 'בניית אמון ללא טענות לא מבוססות', 'מסלול קצר ליצירת קשר'] },
         { heading: 'הפתרון', paragraphs: ['המידע אורגן סביב תחומי המומחיות והוצג בחוויה רספונסיבית. העיצוב תומך באופי השירות ובקריאות, והקישורים מאפשרים להתקדם ממידע כללי לפנייה.'] },
         { heading: 'גבולות המידע', paragraphs: ['המקרה מתאר את הנוכחות הציבורית בלבד. פרטי לקוחות, תהליכים פנימיים, טכנולוגיות אבטחה או תוצאות מסחריות שאינם פומביים אינם מוצגים ואינם מומצאים.'] },
-      ], relatedServices: ['websites', 'custom-software'], image: { src: '/portfolio/creative-intelligence-logo.svg', alt: 'לוגו Creative Intelligence' }, externalUrl: 'https://creative-intell.netlify.app/',
+      ], relatedServices: ['websites', 'custom-software'], image: { src: '/portfolio/project-orion-logo.svg', alt: 'לוגו Project Orion' }, externalUrl: 'https://project-orion.mosheschwartzberg.workers.dev/',
     },
   ],
   en: [],

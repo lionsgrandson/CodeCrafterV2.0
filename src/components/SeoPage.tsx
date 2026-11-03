@@ -11,7 +11,7 @@ const projectLabels: Record<string, string> = {
   sumsup: 'SumsUp',
   coderecovery: 'CodeRecovery',
   'yuval-kadosh': 'יובל קדוש',
-  'creative-intelligence': 'Creative Intelligence',
+  'project-orion': 'Project Orion',
 }
 
 const profileLinks = [

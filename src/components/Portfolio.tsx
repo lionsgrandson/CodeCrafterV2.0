@@ -92,7 +92,7 @@ export function Portfolio({
     { src: '/portfolio/amit-kadosh.webp', kind: 'screenshot' as const },
     { src: '/portfolio/technology-corps-logo.webp' },
     { src: '/portfolio/big-sale-logo.jpeg' },
-    { src: '/portfolio/creative-intelligence-logo.svg' },
+    { src: '/portfolio/project-orion-logo.svg' },
     { src: '/portfolio/shimon-photography-logo.jpeg' },
     // { src: '/portfolio/aderet-argaman-logo.png' },
     {
@@ -110,7 +110,7 @@ export function Portfolio({
       1: localizePath('portfolio/yuval-kadosh', lang),
       2: localizePath('portfolio/rainbow-asd', lang),
       4: localizePath('portfolio/sumsup', lang),
-      8: localizePath('portfolio/creative-intelligence', lang),
+      8: localizePath('portfolio/project-orion', lang),
       9: localizePath('portfolio/shimon-photography', lang),
       10: localizePath('portfolio/coderecovery', lang),
     } as Record<number, string>)[idx]
