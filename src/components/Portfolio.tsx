@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../App'
 import { WordReveal } from './WordReveal'
 import { localizePath } from '../lib/seoRoutes'
+import { additionalPortfolioProjects } from '../lib/additionalPortfolioProjects'
 
 type ProjectMediaProps = {
   src?: string
@@ -103,7 +104,7 @@ export function Portfolio({
     { src: '/portfolio/omnifood-logo.png' },
   ]
 
-  const projects = t.portfolio.projects.map((project, idx) => {
+  const existingProjects = t.portfolio.projects.map((project, idx) => {
     const sourceLink = normalizePortfolioLink(project.link)
     const externalLink = sourceLink
     const caseStudyLink = ({
@@ -120,8 +121,21 @@ export function Portfolio({
       media: projectMedia[idx],
       externalLink,
       link: caseStudyLink || externalLink,
+      featured: [1, 2, 4].includes(idx),
     }
   })
+
+  const projects = [
+    ...existingProjects,
+    ...additionalPortfolioProjects.map(project => ({
+      title: project.title[lang],
+      desc: project.description[lang],
+      media: { src: project.image, kind: 'screenshot' as const },
+      externalLink: project.link,
+      link: project.link,
+      featured: project.id === 'codesite',
+    })),
+  ]
 
   return (
     <section
@@ -158,7 +172,7 @@ export function Portfolio({
           />
         )}
         <div className={`grid md:grid-cols-2 lg:grid-cols-3 ${standalone ? 'gap-4 md:gap-6' : 'gap-8'}`}>
-          {(showAll ? projects : projects.filter((_, index) => [1, 2, 4].includes(index))).map((project, idx) => {
+          {(showAll ? projects : projects.filter(project => project.featured)).map((project, idx) => {
             const Card = project.link ? 'a' : 'article'
 
             return (
