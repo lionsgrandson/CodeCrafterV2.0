@@ -2,7 +2,8 @@ import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'r
 import { useLanguage } from '../App'
 import { contact, getWhatsAppUrl } from '../lib/contact'
 import { validateContact, type ContactInput, type ContactField } from '../lib/contactValidation'
-import { trackEvent, trackContactLead } from '../lib/analytics'
+import { trackEvent, trackContactLead, readConsent } from '../lib/analytics'
+import { getCampaignAttribution } from '../lib/campaignAttribution'
 
 const empty: ContactInput = { name: '', email: '', phone: '', message: '', company: '' }
 export function ContactForm({ id = 'contact', title, description }: { id?: string; title?: string; description?: string }) {
@@ -53,7 +54,7 @@ export function ContactForm({ id = 'contact', title, description }: { id?: strin
     const start = performance.now()
     let statusCode = 0
     try {
-      const response = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Idempotency-Key': key }, body: JSON.stringify({ ...form, language: lang }), signal: AbortSignal.timeout(16000) })
+      const response = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Idempotency-Key': key }, body: JSON.stringify({ ...form, language: lang, ...(getCampaignAttribution(readConsent() === 'granted') ? { attribution: getCampaignAttribution(true) } : {}) }), signal: AbortSignal.timeout(16000) })
       statusCode = response.status
       const result = await response.json()
       if (!response.ok || result.ok !== true || result.accepted !== true || result.deliveryStatus !== 'provider_accepted') throw new Error('not_accepted')
