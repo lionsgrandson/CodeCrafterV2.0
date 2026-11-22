@@ -77,9 +77,21 @@ function withSearchConsoleMetadata(page: SeoPage, lang: Language): SeoPage {
   return override ? { ...page, ...override } : page
 }
 
+const relatedCaseStudiesByService: Record<string, string[]> = {
+  websites: ['aderet-argaman', 'ilan-shachar', 'green-therapy'],
+  'wordpress-development': ['aderet-argaman'],
+  'website-maintenance': ['aderet-argaman', 'ilan-shachar', 'green-therapy'],
+  'landing-page-development': ['green-therapy'],
+}
+
 function withRelatedGuides(page: SeoPage): SeoPage {
-  const slugs = relatedGuidesByService[page.slug]
-  return slugs ? { ...page, relatedGuides: slugs } : page
+  const guideSlugs = relatedGuidesByService[page.slug] ?? []
+  const projects = relatedCaseStudiesByService[page.slug] ?? []
+  return guideSlugs.length || projects.length ? {
+    ...page,
+    ...(guideSlugs.length ? { relatedGuides: guideSlugs } : {}),
+    ...(projects.length ? { relatedProjects: [...new Set([...(page.relatedProjects ?? []), ...projects])] } : {}),
+  } : page
 }
 
 export const pagesByLanguage: Record<Language, SeoPage[]> = {
