@@ -223,13 +223,7 @@ export function Testimonials() {
                   {review.name.charAt(0)}
                 </div>
                 <div>
-                  {'sourceUrl' in review && typeof review.sourceUrl === 'string' ? (
-                    <a href={review.sourceUrl} target='_blank' rel='noopener noreferrer' className='font-bold text-on-surface font-headline tracking-tight underline underline-offset-2 hover:text-primary'>
-                      {review.name}
-                    </a>
-                  ) : (
-                    <p className='font-bold text-on-surface font-headline tracking-tight'>{review.name}</p>
-                  )}
+                  <p className='font-bold text-on-surface font-headline tracking-tight'>{review.name}</p>
                   <p className='text-xs text-secondary uppercase font-bold tracking-widest'>
                     {review.role}
                   </p>
