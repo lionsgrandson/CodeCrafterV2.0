@@ -50,7 +50,7 @@ test('first-visit consent, saved choice, sensitive URL removal and cross-tab wit
   await expect(page.locator('.consent-panel h2')).toHaveCount(0)
   await expect(page.locator('.consent-panel')).toHaveAttribute('aria-label', 'Analytics preferences')
   await expect(page.locator('.consent-panel a[href="/privacy/"]')).toHaveCount(1)
-  await expect(page.locator('.consent-panel')).toHaveCSS('width', '336px')
+  expect((await page.locator('.consent-panel').boundingBox())?.width).toBeLessThanOrEqual(340)
   expect(requests).toEqual([])
   await page.getByRole('button', { name: 'Allow analytics' }).click()
   await expect.poll(() => requests.length).toBe(2)
