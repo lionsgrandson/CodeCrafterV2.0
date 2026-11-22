@@ -73,7 +73,7 @@ export function ContactForm({ id = 'contact', title, description }: { id?: strin
   return <section id={id} className='contact-section px-6 md:px-8 bg-surface-container-low' data-section='contact'>
     <div className='max-w-3xl mx-auto'>
       <span className='section-kicker'>{he ? 'הצעד הבא' : 'Your next step'}</span>
-      <h2 className='text-3xl md:text-5xl font-bold mb-4'>{title || (he ? 'בואו נבנה את האתר שמתאים לעסק שלכם' : 'Let’s build the website your business needs')}</h2>
+      <h2 className='text-3xl md:text-5xl font-bold mb-4'>{title || (he ? 'בואו נגדיר את הפתרון שמתאים לעסק שלכם' : 'Let’s discuss what your business needs to build')}</h2>
       <p className='text-secondary mb-6'>{description || (he ? 'ספרו לי מה אתם צריכים. אחזור אליכם לשיחת היכרות, נחדד את ההיקף ונבדוק יחד את הצעד הבא לפני הצעת מחיר.' : 'Tell me what you need. I’ll reply for an introductory conversation, clarify the scope, and discuss the next step before a quote.')}</p>
       <form noValidate onSubmit={submit} data-contact-form data-clarity-mask='true' aria-busy={status === 'sending'} className='contact-form grid grid-cols-1 md:grid-cols-2 gap-5'>
         <p id={`${id}-help`} className='md:col-span-2 text-sm text-secondary'>{he ? 'שם ואחת מדרכי הקשר נדרשים: אימייל או טלפון. פירוט הפרויקט הוא רשות.' : 'A name and one contact method are required: email or phone. Project details are optional.'}</p>
@@ -90,7 +90,7 @@ export function ContactForm({ id = 'contact', title, description }: { id?: strin
         {status === 'error' && <p ref={errorRef} tabIndex={-1} role='alert' className='md:col-span-2 text-primary'>{he ? 'לא ניתן לאשר שהפנייה התקבלה. הפרטים נשמרו כאן — נסו שוב, או פנו ב-WhatsApp או בטלפון.' : 'We could not confirm your inquiry was accepted. Your details are still here — retry, or contact me by WhatsApp or phone.'} <a className='underline' href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a></p>}
         <p className='md:col-span-2 text-sm text-secondary'>{he ? 'הפרטים ישמשו למענה לפנייה, כפי שמפורט ב' : 'Your details will be used to reply, as described in the '}<a href='/privacy/' className='underline'>{he ? 'מדיניות הפרטיות' : 'privacy policy'}</a>.</p>
         <div className='md:col-span-2 flex flex-col sm:flex-row gap-3'>
-          <button type='submit' disabled={status === 'sending' || status === 'sent'} className='button-primary px-6 py-4 disabled:opacity-70'>{status === 'sending' ? (he ? 'שולח…' : 'Sending…') : status === 'sent' ? (he ? 'הפנייה התקבלה' : 'Inquiry accepted') : (he ? 'שלחו בקשה להצעת מחיר' : 'Request a quote')}</button>
+          <button type='submit' disabled={status === 'sending' || status === 'sent'} className='button-primary px-6 py-4 disabled:opacity-70'>{status === 'sending' ? (he ? 'שולח…' : 'Sending…') : status === 'sent' ? (he ? 'הפנייה התקבלה' : 'Inquiry accepted') : (he ? 'שלחו פרטים לשיחת היכרות' : 'Request an introductory conversation')}</button>
           <a className='button-secondary px-6 py-4' href={getWhatsAppUrl(lang)} target='_blank' rel='noreferrer' data-placement='contact_whatsapp'>{he ? 'אפשר גם ב-WhatsApp' : 'Prefer WhatsApp?'}</a>
         </div>
       </form>
