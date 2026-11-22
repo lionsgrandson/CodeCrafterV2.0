@@ -30,3 +30,15 @@
 
 /status.css
   X-Robots-Tag: noindex
+
+/sitemap.xml
+  Cache-Control: public, max-age=300, must-revalidate
+
+/robots.txt
+  Cache-Control: public, max-age=300, must-revalidate
+
+/llms.txt
+  Cache-Control: public, max-age=300, must-revalidate
+
+/llms-full.txt
+  Cache-Control: public, max-age=300, must-revalidate
