@@ -33,8 +33,8 @@ export const additionalPortfolioProjects = [
       "en": "Alex Rivera"
     },
     "description": {
-      "he": "דף נחיתה מלוטש לאיש מקצוע מורשה בתחום הביטוח, המתמקד באמון, בהירות ומסלול פשוט לפנייה.",
-      "en": "A polished landing page for a licensed insurance professional, focused on trust, clarity, and an easy path to inquiry."
+      "he": "דמו לדף נחיתה בתחום הביטוח, שמדגים כותרת ממוקדת, מסר שירות ברור ומסלול פשוט ליצירת קשר.",
+      "en": "An insurance landing-page concept demonstrating focused messaging, clear service information, and an easy contact path."
     },
     "link": "https://alex-rivera-insurance-portfolio.netlify.app/",
     "image": "/portfolio/alex-rivera-insurance-screenshot-800.webp"
@@ -46,8 +46,8 @@ export const additionalPortfolioProjects = [
       "en": "Creative Code Solution"
     },
     "description": {
-      "he": "אתר מודרני לחברת פיתוח תוכנה, שנבנה כדי להציג שירותים בבהירות וליצור רושם ראשוני בטוח.",
-      "en": "A modern website for a software development company, built to present services clearly and create a confident first impression."
+      "he": "דמו לאתר של חברת פיתוח תוכנה, שנבנה כדי להדגים הצגת שירותים, היררכיית תוכן וחוויית גלישה רספונסיבית.",
+      "en": "A portfolio demo of a software-company website, illustrating service presentation, information hierarchy, and responsive design."
     },
     "link": "https://pencildesign-codecrafterdemo.netlify.app/",
     "image": "/portfolio/pencil-design-codecrafterdemo-screenshot-800.webp"
