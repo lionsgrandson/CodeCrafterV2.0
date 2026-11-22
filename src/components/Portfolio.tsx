@@ -114,7 +114,7 @@ export function Portfolio({
       media: projectMedia[idx],
       externalLink,
       link: caseStudyLink || externalLink,
-      featured: [0, 1, 3].includes(idx),
+      featured: [0, 1, 3, 9].includes(idx),
     }
   })
 
