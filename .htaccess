@@ -27,8 +27,11 @@ ErrorDocument 404 /404.html
   RewriteRule ^favicon\.svg$ - [R=410,L]
   RewriteRule ^manifest\.json$ - [R=410,L]
 
-  # Canonicalize the historical mixed-case Rainbow URL to the revived case study.
-  RewriteRule ^portfolio/Rainbow-asd/?$ /portfolio/rainbow-asd/ [R=301,L,NE]
+  # Consolidated portfolio replaces all retired individual case-study routes.
+  RewriteRule ^portfolio/(sumsup|coderecovery|yuval-kadosh|rainbow-asd|project-orion|shimon-photography|aderet-argaman|ilan-shachar|green-therapy)/?$ /portfolio/ [R=301,L,NE,NC]
+  RewriteRule ^en/portfolio/(sumsup|coderecovery|yuval-kadosh|rainbow-asd|project-orion|shimon-photography|aderet-argaman|ilan-shachar|green-therapy)/?$ /en/portfolio/ [R=301,L,NE,NC]
+  RewriteRule ^pricing/?$ /services/ [R=301,L,NE,NC]
+  RewriteRule ^en/pricing/?$ /en/services/ [R=301,L,NE,NC]
 
   # Legacy indexed URLs. Keep these aligned with server.ts and public/_redirects.
   RewriteRule ^blog\.html$ /websites/ [R=301,L,NE,NC]
