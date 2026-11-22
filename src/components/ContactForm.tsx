@@ -90,7 +90,7 @@ export function ContactForm({ id = 'contact', title, description }: { id?: strin
         {status === 'error' && <p ref={errorRef} tabIndex={-1} role='alert' className='md:col-span-2 text-primary'>{he ? 'לא ניתן לאשר שהפנייה התקבלה. הפרטים נשמרו כאן — נסו שוב, או פנו ב-WhatsApp או בטלפון.' : 'We could not confirm your inquiry was accepted. Your details are still here — retry, or contact me by WhatsApp or phone.'} <a className='underline' href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a></p>}
         <p className='md:col-span-2 text-sm text-secondary'>{he ? 'הפרטים ישמשו למענה לפנייה, כפי שמפורט ב' : 'Your details will be used to reply, as described in the '}<a href='/privacy/' className='underline'>{he ? 'מדיניות הפרטיות' : 'privacy policy'}</a>.</p>
         <div className='md:col-span-2 flex flex-col sm:flex-row gap-3'>
-          <button type='submit' disabled={status === 'sending' || status === 'sent'} className='button-primary px-6 py-4 disabled:opacity-70'>{status === 'sending' ? (he ? 'שולח…' : 'Sending…') : status === 'sent' ? (he ? 'הפנייה התקבלה' : 'Inquiry accepted') : (he ? 'שלחו פרטים לשיחת היכרות' : 'Request an introductory conversation')}</button>
+          <button type='submit' disabled={status === 'sending' || status === 'sent'} className='button-primary px-6 py-4 disabled:opacity-70'>{status === 'sending' ? (he ? 'שולח…' : 'Sending…') : status === 'sent' ? (he ? 'הפנייה התקבלה' : 'Inquiry accepted') : (he ? 'שלחו בקשה להצעת מחיר' : 'Request a quote')}</button>
           <a className='button-secondary px-6 py-4' href={getWhatsAppUrl(lang)} target='_blank' rel='noreferrer' data-placement='contact_whatsapp'>{he ? 'אפשר גם ב-WhatsApp' : 'Prefer WhatsApp?'}</a>
         </div>
       </form>
