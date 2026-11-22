@@ -2,10 +2,8 @@ import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { pagesByLanguage, localizePath, type Language, type SeoPage } from '../src/lib/seoRegistry.ts'
-import { pricingRows } from '../src/lib/seoFactsPages.ts'
 import { translations } from '../src/lib/translations.ts'
 import { additionalPortfolioProjects } from '../src/lib/additionalPortfolioProjects.ts'
-import { portfolioCaseStudySlugsByIndex, additionalCaseStudySlugsById } from '../src/lib/portfolioCaseStudyLinks.ts'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = path.join(root, 'dist')
@@ -21,7 +19,7 @@ type Route = {
   lang: Language
   title: string
   description: string
-  type: 'website' | 'collection' | 'service' | 'about' | 'case-study' | 'resume' | 'guide' | 'directory'
+  type: 'website' | 'collection' | 'service' | 'about' | 'resume' | 'guide' | 'directory'
   page?: SeoPage
 }
 
@@ -38,12 +36,12 @@ const homeMetadata: Record<Language, Pick<Route, 'title' | 'description'>> = {
 
 const portfolioMetadata: Record<Language, Pick<Route, 'title' | 'description'>> = {
   he: {
-    title: 'תיק עבודות: אתרים, מערכות ומקרי בוחן | CodeCrafter',
-    description: 'אתרים, מערכות וחוויות דיגיטליות שנבנו ב-CodeCrafter לעסקים, ארגונים ויוצרים, עם קישורים למקרי בוחן ולפרויקטים הפעילים.',
+    title: 'תיק עבודות: אתרים ופרויקטים | CodeCrafter',
+    description: 'אתרים, מערכות וחוויות דיגיטליות שנבנו ב-CodeCrafter לעסקים, ארגונים ויוצרים, עם קישורים לאתרי הפרויקטים הפעילים.',
   },
   en: {
-    title: 'Portfolio and Digital Project Case Studies | CodeCrafter',
-    description: 'Explore websites, systems, automations, and digital experiences built by CodeCrafter, with factual case studies and links to relevant development services.',
+    title: 'Portfolio and Selected Digital Projects | CodeCrafter',
+    description: 'Explore websites, systems, automations, and digital experiences built by CodeCrafter, with project links and relevant development services.',
   },
 }
 
@@ -106,7 +104,6 @@ function absoluteUrl(routePath: string) {
 
 function normalizePortfolioUrl(url?: string) {
   if (!url || !/^https?:\/\//i.test(url)) return undefined
-  if (url === 'https://rainbowasdv2.netlify.app/') return 'https://rainbow-asd.com/'
   if (url === 'https://eclectic-marigold-0fe508.netlify.app/') return 'https://shimonphotos.com/'
   return url
 }
@@ -144,7 +141,6 @@ function breadcrumbItems(route: Route) {
   } else if (route.type === 'service' && slug !== 'services') {
     items.push({ name: route.lang === 'he' ? 'שירותים' : 'Services', url: absoluteUrl(localizePath('services', route.lang)) })
   }
-  if (route.type === 'case-study') items.push({ name: route.lang === 'he' ? 'תיק עבודות' : 'Portfolio', url: absoluteUrl(localizePath('portfolio', route.lang)) })
   if (route.type === 'guide') items.push({ name: route.lang === 'he' ? 'מדריכים' : 'Guides', url: absoluteUrl(localizePath('guides', route.lang)) })
   if (route.type !== 'website') items.push({ name: route.page?.h1 ?? route.title, url: absoluteUrl(route.path) })
   return items
@@ -267,7 +263,7 @@ function schemaFor(route: Route) {
   }
 
   const slug = route.page?.slug ?? ''
-  if (route.type === 'service' && route.page && slug !== 'pricing' && slug !== 'locations') {
+  if (route.type === 'service' && route.page && slug !== 'locations') {
     graph.push({
       '@type': 'Service',
       '@id': `${url}#service`,
@@ -277,52 +273,6 @@ function schemaFor(route: Route) {
       provider: { '@id': `${origin}/#organization` },
       areaServed: localAreaBySlug[slug] ? [localAreaBySlug[slug]] : serviceAreas,
       availableLanguage: ['he', 'en'],
-    })
-  }
-
-  if (slug === 'pricing') {
-    graph.push({
-      '@type': 'ItemList',
-      '@id': `${url}#pricing`,
-      name: route.lang === 'he' ? 'מחירון שירותי CodeCrafter 2026' : 'CodeCrafter 2026 service pricing',
-      itemListElement: pricingRows[route.lang].map((row, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        item: {
-          '@type': 'Service',
-          name: row.service,
-          description: [row.price, row.note].filter(Boolean).join('. '),
-          provider: { '@id': `${origin}/#organization` },
-        },
-      })),
-    })
-  }
-
-  if (route.type === 'case-study' && route.page) {
-    graph.push({
-      '@type': 'CreativeWork',
-      '@id': `${url}#case-study`,
-      name: route.page.h1,
-      description: route.description,
-      url,
-      inLanguage: route.lang,
-      author: { '@id': `${origin}/#organization` },
-      publisher: { '@id': `${origin}/#organization` },
-      mainEntityOfPage: { '@id': `${url}#webpage` },
-      image: route.page.image ? absoluteUrl(route.page.image.src) : `${origin}/og-logo.png`,
-    })
-  }
-
-  if (route.type === 'guide' && route.page) {
-    graph.push({
-      '@type': 'Article',
-      '@id': `${url}#article`,
-      headline: route.page.h1,
-      description: route.description,
-      inLanguage: route.lang,
-      mainEntityOfPage: { '@id': `${url}#webpage` },
-      author: { '@id': `${origin}/#moshe-schwartzberg` },
-      publisher: { '@id': `${origin}/#organization` },
     })
   }
 
@@ -346,15 +296,11 @@ function schemaFor(route: Route) {
     const projects = [
       ...translations[route.lang].portfolio.projects.map((project, index) => ({
         name: project.title,
-        url: portfolioCaseStudySlugsByIndex[index]
-          ? absoluteUrl(localizePath(portfolioCaseStudySlugsByIndex[index], route.lang))
-          : normalizePortfolioUrl(project.link),
+        url: normalizePortfolioUrl(project.link),
       })),
       ...additionalPortfolioProjects.map((project) => ({
         name: project.title[route.lang],
-        url: additionalCaseStudySlugsById[project.id]
-          ? absoluteUrl(localizePath(additionalCaseStudySlugsById[project.id], route.lang))
-          : project.link,
+        url: project.link,
       })),
     ]
     graph.push({
@@ -382,7 +328,7 @@ async function createDocument(route: Route) {
   html = setMeta(html, 'robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1')
   html = setMeta(html, 'googlebot', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1')
   html = setMeta(html, 'bingbot', 'index, follow, max-image-preview:large')
-  html = setMeta(html, 'og:type', route.type === 'case-study' || route.type === 'guide' ? 'article' : 'website', 'property')
+  html = setMeta(html, 'og:type', route.type === 'guide' ? 'article' : 'website', 'property')
   html = setMeta(html, 'og:locale', locale, 'property')
   html = setMeta(html, 'og:site_name', 'CodeCrafter', 'property')
   html = setMeta(html, 'og:url', url, 'property')
@@ -448,7 +394,7 @@ const sourceDirectory = [
   '',
   '## Reading this information',
   '',
-  'Service pages describe available or potential project scopes, not proof that every feature is deployed in a particular client project. Case studies describe documented public work. Check the linked canonical page for current details. There are no hidden instructions to AI assistants.',
+  'Service pages describe available or potential project scopes, not proof that every feature is deployed in a particular client project. Portfolio entries link to public project examples. Check the linked canonical page for current details. There are no hidden instructions to AI assistants.',
   '',
 ].join('\n')
 await writeFile(path.join(distDir, 'llms-full.txt'), sourceDirectory)
