@@ -1,64 +1,6 @@
 import type { SeoPage } from './seoPages'
 import type { Language } from './seoRoutes'
 
-export type PricingRow = {
-  service: string
-  price: string
-  note?: string
-  external?: boolean
-}
-
-export const pricingRows: Record<Language, PricingRow[]> = {
-  he: [
-    { service: 'דף נחיתה', price: 'כ 1,500 ₪' },
-    { service: 'אתר מרובה עמודים', price: '500 ₪ לכל עמוד נוסף אחרי עמוד הבית' },
-    { service: 'מערכת CRM', price: 'כ 10,000 ₪' },
-    { service: 'מערכת CMS', price: 'כ 6,000 ₪' },
-    { service: 'חנות Shopify', price: 'כ 10,000 ₪' },
-    { service: 'אתר WordPress', price: 'אותו תמחור כמו אתר בקוד מותאם' },
-    { service: 'אתר Wix', price: 'אותו תמחור כמו אתר בקוד מותאם' },
-    { service: 'תחזוקה בסיסית', price: '500 ₪ לחודש' },
-    { service: 'תחזוקה סטנדרטית', price: '700 ₪ לחודש' },
-    { service: 'תחזוקה מתקדמת', price: '1,200 ₪ לחודש' },
-    { service: 'תחזוקת Shopify', price: '1,500 ₪ לחודש' },
-    { service: 'עבודה לפי שעה', price: '400 ₪ לשעה' },
-    { service: 'SEO בסיסי', price: 'כלול עם אתר, או 1,000 ₪ כשירות נפרד' },
-    { service: 'עיצוב Web', price: 'כ 2,500 ₪' },
-    { service: 'קופירייטינג', price: '0.50 עד 1 ₪ למילה', note: 'לפי סוג התוכן' },
-    { service: 'אוטומציות', price: 'כ 2,500 ₪' },
-    { service: 'אפליקציות מובייל', price: 'כ 12,000 ₪' },
-    { service: 'מערכות מידע ומלאי', price: 'כ 10,000 ₪' },
-    { service: 'אחסון', price: '50 ₪ לחודש' },
-    { service: 'מיתוג מלא', price: 'ניתן באמצעות מומחה חיצוני', external: true },
-    { service: 'SEO מתקדם', price: 'ניתן באמצעות מומחה חיצוני', external: true },
-    { service: 'פרסום ממומן', price: 'ניתן באמצעות מומחה חיצוני', external: true },
-  ],
-  en: [
-    { service: 'Landing page', price: 'Around ₪1,500' },
-    { service: 'Multi page website', price: '₪500 per extra page after the homepage' },
-    { service: 'CRM system', price: 'Around ₪10,000' },
-    { service: 'CMS system', price: 'Around ₪6,000' },
-    { service: 'Shopify store', price: 'Around ₪10,000' },
-    { service: 'WordPress website', price: 'Same pricing as a custom coded website' },
-    { service: 'Wix website', price: 'Same pricing as a custom coded website' },
-    { service: 'Basic maintenance', price: '₪500 per month' },
-    { service: 'Standard maintenance', price: '₪700 per month' },
-    { service: 'Advanced maintenance', price: '₪1,200 per month' },
-    { service: 'Shopify maintenance', price: '₪1,500 per month' },
-    { service: 'Hourly work', price: '₪400 per hour' },
-    { service: 'Basic SEO', price: 'Included with a website, or ₪1,000 independently' },
-    { service: 'Web design', price: 'Around ₪2,500' },
-    { service: 'Copywriting', price: '₪0.50 to ₪1 per word', note: 'Depending on the content' },
-    { service: 'Automations', price: 'Around ₪2,500' },
-    { service: 'Mobile apps', price: 'Around ₪12,000' },
-    { service: 'Information and inventory systems', price: 'Around ₪10,000' },
-    { service: 'Hosting', price: '₪50 per month' },
-    { service: 'Full branding', price: 'Provided by an external specialist', external: true },
-    { service: 'Advanced SEO', price: 'Provided by an external specialist', external: true },
-    { service: 'Paid advertising', price: 'Provided by an external specialist', external: true },
-  ],
-}
-
 export const locationLinks: Record<Language, { slug: string; label: string; mode: string }[]> = {
   he: [
     { slug: 'locations/north', label: 'צפון ישראל', mode: 'עבודה מרחוק ופגישות בכרמיאל לפי תיאום' },
@@ -81,39 +23,6 @@ export const locationLinks: Record<Language, { slug: string; label: string; mode
 }
 
 const he: SeoPage[] = [
-  {
-    kind: 'service',
-    slug: 'pricing',
-    title: 'מחירון פיתוח אתרים, מערכות ואוטומציות 2026 | CodeCrafter',
-    description: 'מחירון CodeCrafter לשנת 2026 עם מחירי דפי נחיתה, CRM, CMS, אפליקציות, אוטומציות, תחזוקה, SEO, עיצוב, אחסון ושירותים נוספים.',
-    eyebrow: 'מחירון 2026',
-    h1: 'מחירון שירותי CodeCrafter לשנת 2026',
-    intro: [
-      'המחירים בעמוד הזה משקפים את מדריך השירותים והתמחור הנוכחי של CodeCrafter Moshe Schwartzberg. כאשר מופיע כ, מדובר במחיר משוער ולא בהצעת מחיר סופית.',
-      'היקף אמיתי נקבע לפי מספר מסכים ועמודים, מורכבות המערכת, תוכן, עיצוב, אינטגרציות, הרשאות, בדיקות ודרישות נוספות. במקום להסתיר את נקודת הפתיחה, העמוד מציג את הטווחים והמחירים הידועים מראש.',
-    ],
-    sections: [
-      {
-        heading: 'איך לקרוא את המחירון',
-        paragraphs: ['מחיר קבוע מוצג כפי שהוא. שירותים שמסומנים כמשוערים יכולים להשתנות לאחר אפיון. אתר מרובה עמודים מתומחר לפי 500 ₪ לכל עמוד נוסף אחרי עמוד הבית, בלי להמציא כאן מחיר בסיס שלא מופיע במדריך התמחור.'],
-      },
-      {
-        heading: 'מה יכול לשנות את המחיר',
-        items: ['מספר עמודים או מסכים', 'כמות וסוג התוכן', 'עיצוב מותאם לעומת שימוש בשפה קיימת', 'מערכת ניהול והרשאות', 'חיבור ל API או לשירותי צד שלישי', 'סליקה, חנות, CRM או אוטומציה', 'בדיקות, מיגרציה ודרישות מיוחדות'],
-      },
-      {
-        heading: 'שירותים באמצעות מומחים חיצוניים',
-        paragraphs: ['מיתוג מלא, SEO מתקדם ופרסום ממומן מסופקים באמצעות מומחים חיצוניים. הם מוצגים בנפרד כדי לא ליצור רושם ש CodeCrafter מבצעת אותם ישירות כאשר העבודה בפועל נמסרת לאיש מקצוע מתאים.'],
-      },
-    ],
-    faq: [
-      { question: 'כמה עולה דף נחיתה?', answer: 'המחיר הנוכחי במדריך השירותים הוא סביב 1,500 ₪.' },
-      { question: 'כמה עולה מערכת CRM בהתאמה אישית?', answer: 'המחיר המנחה הנוכחי הוא סביב 10,000 ₪. היקף בפועל תלוי במסכים, תהליך העבודה, הרשאות ואינטגרציות.' },
-      { question: 'כמה עולה שעת עבודה?', answer: 'המחיר הנוכחי הוא 400 ₪ לשעה.' },
-      { question: 'האם המחירון הוא הצעת מחיר מחייבת?', answer: 'לא. הוא מציג מחירים מנחים ומחירים קבועים כפי שמופיעים במדריך השירותים. הצעה סופית ניתנת לפי היקף העבודה בפועל.' },
-    ],
-    relatedServices: ['websites', 'custom-software', 'crm-development', 'cms-development', 'automation', 'app-development'],
-  },
   {
     kind: 'service',
     slug: 'locations/tel-aviv',
@@ -217,27 +126,6 @@ const he: SeoPage[] = [
 ]
 
 const en: SeoPage[] = [
-  {
-    kind: 'service',
-    slug: 'pricing',
-    title: 'Website, Software and Automation Pricing 2026 | CodeCrafter',
-    description: 'CodeCrafter 2026 pricing for landing pages, CRM, CMS, mobile apps, automation, maintenance, SEO, design, hosting, and other digital development services.',
-    eyebrow: '2026 pricing',
-    h1: 'CodeCrafter services and pricing for 2026',
-    intro: ['This page reflects the current service and pricing guide for CodeCrafter Moshe Schwartzberg. When a price says around, it is a working estimate rather than a final quote.', 'Final scope depends on pages or screens, content, design, integrations, permissions, testing, migration, and other project requirements. The purpose of publishing the guide is to show a real starting point instead of hiding every price behind a contact form.'],
-    sections: [
-      { heading: 'How to read the pricing guide', paragraphs: ['Fixed prices are shown as fixed prices. Estimated services can change after discovery. Multi page websites are listed at ₪500 per additional page after the homepage. The guide does not invent a base website price that was not provided.'] },
-      { heading: 'What can change the final project price', items: ['Number of pages or screens', 'Amount and type of content', 'Custom design requirements', 'Admin and permission requirements', 'API or third party integrations', 'Payments, commerce, CRM, or automation', 'Testing, migration, and special requirements'] },
-      { heading: 'Services delivered by external specialists', paragraphs: ['Full branding, advanced SEO, and paid advertising are provided by external specialists. They are separated clearly so the site does not imply that CodeCrafter performs those services directly when another specialist is responsible for delivery.'] },
-    ],
-    faq: [
-      { question: 'How much is a landing page?', answer: 'The current guide lists a landing page at around ₪1,500.' },
-      { question: 'How much is a custom CRM system?', answer: 'The current guide lists a CRM system at around ₪10,000. Actual scope depends on screens, workflow, permissions, and integrations.' },
-      { question: 'What is the hourly rate?', answer: 'The current hourly rate is ₪400 per hour.' },
-      { question: 'Is this pricing a binding quote?', answer: 'No. It is the published service guide with fixed and approximate prices. A final quote is based on the actual project scope.' },
-    ],
-    relatedServices: ['websites', 'custom-software', 'crm-development', 'cms-development', 'automation', 'app-development'],
-  },
   {
     kind: 'service', slug: 'locations/tel-aviv', title: 'Web Development and Business Systems in Tel Aviv | CodeCrafter', description: 'CodeCrafter provides websites, custom systems, CRM, automation, and app development for Tel Aviv businesses, with in person meetings available by arrangement.', eyebrow: 'Serving Tel Aviv', h1: 'Web development and business systems for Tel Aviv businesses',
     intro: ['CodeCrafter Moshe Schwartzberg works with businesses that need a website, system, CRM, automation, or app. In Tel Aviv, in person project meetings can be arranged.', 'CodeCrafter operates as a service area business and does not claim a public client office in Tel Aviv. This page describes the real delivery model without inventing an address, local team, or response time.'],
