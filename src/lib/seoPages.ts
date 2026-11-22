@@ -79,7 +79,6 @@ const heServices: SeoPage[] = [
       { question: 'אפשר לחבר אתר קיים למערכות אחרות?', answer: 'ברוב המקרים כן. אפשר לחבר CRM, דיוור, סליקה, יומן, WhatsApp, מערכות ניהול ו-API, לאחר בדיקת ההרשאות והממשק הקיים.' },
     ],
     relatedServices: ['custom-software', 'automation'],
-    relatedProjects: ['sumsup', 'yuval-kadosh'],
   },
   {
     kind: 'service', slug: 'custom-software', title: 'פיתוח מערכות לעסקים בהתאמה לתהליך העבודה | CodeCrafter', description: 'פיתוח מערכות לעסקים בישראל: פורטלים, דשבורדים, ניהול תהליכים וכלים פנימיים שמרכזים מידע, מצמצמים עבודה ידנית ומתאימים לצמיחה.', eyebrow: 'שירותי CodeCrafter', h1: 'פיתוח מערכות לעסקים בהתאמה אישית',
@@ -97,7 +96,7 @@ const heServices: SeoPage[] = [
       { question: 'איך מתחילים מערכת גדולה?', answer: 'מגדירים תהליך מרכזי וגרסה ראשונה מדידה. לאחר שימוש אמיתי מוסיפים מודולים לפי ערך וסיכון, ולא לפי רשימת משאלות ארוכה.' },
       { question: 'אפשר להגדיר הרשאות שונות?', answer: 'כן. תפקידי משתמש והרשאות נקבעים באפיון ונאכפים בצד השרת, לא רק באמצעות הסתרת כפתורים.' },
       { question: 'האם המערכת יכולה לעבוד בטלפון?', answer: 'כן, אם תרחישי השימוש דורשים זאת. ממשק רספונסיבי או אפליקציה נבחרים לפי הקשר העבודה, החומרה והצורך בעבודה לא מקוונת.' },
-    ], relatedServices: ['crm-development', 'automation', 'app-development'], relatedProjects: ['sumsup', 'coderecovery'],
+    ], relatedServices: ['crm-development', 'automation', 'app-development'],
   },
   {
     kind: 'service', slug: 'automation', title: 'אוטומציה לעסקים וחיבור תהליכי עבודה | CodeCrafter', description: 'אוטומציה לעסקים שמחברת טפסים, CRM, דוא״ל, WhatsApp, מסמכים ו-AI כדי לצמצם משימות ידניות ולשמור על תהליך אמין ומבוקר.', eyebrow: 'שירותי CodeCrafter', h1: 'אוטומציה לעסקים שמפנה זמן לעבודה החשובה',
@@ -115,7 +114,7 @@ const heServices: SeoPage[] = [
       { question: 'האם אפשר להתחבר למערכת קיימת?', answer: 'כן כאשר יש API, Webhook, ייצוא מסודר או דרך מורשית אחרת. לפני התחייבות נבדקת הגישה בפועל.' },
       { question: 'מה קורה כשהאוטומציה נכשלת?', answer: 'מתכננים מראש לוג, התראה, ניסיונות חוזרים והעברה לאדם. כשל לא אמור להיעלם בשקט.' },
       { question: 'האם אפשר להשתמש ב-WhatsApp?', answer: 'כן באמצעות פתרון רשמי ומתאים לחשבון העסקי ולסוג ההודעות. לא עוקפים מגבלות של הפלטפורמה ולא משתמשים בפרטי התחברות לא מורשים.' },
-    ], relatedServices: ['custom-software', 'crm-development'], relatedProjects: ['sumsup'],
+    ], relatedServices: ['custom-software', 'crm-development'],
   },
   {
     kind: 'service', slug: 'crm-development', title: 'פיתוח מערכת CRM בהתאמה אישית לעסק | CodeCrafter', description: 'אפיון ופיתוח CRM מותאם לתהליך המכירה והשירות: לידים, לקוחות, משימות, הרשאות, דוחות ואינטגרציות במערכת אחת ברורה.', eyebrow: 'שירותי CodeCrafter', h1: 'פיתוח מערכת CRM בהתאמה אישית',
@@ -133,7 +132,7 @@ const heServices: SeoPage[] = [
       { question: 'אפשר להעביר נתונים מ-CRM ישן?', answer: 'בדרך כלל כן באמצעות API או ייצוא. לפני מעבר מבצעים מיפוי, ניקוי, גיבוי ובדיקת איכות.' },
       { question: 'אפשר להגביל מידע לפי עובד?', answer: 'כן. אפשר להגדיר הרשאות לפי תפקיד, צוות, לקוח או פעולה ולבדוק אותן בצד השרת.' },
       { question: 'המערכת מותאמת למובייל?', answer: 'כן כאשר העבודה מתבצעת בשטח או בטלפון. תרחישים קריטיים מקבלים ממשק מותאם וטאפ-טארגטים נוחים.' },
-    ], relatedServices: ['custom-software', 'automation'], relatedProjects: ['sumsup'],
+    ], relatedServices: ['custom-software', 'automation'],
   },
   {
     kind: 'service', slug: 'app-development', title: 'פיתוח אפליקציות לעסקים וללקוחות | CodeCrafter', description: 'פיתוח אפליקציות Web ומובייל לעסקים: אפיון, חוויית משתמש, API, נתונים, אינטגרציות ובדיקות — ממוצר ראשון ועד מערכת יציבה.', eyebrow: 'שירותי CodeCrafter', h1: 'פיתוח אפליקציות לעסקים סביב שימוש אמיתי',
@@ -151,7 +150,7 @@ const heServices: SeoPage[] = [
       { question: 'האם צריך גם Android וגם iPhone?', answer: 'לא תמיד. בוחנים את קהל היעד ואת הצורך ביכולות מכשיר. לעיתים Web או פתרון רב-פלטפורמי מספקים ערך מהר יותר.' },
       { question: 'אפשר להתחבר למערכת העסקית שלנו?', answer: 'כן אם קיימת דרך מורשית לגשת לנתונים. בודקים API, אבטחה, קצב ושדות לפני התכנון הסופי.' },
       { question: 'מי מפרסם את האפליקציה בחנות?', answer: 'אפשר ללוות את תהליך ההכנה וההגשה, אך חשבון המפתח והאישור הסופי שייכים לבעל העסק ולספק החנות.' },
-    ], relatedServices: ['custom-software', 'automation'], relatedProjects: ['coderecovery'],
+    ], relatedServices: ['custom-software', 'automation'],
   },
 ]
 
