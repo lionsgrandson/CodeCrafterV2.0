@@ -62,13 +62,15 @@ test('first-visit consent, saved choice, sensitive URL removal and cross-tab wit
   await page.reload()
   await expect(page.locator('.consent-panel')).toHaveCount(0)
 })
-test('validation, error preservation, retry idempotency and lead privacy', async ({ page }) => {
+test('EmailJS contact validation, retry and lead privacy', async ({ page }) => {
   await analytics(page); await page.goto('/en/')
-  const keys: string[] = []
+  const requests: any[] = []
   let attempt = 0
-  await page.route('**/api/contact', async route => {
-    keys.push(route.request().headers()['idempotency-key']); attempt++
-    await route.fulfill({ status: attempt === 1 ? 502 : 200, json: attempt === 1 ? { error: 'mock failure' } : { ok: true, accepted: true, deliveryStatus: 'provider_accepted' } })
+  await page.route('**/api/v1.0/email/send', async route => {
+    if (route.request().method() === 'OPTIONS') return route.fulfill({ status: 204, headers: { 'access-control-allow-origin': '*' } })
+    requests.push(route.request().postDataJSON())
+    attempt++
+    await route.fulfill({ status: attempt === 1 ? 502 : 200, contentType: 'text/plain', body: attempt === 1 ? 'Unavailable' : 'OK', headers: { 'access-control-allow-origin': '*' } })
   })
   const form = page.locator('form[data-contact-form]')
   await form.getByRole('button', { name: 'Request a quote' }).click()
@@ -80,26 +82,30 @@ test('validation, error preservation, retry idempotency and lead privacy', async
   await form.locator('[name=phone]').fill('+972587076077')
   await form.locator('[name=message]').fill('Private free text')
   await form.getByRole('button', { name: 'Request a quote' }).click()
-  await expect(form.getByRole('alert')).toContainText('could not confirm')
+  await expect(form.getByRole('alert')).toContainText('Could not send')
   await expect(form.locator('[name=name]')).toHaveValue('Private Person')
   expect((await events(page, 'generate_lead')).length).toBe(0)
   await form.getByRole('button', { name: 'Request a quote' }).dblclick()
   await expect(form.getByRole('status')).toContainText('accepted')
-  expect(keys).toHaveLength(2); expect(keys[0]).toBe(keys[1])
+  expect(requests).toHaveLength(2)
+  expect(requests[1]).toMatchObject({ service_id: 'service_lx51il8', template_id: 'template_jux7c9h', user_id: 'aS_Kd2on0E1C1dTBv', template_params: { name: 'Private Person', phone: '+972587076077' } })
+  expect(requests[1].template_params.message).toContain('Private free text')
   expect((await events(page, 'generate_lead')).length).toBe(1)
   const calls = JSON.stringify(await page.evaluate(() => [(window as any).__ga, (window as any).__clarity]))
   for (const value of ['Private Person', '+972587076077', 'Private free text']) expect(calls).not.toContain(value)
   expect(await page.evaluate(() => (window as any).__clarity.some((a: unknown[]) => a[0] === 'event' && a[1] === 'generate_lead'))).toBe(true)
 })
-test('HTTP 200 without accepted response never produces a lead; analytics disabled form works', async ({ page }) => {
+test('EmailJS rejects unexpected HTTP 200 responses; the form works without analytics consent', async ({ page }) => {
   await analytics(page, 'denied'); await page.goto('/en/websites/')
   const form = page.locator('form[data-contact-form]')
   await form.locator('[name=name]').fill('Mock Test'); await form.locator('[name=email]').fill('test@example.com')
-  await page.route('**/api/contact', route => route.fulfill({ json: { ok: true, accepted: false } }))
-  await form.getByRole('button', { name: 'Request a quote' }).click(); await expect(form.getByRole('alert')).toBeVisible()
-  await page.unroute('**/api/contact')
-  await page.route('**/api/contact', route => route.fulfill({ json: { ok: true, accepted: true, deliveryStatus: 'provider_accepted' } }))
-  await form.getByRole('button', { name: 'Request a quote' }).click(); await expect(form.getByRole('status')).toBeVisible()
+  await page.route('**/api/v1.0/email/send', route => route.fulfill({ status: 200, contentType: 'text/plain', body: 'Unexpected response', headers: { 'access-control-allow-origin': '*' } }))
+  await form.getByRole('button', { name: 'Request a quote' }).click()
+  await expect(form.getByRole('alert')).toBeVisible()
+  await page.unroute('**/api/v1.0/email/send')
+  await page.route('**/api/v1.0/email/send', route => route.fulfill({ status: 200, contentType: 'text/plain', body: 'OK', headers: { 'access-control-allow-origin': '*' } }))
+  await form.getByRole('button', { name: 'Request a quote' }).click()
+  await expect(form.getByRole('status')).toBeVisible()
   expect(await events(page, 'generate_lead')).toEqual([])
 })
 test('all five scroll thresholds, resize deduplication, SPA navigation and history reset', async ({ page }) => {
@@ -179,7 +185,7 @@ test('journey events, section impressions, privacy-safe diagnostics and language
 test('vendor exceptions cannot break a successful form', async ({ page }) => {
   await analytics(page); await page.goto('/en/')
   await page.evaluate(() => { (window as any).gtag = (window as any).clarity = () => { throw Error('vendor down') } })
-  await page.route('**/api/contact', route => route.fulfill({ json: { ok: true, accepted: true, deliveryStatus: 'provider_accepted' } }))
+  await page.route('**/api/v1.0/email/send', route => route.fulfill({ status: 200, contentType: 'text/plain', body: 'OK', headers: { 'access-control-allow-origin': '*' } }))
   await page.locator('[name=name]').fill('Mock'); await page.locator('[name=email]').fill('test@example.com')
   await page.locator('form[data-contact-form]').getByRole('button', { name: 'Request a quote' }).click()
   await expect(page.locator('form[data-contact-form]').getByRole('status')).toBeVisible()
@@ -198,39 +204,42 @@ test('Google verification file and editorial hub are crawlable', async ({ reques
     expect(response.status()).toBe(200)
   }
 })
-test('campaign source is attached only after consent, without raw query identifiers', async ({ page }) => {
+test('EmailJS includes consented campaign fields but never click IDs or sensitive search terms', async ({ page }) => {
   await analytics(page)
   await page.goto('/en/?utm_source=linkedin&utm_medium=social&utm_campaign=autumn_launch&utm_term=private%40example.com&gclid=private-click-id')
   await expect.poll(() => new URL(page.url()).search).toBe('')
   let received: any
-  await page.route('**/api/contact', route => {
+  await page.route('**/api/v1.0/email/send', route => {
     received = route.request().postDataJSON()
-    return route.fulfill({ json: { ok: true, accepted: true, deliveryStatus: 'provider_accepted' } })
+    return route.fulfill({ status: 200, contentType: 'text/plain', body: 'OK', headers: { 'access-control-allow-origin': '*' } })
   })
   const form = page.locator('form[data-contact-form]')
   await form.locator('[name=name]').fill('Campaign Test')
   await form.locator('[name=email]').fill('test@example.com')
   await form.getByRole('button', { name: 'Request a quote' }).click()
   await expect(form.getByRole('status')).toBeVisible()
-  expect(received.attribution).toMatchObject({ utm_source: 'linkedin', utm_medium: 'social', utm_campaign: 'autumn_launch', landing_path: '/en/' })
+  expect(received.template_params).toMatchObject({ utm_source: 'linkedin', utm_medium: 'social', utm_campaign: 'autumn_launch', landing_path: '/en/' })
+  expect(received.service_id).toBe('service_lx51il8')
   expect(JSON.stringify(received)).not.toContain('private-click-id')
   expect(JSON.stringify(received)).not.toContain('private@example.com')
   expect(JSON.stringify(await page.evaluate(() => (window as any).__ga))).not.toContain('autumn_launch')
 })
-test('denying analytics also excludes campaign attribution from contact requests', async ({ page }) => {
+test('denying analytics excludes campaign attribution from EmailJS contact submissions', async ({ page }) => {
   await analytics(page, 'denied')
   await page.goto('/en/?utm_source=linkedin&utm_campaign=private')
   let received: any
-  await page.route('**/api/contact', route => {
+  await page.route('**/api/v1.0/email/send', route => {
     received = route.request().postDataJSON()
-    return route.fulfill({ json: { ok: true, accepted: true, deliveryStatus: 'provider_accepted' } })
+    return route.fulfill({ status: 200, contentType: 'text/plain', body: 'OK', headers: { 'access-control-allow-origin': '*' } })
   })
   const form = page.locator('form[data-contact-form]')
   await form.locator('[name=name]').fill('Denied Test')
   await form.locator('[name=email]').fill('test@example.com')
   await form.getByRole('button', { name: 'Request a quote' }).click()
   await expect(form.getByRole('status')).toBeVisible()
-  expect(received.attribution).toBeUndefined()
+  expect(received.template_params.utm_source).toBeUndefined()
+  expect(received.template_params.utm_campaign).toBeUndefined()
+  expect(received.template_params.message).not.toContain('private')
 })
 
 test('only the three requested projects appear on the homepage', async ({ page }) => {
@@ -246,16 +255,19 @@ test('only the three requested projects appear on the homepage', async ({ page }
     await expect(page.locator('a[href*="/portfolio/"][href*="coderecovery"]')).toHaveCount(0)
   }
 })
-test('project reviews, public links, and removed attribution footers', async ({ page }) => {
+test('testimonials have the correct project associations without review links', async ({ page }) => {
   await analytics(page, 'denied')
   await page.goto('/')
-  for (const href of [
-    'https://www.google.com/maps/contrib/112206677045488065213/reviews?hl=iw',
-    'https://www.google.com/maps/contrib/113497995420725252333/reviews?hl=iw-IL',
-  ]) await expect(page.locator('#testimonials a[href="' + href + '"]')).toHaveCount(1)
-  await expect(page.locator('#testimonials .testimonial-card')).toHaveCount(6)
+  const testimonials = page.locator('#testimonials')
+  await expect(testimonials.locator('.testimonial-card')).toHaveCount(6)
+  await expect(testimonials.locator('a')).toHaveCount(0)
+  for (const name of ['Alon Greenshtein', 'Akiva Kulbersh']) await expect(testimonials.getByText(name, { exact: true })).toBeVisible()
+  for (const project of ['Green Therapy', 'TorahPublishing', 'shimonphotos.com']) await expect(testimonials.getByText(project, { exact: true })).toBeVisible()
+  await expect(page.getByText('עבודה ישירה עם המפתח')).toHaveCount(0)
+  await expect(page.locator('.section-kicker')).toHaveCount(0)
   await page.goto('/websites/')
   await expect(page.getByText('מקור: CodeCrafter')).toHaveCount(0)
+  await expect(page.locator('.section-kicker')).toHaveCount(0)
   await page.goto('/en/guides/')
   await expect(page.getByText('Original publisher: CodeCrafter')).toHaveCount(0)
 })
