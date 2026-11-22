@@ -246,7 +246,6 @@ const englishPortfolioImageAlt: Record<string, string> = {
 sharedPages.en = sharedPages.he.map((page) => ({
   ...page,
   image: page.image ? { ...page.image, alt: englishPortfolioImageAlt[page.slug] ?? page.image.alt } : undefined,
-  ...page,
   title: page.kind === 'about' ? 'Moshe Schwartzberg | Founder of CodeCrafter' : `${page.h1} | CodeCrafter case study`,
   description: page.kind === 'about' ? 'Meet Moshe Schwartzberg, founder of CodeCrafter, and the practical approach behind custom websites, business systems, CRM, automation, and apps.' : `A factual CodeCrafter case study covering the challenge, solution, public implementation, and relevant services for ${page.h1}.`,
   eyebrow: page.kind === 'about' ? 'About' : 'Case study',
