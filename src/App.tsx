@@ -6,6 +6,7 @@ import { Services, Process } from './components/Services'
 import { Portfolio, Testimonials } from './components/Portfolio'
 import { WhyWorkWithMe, FinalCTA, Footer } from './components/Footer'
 import { SeoPage } from './components/SeoPage'
+import { HomepageSeo } from './components/HomepageSeo'
 import { ResumePortfolio } from './components/ResumePortfolio'
 import { translations } from './lib/translations'
 import { localizePath, type Language } from './lib/seoRoutes'
@@ -120,6 +121,7 @@ export default function App({ pathname, seoPage }: AppProps) {
               <Portfolio />
               <Testimonials />
               <WhyWorkWithMe />
+              <HomepageSeo />
               <FinalCTA />
             </>
           )}

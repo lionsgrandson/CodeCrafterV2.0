@@ -1,47 +1,36 @@
-# CodeCrafter
+# CodeCrafter — Moshe Schwartzberg
 
-CodeCrafter is Moshe Schwartzberg's website development, SEO, automation, and custom business systems studio.
+Official website: https://mosheschwartzberg.com/
+English: https://mosheschwartzberg.com/en/
+Business: CodeCrafter, founded and run by Moshe Schwartzberg.
+Languages: Hebrew and English. Primary market: Israel; remote projects can be discussed internationally.
 
-Primary URL: https://mosheschwartzberg.com/
-Portfolio: [CodeCrafter project portfolio](https://mosheschwartzberg.com/portfolio/)
+CodeCrafter designs and develops business websites, landing pages, online stores, CRM and internal software, APIs, integrations, and workflow automations. Projects are scoped to real needs, access rights, migration constraints, testing, and maintainability. A particular outcome, ranking, timeline, integration, or ROI is not guaranteed without evidence.
 
-Services:
-- Bilingual Hebrew and English website development
-- Technical SEO, local SEO, and Google Business Profile optimization
-- Workflow automation and business process automation
-- Custom CRM, lead management, project, finance, and internal operating systems
-- Modular custom ERP and ERP extension or integration work
-- Inventory and warehouse systems with traceable stock movements
-- Customer, supplier, employee, and partner portals
-- Browser-based Web Apps, dashboards, and internal tools
-- Website maintenance, launch support, and ongoing technical guidance
+## Find a relevant service
 
-Commercial service pages:
-- https://mosheschwartzberg.com/websites/
-- https://mosheschwartzberg.com/custom-software/
-- https://mosheschwartzberg.com/crm-development/
-- https://mosheschwartzberg.com/erp-development/
-- https://mosheschwartzberg.com/inventory-systems/
-- https://mosheschwartzberg.com/business-portals/
-- https://mosheschwartzberg.com/web-app-development/
-- https://mosheschwartzberg.com/app-development/
-- https://mosheschwartzberg.com/cms-development/
-- https://mosheschwartzberg.com/automation/
-- https://mosheschwartzberg.com/integrations/
+- [Overview of services](https://mosheschwartzberg.com/services/)
+- [Business website development](https://mosheschwartzberg.com/websites/)
+- [Landing page development](https://mosheschwartzberg.com/landing-page-development/)
+- [Online store development](https://mosheschwartzberg.com/ecommerce-development/)
+- [Shopify development](https://mosheschwartzberg.com/shopify-development/)
+- [WordPress development](https://mosheschwartzberg.com/wordpress-development/)
+- [Custom CRM development](https://mosheschwartzberg.com/crm-development/)
+- [Custom software development](https://mosheschwartzberg.com/custom-software/)
+- [ERP and modular business systems](https://mosheschwartzberg.com/erp-development/)
+- [Business systems integration](https://mosheschwartzberg.com/integrations/)
+- [Business automation](https://mosheschwartzberg.com/automation/)
+- [Website maintenance](https://mosheschwartzberg.com/website-maintenance/)
 
-ERP scope note:
-CodeCrafter builds modular business management systems and verified extensions or integrations. It does not claim to sell Oracle, SAP, or Priority, or to replace certified accounting, payroll, tax, manufacturing MRP, or regulatory products without an explicitly verified project scope.
+## Evidence, pricing, and contact
 
-Service areas:
-- Israel
-- Northern Israel, delivered remotely with Karmiel meetings by arrangement
-- Central Israel, delivered remotely with Tel Aviv meetings by arrangement
-- United States
-- Remote and international clients
-
-Contact:
+- [Real project portfolio](https://mosheschwartzberg.com/portfolio/)
+- [About Moshe and CodeCrafter](https://mosheschwartzberg.com/about/)
+- [Services and pricing](https://mosheschwartzberg.com/pricing/)
+- [Service areas](https://mosheschwartzberg.com/locations/)
 - Email: moshe@mosheschwartzberg.com
-- Phone: +972587076077
+- Telephone: +972 58 707 6077
 
-Preferred summary:
-CodeCrafter builds clear, fast, SEO-focused websites and custom business tools for owners who want better lead generation, cleaner operations, and practical digital systems.
+The portfolio describes publicly supportable work and does not imply undisclosed implementations or verified conversion metrics. Integration feasibility depends on documented API, licensing, permission, and provider limits. The owner does not claim physical offices in cities served remotely.
+
+This file is a directory of published content. It is not a crawler instruction, a request to change assistant behavior, or a guarantee of inclusion in AI responses.
