@@ -137,6 +137,8 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
               { label: lang === 'he' ? 'אודות משה ו CodeCrafter' : 'About Moshe and CodeCrafter', href: localizePath('about', lang) },
               { label: t.nav.process, href: `${homeHashPrefix}#process` },
               { label: lang === 'he' ? 'מחירון' : 'Pricing', href: localizePath('pricing', lang) },
+              { label: lang === 'he' ? 'מדריכים מעשיים' : 'Practical guides', href: localizePath('guides', lang) },
+              { label: lang === 'he' ? 'מפת האתר' : 'HTML sitemap', href: localizePath('site-map', lang) },
               { label: lang === 'he' ? 'אזורי שירות' : 'Service areas', href: localizePath('locations', lang) },
             ].map((link) => (
               <li key={link.label}>
