@@ -127,10 +127,24 @@ section[id] { scroll-margin-top: 7rem; }
 .contact-form { position: relative; background: white; border: 1px solid #dbc1ba; border-radius: 1.25rem; padding: clamp(1.25rem, 4vw, 2rem); }
 .contact-form input, .contact-form textarea { width: 100%; border: 1px solid #a38a83; background: #fbf9f4; border-radius: .5rem; padding: .8rem 1rem; }
 .contact-form [aria-invalid='true'] { border: 2px solid #94442e; }
-.consent-panel { position: fixed; bottom: 3.5rem; inset-inline-start: 1rem; width: min(35rem, calc(100vw - 2rem)); z-index: 70; background: white; border: 1px solid #dbc1ba; padding: 1.25rem; box-shadow: 0 8px 40px #1b1c1929; border-radius: 1rem; max-height: 70svh; overflow-y: auto; }
-.consent-panel h2 { font-size: 1.25rem; margin-bottom: .5rem; }
-.consent-panel p { font-size: .9rem; margin-bottom: 1rem; }
-.consent-panel a { text-decoration: underline; }
+.consent-panel {
+  position: fixed;
+  bottom: max(.75rem, env(safe-area-inset-bottom));
+  inset-inline-start: .75rem;
+  width: min(21rem, calc(100vw - 1.5rem));
+  max-height: min(70svh, 25rem);
+  overflow-y: auto;
+  z-index: 70;
+  background: #fff;
+  border: 1px solid #e6dfd8;
+  border-radius: .65rem;
+  padding: .7rem .8rem;
+  box-shadow: 0 3px 16px rgb(27 28 25 / 12%);
+}
+.consent-panel p { font-size: .8rem; line-height: 1.45; margin: 0 0 .55rem; color: #4b4c4b; }
+.consent-panel a { text-decoration: underline; text-underline-offset: 2px; }
+.consent-actions { display: flex; flex-wrap: wrap; gap: .4rem; }
+.consent-actions button { font-size: .78rem; line-height: 1.2; min-height: 2.5rem; padding: .5rem .75rem; border-radius: .5rem; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
