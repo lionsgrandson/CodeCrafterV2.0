@@ -70,12 +70,12 @@ for (const url of sitemapUrls) {
   if (/noindex|none/i.test(robots)) fail(`${routePath} is unexpectedly noindex`)
   if (count(html, /<h1\b/gi) !== 1) fail(`${routePath} must have one h1`)
   // Every informative static image needs descriptive alt text and a real build asset.
-  for (const image of html.matchAll(/<img\\b[^>]*>/gi)) {
+  for (const image of html.matchAll(/<img\b[^>]*>/gi)) {
     const tag = image[0]
-    const alt = capture(tag, /\\balt=["']([^"']*)["']/i)
+    const alt = capture(tag, /\balt=["']([^"']*)["']/i)
     if (!alt) fail(`${routePath} has an image without descriptive alt text`)
-    const src = capture(tag, /\\bsrc=["']([^"']+)["']/i)
-    if (!baseUrl && src.startsWith('/') && !existsSync(join(distDir, src.replace(/^\\//, '')))) {
+    const src = capture(tag, /\bsrc=["']([^"']+)["']/i)
+    if (!baseUrl && src.startsWith('/') && !existsSync(join(distDir, src.replace(/^\//, '')))) {
       fail(`${routePath} references missing image ${src}`)
     }
   }
@@ -112,7 +112,7 @@ for (const locale of ['/', '/en/']) {
   const html = documents.get(routePath) ?? ''
   if (html.includes('Mahagony Israel') || html.includes('mahagonyisraeldidntpay')) fail('Mahagony was not removed from ' + routePath)
   if (/HIPAA.compliant|תואם HIPAA/i.test(html)) fail('Portfolio makes an unsupported compliance claim: ' + routePath)
-  const script = [...html.matchAll(/<script\\s+type=["']application\\/ld\\+json["'][^>]*>([\\s\\S]*?)<\\/script>/gi)][0]?.[1]
+  const script = [...html.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)][0]?.[1]
   if (!script) fail('portfolio structured data missing: ' + routePath)
   const list = JSON.parse(script)['@graph']?.find((item) => item['@type'] === 'ItemList')
   if (!list || list.numberOfItems !== list.itemListElement?.length || list.numberOfItems < 10) fail('portfolio structured data does not match its project listing: ' + routePath)
