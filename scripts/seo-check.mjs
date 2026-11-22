@@ -38,6 +38,7 @@ if (sitemapUrls.length < 20) fail(`expected a substantial public sitemap, found 
 if (new Set(sitemapUrls).size !== sitemapUrls.length) fail('sitemap contains duplicate URLs')
 if (sitemapUrls.some((url) => !url.startsWith(`${origin}/`))) fail('sitemap contains a non-canonical origin')
 if (sitemapUrls.some((url) => /blog\.html|amitStarProject|index\.html/i.test(url))) fail('sitemap contains a redirect or noindex route')
+if (/<lastmod>/i.test(sitemapText)) fail('sitemap must not claim a build-time modification date for every route')
 
 const documents = new Map()
 for (const url of sitemapUrls) {
@@ -137,7 +138,28 @@ for (const targetPath of ['/erp-development/', '/inventory-systems/', '/business
   if (inbound.length < 2) fail(`${targetPath} needs at least two prerendered inbound links, found ${inbound.length}`)
 }
 
+const buyerGuideChecks = [
+  ['/websites/', 'מה לבדוק לפני שמזמינים אתר לעסק', 'האם אתר חדש מבטיח הופעה במקום הראשון בגוגל'],
+  ['/crm-development/', 'בדיקות חובה לפני שמחליפים או בונים CRM', 'איך מונעים כפילות של לקוחות'],
+  ['/integrations/', 'בדיקות אמינות לחיבור API בין מערכות', 'איך מטפלים בתאריכים עם הפרשי שעות'],
+  ['/automation/', 'לפני שמפעילים אוטומציה על מידע אמיתי', 'אם שירות חיצוני לא זמין'],
+  ['/custom-software/', 'מה להכין להצעת מחיר לפיתוח מערכת', 'איך מחליטים מה להכניס לגרסה הראשונה'],
+  ['/ecommerce-development/', 'הכנות למעבר חנות בין פלטפורמות', 'האם קובץ CSV של WooCommerce'],
+  ['/shopify-development/', 'מה צריך לסגור לפני פיתוח חנות Shopify', 'מה ההבדל בין הקמת Shopify'],
+  ['/wordpress-development/', 'בדיקות WordPress לפני עלייה לאוויר', 'האם התקנת Yoast'],
+  ['/en/integrations/', 'Reliability checklist for system-to-system APIs', 'How do you handle different time zones'],
+  ['/en/websites/', 'Checklist before commissioning a business website', 'Will a new site guarantee first place'],
+  ['/en/crm-development/', 'Checks before replacing or building a CRM', 'How do you prevent duplicate customers'],
+]
+for (const [routePath, section, question] of buyerGuideChecks) {
+  const html = documents.get(routePath) ?? ''
+  if (!html.includes(section) || !html.includes(question)) fail(routePath + ' is missing its buyer guide or FAQ')
+}
+
 const home = documents.get('/')
+if (!home?.includes('id="choose-solution"') || !home?.includes('id="business-faq"')) fail('homepage must render buyer guide and accessible FAQ')
+if (!home?.includes('"@type":"FAQPage"')) fail('homepage FAQ must have visible matching FAQ structured data')
+if (documents.get('/portfolio/')?.includes('mahagonyisraeldidntpay')) fail('portfolio still contains the inappropriate Mahagony preview URL')
 if (!/mailto:moshe@mosheschwartzberg\.com/i.test(home ?? '')) fail('homepage/footer does not expose the CodeCrafter mailto link')
 if (!/tel:\+972587076077/i.test(home ?? '')) fail('homepage/footer does not expose the CodeCrafter telephone link')
 
