@@ -44,7 +44,11 @@ export function buildEmailJSTemplateParams(
   return {
     name,
     from_name: name,
-    email: email || 'Not provided',
+    // Some EmailJS templates use {{email}} directly in Reply-To. Keep it valid
+    // for phone-only enquiries; the message clearly states no email was supplied.
+    email: email || contact.email,
+    contact_email: email || 'Not provided',
+    to_email: contact.email,
     from_email: email || contact.email,
     reply_to: email || contact.email,
     phone: phone || 'Not provided',
