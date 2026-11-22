@@ -14,10 +14,8 @@ let resetPage: (() => void) | undefined
 let experiment: { experiment_id: string; experiment_variant: string } | undefined
 const leadIds = new Set<string>()
 const allowedKeys = new Set(['section_name', 'cta_location', 'cta_type', 'contact_channel', 'field_name', 'error_type', 'scroll_percent', 'duration_ms', 'status_code', 'metric_name', 'metric_value', 'metric_rating', 'target_service', 'experiment_id', 'experiment_variant', 'delivery_status'])
-const knownPaths = new Set(['', ...serviceSlugs, 'services', 'resume', 'about', 'pricing', 'portfolio', 'locations', 'guides', 'site-map',
+const knownPaths = new Set(['', ...serviceSlugs, 'services', 'resume', 'about', 'portfolio', 'locations', 'guides', 'site-map',
   'guides/planning-a-business-website', 'guides/planning-a-custom-crm', 'guides/woocommerce-to-shopify-migration',
-  'portfolio/aderet-argaman', 'portfolio/ilan-shachar', 'portfolio/green-therapy',
-  ...['sumsup', 'coderecovery', 'yuval-kadosh', 'project-orion', 'rainbow-asd', 'shimon-photography'].map(slug => `portfolio/${slug}`),
   ...['north', 'center', 'tel-aviv', 'haifa', 'jerusalem', 'beer-sheva', 'karmiel'].map(slug => `locations/${slug}`)])
 export function getPageContext() {
   const path = window.location.pathname.replace(/^\/en(?=\/|$)/, '').replace(/^\/+|\/+$/g, '')

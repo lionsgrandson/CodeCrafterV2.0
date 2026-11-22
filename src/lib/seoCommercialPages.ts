@@ -189,7 +189,7 @@ const he: SeoPage[] = [
     faq: [
       { question: 'אפשר לתחזק אתר שלא CodeCrafter בנתה?', answer: 'לעיתים כן. קודם בודקים את הקוד, הגישה, התלויות והמצב הקיים לפני שמתחייבים למסלול.' },
       { question: 'תחזוקה כוללת אחסון?', answer: 'לא בהכרח. אחסון ותחזוקה הם שירותים נפרדים אלא אם הוגדר אחרת בהצעה.' },
-      { question: 'יש מסלולי תחזוקה קבועים?', answer: 'כן. המחירון המרכזי מציג את מסלולי התחזוקה והמחירים הנוכחיים.' },
+      { question: 'יש מסלולי תחזוקה קבועים?', answer: 'ניתן לבדוק מסלול תחזוקה שמתאים לאתר ולקבל הצעת מחיר לפי היקף העבודה.' },
     ],
     relatedServices: ['websites', 'wordpress-development', 'shopify-development', 'custom-software', 'integrations'],
   },
@@ -211,7 +211,7 @@ const he: SeoPage[] = [
       { heading: 'מדידה לפני שיפור', paragraphs: ['אירועים כמו שליחת טופס, לחיצה על WhatsApp או טלפון יכולים להימדד. שיפור מבוסס על נתונים אמיתיים ולא על שינוי עיצוב אקראי בלבד.'] },
     ],
     faq: [
-      { question: 'כמה עולה דף נחיתה?', answer: 'המחירון המרכזי מציג את המחיר המנחה הנוכחי לדף נחיתה.' },
+      { question: 'כמה עולה דף נחיתה?', answer: 'העלות תלויה בתוכן, בעיצוב, בחיבורים ובדרישות הבדיקה. אפשר לקבל הצעה אחרי אפיון קצר.' },
       { question: 'אפשר לחבר דף נחיתה ל WhatsApp?', answer: 'כן. אפשר להוסיף פעולה ישירה ל WhatsApp וגם למדוד לחיצות בהתאם לכלי המדידה שנבחר.' },
       { question: 'דף נחיתה יכול להופיע בגוגל?', answer: 'כן אם הוא ציבורי ואינדקסבילי, אך אין הבטחה למיקום מסוים. לקידום מגוון נושאים אתר עם ארכיטקטורת תוכן רחבה יכול להתאים יותר.' },
     ],
@@ -408,7 +408,7 @@ const en: SeoPage[] = [
     faq: [
       { question: 'Can you maintain a site CodeCrafter did not build?', answer: 'Sometimes. Code, access, dependencies, and the current condition should be reviewed before a maintenance commitment.' },
       { question: 'Does maintenance include hosting?', answer: 'Not automatically. Hosting and maintenance are separate services unless an agreement states otherwise.' },
-      { question: 'Are recurring maintenance plans available?', answer: 'Yes. The central pricing page lists the current maintenance plans and published prices.' },
+      { question: 'Are recurring maintenance plans available?', answer: 'Yes. Maintenance options can be discussed based on the website, hosting and ongoing support requirements.' },
     ],
     relatedServices: ['websites', 'wordpress-development', 'shopify-development', 'custom-software', 'integrations'],
   },
@@ -430,7 +430,7 @@ const en: SeoPage[] = [
       { heading: 'Measure before changing', paragraphs: ['Events such as form submissions, WhatsApp clicks, or calls can be measured. Improvements should follow real data rather than arbitrary design changes alone.'] },
     ],
     faq: [
-      { question: 'How much does a landing page cost?', answer: 'The central pricing page lists the current published starting guidance for a landing page.' },
+      { question: 'How much does a landing page cost?', answer: 'The quote depends on scope, content, design, integrations and testing. Contact CodeCrafter for a tailored proposal.' },
       { question: 'Can a landing page connect to WhatsApp?', answer: 'Yes. It can include a direct WhatsApp action and clicks can be measured with the selected analytics setup.' },
       { question: 'Can a landing page rank in Google?', answer: 'It can be indexable, but no specific ranking can be guaranteed. A broader site architecture may be more suitable when the business needs to target several topics.' },
     ],

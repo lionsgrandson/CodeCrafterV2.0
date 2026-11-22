@@ -24,6 +24,8 @@ const legacyRedirects = new Map<string, string>([
   ['/blog/5-website-must-have', '/websites/'],
   ['/portfolio/idf-tech-maintenance-corps-v2', '/portfolio/'],
   ['/portfolio/nexa-automations-glass-ui', '/automation/'],
+  ['/pricing', '/services/'],
+  ['/en/pricing', '/en/services/'],
 ])
 
 const obsoleteAssetPaths = new Set(['/favicon.svg', '/manifest.json'])
@@ -57,9 +59,10 @@ app.use((req, res, next) => {
   const rawPath = req.path.replace(/\/$/, '') || '/'
   const pathname = rawPath.toLowerCase()
 
-  // Preserve the historical Rainbow URL while canonicalizing old mixed-case links.
-  if (pathname === '/portfolio/rainbow-asd' && rawPath !== '/portfolio/rainbow-asd') {
-    return res.redirect(301, '/portfolio/rainbow-asd/')
+  // Retired case-study pages now resolve to the consolidated portfolio.
+  const retiredCaseStudy = /^\/(en\/)?portfolio\/(sumsup|coderecovery|yuval-kadosh|rainbow-asd|project-orion|shimon-photography|aderet-argaman|ilan-shachar|green-therapy)$/i.test(pathname)
+  if (retiredCaseStudy) {
+    return res.redirect(301, pathname.startsWith('/en/') ? '/en/portfolio/' : '/portfolio/')
   }
 
   const redirectTarget = legacyRedirects.get(pathname)

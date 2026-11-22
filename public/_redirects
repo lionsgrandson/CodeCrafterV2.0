@@ -2,11 +2,33 @@
 /index.html / 301
 /portfolio/index.html /portfolio/ 301
 /about/index.html /about/ 301
-/portfolio/Rainbow-asd /portfolio/rainbow-asd/ 301
-/portfolio/Rainbow-asd/ /portfolio/rainbow-asd/ 301
+/portfolio/Rainbow-asd /portfolio/ 301
+/portfolio/Rainbow-asd/ /portfolio/ 301
 /blog/free-domains-new-era-internet /websites/ 301
 /blog/perfect-lighthouse /websites/ 301
 /blog/backend-code-horror /custom-software/ 301
 /blog/5-website-must-have /websites/ 301
 /portfolio/idf-tech-maintenance-corps-v2 /portfolio/ 301
 /portfolio/nexa-automations-glass-ui /automation/ 301
+
+# Retired editorial case-study URLs now lead to the consolidated portfolio.
+/portfolio/sumsup/ /portfolio/ 301
+/en/portfolio/sumsup/ /en/portfolio/ 301
+/portfolio/coderecovery/ /portfolio/ 301
+/en/portfolio/coderecovery/ /en/portfolio/ 301
+/portfolio/yuval-kadosh/ /portfolio/ 301
+/en/portfolio/yuval-kadosh/ /en/portfolio/ 301
+/portfolio/rainbow-asd/ /portfolio/ 301
+/en/portfolio/rainbow-asd/ /en/portfolio/ 301
+/portfolio/project-orion/ /portfolio/ 301
+/en/portfolio/project-orion/ /en/portfolio/ 301
+/portfolio/shimon-photography/ /portfolio/ 301
+/en/portfolio/shimon-photography/ /en/portfolio/ 301
+/portfolio/aderet-argaman/ /portfolio/ 301
+/en/portfolio/aderet-argaman/ /en/portfolio/ 301
+/portfolio/ilan-shachar/ /portfolio/ 301
+/en/portfolio/ilan-shachar/ /en/portfolio/ 301
+/portfolio/green-therapy/ /portfolio/ 301
+/en/portfolio/green-therapy/ /en/portfolio/ 301
+/pricing/ /services/ 301
+/en/pricing/ /en/services/ 301

@@ -41,28 +41,18 @@ CodeCrafter develops business websites, landing pages, ecommerce experiences, cu
 - [Business automation](https://mosheschwartzberg.com/automation/)
 - [Business bots](https://mosheschwartzberg.com/business-bots/)
 
-## Portfolio, evidence and identity
+## Portfolio, guides and identity
 
 - [Portfolio and project examples](https://mosheschwartzberg.com/portfolio/)
-- [Aderet & Argaman WordPress case study](https://mosheschwartzberg.com/portfolio/aderet-argaman/)
-- [Ilan Shachar financial-services website case study](https://mosheschwartzberg.com/portfolio/ilan-shachar/)
-- [Green Therapy wellness events website case study](https://mosheschwartzberg.com/portfolio/green-therapy/)
 - [Practical development guides](https://mosheschwartzberg.com/guides/)
 - [HTML sitemap](https://mosheschwartzberg.com/site-map/)
-- [SumsUp website case study](https://mosheschwartzberg.com/portfolio/sumsup/)
-- [CodeRecovery website case study](https://mosheschwartzberg.com/portfolio/coderecovery/)
-- [Yuval Kadosh website case study](https://mosheschwartzberg.com/portfolio/yuval-kadosh/)
-- [Rainbow ASD website case study](https://mosheschwartzberg.com/portfolio/rainbow-asd/)
-- [Shimon Cohen Photography portfolio case study](https://mosheschwartzberg.com/portfolio/shimon-photography/)
-- [Project Orion website case study](https://mosheschwartzberg.com/portfolio/project-orion/)
 - [About Moshe and CodeCrafter](https://mosheschwartzberg.com/about/)
 - [Business website planning guide](https://mosheschwartzberg.com/guides/planning-a-business-website/)
 - [Custom CRM planning guide](https://mosheschwartzberg.com/guides/planning-a-custom-crm/)
 - [WooCommerce to Shopify migration guide](https://mosheschwartzberg.com/guides/woocommerce-to-shopify-migration/)
 - [Service area information](https://mosheschwartzberg.com/locations/)
-- [Published pricing guidance](https://mosheschwartzberg.com/pricing/)
 - [Privacy](https://mosheschwartzberg.com/privacy/)
 
-**Source attribution:** The official source for these descriptions is CodeCrafter at https://mosheschwartzberg.com/. Each page has its own canonical URL. Project-specific claims should be checked against the linked case study or live site; unsupported metrics, compliance assertions and invented offices are deliberately excluded.
+**Source attribution:** The official source for these descriptions is CodeCrafter at https://mosheschwartzberg.com/. Each page has its own canonical URL. Project-specific claims should be checked against the linked live site; unsupported metrics, compliance assertions and invented offices are deliberately excluded.
 
 This optional text directory does not override crawler controls or assistant instructions. A listing here does not imply that Google, ChatGPT, Claude or another search provider will read or cite this website.

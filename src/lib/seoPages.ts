@@ -1,5 +1,4 @@
 import { localizePath, serviceLabels, serviceSlugs, type Language } from './seoRoutes'
-import { englishCaseStudyContent } from './seoEnglishCaseStudies'
 export { localizePath, serviceLabels, serviceSlugs, type Language } from './seoRoutes'
 
 export type PageSection = {
@@ -15,7 +14,7 @@ export type FaqItem = {
 }
 
 export type SeoPage = {
-  kind: 'service' | 'about' | 'case-study' | 'guide' | 'directory'
+  kind: 'service' | 'about' | 'guide' | 'directory'
   slug: string
   title: string
   description: string
@@ -25,7 +24,6 @@ export type SeoPage = {
   sections: PageSection[]
   faq?: FaqItem[]
   relatedServices?: string[]
-  relatedProjects?: string[]
   relatedGuides?: string[]
   image?: {
     src: string
@@ -59,7 +57,7 @@ const heServices: SeoPage[] = [
       },
       {
         heading: 'מה אפשר לבנות',
-        items: ['אתרי תדמית ושירות עם עמודים ייעודיים לכל תחום', 'דפי נחיתה לקמפיינים ומוצרים', 'קטלוגים, חנויות וחוויות מוצר', 'אתרים דו-לשוניים בעברית ובאנגלית', 'אזורי תוכן, תיק עבודות ומקרי בוחן', 'טפסים חכמים וחיבור ל-CRM, דוא״ל, WhatsApp ואנליטיקה'],
+        items: ['אתרי תדמית ושירות עם עמודים ייעודיים לכל תחום', 'דפי נחיתה לקמפיינים ומוצרים', 'קטלוגים, חנויות וחוויות מוצר', 'אתרים דו-לשוניים בעברית ובאנגלית', 'אזורי תוכן, תיק עבודות ופרויקטים', 'טפסים חכמים וחיבור ל-CRM, דוא״ל, WhatsApp ואנליטיקה'],
       },
       {
         heading: 'איך נראה תהליך הפיתוח',
@@ -81,7 +79,6 @@ const heServices: SeoPage[] = [
       { question: 'אפשר לחבר אתר קיים למערכות אחרות?', answer: 'ברוב המקרים כן. אפשר לחבר CRM, דיוור, סליקה, יומן, WhatsApp, מערכות ניהול ו-API, לאחר בדיקת ההרשאות והממשק הקיים.' },
     ],
     relatedServices: ['custom-software', 'automation'],
-    relatedProjects: ['sumsup', 'yuval-kadosh'],
   },
   {
     kind: 'service', slug: 'custom-software', title: 'פיתוח מערכות לעסקים בהתאמה לתהליך העבודה | CodeCrafter', description: 'פיתוח מערכות לעסקים בישראל: פורטלים, דשבורדים, ניהול תהליכים וכלים פנימיים שמרכזים מידע, מצמצמים עבודה ידנית ומתאימים לצמיחה.', eyebrow: 'שירותי CodeCrafter', h1: 'פיתוח מערכות לעסקים בהתאמה אישית',
@@ -99,7 +96,7 @@ const heServices: SeoPage[] = [
       { question: 'איך מתחילים מערכת גדולה?', answer: 'מגדירים תהליך מרכזי וגרסה ראשונה מדידה. לאחר שימוש אמיתי מוסיפים מודולים לפי ערך וסיכון, ולא לפי רשימת משאלות ארוכה.' },
       { question: 'אפשר להגדיר הרשאות שונות?', answer: 'כן. תפקידי משתמש והרשאות נקבעים באפיון ונאכפים בצד השרת, לא רק באמצעות הסתרת כפתורים.' },
       { question: 'האם המערכת יכולה לעבוד בטלפון?', answer: 'כן, אם תרחישי השימוש דורשים זאת. ממשק רספונסיבי או אפליקציה נבחרים לפי הקשר העבודה, החומרה והצורך בעבודה לא מקוונת.' },
-    ], relatedServices: ['crm-development', 'automation', 'app-development'], relatedProjects: ['sumsup', 'coderecovery'],
+    ], relatedServices: ['crm-development', 'automation', 'app-development'],
   },
   {
     kind: 'service', slug: 'automation', title: 'אוטומציה לעסקים וחיבור תהליכי עבודה | CodeCrafter', description: 'אוטומציה לעסקים שמחברת טפסים, CRM, דוא״ל, WhatsApp, מסמכים ו-AI כדי לצמצם משימות ידניות ולשמור על תהליך אמין ומבוקר.', eyebrow: 'שירותי CodeCrafter', h1: 'אוטומציה לעסקים שמפנה זמן לעבודה החשובה',
@@ -117,7 +114,7 @@ const heServices: SeoPage[] = [
       { question: 'האם אפשר להתחבר למערכת קיימת?', answer: 'כן כאשר יש API, Webhook, ייצוא מסודר או דרך מורשית אחרת. לפני התחייבות נבדקת הגישה בפועל.' },
       { question: 'מה קורה כשהאוטומציה נכשלת?', answer: 'מתכננים מראש לוג, התראה, ניסיונות חוזרים והעברה לאדם. כשל לא אמור להיעלם בשקט.' },
       { question: 'האם אפשר להשתמש ב-WhatsApp?', answer: 'כן באמצעות פתרון רשמי ומתאים לחשבון העסקי ולסוג ההודעות. לא עוקפים מגבלות של הפלטפורמה ולא משתמשים בפרטי התחברות לא מורשים.' },
-    ], relatedServices: ['custom-software', 'crm-development'], relatedProjects: ['sumsup'],
+    ], relatedServices: ['custom-software', 'crm-development'],
   },
   {
     kind: 'service', slug: 'crm-development', title: 'פיתוח מערכת CRM בהתאמה אישית לעסק | CodeCrafter', description: 'אפיון ופיתוח CRM מותאם לתהליך המכירה והשירות: לידים, לקוחות, משימות, הרשאות, דוחות ואינטגרציות במערכת אחת ברורה.', eyebrow: 'שירותי CodeCrafter', h1: 'פיתוח מערכת CRM בהתאמה אישית',
@@ -135,7 +132,7 @@ const heServices: SeoPage[] = [
       { question: 'אפשר להעביר נתונים מ-CRM ישן?', answer: 'בדרך כלל כן באמצעות API או ייצוא. לפני מעבר מבצעים מיפוי, ניקוי, גיבוי ובדיקת איכות.' },
       { question: 'אפשר להגביל מידע לפי עובד?', answer: 'כן. אפשר להגדיר הרשאות לפי תפקיד, צוות, לקוח או פעולה ולבדוק אותן בצד השרת.' },
       { question: 'המערכת מותאמת למובייל?', answer: 'כן כאשר העבודה מתבצעת בשטח או בטלפון. תרחישים קריטיים מקבלים ממשק מותאם וטאפ-טארגטים נוחים.' },
-    ], relatedServices: ['custom-software', 'automation'], relatedProjects: ['sumsup'],
+    ], relatedServices: ['custom-software', 'automation'],
   },
   {
     kind: 'service', slug: 'app-development', title: 'פיתוח אפליקציות לעסקים וללקוחות | CodeCrafter', description: 'פיתוח אפליקציות Web ומובייל לעסקים: אפיון, חוויית משתמש, API, נתונים, אינטגרציות ובדיקות — ממוצר ראשון ועד מערכת יציבה.', eyebrow: 'שירותי CodeCrafter', h1: 'פיתוח אפליקציות לעסקים סביב שימוש אמיתי',
@@ -153,7 +150,7 @@ const heServices: SeoPage[] = [
       { question: 'האם צריך גם Android וגם iPhone?', answer: 'לא תמיד. בוחנים את קהל היעד ואת הצורך ביכולות מכשיר. לעיתים Web או פתרון רב-פלטפורמי מספקים ערך מהר יותר.' },
       { question: 'אפשר להתחבר למערכת העסקית שלנו?', answer: 'כן אם קיימת דרך מורשית לגשת לנתונים. בודקים API, אבטחה, קצב ושדות לפני התכנון הסופי.' },
       { question: 'מי מפרסם את האפליקציה בחנות?', answer: 'אפשר ללוות את תהליך ההכנה וההגשה, אך חשבון המפתח והאישור הסופי שייכים לבעל העסק ולספק החנות.' },
-    ], relatedServices: ['custom-software', 'automation'], relatedProjects: ['coderecovery'],
+    ], relatedServices: ['custom-software', 'automation'],
   },
 ]
 
@@ -191,84 +188,32 @@ const sharedPages: Record<Language, SeoPage[]> = {
       sections: [
         { heading: 'מה CodeCrafter עושה', paragraphs: ['תחומי העבודה כוללים בניית אתרים, מערכות עסקיות, CRM ו-CMS, אינטגרציות, אוטומציות ואפליקציות. פרויקטים יכולים להיות חוויה ציבורית ללקוחות, כלי פנימי לצוות או חיבור בין מערכות קיימות.'] },
         { heading: 'גישה לעבודה עם לקוחות', items: ['אפיון בשפה ברורה והפרדה בין צורך לפיצ׳ר', 'התקדמות בשלבים שאפשר לראות ולבדוק', 'התאמה אמיתית לעברית RTL, אנגלית ומובייל', 'שקיפות לגבי תלות בספקים והרשאות חיצוניות', 'בדיקת המסלול בפועל ולא רק של קוד המקור'] },
-        { heading: 'ניסיון שמופיע בעבודות', paragraphs: ['תיק העבודות כולל אתרי שירות, קטלוגים, פלטפורמות עסקיות, פורטלים וחוויות תוכן בתחומים שונים. כל מקרה בוחן באתר מתאר רק מידע שניתן לבסס על הפרויקט הקיים; כאשר תוצאה מספרית או פרט טכנולוגי אינם ידועים, הם אינם מומצאים.'] },
+        { heading: 'ניסיון שמופיע בעבודות', paragraphs: ['תיק העבודות כולל אתרי שירות, קטלוגים, פלטפורמות עסקיות, פורטלים וחוויות תוכן בתחומים שונים. תיק העבודות מציג פרויקטים וכתובות פעילות. תוצאות מספריות או פרטי מימוש שלא אומתו אינם מוצגים כעובדה.'] },
         { heading: 'המטרה', paragraphs: ['המטרה של CodeCrafter היא לתת לעסק כלי שעובד איתו: מסביר את הערך, מחבר מידע, מפחית חיכוך ומאפשר לצמוח בצורה מסודרת. לפעמים זה אתר חדש, לפעמים מערכת, ולפעמים שינוי ממוקד בחיבור שכבר קיים.'] },
-      ], relatedServices: [...serviceSlugs], relatedProjects: ['sumsup', 'coderecovery'], image: { src: '/about-photo-800.webp', alt: 'משה שוורצברג, מייסד CodeCrafter', kind: 'photo' },
-    },
-    {
-      kind: 'case-study', slug: 'portfolio/sumsup', title: 'SumsUp | מקרה בוחן של פלטפורמת White Label', description: 'מקרה בוחן: הנוכחות הדיגיטלית של SumsUp, פלטפורמת White Label להכנת דוחות ותכנון מס עבור מנהלי חשבונות.', eyebrow: 'מקרה בוחן', h1: 'SumsUp — פלטפורמת White Label לשירותי מס',
-      intro: ['SumsUp פועלת עבור מנהלי חשבונות שרוצים להציע הכנת דוחות ותכנון מס תחת המותג שלהם, בעזרת צוות מומחים שפועל מאחורי הקלעים. הפרויקט נדרש להסביר מודל שירות לא שגרתי באופן מיידי ולשמור על תחושה מקצועית שמתאימה לקהל עסקי.', 'המטרה הייתה ליצור מסלול שמחבר בין הבעיה — הרחבת שירותים בלי להפנות לקוחות החוצה או לגייס צוות נוסף — לבין הדרך שבה הפלטפורמה מספקת פתרון.'],
-      sections: [
-        { heading: 'הבעיה והדרישות', paragraphs: ['השירות משלב מותג של משרד הנהלת החשבונות עם צוות ומערכת שפועלים מאחוריו. לכן היה חשוב להבהיר מי מקבל את השירות, מה נשאר תחת המותג של המשרד ואיך הערך שונה מהפניה לספק חיצוני.'] },
-        { heading: 'הפתרון שנבנה', items: ['מבנה תוכן שמציג את מודל ה-White Label בצורה הדרגתית', 'מסרים שמחברים בין צמיחה, שמירת לקוחות והפחתת עומס', 'חוויית אתר מקצועית וממוקדת לקהל של מנהלי חשבונות', 'קריאות לפעולה שמאפשרות לעבור מהסבר לשיחה'] },
-        { heading: 'היבטים טכניים ומוצריים', paragraphs: ['המימוש הציבורי נבנה כחוויה רספונסיבית עם היררכיית תוכן ברורה. באתר CodeCrafter מקרה הבוחן מקשר את הפרויקט לשירותי בניית אתרים, פיתוח מערכות ואוטומציה בלי לטעון לטכנולוגיות או למדדים שאינם מתועדים.'] },
-        { heading: 'התוצאה שניתן לאמת', paragraphs: ['קיימת נוכחות דיגיטלית ציבורית שמציגה את SumsUp כפלטפורמת White Label ומסבירה את ההצעה למנהלי חשבונות. נתוני המרה, הכנסות או חיסכון אינם מוצגים כאן משום שלא סופקו נתונים מאומתים.'] },
-      ], relatedServices: ['websites', 'custom-software', 'automation', 'crm-development'], image: { src: '/portfolio/sumsup-logo.png', alt: 'לוגו SumsUp, פלטפורמת White Label לשירותי מס' }, externalUrl: 'https://sumsup.co',
-    },
-    {
-      kind: 'case-study', slug: 'portfolio/coderecovery', title: 'CodeRecovery | מקרה בוחן לאתר שירות טכני', description: 'מקרה בוחן: אתר שירות ממוקד למעבדת שחזור מידע שמסביר תהליך מורכב ומוביל לקוחות לאבחון וליצירת קשר.', eyebrow: 'מקרה בוחן', h1: 'CodeRecovery — אתר שירות לשחזור מידע',
-      intro: ['שחזור מידע הוא שירות שבו הלקוח מגיע לעיתים בלחץ ועם מעט ידע טכני. הנוכחות הדיגיטלית צריכה לבנות אמון, להסביר מה עושים עכשיו ולהימנע מהבטחות שאי אפשר לתת לפני אבחון.', 'הפרויקט אורגן סביב מסלול פנייה ברור שמתרגם שירות מורכב לשפה נגישה ומוביל את הלקוח לצעד המתאים.'],
-      sections: [
-        { heading: 'הבעיה', paragraphs: ['לקוחות עם מידע קריטי צריכים להבין במהירות אם השירות רלוונטי, כיצד לשמור על המצב הקיים ומה צפוי בתהליך האבחון. עומס טכני או ניווט לא ברור עלולים להוסיף חיכוך ברגע רגיש.'] },
-        { heading: 'הפתרון', items: ['הצגת השירותים והמצבים הנפוצים במבנה ברור', 'שפה שמסבירה את התהליך בלי להבטיח תוצאה לפני בדיקה', 'קריאות לפעולה בולטות לפנייה ולאבחון', 'ממשק רספונסיבי שמאפשר לפנות גם מהטלפון'] },
-        { heading: 'מימוש', paragraphs: ['האתר הציבורי משמש כמרכז שירות ומחבר בין מידע מקצועי למסלול פנייה. צילום המסך המקומי נשמר באתר CodeCrafter כדי שמקרה הבוחן אינו תלוי רק בתמונה שמגיעה מדומיין חיצוני.'] },
-        { heading: 'תוצאה', paragraphs: ['קיים אתר שירות פעיל שמציג את מעבדת שחזור המידע ומספק מסלול ברור לאבחון. לא מוצגים שיעורי הצלחה או נתוני לידים משום שלא נמסרו נתונים מאומתים.'] },
-      ], relatedServices: ['websites', 'custom-software', 'app-development'], image: { src: '/portfolio/coderecovery-screenshot.webp', alt: 'צילום מסך של אתר CodeRecovery לשירותי שחזור מידע', kind: 'screenshot' }, externalUrl: 'https://simplyrecovery.netlify.app/',
-    },
-    {
-      kind: 'case-study', slug: 'portfolio/yuval-kadosh', title: 'יובל קדוש | מקרה בוחן לאתר תוכן ואימון', description: 'מקרה בוחן: בית דיגיטלי ליובל קדוש שמרכז הרצאה, אימון אישי, כתיבה וסיפור חיים בחוויה ברורה ומרגשת.', eyebrow: 'מקרה בוחן', h1: 'יובל קדוש — בית דיגיטלי לסיפור, הרצאה ואימון',
-      intro: ['יובל קדוש הוא אב, מרצה, כותב ומנטור. הפרויקט נדרש לאחד סיפור חיים, תוכן מעורר השראה, הרצאה ואימון אישי בתוך אתר אחד שמרגיש אישי אך נשאר קל לניווט.', 'המבנה נועד לעזור למבקר להבין את ההצעות השונות ואת החיבור ביניהן, ואז לבחור אם לקרוא, להכיר את ההרצאה או לפנות לתהליך אישי.'],
-      sections: [
-        { heading: 'האתגר', paragraphs: ['כאשר לאדם יש כמה תחומי פעילות, אתר עלול להפוך לאוסף קטעים ללא מסלול. היה צורך לשמור על הקול האישי וליצור היררכיה שמבחינה בין הסיפור, ההרצאה והשירותים.'] },
-        { heading: 'הפתרון', items: ['בית מרכזי לכל תחומי הפעילות', 'היררכיית תוכן שמחברת סיפור אישי להצעה מקצועית', 'חוויה רספונסיבית בעברית', 'מסלולי פנייה לפי תחום העניין של המבקר'] },
-        { heading: 'תוצאה שניתן לראות', paragraphs: ['האתר הציבורי מרכז את הפעילות של יובל קדוש ומאפשר להכיר את הסיפור והשירותים במקום אחד. אין כאן טענה למדדי המרה או תוצאות עסקיות שלא סופקו.'] },
-      ], relatedServices: ['websites'], image: { src: '/portfolio/yuval-kadosh-logo.png', alt: 'לוגו האתר של יובל קדוש' }, externalUrl: 'https://ykadosh.co.il',
-    },
-    {
-      kind: 'case-study', slug: 'portfolio/project-orion', title: 'Project Orion | מקרה בוחן לאתר ייעוץ', description: 'מקרה בוחן: אתר תדמית דיסקרטי לייעוץ אסטרטגי, מודיעין עסקי, סייבר ופתרונות אבטחה.', eyebrow: 'מקרה בוחן', h1: 'Project Orion — נוכחות דיגיטלית דיסקרטית',
-      intro: ['Project Orion מציגה שירותים בתחומי ייעוץ אסטרטגי, מודיעין עסקי, סייבר ואבטחה. האתגר היה להציג מומחיות רגישה ומורכבת בצורה סמכותית ומאופקת, בלי להעמיס פרטים ובלי לפגוע בתחושת הדיסקרטיות.', 'האתר נבנה כנוכחות תדמיתית שמאפשרת ללקוח מתאים להבין את תחומי הפעילות ולעבור ליצירת קשר.'],
-      sections: [
-        { heading: 'דרישות עסקיות', items: ['שפה ויזואלית מקצועית ומאופקת', 'הפרדה ברורה בין תחומי השירות', 'בניית אמון ללא טענות לא מבוססות', 'מסלול קצר ליצירת קשר'] },
-        { heading: 'הפתרון', paragraphs: ['המידע אורגן סביב תחומי המומחיות והוצג בחוויה רספונסיבית. העיצוב תומך באופי השירות ובקריאות, והקישורים מאפשרים להתקדם ממידע כללי לפנייה.'] },
-        { heading: 'גבולות המידע', paragraphs: ['המקרה מתאר את הנוכחות הציבורית בלבד. פרטי לקוחות, תהליכים פנימיים, טכנולוגיות אבטחה או תוצאות מסחריות שאינם פומביים אינם מוצגים ואינם מומצאים.'] },
-      ], relatedServices: ['websites', 'custom-software'], image: { src: '/portfolio/project-orion-logo.svg', alt: 'לוגו Project Orion' }, externalUrl: 'https://project-orion.mosheschwartzberg.workers.dev/',
+      ], relatedServices: [...serviceSlugs], image: { src: '/about-photo-800.webp', alt: 'משה שוורצברג, מייסד CodeCrafter', kind: 'photo' },
     },
   ],
   en: [],
 }
 
-const englishPortfolioImageAlt: Record<string, string> = {
-  about: 'Portrait of Moshe Schwartzberg, founder of CodeCrafter',
-  'portfolio/sumsup': 'SumsUp white-label tax services platform logo',
-  'portfolio/coderecovery': 'Screenshot of the CodeRecovery data recovery service website',
-  'portfolio/yuval-kadosh': 'Yuval Kadosh speaking and coaching website logo',
-  'portfolio/project-orion': 'Project Orion strategic consulting logo',
-}
-
-sharedPages.en = sharedPages.he.map((page) => ({
+// The About profile remains bilingual; portfolio projects are shown as cards, not separate case-study routes.
+sharedPages.en = sharedPages.he.map(page => ({
   ...page,
-  image: page.image ? { ...page.image, alt: englishPortfolioImageAlt[page.slug] ?? page.image.alt } : undefined,
-  title: page.kind === 'about' ? 'Moshe Schwartzberg | Founder of CodeCrafter' : `${page.h1} | CodeCrafter case study`,
-  description: page.kind === 'about' ? 'Meet Moshe Schwartzberg, founder of CodeCrafter, and the practical approach behind custom websites, business systems, CRM, automation, and apps.' : `A factual CodeCrafter case study covering the challenge, solution, public implementation, and relevant services for ${page.h1}.`,
-  eyebrow: page.kind === 'about' ? 'About' : 'Case study',
-  h1: page.kind === 'about' ? 'Moshe Schwartzberg, founder of CodeCrafter' : page.h1.replace(' — ', ' — '),
-  intro: page.kind === 'about'
-    ? ['CodeCrafter is the development practice founded by Moshe Schwartzberg. It helps businesses turn a concrete need—a website, system, CRM workflow, automation, or app—into a clear and maintainable digital product.', 'The work combines business analysis, user experience, and implementation. Projects start with the people and process involved, then select technology that supports the desired outcome.']
-    : ['This case study documents a public CodeCrafter project using information visible in the existing portfolio and live project. It explains the business context, the design problem, and the solution without inventing metrics or private implementation details.', 'Where results, technologies, or integrations have not been verified, they are deliberately omitted.'],
-  sections: page.kind === 'about'
-    ? [
-        { heading: 'What CodeCrafter does', paragraphs: ['Work includes business websites, custom software, CRM and CMS development, integrations, automation, and applications for customers or internal teams.'] },
-        { heading: 'Approach to client work', items: ['Plain-language discovery', 'Visible, testable delivery stages', 'Hebrew RTL, English LTR, mobile, and accessibility checks', 'Clear separation between local work and externally approved services', 'Runtime verification before release claims'] },
-        { heading: 'Experience shown in the portfolio', paragraphs: ['The portfolio spans service sites, catalogs, platforms, portals, and content experiences. Case studies state only what can be supported by available project information.'] },
-        { heading: 'Purpose', paragraphs: ['CodeCrafter aims to deliver a working business tool: something that communicates value, connects information, reduces friction, and can evolve responsibly.'] },
-      ]
-    : [
-        { heading: 'The original problem', paragraphs: ['The project needed a clearer digital path between the client’s offering and the people it serves. The public experience had to establish context quickly and guide visitors toward the appropriate next step.'] },
-        { heading: 'The solution', items: ['A focused information hierarchy', 'Responsive presentation for phone and desktop', 'Clear service or product positioning', 'Meaningful routes from explanation to contact'] },
-        { heading: 'Implementation and boundaries', paragraphs: ['The public project provides the evidence for this case study. Private data, unverified technology choices, conversion rates, and business statistics are not claimed.'] },
-        { heading: 'Relevant CodeCrafter services', paragraphs: ['The project connects to the service pages listed below, where the planning and development approach is explained in more depth.'] },
-      ],
-  ...englishCaseStudyContent[page.slug],
+  image: page.image ? { ...page.image, alt: 'Portrait of Moshe Schwartzberg, founder of CodeCrafter' } : undefined,
+  title: 'Moshe Schwartzberg | Founder of CodeCrafter',
+  description: 'Meet Moshe Schwartzberg, founder of CodeCrafter, and the practical approach behind custom websites, business systems, CRM, automation and apps.',
+  eyebrow: 'About',
+  h1: 'Moshe Schwartzberg, founder of CodeCrafter',
+  intro: [
+    'CodeCrafter is the development practice founded by Moshe Schwartzberg. It helps businesses turn a concrete need—a website, system, CRM workflow, automation or app—into a clear and maintainable digital product.',
+    'The work combines business analysis, user experience and implementation. Projects start with the people and process involved, then select technology that supports the desired outcome.',
+  ],
+  sections: [
+    { heading: 'What CodeCrafter does', paragraphs: ['Work includes business websites, custom software, CRM and CMS development, integrations, automation and applications for customers or internal teams.'] },
+    { heading: 'Approach to client work', items: ['Plain-language discovery', 'Visible, testable delivery stages', 'Hebrew RTL and English LTR presentation', 'Mobile and accessibility checks', 'Runtime verification before release claims'] },
+    { heading: 'Work in the portfolio', paragraphs: ['The portfolio spans service sites, stores, platforms, portals and content experiences. Portfolio entries link directly to the public examples.'] },
+    { heading: 'Purpose', paragraphs: ['CodeCrafter aims to deliver a working business tool that communicates value, connects information, reduces friction and can evolve responsibly.'] },
+  ],
 }))
 
 export const pagesByLanguage: Record<Language, SeoPage[]> = {

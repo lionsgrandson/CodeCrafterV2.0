@@ -1,11 +1,10 @@
 
-import { ArrowLeft, ArrowRight, Star } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../App'
 import { WordReveal } from './WordReveal'
 import { localizePath } from '../lib/seoRoutes'
 import { additionalPortfolioProjects } from '../lib/additionalPortfolioProjects'
-import { portfolioCaseStudySlugsByIndex, additionalCaseStudySlugsById } from '../lib/portfolioCaseStudyLinks'
 
 type ProjectMediaProps = {
   src?: string
@@ -69,9 +68,6 @@ type PortfolioProps = {
 }
 
 const normalizePortfolioLink = (link?: string) => {
-  if (link === 'https://rainbowasdv2.netlify.app/') {
-    return 'https://rainbow-asd.com/'
-  }
   if (link === 'https://eclectic-marigold-0fe508.netlify.app/') {
     return 'https://shimonphotos.com/'
   }
@@ -95,26 +91,20 @@ export function Portfolio({
     { src: '/portfolio/project-orion-logo.svg' },
     { src: '/portfolio/shimon-photography-logo.jpeg' },
     { src: '/portfolio/aderet-argaman-logo.png' },
-    {
-      src: '/portfolio/coderecovery-screenshot.webp',
-      kind: 'screenshot' as const,
-    },
     { src: '/portfolio/ai-pro-logo.jpeg' },
-    { src: '/portfolio/omnifood-logo.png' },
+    { src: 'https://omnifood.dev/img/omnifood-logo.png' },
   ]
 
   const existingProjects = t.portfolio.projects.map((project, idx) => {
     const sourceLink = normalizePortfolioLink(project.link)
     const externalLink = sourceLink
-    const caseStudySlug = portfolioCaseStudySlugsByIndex[idx]
-    const caseStudyLink = caseStudySlug ? localizePath(caseStudySlug, lang) : undefined
 
     return {
       ...project,
       media: projectMedia[idx],
       externalLink,
-      link: caseStudyLink || externalLink,
-      featured: [0, 1, 3, 9].includes(idx),
+      link: externalLink,
+      featured: [0, 8].includes(idx),
     }
   })
 
@@ -125,8 +115,8 @@ export function Portfolio({
       desc: project.description[lang],
       media: { src: project.image || undefined, kind: project.id === 'ilan-shachar' ? 'logo' as const : 'screenshot' as const },
       externalLink: project.link,
-      link: additionalCaseStudySlugsById[project.id] ? localizePath(additionalCaseStudySlugsById[project.id], lang) : project.link,
-      featured: project.id === 'codesite' || project.id === 'green-therapy',
+      link: project.link,
+      featured: project.id === 'ilan-shachar',
     })),
   ]
 
@@ -225,14 +215,6 @@ export function Testimonials() {
               key={idx}
               className={`testimonial-card p-4 md:p-5 rounded-xl flex flex-col shadow-sm border-t-4 transition-all duration-[200ms] hover:-translate-y-1 hover:shadow-lg ${review.featured ? 'bg-surface-container-high border-primary' : 'bg-surface-container-low border-transparent'}`}
             >
-              <div className='flex text-primary mb-2 md:mb-3'>
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className='w-3.5 h-3.5 md:w-4 md:h-4 fill-yellow-500 text-yellow-500'
-                  />
-                ))}
-              </div>
               <p className='testimonial-copy text-xs md:text-sm font-light text-on-surface-variant mb-3 md:mb-4 flex-1 leading-snug italic'>
                 {review.text}
               </p>
@@ -241,9 +223,13 @@ export function Testimonials() {
                   {review.name.charAt(0)}
                 </div>
                 <div>
-                  <p className='font-bold text-on-surface font-headline tracking-tight'>
-                    {review.name}
-                  </p>
+                  {'sourceUrl' in review && typeof review.sourceUrl === 'string' ? (
+                    <a href={review.sourceUrl} target='_blank' rel='noopener noreferrer' className='font-bold text-on-surface font-headline tracking-tight underline underline-offset-2 hover:text-primary'>
+                      {review.name}
+                    </a>
+                  ) : (
+                    <p className='font-bold text-on-surface font-headline tracking-tight'>{review.name}</p>
+                  )}
                   <p className='text-xs text-secondary uppercase font-bold tracking-widest'>
                     {review.role}
                   </p>

@@ -61,7 +61,8 @@ const crawlerRoutes = [
   '/business-portals/',
   '/web-app-development/',
   '/en/',
-  '/pricing/',
+  '/portfolio/',
+  '/guides/',
   '/index.html',
 ]
 
@@ -124,14 +125,9 @@ const duplicateUrls = sitemapUrls.filter((url, index) => sitemapUrls.indexOf(url
 if (duplicateUrls.length === 0) pass('sitemap has no duplicate URLs')
 else fail(`sitemap has duplicate URLs: ${[...new Set(duplicateUrls)].join(', ')}`)
 
-for (const expectedCaseStudy of [
-  `${baseUrl}/portfolio/rainbow-asd/`,
-  `${baseUrl}/portfolio/shimon-photography/`,
-  `${baseUrl}/en/portfolio/rainbow-asd/`,
-  `${baseUrl}/en/portfolio/shimon-photography/`,
-]) {
-  if (sitemapUrls.includes(expectedCaseStudy)) pass(`new case study is in sitemap: ${expectedCaseStudy}`)
-  else fail(`new case study missing from sitemap: ${expectedCaseStudy}`)
+for (const retired of ['/portfolio/rainbow-asd/', '/portfolio/shimon-photography/', '/en/portfolio/rainbow-asd/', '/en/portfolio/shimon-photography/', '/pricing/', '/en/pricing/']) {
+  if (sitemapUrls.includes(`${baseUrl}${retired}`)) fail('retired page remains in sitemap: ' + retired)
+  else pass('retired page excluded from sitemap: ' + retired)
 }
 
 for (const url of sitemapUrls) {
@@ -177,17 +173,20 @@ for (const obsoletePath of ['/favicon.svg', '/manifest.json']) {
   }
 }
 
-const rainbow = await request('/portfolio/rainbow-asd/')
-if (rainbow.response.ok && getCanonical(rainbow.body) === `${baseUrl}/portfolio/rainbow-asd/`) {
-  pass('historical Rainbow URL now serves a canonical case study')
+const rainbow = await request('/portfolio/rainbow-asd/', { redirect: 'manual' })
+if ([301, 308].includes(rainbow.response.status) && new URL(rainbow.response.headers.get('location') || '', baseUrl).pathname === '/portfolio/') {
+  pass('retired Rainbow case-study URL permanently redirects to the portfolio')
 } else {
-  fail(`Rainbow case study is not serving canonically (${rainbow.response.status})`)
+  fail('retired Rainbow URL did not redirect to /portfolio/')
 }
 
 const redirectChecks = new Map([
-  ['/portfolio/Rainbow-asd', '/portfolio/rainbow-asd/'],
-  ['/portfolio/Rainbow-asd/', '/portfolio/rainbow-asd/'],
+  ['/portfolio/Rainbow-asd', '/portfolio/'],
+  ['/portfolio/Rainbow-asd/', '/portfolio/'],
   ['/blog.html', '/websites/'],
+  ['/pricing/', '/services/'],
+  ['/en/pricing/', '/en/services/'],
+  ['/en/portfolio/rainbow-asd/', '/en/portfolio/'],
   ['/portfolio/index.html', '/portfolio/'],
   ['/about/index.html', '/about/'],
   ['/blog/free-domains-new-era-internet', '/websites/'],

@@ -9,7 +9,7 @@ const he: SeoPage = {
   eyebrow: 'כל השירותים במקום אחד',
   h1: 'שירותי פיתוח לעסקים',
   intro: [
-    'בחרו לפי מה שהעסק צריך להשיג — אתר ומכירה, מערכת ניהול, אפליקציה או חיבור ואוטומציה בין מערכות. משם אפשר להיכנס לשירות המדויק או ישר למחירון.',
+    'בחרו לפי מה שהעסק צריך להשיג — אתר ומכירה, מערכת ניהול, אפליקציה או חיבור ואוטומציה בין מערכות. משם אפשר להיכנס לשירות המדויק או לעבור ישירות ליצירת קשר.',
   ],
   sections: [
     { heading: 'נוכחות דיגיטלית ומכירה', items: ['אתרים ודפי נחיתה', 'חנויות ecommerce', 'Shopify', 'WordPress', 'Wix', 'תחזוקה ושיפור אתרים'] },
@@ -18,7 +18,7 @@ const he: SeoPage = {
     { heading: 'איך לבחור', paragraphs: ['אתר מתאים להצגה, תוכן ושיווק. CRM מרכז קשרי לקוחות ומכירות. ERP מחבר כמה תחומי תפעול. Web App או תוכנה מותאמת מטפלים בתהליך ייעודי. אפליקציית מובייל מתאימה כאשר חוויית המכשיר, התראות או עבודה בשטח מרכזיות. API ואינטגרציות מחברים את המערכות כך שהמידע לא יעבור ידנית.'] },
   ],
   faq: [
-    { question: 'איפה רואים מחירים?', answer: 'המחירון המרכזי מקושר מהעמוד הזה ומכל עמוד שירות. הוא מציג את המחירים והטווחים שפורסמו כרגע.' },
+    { question: 'איך מקבלים הצעת מחיר?', answer: 'אחרי תיאור קצר של הפרויקט אפשר לתאם שיחת אפיון ולקבל הצעה לפי הדרישות וההיקף בפועל.' },
     { question: 'צריך לדעת מראש איזה שירות להזמין?', answer: 'לא. אפשר להתחיל מהבעיה העסקית ולבחור את הפתרון הקטן והברור ביותר שמתאים לתהליך.' },
     { question: 'אפשר לשלב כמה שירותים בפרויקט אחד?', answer: 'כן. לדוגמה אתר יכול להתחבר ל CRM, אוטומציה ו API, או ERP יכול להתחבר לפורטל, אפליקציה ומלאי. ההיקף מוגדר לפי הצורך בפועל.' },
   ],
@@ -33,7 +33,7 @@ const en: SeoPage = {
   eyebrow: 'All services in one place',
   h1: 'Website, software, and automation services',
   intro: [
-    'Choose by what the business needs to achieve — website and commerce, a management system, an app, or connections and automation. From there you can open the exact service or go straight to pricing.',
+    'Choose by what the business needs to achieve — website and commerce, a management system, an app, or connections and automation. From there you can open the exact service or start a conversation about the project.',
   ],
   sections: [
     { heading: 'Digital presence and commerce', items: ['Websites and landing pages', 'Ecommerce stores', 'Shopify', 'WordPress', 'Wix', 'Website maintenance and improvement'] },
@@ -42,7 +42,7 @@ const en: SeoPage = {
     { heading: 'How to choose', paragraphs: ['A website is primarily for presentation, content, and marketing. CRM centralizes customer and sales work. ERP connects several operational areas. A web app or custom system handles a dedicated workflow. A mobile app fits when device experience, notifications, or field use are central. APIs and integrations connect these systems so data does not need to move manually.'] },
   ],
   faq: [
-    { question: 'Where can I see prices?', answer: 'The central pricing guide is linked from this page and every service page. It contains the prices and guidance currently published.' },
+    { question: 'How do I request a project quote?', answer: 'Describe the need through the contact form so we can review the required scope, integrations and timeline before preparing a proposal.' },
     { question: 'Do I need to know which service to buy before contacting you?', answer: 'No. Start with the business problem and choose the smallest clear solution that fits the workflow.' },
     { question: 'Can several services be combined in one project?', answer: 'Yes. A website can connect to CRM, automation, and APIs, while an ERP can connect to a portal, app, and inventory workflow. Scope follows the actual requirement.' },
   ],
