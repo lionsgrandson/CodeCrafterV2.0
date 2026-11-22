@@ -361,15 +361,6 @@ export const translations = {
           link: 'https://www.aderet-store.com/',
         },
         {
-          title: 'CodeRecovery',
-          desc: 'A service website for a data recovery laboratory, with readable explanations, service categories, and a path to request an assessment.',
-          before:
-            'An urgent technical service that needed to establish trust immediately',
-          after:
-            'A clear inquiry experience that guides clients to the right diagnosis',
-          link: 'https://simplyrecovery.netlify.app/',
-        },
-        {
           title: 'AI Pro',
           desc: 'An engineering services website organizing calibration, validation, engineering, and repairs with navigation by service area and contact details.',
           before: 'A range of technical services ready for a clearer structure',
