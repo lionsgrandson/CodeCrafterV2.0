@@ -73,6 +73,6 @@ export const additionalPortfolioProjects = [
       "en": "A public Green Therapy website presenting corporate wellness events with massages, ice baths, workshops and a smoothie bar, plus its Beit Dagan venue and private treatments."
     },
     "link": "https://greentherapy.co.il/",
-    "image": ""
+    "image": "https://greentherapy.co.il/assets/green-therapy-logo.webp"
   }
 ] as const

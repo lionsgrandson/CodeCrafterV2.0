@@ -90,8 +90,6 @@ export function Portfolio({
     { src: '/portfolio/big-sale-logo.jpeg' },
     { src: '/portfolio/project-orion-logo.svg' },
     { src: '/portfolio/shimon-photography-logo.jpeg' },
-    { src: '/portfolio/aderet-argaman-logo.png' },
-    { src: '/portfolio/ai-pro-logo.jpeg' },
     { src: 'https://omnifood.dev/img/omnifood-logo.png' },
   ]
 
@@ -104,7 +102,7 @@ export function Portfolio({
       media: projectMedia[idx],
       externalLink,
       link: externalLink,
-      featured: [0, 8].includes(idx),
+      featured: externalLink === 'https://shimonphotos.com/',
     }
   })
 
@@ -113,10 +111,10 @@ export function Portfolio({
     ...additionalPortfolioProjects.map(project => ({
       title: project.title[lang],
       desc: project.description[lang],
-      media: { src: project.image || undefined, kind: project.id === 'ilan-shachar' ? 'logo' as const : 'screenshot' as const },
+      media: { src: project.image || undefined, kind: ['ilan-shachar', 'green-therapy'].includes(project.id) ? 'logo' as const : 'screenshot' as const },
       externalLink: project.link,
       link: project.link,
-      featured: project.id === 'ilan-shachar',
+      featured: ['ilan-shachar', 'green-therapy'].includes(project.id),
     })),
   ]
 
