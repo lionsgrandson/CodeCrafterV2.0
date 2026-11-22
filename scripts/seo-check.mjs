@@ -192,6 +192,47 @@ for (const [routePath, section, question] of buyerGuideChecks) {
   if (!html.includes(section) || !html.includes(question)) fail(routePath + ' is missing its buyer guide or FAQ')
 }
 
+// Verify the expanded bilingual editorial content, not just template-level metadata.
+const additionalServiceGuides = [
+  ['app-development', 'מה נדרש לפני שמתחילים לפתח אפליקציה', 'Before building a business app'],
+  ['cms-development', 'איך נראה אפיון של מערכת ניהול תוכן', 'What to specify for a content management system'],
+  ['business-bots', 'בדיקות לפני חיבור בוט ללקוחות', 'Checks before connecting a bot to customers'],
+  ['erp-development', 'לפני שמתחילים מערכת ERP מותאמת', 'Define ERP scope before development'],
+  ['inventory-systems', 'בדיקות לפני מערכת ניהול מלאי ומחסן', 'Inventory management requirements to clarify'],
+  ['business-portals', 'מה חשוב לתכנן בפורטל לקוחות או עובדים', 'What a customer or employee portal must define'],
+  ['web-app-development', 'איך בוחרים ארכיטקטורה ל-Web App', 'Questions before designing a web application'],
+  ['api-development', 'תכולה של API שמיועד לשימוש אמיתי', 'What a usable production API includes'],
+  ['crm-integrations', 'איך מגדירים חיבור CRM תקין', 'Define a reliable CRM connection'],
+  ['crm-migration', 'מה צריך לקבל לפני מיגרציית CRM', 'What to collect before a CRM migration'],
+  ['wix-development', 'מתי לשפר Wix ומתי לשקול מעבר', 'Improve Wix or migrate: what to assess'],
+  ['website-maintenance', 'מה לכלול בהסכם תחזוקה לאתר', 'What to include in a maintenance agreement'],
+  ['landing-page-development', 'מה הופך דף נחיתה לבר-מדידה', 'What makes a landing page measurable'],
+]
+for (const [slug, hebrewHeading, englishHeading] of additionalServiceGuides) {
+  for (const [lang, heading] of [['he', hebrewHeading], ['en', englishHeading]]) {
+    const routePath = `${lang === 'he' ? '/' : '/en/'}${slug}/`
+    if (!documents.get(routePath)?.includes(heading)) fail(`${routePath} missing original, language-specific buyer content`)
+  }
+}
+
+for (const [routePath, html] of documents) {
+  if (html.includes('data-page-slug=') && !html.includes('mosheschwartzberg.com' + routePath)) {
+    fail(`${routePath} is missing a user-visible, canonical source reference`)
+  }
+  const heading = capture(html, /<h1[^>]*>([\s\S]*?)<\/h1>/i)
+  if (routePath.startsWith('/en/') && /[\u0590-\u05ff]/.test(heading)) {
+    fail(`${routePath} contains a Hebrew heading on an English page`)
+  }
+}
+
+const llmsText = await readAsset('/llms.txt')
+const fullDirectory = await readAsset('/llms-full.txt')
+if (!llmsText.includes(`${origin}/llms-full.txt`)) fail('llms.txt does not reference the complete directory')
+if (!fullDirectory.includes('# CodeCrafter — Public source directory')) fail('llms-full.txt is missing the source identity')
+for (const sitemapUrl of sitemapUrls.filter((url) => !/\/(privacy|terms)\/$/.test(url))) {
+  if (!fullDirectory.includes(`](${sitemapUrl})`)) fail(`llms-full.txt omits a canonical page: ${sitemapUrl}`)
+}
+
 const home = documents.get('/')
 if (!home?.includes('id="choose-solution"') || !home?.includes('id="business-faq"')) fail('homepage must render buyer guide and accessible FAQ')
 if (!home?.includes('"@type":"FAQPage"')) fail('homepage FAQ must have visible matching FAQ structured data')
