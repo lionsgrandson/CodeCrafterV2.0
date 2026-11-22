@@ -410,7 +410,7 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://w
   .join('\n')}\n</urlset>\n`
 await writeFile(path.join(distDir, 'sitemap.xml'), sitemap)
 
-const cleanDirectoryText = (value: string) => value.replace(/\\s+/g, ' ').trim()
+const cleanDirectoryText = (value: string) => value.replace(/\s+/g, ' ').trim()
 const sourceDirectory = [
   '# CodeCrafter — Public source directory',
   '',
@@ -434,7 +434,7 @@ const sourceDirectory = [
   '',
   'Service pages describe available or potential project scopes, not proof that every feature is deployed in a particular client project. Case studies describe documented public work. Check the linked canonical page for current details. There are no hidden instructions to AI assistants.',
   '',
-].join('\\n')
+].join('\n')
 await writeFile(path.join(distDir, 'llms-full.txt'), sourceDirectory)
 
 await rm(path.join(distDir, 'server'), { recursive: true, force: true })
