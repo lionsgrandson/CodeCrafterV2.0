@@ -49,11 +49,11 @@ for (const status of ['401', '403', '404', '200']) {
 expect(/X-Robots-Tag\s+"noindex"/i.test(rootHtaccess), 'Apache adds X-Robots-Tag noindex to non-page assets')
 expect(rootHtaccess.includes('RewriteRule ^favicon\\.svg$ - [R=410,L]'), 'Apache returns 410 for obsolete favicon.svg')
 expect(rootHtaccess.includes('RewriteRule ^manifest\\.json$ - [R=410,L]'), 'Apache returns 410 for obsolete manifest.json')
-expect(rootHtaccess.includes('RewriteRule ^portfolio/Rainbow-asd/?$ /portfolio/rainbow-asd/ [R=301,L,NE]'), 'Apache canonicalizes the historical mixed-case Rainbow URL')
+expect(rootHtaccess.includes('RewriteRule ^portfolio/(sumsup|coderecovery|yuval-kadosh|rainbow-asd|'), 'Apache redirects old case-study URLs into the consolidated portfolio')
 expect(/X-Robots-Tag:\s*noindex/i.test(headers), 'static-host headers include noindex protection')
 expect(server.includes("res.setHeader('X-Robots-Tag', 'noindex')"), 'Node server adds X-Robots-Tag noindex')
 expect(server.includes("new Set(['/favicon.svg', '/manifest.json'])"), 'Node server treats obsolete asset URLs as gone')
-expect(server.includes("pathname === '/portfolio/rainbow-asd'"), 'Node server preserves the revived Rainbow case-study route')
+expect(server.includes('retiredCaseStudy') && server.includes("return res.redirect(301, pathname.startsWith('/en/') ? '/en/portfolio/' : '/portfolio/')"), 'Node server redirects retired case-study routes to the localized portfolio')
 
 const expectedRedirects = new Map([
   ['/blog.html', '/websites/'],
@@ -73,8 +73,10 @@ for (const [source, target] of expectedRedirects) {
   expect(server.includes(`['${source}', '${target}']`), `server.ts maps ${source} to ${target}`)
 }
 
-expect(!redirects.includes('/portfolio/rainbow-asd /portfolio/ 301'), 'static redirects do not discard the revived Rainbow case study')
-expect(!server.includes("['/portfolio/rainbow-asd', '/portfolio/']"), 'Node redirects do not discard the revived Rainbow case study')
+expect(redirects.includes('/portfolio/rainbow-asd/ /portfolio/ 301'), 'Cloudflare redirects retired Rainbow case-study URL')
+expect(redirects.includes('/pricing/ /services/ 301'), 'Cloudflare redirects public pricing URL')
+expect(rootHtaccess.includes('RewriteRule ^pricing/?$ /services/'), 'Apache redirects old pricing route')
+expect(server.includes("['/pricing', '/services/']"), 'Node redirects old pricing route')
 expect(!rootHtaccess.includes('/#services'), 'Apache no longer redirects legacy URLs to homepage fragments')
 expect(!rootHtaccess.includes('/#portfolio'), 'Apache no longer redirects legacy portfolio URLs to homepage fragments')
 
