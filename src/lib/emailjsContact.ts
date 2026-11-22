@@ -23,7 +23,11 @@ export function buildEmailJSTemplateParams(
   const phone = input.phone.trim()
   const details = input.message.trim() || (language === 'he' ? 'לא נמסר פירוט נוסף.' : 'No additional project details provided.')
   const campaign = normalizeCampaignAttribution(attribution)
-  const campaignLines = campaign ? Object.entries(campaign).map(([key, value]) => `${key}: ${value}`) : []
+  const campaignParams: Record<string, string> = {}
+  for (const [key, value] of Object.entries(campaign ?? {})) {
+    if (typeof value === 'string') campaignParams[key] = value
+  }
+  const campaignLines = Object.entries(campaignParams).map(([key, value]) => `${key}: ${value}`)
 
   // The message field is deliberately self-contained: a basic EmailJS template
   // with only {{name}} and {{message}} still receives every contact method.
@@ -51,7 +55,7 @@ export function buildEmailJSTemplateParams(
     language,
     time: submittedAt.toISOString(),
     submitted_at: submittedAt.toISOString(),
-    ...(campaign ?? {}),
+    ...campaignParams,
   }
 }
 
