@@ -6,11 +6,11 @@ export const translations = {
       work: 'פרויקטים',
       process: 'איך אני עובד',
       success: 'לקוחות ממליצים',
-      cta: 'הצעת מחיר לאתר',
+      cta: 'הצעת מחיר לפרויקט',
     },
     hero: {
       eyebrow: 'בונים קוד. יוצרים פתרונות.',
-      headline: 'בניית אתרים ודפי נחיתה שמקדמים את העסק שלכם',
+      headline: 'בניית אתרים לעסקים ודפי נחיתה בהתאמה אישית',
       subline: 'אתרי תדמית, דפי נחיתה ופיתוח Web בהתאמה אישית לעסקים ולנותני שירות. מסר ברור, חוויית מובייל נוחה ודרך פשוטה לפנות — משיחת ההיכרות ועד להשקה.',
       ctaPrimary: 'בואו נדבר על האתר שלכם',
       ctaSecondary: 'שלח הודעה ב-WhatsApp',
@@ -49,22 +49,15 @@ export const translations = {
       ],
     },
     portfolio: {
-      headline: 'עבודה אמיתית. תוצאות אמיתיות.',
+      headline: 'אתרים ופרויקטים שבניתי לעסקים',
       before: 'נקודת פתיחה',
       after: 'התוצאה',
       seeAll: 'לצפייה בכל העבודות שלנו',
-      allHeadline: 'כל העבודות שלנו',
+      allHeadline: 'תיק עבודות ופרויקטים נבחרים',
       allSubline:
-        'מבחר מלא של אתרים, מערכות וחוויות דיגיטליות שנבנו סביב אנשים, עסקים ומטרות אמיתיות.',
+        'דוגמאות לאתרים, דפי נחיתה ומערכות שפיתחתי, עם תיאור הפרויקט, העבודה שבוצעה וקישורים לפרטים נוספים כשאפשר.',
       backHome: 'חזרה לעמוד הבית',
       projects: [
-        {
-          title: 'Mahagony Israel',
-          desc: 'חברת ריהוט יוקרה המתמחה בפריטי עץ איכותיים ובהזמנה אישית.',
-          before: 'קטלוג רהיטים שהזמין חוויה עשירה יותר',
-          after: 'קטלוג מוצרים ב-3D עם חוויית לקוח סוחפת',
-          link: '',
-        },
         {
           title: 'יובל קדוש',
           desc: 'בית דיגיטלי מרגש ליובל קדוש - אב, מרצה, כותב ומנטור - המציע אימון אישי מעצים, סיפורים מעוררי השראה ואת ההרצאה "לאהוב, להאמין, לנצח". מתוך סיפור חייו העוצמתי, יובל מלווה יחידים וקבוצות בתהליכי חוסן, שינוי מחשבתי וצמיחה מכוונת משמעות.',
@@ -81,16 +74,16 @@ export const translations = {
         },
         {
           title: 'Chicago Trauma Therapy',
-          desc: 'Chicago Trauma Therapy היא פלטפורמת בריאות נפש ייעודית המספקת טיפול וירטואלי מבוסס ראיות למבוגרים ברחבי אילינוי. האתר מחבר בין מומחיות קלינית לטכנולוגיה נגישה, ומציע טיפול ממוקד ב-PTSD וב-CPTSD דרך ממשק מאובטח ותואם HIPAA. זו דוגמה נקייה ופונקציונלית לאופן שבו פתרונות דיגיטליים יכולים לייעל את הדרך להחלמה.',
+          desc: 'אתר שירות של Chicago Trauma Therapy המציג טיפול נפשי מקוון למבוגרים באילינוי, כולל מידע על השירות, תחומי התמחות ודרך ברורה ליצירת קשר. התיאור עוסק באתר הציבורי ואינו טוען לעמידה בתקני אבטחה או פרטיות שלא נבדקו.',
           before: 'שירות טיפולי מקצועי שחיכה לחוויית כניסה בטוחה ופשוטה',
-          after: 'פורטל טיפול וירטואלי מהיר, נגיש ותואם HIPAA',
+          after: 'אתר שירות המציג טיפול מקוון ומאפשר פנייה',
           link: 'https://chicagotraumatherapy.com/',
         },
         {
           title: 'SumsUp',
           desc: 'SumsUp היא פלטפורמת White-label פרימיום להכנת דוחות מס, שנבנתה עבור מנהלי חשבונות שרוצים לצמוח בלי להישחק. באמצעות צוות מומחים שפועל מאחורי הקלעים, SumsUp מאפשרת למשרדים להציע שירותי הכנת מס ותכנון מס מלאים תחת המותג שלהם, בלי להפנות לקוחות החוצה ובלי לגייס עובדים נוספים.',
           before: 'משרדים שרצו להרחיב שירותים בצורה חכמה',
-          after: 'פלטפורמת White-label לצמיחה ותכנון מס אוטומטי',
+          after: 'אתר המציג שירותי מס במודל White-label',
           link: 'https://sumsup.co',
         },
         {
@@ -241,7 +234,7 @@ export const translations = {
     },
     hero: {
       eyebrow: 'Building Code. Creating Solutions.',
-      headline: 'Business websites and landing pages built for your next step',
+      headline: 'Custom Website Development for Businesses in Israel',
       subline: 'Custom websites, landing pages, and web development for businesses and service providers in Israel. Clear messaging, a smooth mobile experience, and an easy way to get in touch — from our first conversation to launch.',
       ctaPrimary: 'Discuss your website',
       ctaSecondary: 'Send a Message on WhatsApp',
@@ -280,25 +273,18 @@ export const translations = {
       ],
     },
     portfolio: {
-      headline: 'Real Work. Real Results.',
+      headline: 'Websites and Software Projects',
       before: 'Starting Point',
       after: 'Result',
       seeAll: 'See all our work',
-      allHeadline: 'All Our Work',
+      allHeadline: 'Portfolio and Project Case Studies',
       allSubline:
-        'Explore the complete collection of websites, systems, and digital experiences built around real people, businesses, and goals.',
+        'Explore websites, landing pages, and business software projects, with descriptions of the work and links to further details where available.',
       backHome: 'Back to the homepage',
       projects: [
         {
-          title: 'Mahagony Israel',
-          desc: 'Luxury furniture company specializing in high-end wooden and custom-made pieces',
-          before: 'A product catalog ready for a richer visual experience',
-          after: '3D product catalog with immersive client experience',
-          link: '',
-        },
-        {
           title: 'Yuval Kadosh',
-          desc: 'heartfelt online home by Yuval Kadosh - father, lecturer, writer, and mentor - offering transformative personal coaching, uplifting storytelling, and his signature talk "To Love, To Believe, To Prevail". Driven by his powerful journey throughout life, Yuval guides individuals and groups through resilience-building mindset shifts and purpose-driven change.',
+          desc: 'A website for Yuval Kadosh, bringing together his personal story, public speaking, writing, and coaching services in a clear Hebrew-language experience.',
           before:
             'A rich professional story ready for one central digital home',
           after:
@@ -314,17 +300,17 @@ export const translations = {
         },
         {
           title: 'Chicago Trauma Therapy',
-          desc: 'Chicago Trauma Therapy is a specialized mental health platform providing virtual, evidence-based care for adults across Illinois. The site bridges clinical expertise and accessible technology, offering focused treatment for PTSD and CPTSD through a secure, HIPAA-compliant interface. It is a clean, functional example of how digital solutions can streamline the path to recovery.',
+          desc: 'A public service website for Chicago Trauma Therapy, presenting online mental health services for adults in Illinois, areas of focus, and a straightforward way to get in touch. This portfolio description does not assert unverified security or regulatory compliance.',
           before:
             'A specialized care service ready for a safer, simpler intake experience',
-          after: 'Fast, accessible, HIPAA-compliant virtual therapy portal',
+          after: 'A clear public-facing website for online therapy enquiries',
           link: 'https://chicagotraumatherapy.com/',
         },
         {
           title: 'SumsUp',
           desc: 'SumsUp is a premium white-label tax preparation platform designed for bookkeepers who want to scale sustainably. By providing a behind-the-scenes expert team, SumsUp allows firms to offer full-service tax prep and planning under their own brand, without referrals or extra hiring.',
           before: 'Bookkeeping firms ready to expand services intelligently',
-          after: 'White-label platform for growth and automated tax planning',
+          after: 'Website explaining a white-label tax services offering',
           link: 'https://sumsup.co',
         },
         {
