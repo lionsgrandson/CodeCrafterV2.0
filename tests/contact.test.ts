@@ -4,6 +4,7 @@ import { handleContact } from '../server/contact'
 import { onRequestPost, onRequest } from '../functions/api/contact/index'
 import { validateContact } from '../src/lib/contactValidation'
 import { reachedMilestones } from '../src/lib/analytics'
+import { parseCampaignAttribution, normalizeCampaignAttribution } from '../src/lib/campaignAttribution'
 
 const input = { name: 'Test <script>', email: 'test@example.com', phone: '', message: '<b>test</b>', company: '' }
 const env = { RESEND_API_KEY: 'mock-key', RESEND_FROM_EMAIL: 'staging@example.com', CONTACT_NOTIFICATION_EMAIL: 'inbox@example.com' }
@@ -48,4 +49,29 @@ test('all scroll milestones deduplicate and adapt to changing heights', () => {
   }
   assert.deepEqual(reachedMilestones(7000, 1000, 8000, seen), [])
   assert.deepEqual(reachedMilestones(1000, 1000, 8000, new Set()), [25])
+})
+
+test('campaign attribution keeps only bounded consent-eligible labels and referral origin', () => {
+  const data = parseCampaignAttribution('?utm_source=linkedin&utm_medium=social&utm_campaign=november_launch&utm_term=private@example.com&gclid=do-not-store', 'https://example.org/private?token=secret', '/en/websites/')
+  assert.deepEqual(data, { utm_source: 'linkedin', utm_medium: 'social', utm_campaign: 'november_launch', landing_path: '/en/websites/', referrer_origin: 'https://example.org' })
+  assert.deepEqual(parseCampaignAttribution('?utm_source=unsafe%3Cscript%3E', '', '/'), undefined)
+  assert.deepEqual(parseCampaignAttribution('?utm_source=anything', '', '/'), { utm_source: 'anything', landing_path: '/' })
+  assert.deepEqual(parseCampaignAttribution('', '', '/'), undefined)
+  assert.deepEqual(normalizeCampaignAttribution({ utm_source: '<script>alert(1)</script>', utm_medium: 'email', utm_campaign: 'hello', unknown: 'secret' }), { utm_medium: 'email', utm_campaign: 'hello' })
+})
+test('backend includes validated campaign context but excludes unapproved tracking keys', async () => {
+  let message = ''
+  const send = (async (_url, options) => {
+    const body = JSON.parse(String(options.body))
+    message = body.text
+    assert.ok(!body.html.includes('<script>'))
+    return Response.json({ id: 'ok' })
+  }) as typeof fetch
+  const response = await handleContact(request({ ...input, attribution: { utm_source: 'linkedin', utm_medium: 'social', utm_campaign: 'november_launch', utm_term: 'private@example.com', gclid: 'private-click-id', referrer_origin: 'https://example.org', landing_path: '/en/websites/' } }), env, send)
+  assert.equal(response.status, 200)
+  assert.match(message, /utm_source: linkedin/)
+  assert.match(message, /utm_campaign: november_launch/)
+  assert.ok(!message.includes('private@example.com'))
+  assert.ok(!message.includes('private-click-id'))
+  assert.match(message, /referrer_origin: https:\/\/example.org/)
 })
