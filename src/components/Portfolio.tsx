@@ -9,10 +9,11 @@ import { additionalPortfolioProjects } from '../lib/additionalPortfolioProjects'
 type ProjectMediaProps = {
   src?: string
   title: string
+  alt: string
   kind?: 'logo' | 'screenshot'
 }
 
-function ProjectMedia({ src, title, kind = 'logo' }: ProjectMediaProps) {
+function ProjectMedia({ src, title, alt, kind = 'logo' }: ProjectMediaProps) {
   const imageRef = useRef<HTMLImageElement>(null)
   const [state, setState] = useState<
     'blank' | 'loading' | 'success' | 'failure'
@@ -45,7 +46,7 @@ function ProjectMedia({ src, title, kind = 'logo' }: ProjectMediaProps) {
           ref={imageRef}
           className={`w-full h-full group-hover:scale-105 transition-all duration-[875ms] ${kind === 'screenshot' ? 'object-cover' : 'object-contain p-8'} ${state === 'success' ? 'opacity-100' : 'opacity-0'}`}
           src={src}
-          alt={title}
+          alt={alt}
           loading='lazy'
           decoding='async'
           width='640'
@@ -67,8 +68,6 @@ type PortfolioProps = {
 }
 
 const normalizePortfolioLink = (link?: string) => {
-  // Keep the project visible while its previous public preview returns 404.
-  if (link === 'https://mahagonyisrael.netlify.app/') return undefined
   if (link === 'https://rainbowasdv2.netlify.app/') {
     return 'https://rainbow-asd.com/'
   }
@@ -85,7 +84,6 @@ export function Portfolio({
   const { t, lang } = useLanguage()
 
   const projectMedia = [
-    { src: '/portfolio/mahagony-logo.png' },
     { src: '/portfolio/yuval-kadosh-logo.png' },
     { src: '/portfolio/rainbow-asd-logo.png' },
     { src: '/portfolio/chicago-trauma-logo.png' },
@@ -95,7 +93,6 @@ export function Portfolio({
     { src: '/portfolio/big-sale-logo.jpeg' },
     { src: '/portfolio/project-orion-logo.svg' },
     { src: '/portfolio/shimon-photography-logo.jpeg' },
-    // { src: '/portfolio/aderet-argaman-logo.png' },
     {
       src: '/portfolio/coderecovery-screenshot.webp',
       kind: 'screenshot' as const,
@@ -108,12 +105,12 @@ export function Portfolio({
     const sourceLink = normalizePortfolioLink(project.link)
     const externalLink = sourceLink
     const caseStudyLink = ({
-      1: localizePath('portfolio/yuval-kadosh', lang),
-      2: localizePath('portfolio/rainbow-asd', lang),
-      4: localizePath('portfolio/sumsup', lang),
-      8: localizePath('portfolio/project-orion', lang),
-      9: localizePath('portfolio/shimon-photography', lang),
-      10: localizePath('portfolio/coderecovery', lang),
+      0: localizePath('portfolio/yuval-kadosh', lang),
+      1: localizePath('portfolio/rainbow-asd', lang),
+      3: localizePath('portfolio/sumsup', lang),
+      7: localizePath('portfolio/project-orion', lang),
+      8: localizePath('portfolio/shimon-photography', lang),
+      9: localizePath('portfolio/coderecovery', lang),
     } as Record<number, string>)[idx]
 
     return {
@@ -121,7 +118,7 @@ export function Portfolio({
       media: projectMedia[idx],
       externalLink,
       link: caseStudyLink || externalLink,
-      featured: [1, 2, 4].includes(idx),
+      featured: [0, 1, 3].includes(idx),
     }
   })
 
@@ -186,6 +183,9 @@ export function Portfolio({
                 <ProjectMedia
                   src={project.media?.src}
                   title={project.title}
+                  alt={project.media?.kind === 'screenshot'
+                    ? (lang === 'he' ? `צילום מסך של פרויקט ${project.title}` : `Screenshot of ${project.title} project`)
+                    : (lang === 'he' ? `לוגו ${project.title}` : `${project.title} logo`)}
                   kind={project.media?.kind}
                 />
                 <div className='p-6 flex-1 flex flex-col justify-between'>
