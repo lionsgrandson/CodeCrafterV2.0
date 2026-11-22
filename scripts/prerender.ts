@@ -4,6 +4,8 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 import { pagesByLanguage, localizePath, type Language, type SeoPage } from '../src/lib/seoRegistry.ts'
 import { pricingRows } from '../src/lib/seoFactsPages.ts'
 import { translations } from '../src/lib/translations.ts'
+import { additionalPortfolioProjects } from '../src/lib/additionalPortfolioProjects.ts'
+import { portfolioCaseStudySlugsByIndex } from '../src/lib/portfolioCaseStudyLinks.ts'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = path.join(root, 'dist')
@@ -103,6 +105,7 @@ function absoluteUrl(routePath: string) {
 }
 
 function normalizePortfolioUrl(url?: string) {
+  if (!url || !/^https?:\/\//i.test(url)) return undefined
   if (url === 'https://rainbowasdv2.netlify.app/') return 'https://rainbow-asd.com/'
   if (url === 'https://eclectic-marigold-0fe508.netlify.app/') return 'https://shimonphotos.com/'
   return url
@@ -324,12 +327,25 @@ function schemaFor(route: Route) {
   }
 
   if (route.type === 'collection') {
+    const projects = [
+      ...translations[route.lang].portfolio.projects.map((project, index) => ({
+        name: project.title,
+        url: portfolioCaseStudySlugsByIndex[index]
+          ? absoluteUrl(localizePath(portfolioCaseStudySlugsByIndex[index], route.lang))
+          : normalizePortfolioUrl(project.link),
+      })),
+      ...additionalPortfolioProjects.map((project) => ({
+        name: project.title[route.lang],
+        url: project.link,
+      })),
+    ]
     graph.push({
       '@type': 'ItemList',
       '@id': `${url}#projects`,
-      numberOfItems: translations[route.lang].portfolio.projects.length,
-      itemListElement: translations[route.lang].portfolio.projects.map((project, index) => ({
-        '@type': 'ListItem', position: index + 1, name: project.title, url: normalizePortfolioUrl(project.link),
+      numberOfItems: projects.length,
+      itemListElement: projects.map((project, index) => ({
+        '@type': 'ListItem', position: index + 1, name: project.name,
+        ...(project.url ? { url: project.url } : {}),
       })),
     })
   }
