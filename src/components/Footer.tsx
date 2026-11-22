@@ -82,9 +82,9 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
     <footer className='w-full py-8 px-6 md:px-8 bg-surface-container-high border-t border-outline-variant/10'>
       <div className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6'>
         <div className='col-span-1 md:col-span-2'>
-          <div className='text-xl font-bold font-headline text-on-surface mb-2'>
+          <a href={localizePath('', lang)} className='inline-block text-xl font-bold font-headline text-on-surface mb-2 hover:text-primary' aria-label={lang === 'he' ? 'CodeCrafter — לעמוד הבית' : 'CodeCrafter — homepage'}>
             {t.nav.brand}
-          </div>
+          </a>
           <p className='text-primary font-headline font-bold tracking-wide mb-2'>
             {t.hero.eyebrow}
           </p>
