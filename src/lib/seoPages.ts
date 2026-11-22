@@ -1,4 +1,5 @@
 import { localizePath, serviceLabels, serviceSlugs, type Language } from './seoRoutes'
+import { englishCaseStudyContent } from './seoEnglishCaseStudies'
 export { localizePath, serviceLabels, serviceSlugs, type Language } from './seoRoutes'
 
 export type PageSection = {
@@ -256,6 +257,7 @@ sharedPages.en = sharedPages.he.map((page) => ({
         { heading: 'Implementation and boundaries', paragraphs: ['The public project provides the evidence for this case study. Private data, unverified technology choices, conversion rates, and business statistics are not claimed.'] },
         { heading: 'Relevant CodeCrafter services', paragraphs: ['The project connects to the service pages listed below, where the planning and development approach is explained in more depth.'] },
       ],
+  ...englishCaseStudyContent[page.slug],
 }))
 
 export const pagesByLanguage: Record<Language, SeoPage[]> = {
