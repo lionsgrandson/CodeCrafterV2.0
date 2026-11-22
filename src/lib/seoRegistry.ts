@@ -81,8 +81,8 @@ function withRelatedGuides(page: SeoPage): SeoPage {
 }
 
 export const pagesByLanguage: Record<Language, SeoPage[]> = {
-  he: [...corePagesByLanguage.he.filter(page => page.kind !== 'case-study'), ...extraPagesByLanguage.he, ...systemsPagesByLanguage.he, ...commercialPagesByLanguage.he, servicesHubByLanguage.he, ...locationHubByLanguage.he, ...factsPagesByLanguage.he, ...editorialPagesByLanguage.he].map((page) => withRelatedGuides(addAdditionalBuyerGuides(addPracticalSeoContent(enhanceSeoPage(withSearchConsoleMetadata(page, 'he'), 'he'), 'he'), 'he'))),
-  en: [...corePagesByLanguage.en.filter(page => page.kind !== 'case-study'), ...extraPagesByLanguage.en, ...systemsPagesByLanguage.en, ...commercialPagesByLanguage.en, servicesHubByLanguage.en, ...locationHubByLanguage.en, ...factsPagesByLanguage.en, ...editorialPagesByLanguage.en].map((page) => withRelatedGuides(addAdditionalBuyerGuides(addPracticalSeoContent(enhanceSeoPage(withSearchConsoleMetadata(page, 'en'), 'en'), 'en'), 'en'))),
+  he: [...corePagesByLanguage.he, ...extraPagesByLanguage.he, ...systemsPagesByLanguage.he, ...commercialPagesByLanguage.he, servicesHubByLanguage.he, ...locationHubByLanguage.he, ...factsPagesByLanguage.he, ...editorialPagesByLanguage.he].map((page) => withRelatedGuides(addAdditionalBuyerGuides(addPracticalSeoContent(enhanceSeoPage(withSearchConsoleMetadata(page, 'he'), 'he'), 'he'), 'he'))),
+  en: [...corePagesByLanguage.en, ...extraPagesByLanguage.en, ...systemsPagesByLanguage.en, ...commercialPagesByLanguage.en, servicesHubByLanguage.en, ...locationHubByLanguage.en, ...factsPagesByLanguage.en, ...editorialPagesByLanguage.en].map((page) => withRelatedGuides(addAdditionalBuyerGuides(addPracticalSeoContent(enhanceSeoPage(withSearchConsoleMetadata(page, 'en'), 'en'), 'en'), 'en'))),
 }
 
 export function getSeoPage(pathname: string, lang: Language) {
