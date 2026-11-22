@@ -103,6 +103,7 @@ function absoluteUrl(routePath: string) {
 }
 
 function normalizePortfolioUrl(url?: string) {
+  if (url === 'https://mahagonyisraeldidntpay.netlify.app/') return undefined
   if (url === 'https://rainbowasdv2.netlify.app/') return 'https://rainbow-asd.com/'
   if (url === 'https://eclectic-marigold-0fe508.netlify.app/') return 'https://shimonphotos.com/'
   return url
@@ -307,7 +308,7 @@ function schemaFor(route: Route) {
     })
   }
 
-  const faqItems = route.type === 'website' ? undefined : route.page?.faq
+  const faqItems = route.type === 'website' ? homeFaq[route.lang] : route.page?.faq
   if (faqItems?.length) {
     graph.push({
       '@type': 'FAQPage',
@@ -382,14 +383,13 @@ for (const route of routes) {
   await writeFile(outputPath, await createDocument(route))
 }
 
-const lastmod = new Date().toISOString().slice(0, 10)
 const sitemapPaths = [...new Set([
   ...routes.map((route) => route.path),
   '/privacy/',
   '/terms/',
 ])]
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapPaths
-  .map((routePath) => `  <url><loc>${escapeXml(absoluteUrl(routePath))}</loc><lastmod>${lastmod}</lastmod></url>`)
+  .map((routePath) => `  <url><loc>${escapeXml(absoluteUrl(routePath))}</loc></url>`)
   .join('\n')}\n</urlset>\n`
 await writeFile(path.join(distDir, 'sitemap.xml'), sitemap)
 
