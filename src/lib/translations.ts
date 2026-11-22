@@ -63,7 +63,7 @@ export const translations = {
           desc: 'חברת ריהוט יוקרה המתמחה בפריטי עץ איכותיים ובהזמנה אישית.',
           before: 'קטלוג רהיטים שהזמין חוויה עשירה יותר',
           after: 'קטלוג מוצרים ב-3D עם חוויית לקוח סוחפת',
-          link: 'https://mahagonyisraeldidntpay.netlify.app/',
+          link: '',
         },
         {
           title: 'יובל קדוש',
@@ -294,7 +294,7 @@ export const translations = {
           desc: 'Luxury furniture company specializing in high-end wooden and custom-made pieces',
           before: 'A product catalog ready for a richer visual experience',
           after: '3D product catalog with immersive client experience',
-          link: 'https://mahagonyisraeldidntpay.netlify.app/',
+          link: '',
         },
         {
           title: 'Yuval Kadosh',
