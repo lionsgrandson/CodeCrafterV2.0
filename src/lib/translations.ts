@@ -91,7 +91,7 @@ export const translations = {
           desc: 'אתר תיק עבודות לעמית קדוש, המציג יצירה ועבודות נבחרות בחוויית גלישה מותאמת למובייל.',
           before: 'עבודות יצירתיות שחיכו להצגה מלוטשת',
           after: 'חלון ראווה יצירתי, מקצועי ונעים לצפייה',
-          link: '../../amitStarProject/',
+          link: '/amitStarProject/',
         },
         {
           title: 'חיל הטכנולוגיה והאחזקה',
@@ -318,7 +318,7 @@ export const translations = {
           desc: 'A creative portfolio website for Amit Kadosh, showcasing selected work in a clear, mobile-friendly layout.',
           before: 'Creative work ready for a more polished showcase',
           after: 'Polished, professional creative showcase',
-          link: '../../amitStarProject/',
+          link: '/amitStarProject/',
         },
         {
           title: 'Technology & Maintenance Corps',
@@ -458,7 +458,7 @@ export const translations = {
       secondary: 'Send a Message on WhatsApp',
     },
     footer: {
-      desc: 'Business websites and landing pages, with clear content, custom development, and support throughout the process.',
+      desc: 'Business websites, CRM systems, custom software, and automation, with project scoping, implementation, and maintenance as agreed.',
       explore: 'Navigation',
       legal: 'Legal',
       privacy: 'Privacy Policy',
