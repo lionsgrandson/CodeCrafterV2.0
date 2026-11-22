@@ -131,11 +131,6 @@ const guides: Record<Language, SeoPage[]> = {
         "landing-page-development",
         "wordpress-development",
         "website-maintenance"
-      ],
-      "relatedProjects": [
-        "sumsup",
-        "aderet-argaman",
-        "ilan-shachar"
       ]
     },
     {
@@ -370,7 +365,7 @@ const guides: Record<Language, SeoPage[]> = {
         {
           "heading": "2. Plan pages around intent, not keyword variations",
           "paragraphs": [
-            "A homepage explains the offer. A service page should cover a specific need, scope and next step. About and case-study pages provide identity and real examples. A separate URL is not justified solely by a small keyword variation."
+            "A homepage explains the offer. A service page should cover a specific need, scope and next step. About and portfolio projects provide identity and real examples. A separate URL is not justified solely by a small keyword variation."
           ],
           "items": [
             "Distinct service categories with meaningful differences",
@@ -425,11 +420,6 @@ const guides: Record<Language, SeoPage[]> = {
         "landing-page-development",
         "wordpress-development",
         "website-maintenance"
-      ],
-      "relatedProjects": [
-        "sumsup",
-        "aderet-argaman",
-        "ilan-shachar"
       ]
     },
     {
@@ -609,32 +599,19 @@ export const relatedGuidesByService: Record<string, string[]> = {
   'erp-development': ['guides/planning-a-custom-crm'],
 }
 
-const publicCaseStudies = [
-  ['portfolio/yuval-kadosh', 'Yuval Kadosh'],
-  ['portfolio/rainbow-asd', 'Rainbow ASD'],
-  ['portfolio/sumsup', 'SumsUp'],
-  ['portfolio/project-orion', 'Project Orion'],
-  ['portfolio/shimon-photography', 'Shimon Cohen Photography'],
-  ['portfolio/aderet-argaman', 'Aderet & Argaman'],
-  ['portfolio/coderecovery', 'CodeRecovery'],
-  ['portfolio/ilan-shachar', 'Ilan Shachar'],
-  ['portfolio/green-therapy', 'Green Therapy'],
-] as const
-
 function sitemapPage(lang: Language): SeoPage {
   const he = lang === 'he'
   const link = (slug: string, label: string) => ({ label, href: localizePath(slug, lang) })
   return {
     kind: 'directory', slug: 'site-map',
     title: he ? 'מפת אתר: כל השירותים, המדריכים והפרויקטים | CodeCrafter' : 'Website Sitemap: Services, Guides & Projects | CodeCrafter',
-    description: he ? 'מפת האתר של CodeCrafter עם קישורים לשירותי פיתוח, מדריכים, מקרי בוחן, אזורי שירות, מחירון, אודות ומדיניות.' : 'Browse the CodeCrafter HTML sitemap: services, practical guides, portfolio case studies, service areas, pricing and legal pages.',
+    description: he ? 'מפת האתר של CodeCrafter עם קישורים לתיק עבודות, שירותי פיתוח, מדריכים, אזורי שירות, אודות ומדיניות.' : 'Browse the CodeCrafter HTML sitemap: services, practical guides, portfolio projects, service areas and legal pages.',
     eyebrow: he ? 'מפת אתר' : 'HTML sitemap',
     h1: he ? 'מפת האתר — כל העמודים החשובים ב-CodeCrafter' : 'CodeCrafter website sitemap',
     intro: [he ? 'מפה נוחה לניווט בעמודים הציבוריים של CodeCrafter. לפרוטוקולי סריקה יש גם sitemap.xml נפרד שמתעדכן בזמן הבנייה.' : 'A human-readable list of CodeCrafter’s public pages. An XML sitemap is also generated during deployment for search crawlers.'],
     sections: [
-      { heading: he ? 'עמודים מרכזיים' : 'Main pages', links: [link('', he ? 'בית' : 'Home'), link('services', he ? 'כל השירותים' : 'All services'), link('portfolio', he ? 'תיק עבודות' : 'Portfolio'), link('guides', he ? 'מדריכים' : 'Guides'), link('about', he ? 'אודות' : 'About'), link('pricing', he ? 'מחירון' : 'Pricing'), link('locations', he ? 'אזורי שירות' : 'Service areas'), link('resume', he ? 'תיק עבודות מקצועי למגייסים' : 'Technical résumé')] },
+      { heading: he ? 'עמודים מרכזיים' : 'Main pages', links: [link('', he ? 'בית' : 'Home'), link('services', he ? 'כל השירותים' : 'All services'), link('portfolio', he ? 'תיק עבודות' : 'Portfolio'), link('guides', he ? 'מדריכים' : 'Guides'), link('about', he ? 'אודות' : 'About'), link('locations', he ? 'אזורי שירות' : 'Service areas'), link('resume', he ? 'תיק עבודות מקצועי למגייסים' : 'Technical résumé')] },
       { heading: he ? 'שירותי פיתוח' : 'Development services', links: serviceSlugs.map(slug => link(slug, serviceLabels[lang][slug])) },
-      { heading: he ? 'מקרי בוחן ופרויקטים' : 'Project case studies', links: publicCaseStudies.map(([slug, label]) => link(slug, label)) },
       { heading: he ? 'מדריכים' : 'Practical guides', links: Object.entries(guideLabels[lang]).map(([slug, label]) => link(slug, label)) },
       { heading: he ? 'אזורי שירות' : 'Service areas', links: locationLinks[lang].map(({slug,label}) => link(slug, label)) },
       { heading: he ? 'מידע נוסף' : 'Further information', links: [{ label: he ? 'מדיניות פרטיות' : 'Privacy policy', href: '/privacy/' }, { label: he ? 'תנאי שימוש' : 'Terms', href: '/terms/' }, { label: 'XML sitemap', href: '/sitemap.xml' }, { label: 'robots.txt', href: '/robots.txt' }, { label: 'llms.txt', href: '/llms.txt' }] },
