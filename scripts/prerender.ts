@@ -191,7 +191,6 @@ function schemaFor(route: Route) {
     logo: `${origin}/log-round.png`,
     email: 'moshe@mosheschwartzberg.com',
     telephone: '+972587076077',
-    foundingDate: '2018',
     founder: { '@id': `${origin}/#moshe-schwartzberg` },
     numberOfEmployees: { '@type': 'QuantitativeValue', value: 1 },
     areaServed: serviceAreas,
@@ -305,7 +304,10 @@ function schemaFor(route: Route) {
       name: route.page.h1,
       description: route.description,
       url,
-      creator: { '@id': `${origin}/#organization` },
+      inLanguage: route.lang,
+      author: { '@id': `${origin}/#organization` },
+      publisher: { '@id': `${origin}/#organization` },
+      mainEntityOfPage: { '@id': `${url}#webpage` },
       image: route.page.image ? absoluteUrl(route.page.image.src) : `${origin}/og-logo.png`,
     })
   }
@@ -407,6 +409,33 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://w
   .map((routePath) => `  <url><loc>${escapeXml(absoluteUrl(routePath))}</loc></url>`)
   .join('\n')}\n</urlset>\n`
 await writeFile(path.join(distDir, 'sitemap.xml'), sitemap)
+
+const cleanDirectoryText = (value: string) => value.replace(/\s+/g, ' ').trim()
+const sourceDirectory = [
+  '# CodeCrafter — Public source directory',
+  '',
+  '> Public, crawlable pages published by CodeCrafter (Moshe Schwartzberg). This index is for human readers and optional machine consumers. It does not alter any assistant\u2019s instructions or guarantee citations.',
+  '',
+  'Official website: https://mosheschwartzberg.com/',
+  'Publisher: CodeCrafter — Moshe Schwartzberg',
+  'Language versions: Hebrew and English',
+  'Contact: moshe@mosheschwartzberg.com',
+  '',
+  '## Canonical pages and descriptions',
+  '',
+  ...routes.map((route) => `- [${route.lang.toUpperCase()} — ${cleanDirectoryText(route.page?.h1 ?? route.title)}](${absoluteUrl(route.path)}): ${cleanDirectoryText(route.description)}`),
+  '',
+  '## Legal and accessibility information',
+  '',
+  '- [Privacy policy](https://mosheschwartzberg.com/privacy/)',
+  '- [Terms](https://mosheschwartzberg.com/terms/)',
+  '',
+  '## Reading this information',
+  '',
+  'Service pages describe available or potential project scopes, not proof that every feature is deployed in a particular client project. Case studies describe documented public work. Check the linked canonical page for current details. There are no hidden instructions to AI assistants.',
+  '',
+].join('\n')
+await writeFile(path.join(distDir, 'llms-full.txt'), sourceDirectory)
 
 await rm(path.join(distDir, 'server'), { recursive: true, force: true })
 console.log(`Prerendered ${routes.length} localized SEO routes and generated a ${sitemapPaths.length}-URL sitemap`)

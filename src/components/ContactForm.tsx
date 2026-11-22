@@ -73,7 +73,7 @@ export function ContactForm({ id = 'contact', title, description }: { id?: strin
   return <section id={id} className='contact-section px-6 md:px-8 bg-surface-container-low' data-section='contact'>
     <div className='max-w-3xl mx-auto'>
       <span className='section-kicker'>{he ? 'הצעד הבא' : 'Your next step'}</span>
-      <h2 className='text-3xl md:text-5xl font-bold mb-4'>{title || (he ? 'בואו נבנה את האתר שמתאים לעסק שלכם' : 'Let’s build the website your business needs')}</h2>
+      <h2 className='text-3xl md:text-5xl font-bold mb-4'>{title || (he ? 'בואו נגדיר את הפתרון שמתאים לעסק שלכם' : 'Let’s discuss what your business needs to build')}</h2>
       <p className='text-secondary mb-6'>{description || (he ? 'ספרו לי מה אתם צריכים. אחזור אליכם לשיחת היכרות, נחדד את ההיקף ונבדוק יחד את הצעד הבא לפני הצעת מחיר.' : 'Tell me what you need. I’ll reply for an introductory conversation, clarify the scope, and discuss the next step before a quote.')}</p>
       <form noValidate onSubmit={submit} data-contact-form data-clarity-mask='true' aria-busy={status === 'sending'} className='contact-form grid grid-cols-1 md:grid-cols-2 gap-5'>
         <p id={`${id}-help`} className='md:col-span-2 text-sm text-secondary'>{he ? 'שם ואחת מדרכי הקשר נדרשים: אימייל או טלפון. פירוט הפרויקט הוא רשות.' : 'A name and one contact method are required: email or phone. Project details are optional.'}</p>

@@ -11,15 +11,15 @@ export const translations = {
     hero: {
       eyebrow: 'בונים קוד. יוצרים פתרונות.',
       headline: 'בניית אתרים לעסקים ודפי נחיתה בהתאמה אישית',
-      subline: 'אתרי תדמית, דפי נחיתה ופיתוח Web בהתאמה אישית לעסקים ולנותני שירות. מסר ברור, חוויית מובייל נוחה ודרך פשוטה לפנות — משיחת ההיכרות ועד להשקה.',
-      ctaPrimary: 'בואו נדבר על האתר שלכם',
+      subline: 'אני בונה אתרים ודפי נחיתה לעסקים, לצד מערכות CRM, פיתוח תוכנה ואוטומציות. כל פרויקט מתחיל בהבנת הצורך, ממשיך לאפיון ולפיתוח, ומסתיים בבדיקות והשקה מסודרת.',
+      ctaPrimary: 'בואו נדבר על הפרויקט שלכם',
       ctaSecondary: 'שלח הודעה ב-WhatsApp',
       lead: '',
       alt: 'משה שוורצברג ברחוב עירוני בפראג',
     },
     services: {
-      headline: 'האתר הנכון לצעד הבא של העסק',
-      subline: 'נגדיר יחד מה הלקוחות צריכים להבין ולעשות — ונבנה סביב זה את האתר.',
+      headline: 'איזה אתר העסק שלכם באמת צריך?',
+      subline: 'אתר תדמית, דף נחיתה או פיתוח מותאם: לכל פתרון מטרה אחרת. נבחר לפי קהל היעד והפעולה שצריך לאפשר באתר.',
       items: [
         { title: 'אתר תדמית לעסק', desc: 'בית מקצועי לשירותים שלכם, עם תוכן ברור, עבודות והמלצות שמסייעים ללקוחות להבין אם אתם מתאימים להם.' },
         { title: 'דף נחיתה ממוקד', desc: 'עמוד לקמפיין או לשירות אחד, עם מסר ממוקד, הוכחות רלוונטיות ופעולה ברורה ליצירת קשר.' },
@@ -27,9 +27,9 @@ export const translations = {
       ],
     },
     process: {
-      headline: 'תהליך פשוט. תוצאות אמיתיות.',
+      headline: 'איך נראה תהליך העבודה איתי',
       subline:
-        'אני מלווה אותך משלב הרעיון ועד להשקה – עם תהליך ברור, שקוף ומותאם לעסק שלך.',
+        'אפיון, פיתוח, בדיקות והשקה בשלבים ברורים. אתם יודעים מה נבנה, מה נבדק ומה נשאר לפני העלייה לאוויר.',
       steps: [
         {
           title: 'היכרות ואפיון',
@@ -44,7 +44,7 @@ export const translations = {
         {
           title: 'השקה וליווי',
           lead: 'אני נשאר איתך גם אחרי ההשקה',
-          desc: 'לאחר העלייה לאוויר אני ממשיך ללוות, לבצע התאמות ולוודא שהמערכת עובדת בצורה מיטבית.',
+          desc: 'לאחר העלייה לאוויר אפשר להמשיך לתחזוקה, תיקונים ושיפורים בהתאם לצורך ולהיקף השירות שסוכם.',
         },
       ],
     },
@@ -52,7 +52,7 @@ export const translations = {
       headline: 'אתרים ופרויקטים שבניתי לעסקים',
       before: 'נקודת פתיחה',
       after: 'התוצאה',
-      seeAll: 'לצפייה בכל העבודות שלנו',
+      seeAll: 'לצפייה בכל הפרויקטים',
       allHeadline: 'תיק עבודות ופרויקטים נבחרים',
       allSubline:
         'דוגמאות לאתרים, דפי נחיתה ומערכות שפיתחתי, עם תיאור הפרויקט, העבודה שבוצעה וקישורים לפרטים נוספים כשאפשר.',
@@ -60,14 +60,14 @@ export const translations = {
       projects: [
         {
           title: 'יובל קדוש',
-          desc: 'בית דיגיטלי מרגש ליובל קדוש - אב, מרצה, כותב ומנטור - המציע אימון אישי מעצים, סיפורים מעוררי השראה ואת ההרצאה "לאהוב, להאמין, לנצח". מתוך סיפור חייו העוצמתי, יובל מלווה יחידים וקבוצות בתהליכי חוסן, שינוי מחשבתי וצמיחה מכוונת משמעות.',
+          desc: 'אתר תוכן בעברית ליובל קדוש, המרכז את סיפורו האישי, ההרצאות, הכתיבה והאימון האישי. העמודים מפרידים בין תחומי הפעילות ומקלים על המבקר להבין כיצד ליצור קשר.',
           before: 'סיפור מקצועי עשיר שחיכה לבית דיגיטלי מרכזי',
           after: 'פלטפורמה ריכוזית ומרגשת לסיפור סיפורים ואימון',
           link: 'https://ykadosh.co.il',
         },
         {
           title: 'Rainbow - ASD',
-          desc: 'ליווי אישי, ייעוץ מקצועי ותמיכה מותאמת להורים, בני נוער ובוגרים על הרצף האוטיסטי - בניית מסלול אישי לכל שלב בחיים.',
+          desc: 'אתר שירות בעברית ל-Rainbow ASD המציג מידע על ליווי וייעוץ לאנשים על הרצף האוטיסטי ולמשפחותיהם, עם חלוקה ברורה לנושאים ודרכי פנייה.',
           before: 'ידע מקצועי חשוב שחיכה להצגה נגישה וברורה',
           after: 'הדרכה מהירה, נעימה ואנימטיבית לקהילת האוטיזם',
           link: 'https://rainbowasdv2.netlify.app/',
@@ -81,7 +81,7 @@ export const translations = {
         },
         {
           title: 'SumsUp',
-          desc: 'SumsUp היא פלטפורמת White-label פרימיום להכנת דוחות מס, שנבנתה עבור מנהלי חשבונות שרוצים לצמוח בלי להישחק. באמצעות צוות מומחים שפועל מאחורי הקלעים, SumsUp מאפשרת למשרדים להציע שירותי הכנת מס ותכנון מס מלאים תחת המותג שלהם, בלי להפנות לקוחות החוצה ובלי לגייס עובדים נוספים.',
+          desc: 'אתר תדמית ל-SumsUp, שירות White-label שמאפשר למשרדי הנהלת חשבונות להציג שירותי הכנת דוחות ותכנון מס תחת המותג שלהם. האתר מסביר את מודל השירות ומספק מסלול לפנייה.',
           before: 'משרדים שרצו להרחיב שירותים בצורה חכמה',
           after: 'אתר המציג שירותי מס במודל White-label',
           link: 'https://sumsup.co',
@@ -91,7 +91,7 @@ export const translations = {
           desc: 'אתר תיק עבודות לעמית קדוש, המציג יצירה ועבודות נבחרות בחוויית גלישה מותאמת למובייל.',
           before: 'עבודות יצירתיות שחיכו להצגה מלוטשת',
           after: 'חלון ראווה יצירתי, מקצועי ונעים לצפייה',
-          link: '../../amitStarProject/',
+          link: '/amitStarProject/',
         },
         {
           title: 'חיל הטכנולוגיה והאחזקה',
@@ -102,21 +102,21 @@ export const translations = {
         },
         {
           title: 'Big Sale',
-          desc: 'חנות אונליין ישראלית שמאפשרת ללקוחות לגלות נעליים, טקסטיל לבית, תכשיטים, בגדי ילדים וגאדג׳טים ולרכוש בקלות ובביטחון.',
+          desc: 'אתר חנות המציג קטגוריות מוצרים, עמודי פריט ומסלול רכישה למגוון מוצרים, בהם הנעלה, טקסטיל, תכשיטים וביגוד ילדים.',
           before: 'מבחר מוצרים רחב שחיכה לחוויית קנייה מסודרת ומזמינה',
           after: 'חנות נגישה שמקצרת את הדרך מגילוי מוצר לרכישה',
           link: 'https://sarit-beauity.netlify.app/',
         },
         {
           title: 'Project Orion',
-          desc: 'אתר תדמית דיסקרטי וסמכותי שמציג ייעוץ אסטרטגי, מודיעין עסקי, סייבר ופתרונות אבטחה ומוביל לקוחות מתאימים ליצירת קשר.',
+          desc: 'אתר תדמית של Project Orion המציג תחומי ייעוץ אסטרטגי, מודיעין עסקי, סייבר ואבטחה, עם תוכן מסודר ודרך לפנייה ראשונית.',
           before: 'מומחיות רגישה ומורכבת שחיכתה להצגה אמינה ומדויקת',
           after: 'נוכחות דיגיטלית בטוחה שמחזקת אמון ומייצרת פניות איכותיות',
           link: 'https://project-orion.mosheschwartzberg.workers.dev/',
         },
         {
           title: 'שמעון כהן Photography',
-          desc: 'פורטפוליו צילום שמעמיד את הסיפור והרגש במרכז, מציג עבודות בצורה עשירה ועוזר למשפחות וללקוחות להרגיש ביטחון לפני הפנייה.',
+          desc: 'אתר תיק עבודות לצלם שמעון כהן, שבו התמונות והגלריות הן מרכז החוויה, לצד פרטי שירות ואפשרות ליצירת קשר.',
           before: 'עבודות צילום חזקות שחיכו לחוויית צפייה מגובשת',
           after: 'גלריה רגשית שמציגה את הסגנון ומעודדת יצירת קשר',
           link: 'https://eclectic-marigold-0fe508.netlify.app/',
@@ -130,14 +130,14 @@ export const translations = {
         // },
         {
           title: 'CodeRecovery',
-          desc: 'אתר שירות ממוקד למעבדת שחזור מידע שמסביר תהליך מורכב בשפה ברורה ועוזר ללקוחות עם מידע קריטי לפנות במהירות ובביטחון.',
+          desc: 'אתר שירות למעבדת שחזור מידע, המציג את תחומי השירות, הסברים ללקוחות ודרך לפנייה לצורך בדיקה ואבחון.',
           before: 'שירות חירום טכני שחייב ליצור אמון כבר ברגע הראשון',
           after: 'חוויית פנייה ברורה שמובילה לקוחות ישר לאבחון המתאים',
           link: 'https://simplyrecovery.netlify.app/',
         },
         {
           title: 'AI Pro',
-          desc: 'אתר שירותים הנדסי שמציג כיול, ולידציה, הנדסה ותיקונים בצורה מסודרת ועוזר ללקוחות לבחור במהירות את השירות המתאים וליצור קשר.',
+          desc: 'אתר שירותים הנדסיים המציג תחומי כיול, ולידציה, שירותי הנדסה ותיקונים, עם ניווט לפי תחום וטופס פנייה.',
           before: 'מגוון שירותים טכניים שחיכה למבנה ברור ונגיש יותר',
           after: 'מרכז שירות מקצועי שמקצר את הדרך מהצורך לפתרון',
           link: 'https://ai-pro.co.il/',
@@ -185,7 +185,7 @@ export const translations = {
         },
         {
           title: 'פתרונות שבאמת עובדים בשבילך',
-          desc: 'כל אתר או מערכת שאני בונה מותאמים לאופן שבו העסק שלך עובד, כדי לחסוך זמן, לייצר יותר פניות ולהפוך תהליכים מורכבים לפשוטים.',
+          desc: 'אני מתכנן אתר או מערכת סביב אופן העבודה של העסק, כדי לצמצם שלבים מיותרים, להבהיר תהליכים וליצור מסלול נוח יותר לפניות ולמידע.',
         },
         {
           title: 'בלי כאב ראש טכנולוגי',
@@ -193,11 +193,11 @@ export const translations = {
         },
         {
           title: 'חושב כמו הלקוחות שלך',
-          desc: 'אני בונה אתרים שמדברים אל האנשים הנכונים יוצרים אמון, מעבירים את הערך שלך ומובילים יותר מבקרים להפוך ללקוחות.',
+          desc: 'אני כותב ומארגן את התוכן כך שמבקרים יבינו למי השירות מתאים, מה הוא כולל ואיך ליצור קשר — בלי להבטיח שיעור המרה מסוים.',
         },
         {
           title: 'שותף להצלחה, לא רק ספק',
-          desc: 'המטרה שלי היא שלא תקבל רק אתר יפה, אלא כלי עבודה שמייצג אותך בצורה מקצועית, מייצר תוצאות, וממשיך לעבוד בשבילך גם הרבה אחרי העלייה לאוויר.',
+          desc: 'המטרה היא אתר או מערכת שימושיים, שניתן לתחזק ולהרחיב לפי הצורך — ולא רק עיצוב שנראה טוב ביום ההשקה.',
         },
       ],
       quote:
@@ -215,7 +215,7 @@ export const translations = {
       secondary: 'שלח הודעה ב-WhatsApp',
     },
     footer: {
-      desc: 'אתרים ודפי נחיתה לעסקים, עם תוכן ברור, פיתוח בהתאמה אישית וליווי לאורך הדרך.',
+      desc: 'פיתוח אתרים, מערכות CRM, תוכנה בהתאמה אישית ואוטומציות לעסקים. אפיון, פיתוח ותחזוקה לפי היקף הפרויקט.',
       explore: 'ניווט',
       legal: 'משפטי',
       privacy: 'מדיניות פרטיות',
@@ -235,15 +235,15 @@ export const translations = {
     hero: {
       eyebrow: 'Building Code. Creating Solutions.',
       headline: 'Custom Website Development for Businesses in Israel',
-      subline: 'Custom websites, landing pages, and web development for businesses and service providers in Israel. Clear messaging, a smooth mobile experience, and an easy way to get in touch — from our first conversation to launch.',
-      ctaPrimary: 'Discuss your website',
+      subline: 'I develop business websites and landing pages alongside CRM systems, custom software, and automations. Projects begin with a real business requirement and move through scoping, development, testing, and launch.',
+      ctaPrimary: 'Discuss your project',
       ctaSecondary: 'Send a Message on WhatsApp',
       lead: '',
       alt: 'Moshe Schwartzberg on a city street in Prague',
     },
     services: {
-      headline: 'The right website for your next business step',
-      subline: 'We define what customers need to understand and do, then build the website around it.',
+      headline: 'Which type of website does your business need?',
+      subline: 'A business website, focused landing page, or custom web application solves a different need. Choose based on the audience and the action visitors should take.',
       items: [
         { title: 'Business websites', desc: 'A professional home for your services, with clear content, work samples, and testimonials that help customers decide whether you fit their needs.' },
         { title: 'Focused landing pages', desc: 'A page for one campaign or service, with a focused message, relevant proof, and a clear action to get in touch.' },
@@ -251,9 +251,9 @@ export const translations = {
       ],
     },
     process: {
-      headline: 'Simple Process. Real Results.',
+      headline: 'How I approach a development project',
       subline:
-        'I guide you from the first idea all the way to launch with a clear, transparent process tailored to your business.',
+        'Discovery, development, testing, and launch take place in defined stages so you can review the work and understand what remains before release.',
       steps: [
         {
           title: 'Discovery & Planning',
@@ -268,7 +268,7 @@ export const translations = {
         {
           title: 'Launch & Support',
           lead: 'I stay with you after launch',
-          desc: 'After launch, I keep supporting, refining, and making sure everything works at its best.',
+          desc: 'After launch, maintenance, fixes, and improvements can continue according to the agreed support scope.',
         },
       ],
     },
@@ -276,7 +276,7 @@ export const translations = {
       headline: 'Websites and Software Projects',
       before: 'Starting Point',
       after: 'Result',
-      seeAll: 'See all our work',
+      seeAll: 'Explore the full portfolio',
       allHeadline: 'Portfolio and Project Case Studies',
       allSubline:
         'Explore websites, landing pages, and business software projects, with descriptions of the work and links to further details where available.',
@@ -286,14 +286,14 @@ export const translations = {
           title: 'Yuval Kadosh',
           desc: 'A website for Yuval Kadosh, bringing together his personal story, public speaking, writing, and coaching services in a clear Hebrew-language experience.',
           before:
-            'A rich professional story ready for one central digital home',
+            'Speaking, writing, and coaching information spread across several topics',
           after:
             'Centralized, heartfelt platform for storytelling and coaching',
           link: 'https://ykadosh.co.il',
         },
         {
           title: 'Rainbow - ASD',
-          desc: 'Personal guidance, professional consultation, and tailored support for parents, teens, and adults on the autism spectrum - building a personalized path for every stage of life.',
+          desc: 'A Hebrew-language service website for Rainbow ASD, organizing information about guidance and autism-related support with clear navigation and enquiry options.',
           before: 'Important expertise ready for clearer, friendlier access',
           after: 'Fast, warm, animated guidance for the autism community',
           link: 'https://rainbowasdv2.netlify.app/',
@@ -308,7 +308,7 @@ export const translations = {
         },
         {
           title: 'SumsUp',
-          desc: 'SumsUp is a premium white-label tax preparation platform designed for bookkeepers who want to scale sustainably. By providing a behind-the-scenes expert team, SumsUp allows firms to offer full-service tax prep and planning under their own brand, without referrals or extra hiring.',
+          desc: 'A business website for SumsUp, describing white-label tax preparation and planning services for bookkeeping firms and explaining how to enquire about the offering.',
           before: 'Bookkeeping firms ready to expand services intelligently',
           after: 'Website explaining a white-label tax services offering',
           link: 'https://sumsup.co',
@@ -318,7 +318,7 @@ export const translations = {
           desc: 'A creative portfolio website for Amit Kadosh, showcasing selected work in a clear, mobile-friendly layout.',
           before: 'Creative work ready for a more polished showcase',
           after: 'Polished, professional creative showcase',
-          link: '../../amitStarProject/',
+          link: '/amitStarProject/',
         },
         {
           title: 'Technology & Maintenance Corps',
@@ -331,7 +331,7 @@ export const translations = {
         },
         {
           title: 'Big Sale',
-          desc: 'An Israeli online store that helps customers discover shoes, home textiles, jewelry, children’s clothing, and useful gadgets, then shop with confidence and ease.',
+          desc: 'An ecommerce website organizing product categories and product pages across footwear, home textiles, jewelry, children’s clothing, and other items.',
           before:
             'A broad product range ready for a more organized shopping experience',
           after:
@@ -340,7 +340,7 @@ export const translations = {
         },
         {
           title: 'Project Orion',
-          desc: 'A discreet, authoritative website that presents strategic consulting, business intelligence, cyber, and security solutions while guiding qualified clients toward contact.',
+          desc: 'A business website for Project Orion outlining strategic consulting, business intelligence, cybersecurity, and security-related services with clear routes to contact.',
           before:
             'Sensitive expertise ready for a credible and precise presentation',
           after:
@@ -349,7 +349,7 @@ export const translations = {
         },
         {
           title: 'Shimon Cohen Photography',
-          desc: 'A photography portfolio that puts story and emotion first, showcases the work with depth, and helps families and clients feel confident before reaching out.',
+          desc: 'A photography portfolio for Shimon Cohen, with image galleries, service information, and contact options.',
           before:
             'Powerful photography ready for one cohesive viewing experience',
           after:
@@ -367,7 +367,7 @@ export const translations = {
         // },
         {
           title: 'CodeRecovery',
-          desc: 'A focused service site for a data recovery lab that explains a complex process in plain language and helps clients with critical data reach support quickly and confidently.',
+          desc: 'A service website for a data recovery laboratory, with readable explanations, service categories, and a path to request an assessment.',
           before:
             'An urgent technical service that needed to establish trust immediately',
           after:
@@ -376,7 +376,7 @@ export const translations = {
         },
         {
           title: 'AI Pro',
-          desc: 'An engineering services site that organizes calibration, validation, engineering, and repair offerings so clients can quickly identify the right service and make contact.',
+          desc: 'An engineering services website organizing calibration, validation, engineering, and repairs with navigation by service area and contact details.',
           before: 'A range of technical services ready for a clearer structure',
           after:
             'A professional service hub that shortens the path from need to solution',
@@ -428,7 +428,7 @@ export const translations = {
         },
         {
           title: 'Solutions That Actually Work for You',
-          desc: 'Every website or system I build is tailored to the way your business works, helping you save time, generate more inquiries, and turn complex processes into simple ones.',
+          desc: 'I plan each website or system around the actual workflow to reduce unnecessary steps, improve clarity, and make enquiries and information easier to manage.',
         },
         {
           title: 'No Technology Headaches',
@@ -436,11 +436,11 @@ export const translations = {
         },
         {
           title: 'Thinking Like Your Customers',
-          desc: 'I build websites that speak to the right people, build trust, communicate your value, and turn more visitors into customers.',
+          desc: 'I organize the content around what prospective customers need to understand, what the service includes, and how they can contact you without promising a particular conversion rate.',
         },
         {
           title: 'A Partner in Success, Not Just a Vendor',
-          desc: 'My goal is for you to get more than a beautiful website: a professional tool that represents you, produces results, and keeps working for you long after launch.',
+          desc: 'The goal is a useful website or system that can be maintained and extended as requirements evolve, not just a design that looks good on launch day.',
         },
       ],
       quote:
@@ -458,7 +458,7 @@ export const translations = {
       secondary: 'Send a Message on WhatsApp',
     },
     footer: {
-      desc: 'Business websites and landing pages, with clear content, custom development, and support throughout the process.',
+      desc: 'Business websites, CRM systems, custom software, and automation, with project scoping, implementation, and maintenance as agreed.',
       explore: 'Navigation',
       legal: 'Legal',
       privacy: 'Privacy Policy',

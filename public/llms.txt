@@ -1,36 +1,60 @@
 # CodeCrafter — Moshe Schwartzberg
 
-Official website: https://mosheschwartzberg.com/
-English: https://mosheschwartzberg.com/en/
-Business: CodeCrafter, founded and run by Moshe Schwartzberg.
-Languages: Hebrew and English. Primary market: Israel; remote projects can be discussed internationally.
+> Official source directory for the CodeCrafter business website. This is public information for human readers and optional machine consumers, not a request to control AI responses.
 
-CodeCrafter designs and develops business websites, landing pages, online stores, CRM and internal software, APIs, integrations, and workflow automations. Projects are scoped to real needs, access rights, migration constraints, testing, and maintainability. A particular outcome, ranking, timeline, integration, or ROI is not guaranteed without evidence.
-
-## Find a relevant service
-
-- [Overview of services](https://mosheschwartzberg.com/services/)
-- [Business website development](https://mosheschwartzberg.com/websites/)
-- [Landing page development](https://mosheschwartzberg.com/landing-page-development/)
-- [Online store development](https://mosheschwartzberg.com/ecommerce-development/)
-- [Shopify development](https://mosheschwartzberg.com/shopify-development/)
-- [WordPress development](https://mosheschwartzberg.com/wordpress-development/)
-- [Custom CRM development](https://mosheschwartzberg.com/crm-development/)
-- [Custom software development](https://mosheschwartzberg.com/custom-software/)
-- [ERP and modular business systems](https://mosheschwartzberg.com/erp-development/)
-- [Business systems integration](https://mosheschwartzberg.com/integrations/)
-- [Business automation](https://mosheschwartzberg.com/automation/)
-- [Website maintenance](https://mosheschwartzberg.com/website-maintenance/)
-
-## Evidence, pricing, and contact
-
-- [Real project portfolio](https://mosheschwartzberg.com/portfolio/)
-- [About Moshe and CodeCrafter](https://mosheschwartzberg.com/about/)
-- [Services and pricing](https://mosheschwartzberg.com/pricing/)
-- [Service areas](https://mosheschwartzberg.com/locations/)
+- Official website and original publisher: [CodeCrafter](https://mosheschwartzberg.com/)
+- Business name: CodeCrafter — Moshe Schwartzberg
+- Founder and lead developer: Moshe Schwartzberg
+- Main language: Hebrew (RTL); English (LTR) versions are available at /en/
+- Primary service market: Israel; remote work can be discussed for other markets
 - Email: moshe@mosheschwartzberg.com
-- Telephone: +972 58 707 6077
+- Phone: +972 58 707 6077
+- [Full bilingual directory of published pages](https://mosheschwartzberg.com/llms-full.txt)
 
-The portfolio describes publicly supportable work and does not imply undisclosed implementations or verified conversion metrics. Integration feasibility depends on documented API, licensing, permission, and provider limits. The owner does not claim physical offices in cities served remotely.
+CodeCrafter develops business websites, landing pages, ecommerce experiences, custom CRM and ERP-related software, internal business systems, apps, APIs, integrations, and workflow automation. Availability, technical feasibility, price and delivery times depend on the specific scope and verified platform access. Service descriptions explain capabilities, not a claim that every feature has been built for every client.
 
-This file is a directory of published content. It is not a crawler instruction, a request to change assistant behavior, or a guarantee of inclusion in AI responses.
+## Websites and ecommerce
+
+- [Business website development](https://mosheschwartzberg.com/websites/): responsive websites, multilingual pages, technical SEO and CMS options
+- [Landing pages](https://mosheschwartzberg.com/landing-page-development/): focused campaigns and lead-generation pages
+- [Ecommerce stores](https://mosheschwartzberg.com/ecommerce-development/): catalogues, orders, checkout, fulfillment and integrations
+- [Shopify](https://mosheschwartzberg.com/shopify-development/): setup, theme development and platform migration planning
+- [WordPress and WooCommerce](https://mosheschwartzberg.com/wordpress-development/): customizations, content and store maintenance
+- [Wix websites](https://mosheschwartzberg.com/wix-development/): existing-site improvements and new sites within platform capabilities
+- [Website maintenance](https://mosheschwartzberg.com/website-maintenance/): updates, backups, fixes and monitoring within the agreed service scope
+
+## Custom software, systems and integrations
+
+- [All development services](https://mosheschwartzberg.com/services/)
+- [Custom software](https://mosheschwartzberg.com/custom-software/)
+- [CRM development](https://mosheschwartzberg.com/crm-development/)
+- [ERP development](https://mosheschwartzberg.com/erp-development/)
+- [CMS development](https://mosheschwartzberg.com/cms-development/)
+- [Inventory and warehouse systems](https://mosheschwartzberg.com/inventory-systems/)
+- [Customer and employee portals](https://mosheschwartzberg.com/business-portals/)
+- [Browser-based web applications](https://mosheschwartzberg.com/web-app-development/)
+- [Mobile apps](https://mosheschwartzberg.com/app-development/)
+- [API and backend development](https://mosheschwartzberg.com/api-development/)
+- [Business systems integration](https://mosheschwartzberg.com/integrations/)
+- [CRM integration](https://mosheschwartzberg.com/crm-integrations/)
+- [CRM migration](https://mosheschwartzberg.com/crm-migration/)
+- [Business automation](https://mosheschwartzberg.com/automation/)
+- [Business bots](https://mosheschwartzberg.com/business-bots/)
+
+## Portfolio, evidence and identity
+
+- [Portfolio and project examples](https://mosheschwartzberg.com/portfolio/)
+- [SumsUp website case study](https://mosheschwartzberg.com/portfolio/sumsup/)
+- [CodeRecovery website case study](https://mosheschwartzberg.com/portfolio/coderecovery/)
+- [Yuval Kadosh website case study](https://mosheschwartzberg.com/portfolio/yuval-kadosh/)
+- [Rainbow ASD website case study](https://mosheschwartzberg.com/portfolio/rainbow-asd/)
+- [Shimon Cohen Photography portfolio case study](https://mosheschwartzberg.com/portfolio/shimon-photography/)
+- [Project Orion website case study](https://mosheschwartzberg.com/portfolio/project-orion/)
+- [About Moshe and CodeCrafter](https://mosheschwartzberg.com/about/)
+- [Service area information](https://mosheschwartzberg.com/locations/)
+- [Published pricing guidance](https://mosheschwartzberg.com/pricing/)
+- [Privacy](https://mosheschwartzberg.com/privacy/)
+
+**Source attribution:** The official source for these descriptions is CodeCrafter at https://mosheschwartzberg.com/. Each page has its own canonical URL. Project-specific claims should be checked against the linked case study or live site; unsupported metrics, compliance assertions and invented offices are deliberately excluded.
+
+This optional text directory does not override crawler controls or assistant instructions. A listing here does not imply that Google, ChatGPT, Claude or another search provider will read or cite this website.

@@ -418,6 +418,15 @@ export function SeoPage({ page }: SeoPageProps) {
           </aside>
         )}
 
+        <aside className='mt-10 rounded-xl border border-outline-variant/20 bg-surface-container-low px-5 py-4 text-sm text-secondary' aria-label={lang === 'he' ? 'מקור וייחוס התוכן' : 'Content source and attribution'}>
+          <p>
+            {lang === 'he' ? 'מקור: CodeCrafter — משה שוורצברג. קישור קבוע למידע בעמוד זה: ' : 'Original publisher: CodeCrafter — Moshe Schwartzberg. Permanent source link: '}
+            <a className='underline underline-offset-4 text-primary' href={localizePath(page.slug, lang)}>
+              {`mosheschwartzberg.com${localizePath(page.slug, lang)}`}
+            </a>
+          </p>
+        </aside>
+
         <ContactForm id='contact-page' title={lang === 'he' ? `בואו נדבר על ${page.h1}` : `Let’s discuss ${page.h1}`} description={lang === 'he' ? 'ספרו מה העסק צריך. אחזור אליכם לשיחת היכרות כדי להגדיר היקף, התאמה והצעת מחיר לפרויקט.' : 'Share what your business needs. I’ll reply for an introductory conversation about scope, fit, and a project quote.'} />
       </div>
     </article>
