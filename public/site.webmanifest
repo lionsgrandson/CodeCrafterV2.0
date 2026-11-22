@@ -1,7 +1,7 @@
 {
   "name": "CodeCrafter",
   "short_name": "CodeCrafter",
-  "description": "Bilingual website development, SEO, automation, and custom business systems.",
+  "description": "CodeCrafter develops business websites, custom software, CRM systems, APIs, integrations, and automations in Hebrew and English.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
