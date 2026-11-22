@@ -131,8 +131,8 @@ test('navigation, FAQ, portfolio, vendor failures and service links', async ({ p
   const localLinks = await page.locator('a[href^="/"]').evaluateAll(links => [...new Set(links.map(a => a.getAttribute('href')!.split('#')[0]))])
   for (const url of localLinks.filter(Boolean)) expect((await page.request.get(url)).status(), url).toBe(200)
   await page.goto('/en/portfolio/')
-  await expect(page.locator('a[href="https://mahagonyisraeldidntpay.netlify.app/"]')).toBeVisible()
-  await expect(page.locator('a[href="https://mahagonyisrael.netlify.app/"]')).toHaveCount(0)
+  await expect(page.getByRole('heading', { name: 'Mahagony Israel' })).toBeVisible()
+  await expect(page.locator('a[href*="mahagonyisrael"]')).toHaveCount(0)
 })
 test('existing redirects, unknown route and nonconfigured local backend', async ({ request }) => {
   for (const [from, to] of [['/blog.html', '/websites/'], ['/index.html', '/'], ['/portfolio/Rainbow-ASD', '/portfolio/rainbow-asd/']]) {
