@@ -4,6 +4,7 @@ import { contact, getWhatsAppUrl } from '../lib/contact'
 import { validateContact, type ContactInput, type ContactField } from '../lib/contactValidation'
 import { trackEvent, trackContactLead, readConsent } from '../lib/analytics'
 import { getCampaignAttribution } from '../lib/campaignAttribution'
+import { sendContactWithEmailJS } from '../lib/emailjsContact'
 
 const empty: ContactInput = { name: '', email: '', phone: '', message: '', company: '' }
 export function ContactForm({ id = 'contact', title, description }: { id?: string; title?: string; description?: string }) {
@@ -48,24 +49,23 @@ export function ContactForm({ id = 'contact', title, description }: { id?: strin
       event.currentTarget.querySelector<HTMLElement>(`[name="${Object.keys(invalid)[0]}"]`)?.focus()
       return
     }
+    // The hidden honeypot must never trigger a real email or count as a lead.
+    if (form.company.trim()) { setStatus('error'); return }
     inFlight.current = true; setStatus('sending')
     requestId.current ||= crypto.randomUUID()
     const key = requestId.current
     const start = performance.now()
-    let statusCode = 0
     try {
       const attribution = getCampaignAttribution(readConsent() === 'granted')
-      const response = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Idempotency-Key': key }, body: JSON.stringify({ ...form, language: lang, ...(attribution ? { attribution } : {}) }), signal: AbortSignal.timeout(16000) })
-      statusCode = response.status
-      const result = await response.json()
-      if (!response.ok || result.ok !== true || result.accepted !== true || result.deliveryStatus !== 'provider_accepted') throw new Error('not_accepted')
+      await sendContactWithEmailJS(form, lang, attribution)
+      // Acceptance by EmailJS does not guarantee delivery into the mailbox.
       trackContactLead(key)
       accepted.current = true
       setStatus('sent'); setForm(empty)
     } catch {
       setStatus('error')
-      trackEvent('form_submit_error', { error_type: statusCode ? 'backend_rejected' : 'network_or_timeout', status_code: statusCode })
-      trackEvent('api_request_failed', { error_type: 'contact_request', status_code: statusCode })
+      trackEvent('form_submit_error', { error_type: 'emailjs_unavailable' })
+      trackEvent('api_request_failed', { error_type: 'emailjs_contact' })
       requestAnimationFrame(() => errorRef.current?.focus())
     } finally {
       trackEvent('form_submission_latency', { duration_ms: Math.round(performance.now() - start) })
@@ -74,7 +74,6 @@ export function ContactForm({ id = 'contact', title, description }: { id?: strin
   }
   return <section id={id} className='contact-section px-6 md:px-8 bg-surface-container-low' data-section='contact'>
     <div className='max-w-3xl mx-auto'>
-      <span className='section-kicker'>{he ? 'הצעד הבא' : 'Your next step'}</span>
       <h2 className='text-3xl md:text-5xl font-bold mb-4'>{title || (he ? 'בואו נגדיר את הפתרון שמתאים לעסק שלכם' : 'Let’s discuss what your business needs to build')}</h2>
       <p className='text-secondary mb-6'>{description || (he ? 'ספרו לי מה אתם צריכים. אחזור אליכם לשיחת היכרות, נחדד את ההיקף ונבדוק יחד את הצעד הבא לפני הצעת מחיר.' : 'Tell me what you need. I’ll reply for an introductory conversation, clarify the scope, and discuss the next step before a quote.')}</p>
       <form noValidate onSubmit={submit} data-contact-form data-clarity-mask='true' aria-busy={status === 'sending'} className='contact-form grid grid-cols-1 md:grid-cols-2 gap-5'>
@@ -88,8 +87,8 @@ export function ContactForm({ id = 'contact', title, description }: { id?: strin
             {errors[field] && <p id={`${id}-${field}-error`} className='text-primary text-sm mt-2' role='alert'>{messages[errors[field]!]}</p>}
           </div>
         })}
-        {status === 'sent' && <p role='status' className='md:col-span-2 text-tertiary font-semibold'>{he ? 'הפנייה התקבלה לשליחה. אחזור אליכם בהקדם.' : 'Your inquiry was accepted for sending. I’ll get back to you soon.'}</p>}
-        {status === 'error' && <p ref={errorRef} tabIndex={-1} role='alert' className='md:col-span-2 text-primary'>{he ? 'לא ניתן לאשר שהפנייה התקבלה. הפרטים נשמרו כאן — נסו שוב, או פנו ב-WhatsApp או בטלפון.' : 'We could not confirm your inquiry was accepted. Your details are still here — retry, or contact me by WhatsApp or phone.'} <a className='underline' href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a></p>}
+        {status === 'sent' && <p role='status' className='md:col-span-2 text-tertiary font-semibold'>{he ? 'הפנייה נשלחה למערכת הדיוור. אחזור אליכם בהקדם.' : 'Your inquiry was accepted by the email service. I’ll get back to you soon.'}</p>}
+        {status === 'error' && <p ref={errorRef} tabIndex={-1} role='alert' className='md:col-span-2 text-primary'>{he ? 'שליחת הפנייה נכשלה. הפרטים עדיין בטופס — נסו שוב, או צרו קשר ב-WhatsApp או בטלפון.' : 'Could not send your inquiry. Your details remain in the form — retry, or contact me by WhatsApp or phone.'} <a className='underline' href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a></p>}
         <p className='md:col-span-2 text-sm text-secondary'>{he ? 'הפרטים ישמשו למענה לפנייה, כפי שמפורט ב' : 'Your details will be used to reply, as described in the '}<a href='/privacy/' className='underline'>{he ? 'מדיניות הפרטיות' : 'privacy policy'}</a>.</p>
         <div className='md:col-span-2 flex flex-col sm:flex-row gap-3'>
           <button type='submit' disabled={status === 'sending' || status === 'sent'} className='button-primary px-6 py-4 disabled:opacity-70'>{status === 'sending' ? (he ? 'שולח…' : 'Sending…') : status === 'sent' ? (he ? 'הפנייה התקבלה' : 'Inquiry accepted') : (he ? 'שלחו בקשה להצעת מחיר' : 'Request a quote')}</button>
