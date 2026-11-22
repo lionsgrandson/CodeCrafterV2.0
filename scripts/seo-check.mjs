@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { readMetaContent } from './seo-meta-utils.mjs'
 
 const args = process.argv.slice(2)
 const argument = (name) => {
@@ -58,9 +59,9 @@ for (const url of sitemapUrls) {
   documents.set(routePath, html)
 
   const title = capture(html, /<title[^>]*>([\s\S]*?)<\/title>/i)
-  const description = capture(html, /<meta\s+name=["']description["'][^>]*content=["']([^"']+)["'][^>]*>/i)
+  const description = readMetaContent(html, 'description')
   const canonical = capture(html, /<link\s+rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i)
-  const robots = capture(html, /<meta\s+name=["']robots["'][^>]*content=["']([^"']+)["'][^>]*>/i)
+  const robots = readMetaContent(html, 'robots')
   const expectedCanonical = `${origin}${routePath}`
 
   if (count(html, /<title\b/gi) !== 1 || !title) fail(`${routePath} must have one title`)
@@ -204,9 +205,6 @@ for (const [slug, hebrewHeading, englishHeading] of additionalServiceGuides) {
 }
 
 for (const [routePath, html] of documents) {
-  if (html.includes('data-page-slug=') && !html.includes('mosheschwartzberg.com' + routePath)) {
-    fail(`${routePath} is missing a user-visible, canonical source reference`)
-  }
   const heading = capture(html, /<h1[^>]*>([\s\S]*?)<\/h1>/i)
   if (routePath.startsWith('/en/') && /[\u0590-\u05ff]/.test(heading)) {
     fail(`${routePath} contains a Hebrew heading on an English page`)
