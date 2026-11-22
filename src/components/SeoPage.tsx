@@ -4,14 +4,23 @@ import { useLanguage } from '../App'
 import { getWhatsAppUrl } from '../lib/contact'
 import { localizePath, serviceLabels } from '../lib/seoRoutes'
 import { pricingRows } from '../lib/seoFactsPages'
+import { guideLabels } from '../lib/seoEditorialPages'
 import type { SeoPage as SeoPageData } from '../lib/seoPages'
 import { FaqAccordion } from './FaqAccordion'
 
-const projectLabels: Record<string, string> = {
-  sumsup: 'SumsUp',
-  coderecovery: 'CodeRecovery',
-  'yuval-kadosh': 'יובל קדוש',
-  'project-orion': 'Project Orion',
+const projectLabels: Record<'he' | 'en', Record<string, string>> = {
+  he: {
+    sumsup: 'SumsUp', coderecovery: 'CodeRecovery', 'yuval-kadosh': 'יובל קדוש',
+    'project-orion': 'Project Orion', 'rainbow-asd': 'Rainbow ASD',
+    'shimon-photography': 'שמעון כהן צילום', 'aderet-argaman': 'אדרת וארגמן',
+    'ilan-shachar': 'אילן שחר', 'green-therapy': 'Green Therapy',
+  },
+  en: {
+    sumsup: 'SumsUp', coderecovery: 'CodeRecovery', 'yuval-kadosh': 'Yuval Kadosh',
+    'project-orion': 'Project Orion', 'rainbow-asd': 'Rainbow ASD',
+    'shimon-photography': 'Shimon Cohen Photography', 'aderet-argaman': 'Aderet & Argaman',
+    'ilan-shachar': 'Ilan Shachar', 'green-therapy': 'Green Therapy',
+  },
 }
 
 const profileLinks = [
@@ -126,12 +135,16 @@ export function SeoPage({ page }: SeoPageProps) {
           <ol>
             <li><a href={localizePath('', lang)}>{lang === 'he' ? 'בית' : 'Home'}</a></li>
             <li aria-hidden='true'>/</li>
-            {page.kind === 'service' && !isServicesHub ? (
+            {page.slug.startsWith('locations/') ? (
+              <li><a href={localizePath('locations', lang)}>{lang === 'he' ? 'אזורי שירות' : 'Service areas'}</a></li>
+            ) : page.kind === 'service' && !isServicesHub ? (
               <li><a href={servicesPath}>{lang === 'he' ? 'שירותים' : 'Services'}</a></li>
             ) : page.kind === 'case-study' ? (
               <li><a href={portfolioPath}>{lang === 'he' ? 'תיק עבודות' : 'Portfolio'}</a></li>
+            ) : page.kind === 'guide' ? (
+              <li><a href={localizePath('guides', lang)}>{lang === 'he' ? 'מדריכים' : 'Guides'}</a></li>
             ) : null}
-            {page.kind !== 'about' && <li aria-hidden='true'>/</li>}
+            {(page.slug.startsWith('locations/') || (page.kind === 'service' && !isServicesHub) || page.kind === 'case-study' || page.kind === 'guide') && <li aria-hidden='true'>/</li>}
             <li aria-current='page'>{page.h1}</li>
           </ol>
         </nav>
@@ -150,9 +163,10 @@ export function SeoPage({ page }: SeoPageProps) {
             <h1>{page.h1}</h1>
             {page.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             <div className='seo-page-actions'>
-              <a className='button-primary px-7 py-4' href={isServicesHub ? localizePath('pricing', lang) : '#contact-page'}>
+              <a className='button-primary px-7 py-4' href={isServicesHub ? localizePath('pricing', lang) : page.kind === 'directory' || page.kind === 'guide' ? localizePath('services', lang) : '#contact-page'}>
                 {isServicesHub
                   ? (lang === 'he' ? 'למחירון' : 'View pricing')
+                  : page.kind === 'directory' || page.kind === 'guide' ? (lang === 'he' ? 'לשירותי הפיתוח' : 'Explore development services')
                   : (lang === 'he' ? 'בואו נדבר על הפרויקט' : 'Discuss your project')}
               </a>
               <a className='button-secondary px-7 py-4' href={getWhatsAppUrl(lang)} target='_blank' rel='noreferrer'>
@@ -291,6 +305,16 @@ export function SeoPage({ page }: SeoPageProps) {
                       {section.items.map((item) => <li key={item}>{item}</li>)}
                     </ul>
                   )}
+                  {section.links?.length ? (
+                    <ul className='mt-4 space-y-3'>
+                      {section.links.map((link) => (
+                        <li key={link.href}>
+                          <a href={link.href} className='font-semibold text-primary underline underline-offset-4'>{link.label}</a>
+                          {link.description ? <p className='mt-1 text-sm text-secondary'>{link.description}</p> : null}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                 </section>
               )
             })}
@@ -382,7 +406,7 @@ export function SeoPage({ page }: SeoPageProps) {
                 <div className='seo-link-grid'>
                   {page.relatedProjects.map((slug) => (
                     <a key={slug} href={localizePath(`portfolio/${slug}`, lang)}>
-                      <span>{projectLabels[slug] ?? slug}</span><Arrow className='w-4 h-4' aria-hidden='true' />
+                      <span>{projectLabels[lang][slug] ?? slug}</span><Arrow className='w-4 h-4' aria-hidden='true' />
                     </a>
                   ))}
                 </div>
@@ -396,6 +420,18 @@ export function SeoPage({ page }: SeoPageProps) {
             )}
           </aside>
         )}
+
+        {page.relatedGuides?.length ? (
+          <aside className='seo-related' aria-label={lang === 'he' ? 'מדריכים קשורים' : 'Related guides'}>
+            <h2>{lang === 'he' ? 'מדריכים שיעזרו לכם לתכנן את הפרויקט' : 'Practical guides for planning your project'}</h2>
+            <div className='seo-link-grid'>
+              {page.relatedGuides.map(slug => (
+                <a key={slug} href={localizePath(slug, lang)}><span>{guideLabels[lang][slug] ?? slug}</span><Arrow className='w-4 h-4' aria-hidden='true' /></a>
+              ))}
+              <a href={localizePath('guides', lang)}><span>{lang === 'he' ? 'לכל המדריכים' : 'All guides'}</span><Arrow className='w-4 h-4' aria-hidden='true' /></a>
+            </div>
+          </aside>
+        ) : null}
 
         {page.kind === 'service' && !isServicesHub && (
           <aside className='seo-related' aria-label={lang === 'he' ? 'קישורים שימושיים' : 'Useful links'}>
@@ -427,7 +463,7 @@ export function SeoPage({ page }: SeoPageProps) {
           </p>
         </aside>
 
-        <ContactForm id='contact-page' title={lang === 'he' ? `בואו נדבר על ${page.h1}` : `Let’s discuss ${page.h1}`} description={lang === 'he' ? 'ספרו מה העסק צריך. אחזור אליכם לשיחת היכרות כדי להגדיר היקף, התאמה והצעת מחיר לפרויקט.' : 'Share what your business needs. I’ll reply for an introductory conversation about scope, fit, and a project quote.'} />
+        {page.kind !== 'directory' && <ContactForm id='contact-page' title={lang === 'he' ? 'בואו נדבר על הפרויקט שלכם' : 'Let’s discuss your project'} description={lang === 'he' ? 'ספרו מה העסק צריך. אחזור אליכם לשיחת היכרות כדי להגדיר היקף, התאמה והצעת מחיר לפרויקט.' : 'Share what your business needs. I’ll reply for an introductory conversation about scope, fit, and a project quote.'} />}
       </div>
     </article>
   )

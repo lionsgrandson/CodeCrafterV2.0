@@ -233,6 +233,43 @@ for (const sitemapUrl of sitemapUrls.filter((url) => !/\/(privacy|terms)\/$/.tes
   if (!fullDirectory.includes(`](${sitemapUrl})`)) fail(`llms-full.txt omits a canonical page: ${sitemapUrl}`)
 }
 
+const newSeoPages = [
+  ['/portfolio/aderet-argaman/', 'אדרת וארגמן'],
+  ['/portfolio/ilan-shachar/', 'אילן שחר'],
+  ['/portfolio/green-therapy/', 'Green Therapy'],
+  ['/guides/', 'מדריכים מעשיים'],
+  ['/guides/planning-a-business-website/', 'איך מתכננים אתר לעסק'],
+  ['/guides/planning-a-custom-crm/', 'איך מאפיינים מערכת CRM'],
+  ['/guides/woocommerce-to-shopify-migration/', 'WooCommerce'],
+  ['/site-map/', 'מפת האתר'],
+  ['/en/portfolio/aderet-argaman/', 'Aderet & Argaman'],
+  ['/en/portfolio/ilan-shachar/', 'Ilan Shachar'],
+  ['/en/portfolio/green-therapy/', 'Green Therapy'],
+  ['/en/guides/', 'Practical guides'],
+  ['/en/guides/planning-a-business-website/', 'How to plan a business website'],
+  ['/en/guides/planning-a-custom-crm/', 'How to plan a custom CRM'],
+  ['/en/guides/woocommerce-to-shopify-migration/', 'WooCommerce'],
+  ['/en/site-map/', 'CodeCrafter website sitemap'],
+]
+for (const [pagePath, expectedHeading] of newSeoPages) {
+  const html = documents.get(pagePath)
+  if (!html?.includes(expectedHeading)) fail(pagePath + ' is absent or missing its descriptive page content')
+}
+for (const lang of ['', '/en']) {
+  const siteMap = documents.get(`${lang}/site-map/`) ?? ''
+  for (const path of ['services', 'portfolio', 'guides', 'portfolio/aderet-argaman', 'portfolio/ilan-shachar', 'portfolio/green-therapy']) {
+    const localPath = `${lang}/${path}/`
+    if (!siteMap.includes(`href="${localPath}"`)) fail('HTML sitemap omits ' + localPath)
+  }
+  const portfolioPage = documents.get(`${lang}/portfolio/`) ?? ''
+  if (!portfolioPage.includes(`href="${lang}/portfolio/aderet-argaman/"`)) fail('Aderet portfolio card has no internal case-study link')
+  if (!portfolioPage.includes(`href="${lang}/portfolio/green-therapy/"`)) fail('Green Therapy card has no internal case-study link')
+}
+const verificationFile = await readAsset('/google6768eed8771c59fe.html')
+if (verificationFile.trim() !== 'google-site-verification: google6768eed8771c59fe.html') {
+  fail('Google Search Console verification file does not match the supplied token')
+}
+
 const home = documents.get('/')
 if (!home?.includes('id="choose-solution"') || !home?.includes('id="business-faq"')) fail('homepage must render buyer guide and accessible FAQ')
 if (!home?.includes('"@type":"FAQPage"')) fail('homepage FAQ must have visible matching FAQ structured data')

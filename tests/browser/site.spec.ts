@@ -15,7 +15,7 @@ const events = (page: Page, name: string) => page.evaluate(event => (window as a
 for (const lang of ['he', 'en'] as const) {
   for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844 }]) {
     test(`${lang} ${viewport.width}: all routes, metadata, forms and overflow`, async ({ page }) => {
-      test.setTimeout(120000)
+      test.setTimeout(180000)
       await analytics(page, 'denied'); await page.setViewportSize(viewport)
       for (const path of [localizePath('', lang), localizePath('portfolio', lang), localizePath('resume', lang), ...pagesByLanguage[lang].map(p => localizePath(p.slug, lang))]) {
         const response = await page.goto(path)
@@ -134,6 +134,8 @@ test('navigation, FAQ, portfolio, vendor failures and service links', async ({ p
   await expect(page.getByRole('heading', { name: 'Mahagony Israel' })).toHaveCount(0)
   await expect(page.getByRole('heading', { name: 'SumsUp' })).toBeVisible()
   await expect(page.locator('img[src="/portfolio/aderet-argaman-logo.png"]')).toHaveCount(1)
+  await expect(page.getByRole('heading', { name: 'Aderet & Argaman' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Green Therapy' })).toBeVisible()
   await expect(page.locator('img[src="/portfolio/coderecovery-screenshot.webp"]')).toHaveCount(1)
   await expect(page.locator('img[src="/portfolio/omnifood-logo.png"]')).toHaveCount(1)
 })
@@ -180,4 +182,52 @@ test('vendor exceptions cannot break a successful form', async ({ page }) => {
   await page.locator('[name=name]').fill('Mock'); await page.locator('[name=email]').fill('test@example.com')
   await page.locator('form[data-contact-form]').getByRole('button', { name: 'Request a quote' }).click()
   await expect(page.locator('form[data-contact-form]').getByRole('status')).toBeVisible()
+})
+
+test('Google verification file, editorial hub and portfolio case studies are crawlable', async ({ request, page }) => {
+  const verification = await request.get('/google6768eed8771c59fe.html')
+  expect(verification.status()).toBe(200)
+  expect((await verification.text()).trim()).toBe('google-site-verification: google6768eed8771c59fe.html')
+  await analytics(page, 'denied')
+  await page.goto('/en/site-map/')
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('CodeCrafter website sitemap')
+  for (const path of ['/en/guides/', '/en/portfolio/aderet-argaman/', '/en/portfolio/ilan-shachar/', '/en/portfolio/green-therapy/']) {
+    expect(await page.locator('a[href="' + path + '"]').count()).toBeGreaterThan(0)
+    const response = await request.get(path)
+    expect(response.status()).toBe(200)
+  }
+})
+test('campaign source is attached only after consent, without raw query identifiers', async ({ page }) => {
+  await analytics(page)
+  await page.goto('/en/?utm_source=linkedin&utm_medium=social&utm_campaign=autumn_launch&utm_term=private%40example.com&gclid=private-click-id')
+  await expect.poll(() => new URL(page.url()).search).toBe('')
+  let received: any
+  await page.route('**/api/contact', route => {
+    received = route.request().postDataJSON()
+    return route.fulfill({ json: { ok: true, accepted: true, deliveryStatus: 'provider_accepted' } })
+  })
+  const form = page.locator('form[data-contact-form]')
+  await form.locator('[name=name]').fill('Campaign Test')
+  await form.locator('[name=email]').fill('test@example.com')
+  await form.getByRole('button', { name: 'Request a quote' }).click()
+  await expect(form.getByRole('status')).toBeVisible()
+  expect(received.attribution).toMatchObject({ utm_source: 'linkedin', utm_medium: 'social', utm_campaign: 'autumn_launch', landing_path: '/en/' })
+  expect(JSON.stringify(received)).not.toContain('private-click-id')
+  expect(JSON.stringify(received)).not.toContain('private@example.com')
+  expect(JSON.stringify(await page.evaluate(() => (window as any).__ga))).not.toContain('autumn_launch')
+})
+test('denying analytics also excludes campaign attribution from contact requests', async ({ page }) => {
+  await analytics(page, 'denied')
+  await page.goto('/en/?utm_source=linkedin&utm_campaign=private')
+  let received: any
+  await page.route('**/api/contact', route => {
+    received = route.request().postDataJSON()
+    return route.fulfill({ json: { ok: true, accepted: true, deliveryStatus: 'provider_accepted' } })
+  })
+  const form = page.locator('form[data-contact-form]')
+  await form.locator('[name=name]').fill('Denied Test')
+  await form.locator('[name=email]').fill('test@example.com')
+  await form.getByRole('button', { name: 'Request a quote' }).click()
+  await expect(form.getByRole('status')).toBeVisible()
+  expect(received.attribution).toBeUndefined()
 })

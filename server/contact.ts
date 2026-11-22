@@ -1,4 +1,5 @@
 import { validateContact, type ContactInput } from '../src/lib/contactValidation'
+import { normalizeCampaignAttribution } from '../src/lib/campaignAttribution'
 export type ContactEnvironment = { RESEND_API_KEY?: string; RESEND_FROM_EMAIL?: string; CONTACT_NOTIFICATION_EMAIL?: string }
 export function contactJson(body: Record<string, unknown>, status = 200) {
   return Response.json(body, { status, headers: { 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' } })
@@ -20,7 +21,9 @@ export async function handleContact(request: Request, env: ContactEnvironment, s
   if (key && !/^[a-zA-Z0-9-]{16,80}$/.test(key)) return contactJson({ error: 'Invalid request identifier.' }, 400)
   if (!env.RESEND_API_KEY || !env.RESEND_FROM_EMAIL) return contactJson({ error: 'Email delivery is not configured.' }, 503)
   const language = payload.language === 'en' ? 'en' : 'he'
-  const lines = [`Name: ${input.name}`, `Email: ${input.email || 'Not provided'}`, `Phone: ${input.phone || 'Not provided'}`, `Language: ${language}`, '', input.message]
+  const attribution = normalizeCampaignAttribution(payload.attribution)
+  const attributionLines = attribution ? ['', 'Campaign source (reported by consented client):', ...Object.entries(attribution).map(([field, value]) => `${field}: ${value}`)] : []
+  const lines = [`Name: ${input.name}`, `Email: ${input.email || 'Not provided'}`, `Phone: ${input.phone || 'Not provided'}`, `Language: ${language}`, ...attributionLines, '', input.message]
   try {
     const response = await send('https://api.resend.com/emails', {
       method: 'POST', headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json', ...(key ? { 'Idempotency-Key': `contact-${key}` } : {}) },

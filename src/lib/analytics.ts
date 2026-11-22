@@ -1,5 +1,6 @@
 import { serviceSlugs } from './seoRoutes'
 import { onCLS, onINP, onLCP } from 'web-vitals'
+import { captureCampaignAttribution, clearCampaignAttribution } from './campaignAttribution'
 
 type Vendor = (...args: unknown[]) => void
 type AnalyticsWindow = Window & { gtag?: Vendor; clarity?: Vendor; dataLayer?: unknown[] }
@@ -13,7 +14,9 @@ let resetPage: (() => void) | undefined
 let experiment: { experiment_id: string; experiment_variant: string } | undefined
 const leadIds = new Set<string>()
 const allowedKeys = new Set(['section_name', 'cta_location', 'cta_type', 'contact_channel', 'field_name', 'error_type', 'scroll_percent', 'duration_ms', 'status_code', 'metric_name', 'metric_value', 'metric_rating', 'target_service', 'experiment_id', 'experiment_variant', 'delivery_status'])
-const knownPaths = new Set(['', ...serviceSlugs, 'services', 'resume', 'about', 'pricing', 'portfolio', 'locations',
+const knownPaths = new Set(['', ...serviceSlugs, 'services', 'resume', 'about', 'pricing', 'portfolio', 'locations', 'guides', 'site-map',
+  'guides/planning-a-business-website', 'guides/planning-a-custom-crm', 'guides/woocommerce-to-shopify-migration',
+  'portfolio/aderet-argaman', 'portfolio/ilan-shachar', 'portfolio/green-therapy',
   ...['sumsup', 'coderecovery', 'yuval-kadosh', 'project-orion', 'rainbow-asd', 'shimon-photography'].map(slug => `portfolio/${slug}`),
   ...['north', 'center', 'tel-aviv', 'haifa', 'jerusalem', 'beer-sheva', 'karmiel'].map(slug => `locations/${slug}`)])
 export function getPageContext() {
@@ -65,6 +68,8 @@ function loadVendors() {
   if (loaded) return
   if (getPageContext().page_path === '/unknown/') return
   loaded = true
+  // Capture only after consent, before privacy-safe removal of URL parameters.
+  captureCampaignAttribution(true)
   sanitizeLocation()
   const w = window as AnalyticsWindow
   w.dataLayer = w.dataLayer || []
@@ -89,6 +94,7 @@ export function setAnalyticsConsent(granted: boolean) {
   if (granted) { loadVendors(); consentCommands(true); resetPage?.() }
   else {
     consentCommands(false)
+    clearCampaignAttribution()
     clearAnalyticsCookies()
     // Vendors already loaded cannot be unloaded reliably. Reload into the denied state.
     if (loaded) window.location.reload()
@@ -150,7 +156,7 @@ export function installContactClickTracking() {
     if (event.key !== CONSENT_KEY) return
     enabled = event.newValue === 'granted'
     if (enabled) { loadVendors(); consentCommands(true); resetPage?.() }
-    else { consentCommands(false); clearAnalyticsCookies(); if (loaded) window.location.reload() }
+    else { consentCommands(false); clearCampaignAttribution(); clearAnalyticsCookies(); if (loaded) window.location.reload() }
   })
   window.addEventListener('pageshow', e => { if (e.persisted) resetPage?.() })
   for (const method of ['pushState', 'replaceState'] as const) {

@@ -121,13 +121,13 @@ export const translations = {
           after: 'גלריה רגשית שמציגה את הסגנון ומעודדת יצירת קשר',
           link: 'https://eclectic-marigold-0fe508.netlify.app/',
         },
-        // {
-        //   title: 'אדרת וארגמן',
-        //   desc: 'בית דיגיטלי לחנויות יד שנייה בתל אביב שמחבר בין אופנת פרימיום, קיימות וסיפור מקומי ומעודד לקוחות לגלות את המותגים ולהגיע לחנות.',
-        //   before: 'שתי חנויות עם אופי עשיר שחיכו לסיפור דיגיטלי מאוחד',
-        //   after: 'אתר אופנה מלא אופי שמחבר בין המותגים לביקור בחנות',
-        //   link: 'https://snazzy-phoenix-fbd0ad.netlify.app/',
-        // },
+        {
+          title: 'אדרת וארגמן',
+          desc: 'אתר WordPress לחנויות אדרת וארגמן בתל אביב, עם מידע על אופנת יד שנייה, מותגי יוקרה, מכירה והחלפה ושאלות נפוצות. עבודת התחזוקה וה-SEO הטכני מתוארת במקרה הבוחן.',
+          before: 'אתר ותיק עם תוכן רב, שירותים שונים ומספר מסלולי פנייה',
+          after: 'תוכן מאורגן ותחזוקה טכנית בהתאם למערכות האתר',
+          link: 'https://www.aderet-store.com/',
+        },
         {
           title: 'CodeRecovery',
           desc: 'אתר שירות למעבדת שחזור מידע, המציג את תחומי השירות, הסברים ללקוחות ודרך לפנייה לצורך בדיקה ואבחון.',
@@ -356,15 +356,13 @@ export const translations = {
             'An emotional gallery that communicates the style and encourages contact',
           link: 'https://eclectic-marigold-0fe508.netlify.app/',
         },
-        // {
-        //   title: 'Aderet & Argaman',
-        //   desc: 'A digital home for Tel Aviv second-hand stores that connects premium fashion, sustainability, and a local story while encouraging customers to explore the brands and visit.',
-        //   before:
-        //     'Two character-rich stores ready for one unified digital story',
-        //   after:
-        //     'A distinctive fashion site that turns brand discovery into store visits',
-        //   link: 'https://snazzy-phoenix-fbd0ad.netlify.app/',
-        // },
+        {
+          title: 'Aderet & Argaman',
+          desc: 'A WordPress website for two Tel Aviv second-hand fashion stores, covering vintage items, designer resale, selling and exchanges, and customer questions. See the case study for maintenance and technical SEO work.',
+          before: 'An established website spanning distinct stores and customer journeys',
+          after: 'Organized content and technical maintenance within the project scope',
+          link: 'https://www.aderet-store.com/',
+        },
         {
           title: 'CodeRecovery',
           desc: 'A service website for a data recovery laboratory, with readable explanations, service categories, and a path to request an assessment.',

@@ -6,6 +6,7 @@ export type PageSection = {
   heading: string
   paragraphs?: string[]
   items?: string[]
+  links?: { label: string; href: string; description?: string }[]
 }
 
 export type FaqItem = {
@@ -14,7 +15,7 @@ export type FaqItem = {
 }
 
 export type SeoPage = {
-  kind: 'service' | 'about' | 'case-study'
+  kind: 'service' | 'about' | 'case-study' | 'guide' | 'directory'
   slug: string
   title: string
   description: string
@@ -25,6 +26,7 @@ export type SeoPage = {
   faq?: FaqItem[]
   relatedServices?: string[]
   relatedProjects?: string[]
+  relatedGuides?: string[]
   image?: {
     src: string
     alt: string

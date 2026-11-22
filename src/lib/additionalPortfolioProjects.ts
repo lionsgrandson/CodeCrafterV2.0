@@ -64,5 +64,15 @@ export const additionalPortfolioProjects = [
     },
     "link": "https://nexaautomation.netlify.app/",
     "image": "/portfolio/nexa-automation-screenshot-800.webp"
+  },
+  {
+    "id": "green-therapy",
+    "title": { "he": "Green Therapy", "en": "Green Therapy" },
+    "description": {
+      "he": "אתר Green Therapy לחוויות בריאות לאירועי חברה: עיסויים, אמבטיות קרח, סדנאות גוף־נפש ובר שייקים, לצד מתחם בבית דגן וטיפולים אישיים.",
+      "en": "A public Green Therapy website presenting corporate wellness events with massages, ice baths, workshops and a smoothie bar, plus its Beit Dagan venue and private treatments."
+    },
+    "link": "https://greentherapy.co.il/",
+    "image": ""
   }
 ] as const

@@ -5,7 +5,7 @@ import { pagesByLanguage, localizePath, type Language, type SeoPage } from '../s
 import { pricingRows } from '../src/lib/seoFactsPages.ts'
 import { translations } from '../src/lib/translations.ts'
 import { additionalPortfolioProjects } from '../src/lib/additionalPortfolioProjects.ts'
-import { portfolioCaseStudySlugsByIndex } from '../src/lib/portfolioCaseStudyLinks.ts'
+import { portfolioCaseStudySlugsByIndex, additionalCaseStudySlugsById } from '../src/lib/portfolioCaseStudyLinks.ts'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = path.join(root, 'dist')
@@ -21,7 +21,7 @@ type Route = {
   lang: Language
   title: string
   description: string
-  type: 'website' | 'collection' | 'service' | 'about' | 'case-study' | 'resume'
+  type: 'website' | 'collection' | 'service' | 'about' | 'case-study' | 'resume' | 'guide' | 'directory'
   page?: SeoPage
 }
 
@@ -145,6 +145,7 @@ function breadcrumbItems(route: Route) {
     items.push({ name: route.lang === 'he' ? 'שירותים' : 'Services', url: absoluteUrl(localizePath('services', route.lang)) })
   }
   if (route.type === 'case-study') items.push({ name: route.lang === 'he' ? 'תיק עבודות' : 'Portfolio', url: absoluteUrl(localizePath('portfolio', route.lang)) })
+  if (route.type === 'guide') items.push({ name: route.lang === 'he' ? 'מדריכים' : 'Guides', url: absoluteUrl(localizePath('guides', route.lang)) })
   if (route.type !== 'website') items.push({ name: route.page?.h1 ?? route.title, url: absoluteUrl(route.path) })
   return items
 }
@@ -243,7 +244,7 @@ function schemaFor(route: Route) {
       publisher: { '@id': `${origin}/#organization` },
     },
     {
-      '@type': route.type === 'collection' ? 'CollectionPage' : route.type === 'about' || route.type === 'resume' ? 'ProfilePage' : 'WebPage',
+      '@type': route.type === 'collection' || route.type === 'directory' ? 'CollectionPage' : route.type === 'about' || route.type === 'resume' ? 'ProfilePage' : 'WebPage',
       '@id': `${url}#webpage`,
       url,
       name: route.title,
@@ -312,6 +313,19 @@ function schemaFor(route: Route) {
     })
   }
 
+  if (route.type === 'guide' && route.page) {
+    graph.push({
+      '@type': 'Article',
+      '@id': `${url}#article`,
+      headline: route.page.h1,
+      description: route.description,
+      inLanguage: route.lang,
+      mainEntityOfPage: { '@id': `${url}#webpage` },
+      author: { '@id': `${origin}/#moshe-schwartzberg` },
+      publisher: { '@id': `${origin}/#organization` },
+    })
+  }
+
   const faqItems = route.type === 'website' ? homeFaq[route.lang] : route.page?.faq
   if (faqItems?.length) {
     graph.push({
@@ -338,7 +352,9 @@ function schemaFor(route: Route) {
       })),
       ...additionalPortfolioProjects.map((project) => ({
         name: project.title[route.lang],
-        url: project.link,
+        url: additionalCaseStudySlugsById[project.id]
+          ? absoluteUrl(localizePath(additionalCaseStudySlugsById[project.id], route.lang))
+          : project.link,
       })),
     ]
     graph.push({
@@ -366,7 +382,7 @@ async function createDocument(route: Route) {
   html = setMeta(html, 'robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1')
   html = setMeta(html, 'googlebot', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1')
   html = setMeta(html, 'bingbot', 'index, follow, max-image-preview:large')
-  html = setMeta(html, 'og:type', route.type === 'case-study' ? 'article' : 'website', 'property')
+  html = setMeta(html, 'og:type', route.type === 'case-study' || route.type === 'guide' ? 'article' : 'website', 'property')
   html = setMeta(html, 'og:locale', locale, 'property')
   html = setMeta(html, 'og:site_name', 'CodeCrafter', 'property')
   html = setMeta(html, 'og:url', url, 'property')

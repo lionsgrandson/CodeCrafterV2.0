@@ -5,7 +5,7 @@ import { useLanguage } from '../App'
 import { WordReveal } from './WordReveal'
 import { localizePath } from '../lib/seoRoutes'
 import { additionalPortfolioProjects } from '../lib/additionalPortfolioProjects'
-import { portfolioCaseStudySlugsByIndex } from '../lib/portfolioCaseStudyLinks'
+import { portfolioCaseStudySlugsByIndex, additionalCaseStudySlugsById } from '../lib/portfolioCaseStudyLinks'
 
 type ProjectMediaProps = {
   src?: string
@@ -114,7 +114,7 @@ export function Portfolio({
       media: projectMedia[idx],
       externalLink,
       link: caseStudyLink || externalLink,
-      featured: [0, 1, 3].includes(idx),
+      featured: [0, 1, 3, 9].includes(idx),
     }
   })
 
@@ -123,10 +123,10 @@ export function Portfolio({
     ...additionalPortfolioProjects.map(project => ({
       title: project.title[lang],
       desc: project.description[lang],
-      media: { src: project.image, kind: project.id === 'ilan-shachar' ? 'logo' as const : 'screenshot' as const },
+      media: { src: project.image || undefined, kind: project.id === 'ilan-shachar' ? 'logo' as const : 'screenshot' as const },
       externalLink: project.link,
-      link: project.link,
-      featured: project.id === 'codesite',
+      link: additionalCaseStudySlugsById[project.id] ? localizePath(additionalCaseStudySlugsById[project.id], lang) : project.link,
+      featured: project.id === 'codesite' || project.id === 'green-therapy',
     })),
   ]
 
