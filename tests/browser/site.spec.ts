@@ -133,6 +133,9 @@ test('navigation, FAQ, portfolio, vendor failures and service links', async ({ p
   await page.goto('/en/portfolio/')
   await expect(page.getByRole('heading', { name: 'Mahagony Israel' })).toHaveCount(0)
   await expect(page.getByRole('heading', { name: 'SumsUp' })).toBeVisible()
+  await expect(page.locator('img[src="/portfolio/aderet-argaman-logo.png"]')).toHaveCount(1)
+  await expect(page.locator('img[src="/portfolio/coderecovery-screenshot.webp"]')).toHaveCount(1)
+  await expect(page.locator('img[src="/portfolio/omnifood-logo.png"]')).toHaveCount(1)
 })
 test('existing redirects, unknown route and nonconfigured local backend', async ({ request }) => {
   for (const [from, to] of [['/blog.html', '/websites/'], ['/index.html', '/'], ['/portfolio/Rainbow-ASD', '/portfolio/rainbow-asd/']]) {
