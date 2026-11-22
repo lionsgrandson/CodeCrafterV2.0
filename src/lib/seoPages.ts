@@ -59,7 +59,7 @@ const heServices: SeoPage[] = [
       },
       {
         heading: 'מה אפשר לבנות',
-        items: ['אתרי תדמית ושירות עם עמודים ייעודיים לכל תחום', 'דפי נחיתה לקמפיינים ומוצרים', 'קטלוגים, חנויות וחוויות מוצר', 'אתרים דו-לשוניים בעברית ובאנגלית', 'אזורי תוכן, תיק עבודות ומקרי בוחן', 'טפסים חכמים וחיבור ל-CRM, דוא״ל, WhatsApp ואנליטיקה'],
+        items: ['אתרי תדמית ושירות עם עמודים ייעודיים לכל תחום', 'דפי נחיתה לקמפיינים ומוצרים', 'קטלוגים, חנויות וחוויות מוצר', 'אתרים דו-לשוניים בעברית ובאנגלית', 'אזורי תוכן, תיק עבודות ופרויקטים', 'טפסים חכמים וחיבור ל-CRM, דוא״ל, WhatsApp ואנליטיקה'],
       },
       {
         heading: 'איך נראה תהליך הפיתוח',
@@ -191,7 +191,7 @@ const sharedPages: Record<Language, SeoPage[]> = {
       sections: [
         { heading: 'מה CodeCrafter עושה', paragraphs: ['תחומי העבודה כוללים בניית אתרים, מערכות עסקיות, CRM ו-CMS, אינטגרציות, אוטומציות ואפליקציות. פרויקטים יכולים להיות חוויה ציבורית ללקוחות, כלי פנימי לצוות או חיבור בין מערכות קיימות.'] },
         { heading: 'גישה לעבודה עם לקוחות', items: ['אפיון בשפה ברורה והפרדה בין צורך לפיצ׳ר', 'התקדמות בשלבים שאפשר לראות ולבדוק', 'התאמה אמיתית לעברית RTL, אנגלית ומובייל', 'שקיפות לגבי תלות בספקים והרשאות חיצוניות', 'בדיקת המסלול בפועל ולא רק של קוד המקור'] },
-        { heading: 'ניסיון שמופיע בעבודות', paragraphs: ['תיק העבודות כולל אתרי שירות, קטלוגים, פלטפורמות עסקיות, פורטלים וחוויות תוכן בתחומים שונים. כל מקרה בוחן באתר מתאר רק מידע שניתן לבסס על הפרויקט הקיים; כאשר תוצאה מספרית או פרט טכנולוגי אינם ידועים, הם אינם מומצאים.'] },
+        { heading: 'ניסיון שמופיע בעבודות', paragraphs: ['תיק העבודות כולל אתרי שירות, קטלוגים, פלטפורמות עסקיות, פורטלים וחוויות תוכן בתחומים שונים. תיק העבודות מציג פרויקטים וכתובות פעילות. תוצאות מספריות או פרטי מימוש שלא אומתו אינם מוצגים כעובדה.'] },
         { heading: 'המטרה', paragraphs: ['המטרה של CodeCrafter היא לתת לעסק כלי שעובד איתו: מסביר את הערך, מחבר מידע, מפחית חיכוך ומאפשר לצמוח בצורה מסודרת. לפעמים זה אתר חדש, לפעמים מערכת, ולפעמים שינוי ממוקד בחיבור שכבר קיים.'] },
       ], relatedServices: [...serviceSlugs], relatedProjects: ['sumsup', 'coderecovery'], image: { src: '/about-photo-800.webp', alt: 'משה שוורצברג, מייסד CodeCrafter', kind: 'photo' },
     },
@@ -259,7 +259,7 @@ sharedPages.en = sharedPages.he.map((page) => ({
     ? [
         { heading: 'What CodeCrafter does', paragraphs: ['Work includes business websites, custom software, CRM and CMS development, integrations, automation, and applications for customers or internal teams.'] },
         { heading: 'Approach to client work', items: ['Plain-language discovery', 'Visible, testable delivery stages', 'Hebrew RTL, English LTR, mobile, and accessibility checks', 'Clear separation between local work and externally approved services', 'Runtime verification before release claims'] },
-        { heading: 'Experience shown in the portfolio', paragraphs: ['The portfolio spans service sites, catalogs, platforms, portals, and content experiences. Case studies state only what can be supported by available project information.'] },
+        { heading: 'Experience shown in the portfolio', paragraphs: ['The portfolio spans service sites, catalogs, platforms, portals, and content experiences. Portfolio entries focus on publicly verifiable project information.'] },
         { heading: 'Purpose', paragraphs: ['CodeCrafter aims to deliver a working business tool: something that communicates value, connects information, reduces friction, and can evolve responsibly.'] },
       ]
     : [
