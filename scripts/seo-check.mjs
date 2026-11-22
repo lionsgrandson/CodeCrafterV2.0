@@ -118,7 +118,7 @@ for (const locale of ['/', '/en/']) {
   const list = JSON.parse(script)['@graph']?.find((item) => item['@type'] === 'ItemList')
   if (!list || list.numberOfItems !== list.itemListElement?.length || list.numberOfItems < 10) fail('portfolio structured data does not match its project listing: ' + routePath)
   if (!list.itemListElement.some((item) => item.url === 'https://sumsup.co')) fail('portfolio structured data must link to the public SumsUp website: ' + routePath)
-  if (list.itemListElement.some((item) => /coderecovery|simplyrecovery/i.test(item.url ?? '') || /coderecovery/i.test(item.name ?? ''))) fail('Removed CodeRecovery project found in structured portfolio: ' + routePath)
+  if (list.itemListElement.some((item) => /coderecovery|simplyrecovery|ai-pro\.co\.il|aderet-store\.com/i.test(item.url ?? '') || /coderecovery|AI Pro|Aderet|אדרת וארגמן/i.test(item.name ?? ''))) fail('Removed project found in structured portfolio: ' + routePath)
 }
 
 const titles = [...documents.values()].map((html) => capture(html, /<title[^>]*>([\s\S]*?)<\/title>/i))
@@ -249,6 +249,8 @@ for (const lang of ['', '/en']) {
   if (!portfolioPage.includes('https://omnifood.dev/img/omnifood-logo.png')) fail('Portfolio Omnifood logo is not the supplied image')
   if (/CodeRecovery|coderecovery-screenshot|AI Pro[^\s]*.*coderecovery/i.test(portfolioPage)) fail('Removed CodeRecovery portfolio entry is still present')
   if (portfolioPage.includes('href="/portfolio/aderet-argaman/"')) fail('Portfolio still links to removed case-study URLs')
+  if (portfolioPage.includes('https://ai-pro.co.il/') || portfolioPage.includes('https://www.aderet-store.com/')) fail('Removed AI Pro or Aderet remains in the portfolio')
+  if (!portfolioPage.includes('src="https://greentherapy.co.il/assets/green-therapy-logo.webp"')) fail('Green Therapy portfolio logo does not match the supplied asset')
   if (siteMap.includes('/portfolio/aderet-argaman/')) fail('HTML sitemap includes an unpublished case-study URL')
   for (const slug of retiredCaseStudyPaths) {
     const oldRoute = `${lang}/portfolio/${slug}/`
@@ -262,11 +264,16 @@ for (const [routePath, html] of documents) {
     fail('An intrusive content attribution footer remains: ' + routePath)
   }
 }
-const homeProjects = documents.get('/') ?? ''
-for (const title of ['יובל קדוש', 'שמעון כהן', 'אילן שחר']) {
-  if (!homeProjects.includes(title)) fail('Missing requested homepage featured project: ' + title)
+for (const lang of ['', '/en']) {
+  const homeProjects = documents.get(`${lang}/`) ?? ''
+  for (const website of ['https://greentherapy.co.il/', 'https://shimonphotos.com/', 'https://ilanshacar.netlify.app/']) {
+    if (!homeProjects.includes(`href="${website}"`)) fail('Missing requested homepage featured project: ' + website + ' in ' + lang)
+  }
+  if (!homeProjects.includes('src="https://greentherapy.co.il/assets/green-therapy-logo.webp"')) fail('Green Therapy logo is missing from the homepage: ' + lang)
+  for (const removedWebsite of ['https://ykadosh.co.il', 'https://ai-pro.co.il/', 'https://www.aderet-store.com/']) {
+    if (homeProjects.includes(`href="${removedWebsite}"`)) fail('Unwanted featured homepage project: ' + removedWebsite + ' in ' + lang)
+  }
 }
-if (homeProjects.includes('href="https://rainbowasdv2.netlify.app"')) fail('Homepage still features Rainbow ASD rather than the three requested projects')
 
 const verificationFile = await readAsset('/google6768eed8771c59fe.html')
 if (verificationFile.trim() !== 'google-site-verification: google6768eed8771c59fe.html') {
