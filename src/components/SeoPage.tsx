@@ -135,14 +135,16 @@ export function SeoPage({ page }: SeoPageProps) {
           <ol>
             <li><a href={localizePath('', lang)}>{lang === 'he' ? 'בית' : 'Home'}</a></li>
             <li aria-hidden='true'>/</li>
-            {page.kind === 'service' && !isServicesHub ? (
+            {page.slug.startsWith('locations/') ? (
+              <li><a href={localizePath('locations', lang)}>{lang === 'he' ? 'אזורי שירות' : 'Service areas'}</a></li>
+            ) : page.kind === 'service' && !isServicesHub ? (
               <li><a href={servicesPath}>{lang === 'he' ? 'שירותים' : 'Services'}</a></li>
             ) : page.kind === 'case-study' ? (
               <li><a href={portfolioPath}>{lang === 'he' ? 'תיק עבודות' : 'Portfolio'}</a></li>
             ) : page.kind === 'guide' ? (
               <li><a href={localizePath('guides', lang)}>{lang === 'he' ? 'מדריכים' : 'Guides'}</a></li>
             ) : null}
-            {page.kind !== 'about' && <li aria-hidden='true'>/</li>}
+            {(page.slug.startsWith('locations/') || (page.kind === 'service' && !isServicesHub) || page.kind === 'case-study' || page.kind === 'guide') && <li aria-hidden='true'>/</li>}
             <li aria-current='page'>{page.h1}</li>
           </ol>
         </nav>
