@@ -17,7 +17,7 @@ function cleanField(input: unknown): string | undefined {
   if (typeof input !== 'string') return undefined
   const value = input.trim()
   // Keep campaign labels descriptive, but avoid emails, controls, HTML and raw search terms.
-  return value.length > 0 && value.length <= 80 && /^[\\p{L}\\p{N}._:/\\- ]+$/u.test(value) ? value : undefined
+  return value.length > 0 && value.length <= 80 && /^[\p{L}\p{N}._:/\- ]+$/u.test(value) ? value : undefined
 }
 
 export function normalizeCampaignAttribution(input: unknown): CampaignAttribution | undefined {
@@ -29,7 +29,7 @@ export function normalizeCampaignAttribution(input: unknown): CampaignAttributio
     if (value) result[field] = value
   }
   const path = record.landing_path
-  if (typeof path === 'string' && path.length <= 160 && /^\\/(?:[a-zA-Z0-9/_-]*)$/.test(path)) result.landing_path = path
+  if (typeof path === 'string' && path.length <= 160 && /^\/(?:[a-zA-Z0-9/_-]*)$/.test(path)) result.landing_path = path
   const referrer = record.referrer_origin
   if (typeof referrer === 'string' && referrer.length <= 160) {
     try {
