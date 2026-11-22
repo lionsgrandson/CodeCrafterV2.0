@@ -20,8 +20,8 @@ export const additionalPortfolioProjects = [
       "en": "Ilan Shachar"
     },
     "description": {
-      "he": "אתר שירותים פיננסיים לאילן שחר המציג פנסיה, פיננסים וביטוח עם ניווט ברור, תוכן שבונה אמון, נגישות והתאמה מלאה למובייל.",
-      "en": "A polished financial-services website for Ilan Shachar, presenting pension, finance, and insurance services with clear navigation, trust-building content, accessibility, and responsive design."
+      "he": "אתר שירותים פיננסיים לאילן שחר המציג תחומי פנסיה, פיננסים וביטוח, עם מבנה תוכן בעברית, ניווט ברור והתאמה למובייל.",
+      "en": "A Hebrew-language financial-services website for Ilan Shachar covering pension, financial, and insurance topics, with clear navigation and a responsive layout."
     },
     "link": "https://ilanshacar.netlify.app/",
     "image": "/portfolio/ilan-shachar-logo.webp"
@@ -59,8 +59,8 @@ export const additionalPortfolioProjects = [
       "en": "Nexa"
     },
     "description": {
-      "he": "אתר נקי ומקצועי לחברת אוטומציה בתוכנה, שנועד לשדר יכולת טכנית בתחושה פרימיום.",
-      "en": "A clean, professional website for a software automation company, designed to communicate technical capability with a premium feel."
+      "he": "אתר תדמית בתחום האוטומציה בתוכנה, המדגים הצגת שירותים טכנולוגיים, ניווט ברור ועיצוב רספונסיבי.",
+      "en": "A software-automation website concept illustrating service presentation, clear navigation, and responsive design."
     },
     "link": "https://nexaautomation.netlify.app/",
     "image": "/portfolio/nexa-automation-screenshot-800.webp"
