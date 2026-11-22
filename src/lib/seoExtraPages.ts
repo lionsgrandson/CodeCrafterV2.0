@@ -149,7 +149,7 @@ const en: SeoPage[] = [
   {
     kind: 'service',
     slug: 'cms-development',
-    title: 'Custom CMS Development for Business | CodeCrafter',
+    title: 'Custom CMS Development for Businesses | CodeCrafter',
     description: 'Custom CMS development for pages, catalogs, content, permissions, and publishing workflows, designed around the business data and team instead of a generic template.',
     eyebrow: 'CodeCrafter services',
     h1: 'Custom CMS development for business',
@@ -175,7 +175,7 @@ const en: SeoPage[] = [
   {
     kind: 'service',
     slug: 'integrations',
-    title: 'Business Systems Integration and API Development | CodeCrafter',
+    title: 'Business Systems Integration & API Services | CodeCrafter',
     description: 'Connect business systems through APIs, webhooks, and other authorized interfaces to move data consistently and reduce manual copying between tools.',
     eyebrow: 'CodeCrafter services',
     h1: 'Business systems integration',
