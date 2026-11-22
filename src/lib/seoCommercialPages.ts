@@ -223,7 +223,7 @@ const en: SeoPage[] = [
   {
     kind: 'service',
     slug: 'api-development',
-    title: 'API and Backend Development for Business | CodeCrafter',
+    title: 'API & Backend Development for Businesses | CodeCrafter',
     description: 'API and backend development for business systems, websites, apps, and integrations, including permissions, validation, logging, and reliable business logic.',
     eyebrow: 'API and backend',
     h1: 'API and backend development for business systems',
@@ -319,7 +319,7 @@ const en: SeoPage[] = [
   {
     kind: 'service',
     slug: 'shopify-development',
-    title: 'Shopify Store Development for Business | CodeCrafter',
+    title: 'Shopify Store Development & Setup | CodeCrafter',
     description: 'Shopify store setup and development for catalog structure, themes, checkout, payments, shipping, apps, integrations, and maintenance.',
     eyebrow: 'Shopify',
     h1: 'Shopify store development',
@@ -343,7 +343,7 @@ const en: SeoPage[] = [
   {
     kind: 'service',
     slug: 'wordpress-development',
-    title: 'WordPress Website Development for Business | CodeCrafter',
+    title: 'WordPress Website Development & Maintenance | CodeCrafter',
     description: 'WordPress development for business websites, content, WooCommerce, customizations, integrations, performance, and maintenance.',
     eyebrow: 'WordPress',
     h1: 'WordPress website development for business',
@@ -415,7 +415,7 @@ const en: SeoPage[] = [
   {
     kind: 'service',
     slug: 'landing-page-development',
-    title: 'Landing Page Development for Business and Campaigns | CodeCrafter',
+    title: 'Landing Page Development for Businesses | CodeCrafter',
     description: 'Landing page development for businesses and campaigns with clear messaging, responsive layout, forms or WhatsApp, measurement, performance, and basic technical SEO.',
     eyebrow: 'Landing pages',
     h1: 'Landing page development for business and campaigns',
