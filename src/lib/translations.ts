@@ -122,20 +122,6 @@ export const translations = {
           link: 'https://eclectic-marigold-0fe508.netlify.app/',
         },
         {
-          title: 'אדרת וארגמן',
-          desc: 'אתר WordPress לחנויות אדרת וארגמן בתל אביב, עם מידע על אופנת יד שנייה, מותגי יוקרה, מכירה והחלפה ושאלות נפוצות. עבודת התחזוקה וה-SEO הטכני מתוארת במקרה הבוחן.',
-          before: 'אתר ותיק עם תוכן רב, שירותים שונים ומספר מסלולי פנייה',
-          after: 'תוכן מאורגן ותחזוקה טכנית בהתאם למערכות האתר',
-          link: 'https://www.aderet-store.com/',
-        },
-        {
-          title: 'AI Pro',
-          desc: 'אתר שירותים הנדסיים המציג תחומי כיול, ולידציה, שירותי הנדסה ותיקונים, עם ניווט לפי תחום וטופס פנייה.',
-          before: 'מגוון שירותים טכניים שחיכה למבנה ברור ונגיש יותר',
-          after: 'מרכז שירות מקצועי שמקצר את הדרך מהצורך לפתרון',
-          link: 'https://ai-pro.co.il/',
-        },
-        {
           title: 'Omnifood',
           desc: 'דמו של דף נחיתה למנוי ארוחות, המדגים מבנה שיווקי, הצגת מסלולים וטופס הרשמה. אינו מוצג כהוכחה לפעילות עסקית אמיתית.',
           before: 'שירות ארוחות חדש שחיכה להצעת ערך פשוטה ומשכנעת',
@@ -352,21 +338,6 @@ export const translations = {
           after:
             'An emotional gallery that communicates the style and encourages contact',
           link: 'https://eclectic-marigold-0fe508.netlify.app/',
-        },
-        {
-          title: 'Aderet & Argaman',
-          desc: 'A WordPress website for two Tel Aviv second-hand fashion stores, covering vintage items, designer resale, selling and exchanges, and customer questions. The portfolio links to the active store and describes maintenance and technical SEO work.',
-          before: 'An established website spanning distinct stores and customer journeys',
-          after: 'Organized content and technical maintenance within the project scope',
-          link: 'https://www.aderet-store.com/',
-        },
-        {
-          title: 'AI Pro',
-          desc: 'An engineering services website organizing calibration, validation, engineering, and repairs with navigation by service area and contact details.',
-          before: 'A range of technical services ready for a clearer structure',
-          after:
-            'A professional service hub that shortens the path from need to solution',
-          link: 'https://ai-pro.co.il/',
         },
         {
           title: 'Omnifood',
