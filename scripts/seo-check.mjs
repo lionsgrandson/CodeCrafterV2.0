@@ -145,8 +145,8 @@ for (const path of [
   '/en/portfolio/project-orion/',
 ]) {
   const html = documents.get(path) ?? ''
-  const h1 = capture(html, /<h1[^>]*>([\\s\\S]*?)<\\/h1>/i)
-  if (/[\\u0590-\\u05ff]/.test(h1)) fail(path + ' has untranslated Hebrew H1')
+  const h1 = capture(html, /<h1[^>]*>([\s\S]*?)<\/h1>/i)
+  if (/[\u0590-\u05ff]/.test(h1)) fail(path + ' has untranslated Hebrew H1')
   if (html.includes('The original problem')) fail(path + ' still uses a generic English case-study template')
 }
 
