@@ -84,7 +84,6 @@ export function TrustCoverageSeo() {
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <div className='max-w-7xl mx-auto'>
         <header className='max-w-4xl mx-auto text-center mb-10'>
-          <span className='section-kicker'>{copy.kicker}</span>
           <h2 id='trust-coverage-heading' className='text-3xl md:text-5xl font-bold mt-4 mb-4 font-headline text-on-surface'>{copy.title}</h2>
           <p className='text-secondary text-base md:text-lg leading-relaxed'>{copy.intro}</p>
         </header>

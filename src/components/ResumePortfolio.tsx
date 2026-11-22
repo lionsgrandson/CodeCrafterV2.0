@@ -433,7 +433,6 @@ export function ResumePortfolio() {
 
         <div className='relative z-10 mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-center'>
           <div className='max-w-5xl'>
-            <span className='section-kicker'>{copy.eyebrow}</span>
             <h1 className='mt-6 max-w-5xl text-4xl font-black leading-tight text-on-surface md:text-6xl'>
               {copy.title}
             </h1>

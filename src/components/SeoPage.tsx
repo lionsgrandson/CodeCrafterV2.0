@@ -140,7 +140,6 @@ export function SeoPage({ page }: SeoPageProps) {
           }}
         >
           <div className={`min-w-0 ${heroImageFirst ? 'md:order-2' : ''}`}>
-            <span className='section-kicker'>{page.eyebrow}</span>
             <h1>{page.h1}</h1>
             {page.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             <div className='seo-page-actions'>
@@ -188,7 +187,6 @@ export function SeoPage({ page }: SeoPageProps) {
         {isServicesHub ? (
           <section className='mt-10' aria-labelledby='service-choice-heading'>
             <div className='mb-7 max-w-3xl'>
-              <span className='section-kicker'>{lang === 'he' ? 'מתחילים מהצורך' : 'Start with the need'}</span>
               <h2 id='service-choice-heading' className='text-3xl md:text-4xl font-bold font-headline text-on-surface mt-3 mb-3'>
                 {lang === 'he' ? 'מה אתם מנסים לבנות?' : 'What are you trying to build?'}
               </h2>
@@ -299,7 +297,6 @@ export function SeoPage({ page }: SeoPageProps) {
 
         {page.kind === 'about' && (
           <section className='seo-faq' aria-labelledby='verified-profile-heading'>
-            <span className='section-kicker'>{lang === 'he' ? 'פרופיל מאומת' : 'Verified profile'}</span>
             <h2 id='verified-profile-heading'>{lang === 'he' ? 'עובדות על משה ו CodeCrafter' : 'Facts about Moshe and CodeCrafter'}</h2>
             <ul>
               <li>{lang === 'he' ? 'השם העסקי הציבורי: CodeCrafter Moshe Schwartzberg.' : 'Public business name: CodeCrafter Moshe Schwartzberg.'}</li>
@@ -321,7 +318,6 @@ export function SeoPage({ page }: SeoPageProps) {
 
         {page.faq && (
           <section className='seo-faq' aria-labelledby='faq-heading'>
-            <span className='section-kicker'>FAQ</span>
             <h2 id='faq-heading'>{lang === 'he' ? 'שאלות נפוצות' : 'Frequently asked questions'}</h2>
             <FaqAccordion items={page.faq} />
           </section>

@@ -85,9 +85,6 @@ export function Footer({ homeHashPrefix = '' }: FooterProps) {
           <a href={localizePath('', lang)} className='inline-block text-xl font-bold font-headline text-on-surface mb-2 hover:text-primary' aria-label={lang === 'he' ? 'CodeCrafter — לעמוד הבית' : 'CodeCrafter — homepage'}>
             {t.nav.brand}
           </a>
-          <p className='text-primary font-headline font-bold tracking-wide mb-2'>
-            {t.hero.eyebrow}
-          </p>
           <p className='text-sm text-secondary max-w-xs mb-4 leading-relaxed'>
             {t.footer.desc}
           </p>

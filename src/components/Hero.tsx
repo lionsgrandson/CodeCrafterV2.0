@@ -36,9 +36,6 @@ export function Navbar({ homeHashPrefix = '', contactHref = `${homeHashPrefix}#c
             className='block transition-opacity duration-[200ms] hover:opacity-75'
           >
             {t.nav.brand}
-            <span className='text-primary font-headline font-bold tracking-widest uppercase text-xs mb-4 block underline-offset-4 decoration-primary/30 underline'>
-              {t.hero.eyebrow}
-            </span>
           </a>
         </div>
         <div className='hidden lg:flex space-x-5 rtl:space-x-reverse items-center'>
@@ -177,7 +174,6 @@ export function Hero() {
               {t.hero.ctaSecondary}
             </a>
           </div>
-          <p className='text-sm text-secondary mt-5'>{lang === 'he' ? 'עבודה ישירה עם המפתח · עברית ואנגלית · תכנון, פיתוח וליווי' : 'Work directly with the developer · Hebrew and English · Planning, development, and support'}</p>
         </div>
 
         <div

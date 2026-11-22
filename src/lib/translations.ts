@@ -149,17 +149,17 @@ export const translations = {
       items: [
         {
           name: 'שמעון כהן',
-          role: 'צלם',
+          role: 'shimonphotos.com',
           text: '"אני נפגשתי עם משה על מנת לפתח אתר תיק עבודות לעסק הצילום שלי ומבלי שהתחלתי בכלל לדבר הוא כבר הראה לי סקיצה ראשונית, כאילו קלע בול לטעם שלי. אחרי שפצורים והוספות פתאום יש לי אתר משלי, ככה בשנייה! ואני גם יודע שיש לי תמיד למי לפנות אם אני צריך עזרה. מקצוען במלוא מובן המילה!"',
         },
-        { name: 'Alon Greenshtein', role: 'ביקורת Google', text: 'מרוצה מאוד מהשירות וגם מהמקצועיות. ממשיך איתו קבוע', sourceUrl: 'https://www.google.com/maps/contrib/112206677045488065213/reviews?hl=iw' },
+        { name: 'Alon Greenshtein', role: 'Green Therapy', text: 'מרוצה מאוד מהשירות וגם מהמקצועיות. ממשיך איתו קבוע' },
 
         {
           name: 'Gabby',
           role: 'CEO of SumsUp',
           text: '"פגשתי את משה דרך קבוצת נטוורקינג והייתה לי חוויה יוצאת מן הכלל בעבודה איתו על האתר שלנו. התקשורת שלו הייתה ברורה, יוזמת וישירה מתחילת התהליך ועד סופו. ב-13 שנות עבודה עם חברות דומות, אני יכולה לומר בכנות שמעולם לא הייתה לי חוויה חלקה כל כך. הכל הרגיש קל, יעיל ומחושב היטב - והתוצאה הסופית משקפת את זה. בהחלט אחזור ל-CodeCrafter לפרויקטים עתידיים. מומלץ בחום."',
         },
-        { name: 'Akiva Kulbersh', role: 'ביקורת Google', text: 'שירות מעולה, תענוג לעבוד איתו', sourceUrl: 'https://www.google.com/maps/contrib/113497995420725252333/reviews?hl=iw-IL' },
+        { name: 'Akiva Kulbersh', role: 'TorahPublishing', text: 'שירות מעולה, תענוג לעבוד איתו' },
 
         {
           name: 'Nizan ben ezra',
@@ -384,17 +384,17 @@ export const translations = {
       items: [
         {
           name: 'Shimon Cohen',
-          role: 'Photographer',
+          role: 'shimonphotos.com',
           text: '"I met with Moshe to develop a portfolio website for my photography business and before I even started talking he already showed me an initial sketch, as if he had hit the nail on the head for my taste. After some tweaks and additions, suddenly I have my own website, in a second! And I also know that I always have someone to turn to if I need help. A professional in every sense of the word!"',
         },
-        { name: 'Alon Greenshtein', role: 'Google review · translated from Hebrew', text: 'Very satisfied with the service and the professionalism. I continue working with him regularly.', sourceUrl: 'https://www.google.com/maps/contrib/112206677045488065213/reviews?hl=iw' },
+        { name: 'Alon Greenshtein', role: 'Green Therapy', text: 'Very satisfied with the service and the professionalism. I continue working with him regularly.' },
 
         {
           name: 'Gabby',
           role: 'CEO of SumsUp',
           text: '"I met Moshe through a networking group and had an OUTSTANDING experience working with him on our website. His communication was incredibly clear, proactive and straightforward from start to finish. In my 13 years of working with similar companies, I can honestly say I\'ve never had such a seamless experience. Genuinely made everything feel easy, efficient and well thought out - and the final results reflect that. I\'ll absolutely be coming back to CodeCrafter for future projects. Highly recommend."',
         },
-        { name: 'Akiva Kulbersh', role: 'Google review · translated from Hebrew', text: 'Excellent service, a pleasure to work with.', sourceUrl: 'https://www.google.com/maps/contrib/113497995420725252333/reviews?hl=iw-IL' },
+        { name: 'Akiva Kulbersh', role: 'TorahPublishing', text: 'Excellent service, a pleasure to work with.' },
 
         {
           name: 'Nizan ben ezra',
