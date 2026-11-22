@@ -17,7 +17,6 @@ export function Navbar({ homeHashPrefix = '', contactHref = `${homeHashPrefix}#c
   const navItems = [
     { label: t.nav.solve, href: localizePath('services', lang) },
     { label: t.nav.work, href: localizePath('portfolio', lang) },
-    { label: lang === 'he' ? 'מחירים' : 'Pricing', href: localizePath('pricing', lang) },
     { label: t.nav.process, href: `${homeHashPrefix}#process` },
     { label: lang === 'he' ? 'אודות' : 'About', href: localizePath('about', lang) },
   ]
