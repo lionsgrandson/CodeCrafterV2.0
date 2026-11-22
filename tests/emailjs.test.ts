@@ -45,7 +45,8 @@ test('EmailJS uses the exact provided public service/template IDs and a self-con
 
 test('phone-only leads preserve their phone and have a safe Reply-To fallback', () => {
   const params = buildEmailJSTemplateParams({ ...input, email: '', message: '' }, 'en', undefined, new Date('2026-11-22T20:00:00.000Z'))
-  assert.equal(params.email, 'Not provided')
+  assert.equal(params.email, 'moshe@mosheschwartzberg.com')
+  assert.equal(params.contact_email, 'Not provided')
   assert.equal(params.reply_to, 'moshe@mosheschwartzberg.com')
   assert.match(params.message, /Phone: \+972 50 123 4567/)
   assert.match(params.message, /No additional project details provided/)
