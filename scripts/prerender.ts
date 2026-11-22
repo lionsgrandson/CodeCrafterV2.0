@@ -25,18 +25,18 @@ type Route = {
 
 const homeMetadata: Record<Language, Pick<Route, 'title' | 'description'>> = {
   he: {
-    title: 'בניית אתרים ודפי נחיתה לעסקים | CodeCrafter',
-    description: 'בניית אתרים לעסקים ודפי נחיתה בהתאמה אישית עם CodeCrafter: תוכן ברור, חוויית מובייל, תשתית SEO וליווי ישיר משיחת ההיכרות ועד ההשקה.',
+    title: 'בניית אתרים לעסקים ודפי נחיתה בהתאמה אישית | CodeCrafter',
+    description: 'בניית אתרים לעסקים ודפי נחיתה עם CodeCrafter: אפיון, פיתוח רספונסיבי, SEO טכני, תוכן ברור, טפסים ואינטגרציות בהתאם לצורכי העסק.',
   },
   en: {
-    title: 'Web Development Company Israel | CodeCrafter',
-    description: 'CodeCrafter builds business websites and landing pages in Israel, with clear content, mobile usability, technical SEO, and direct developer support from discovery to launch.',
+    title: 'Web Development Company in Israel | CodeCrafter',
+    description: 'CodeCrafter develops custom business websites and landing pages in Israel with clear content, responsive design, technical SEO, reliable forms, and integrations.',
   },
 }
 
 const portfolioMetadata: Record<Language, Pick<Route, 'title' | 'description'>> = {
   he: {
-    title: 'תיק עבודות ומקרי בוחן | CodeCrafter',
+    title: 'תיק עבודות: אתרים, מערכות ומקרי בוחן | CodeCrafter',
     description: 'אתרים, מערכות וחוויות דיגיטליות שנבנו ב-CodeCrafter לעסקים, ארגונים ויוצרים, עם קישורים למקרי בוחן ולפרויקטים הפעילים.',
   },
   en: {
@@ -103,7 +103,6 @@ function absoluteUrl(routePath: string) {
 }
 
 function normalizePortfolioUrl(url?: string) {
-  if (url === 'https://mahagonyisraeldidntpay.netlify.app/') return undefined
   if (url === 'https://rainbowasdv2.netlify.app/') return 'https://rainbow-asd.com/'
   if (url === 'https://eclectic-marigold-0fe508.netlify.app/') return 'https://shimonphotos.com/'
   return url
