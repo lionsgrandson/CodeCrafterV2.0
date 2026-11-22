@@ -33,6 +33,10 @@ for (const lang of ['he', 'en'] as const) {
     await analytics(page, 'denied')
     for (const path of [localizePath('', lang), localizePath('websites', lang)]) {
       await page.goto(path)
+      const contactForm = page.locator('form[data-contact-form]')
+      await expect(contactForm).toHaveCount(1)
+      await expect(contactForm.locator('a[href*="wa.me"], [data-placement="contact_whatsapp"]')).toHaveCount(0)
+      await expect(contactForm.locator('button[type="submit"]')).toHaveCount(1)
       const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze()
       expect(result.violations).toEqual([])
     }
