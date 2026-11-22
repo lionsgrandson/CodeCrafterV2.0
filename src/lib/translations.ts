@@ -11,15 +11,15 @@ export const translations = {
     hero: {
       eyebrow: 'בונים קוד. יוצרים פתרונות.',
       headline: 'בניית אתרים לעסקים ודפי נחיתה בהתאמה אישית',
-      subline: 'אתרי תדמית, דפי נחיתה ופיתוח Web בהתאמה אישית לעסקים ולנותני שירות. מסר ברור, חוויית מובייל נוחה ודרך פשוטה לפנות — משיחת ההיכרות ועד להשקה.',
-      ctaPrimary: 'בואו נדבר על האתר שלכם',
+      subline: 'אני בונה אתרים ודפי נחיתה לעסקים, לצד מערכות CRM, פיתוח תוכנה ואוטומציות. כל פרויקט מתחיל בהבנת הצורך, ממשיך לאפיון ולפיתוח, ומסתיים בבדיקות והשקה מסודרת.',
+      ctaPrimary: 'בואו נדבר על הפרויקט שלכם',
       ctaSecondary: 'שלח הודעה ב-WhatsApp',
       lead: '',
       alt: 'משה שוורצברג ברחוב עירוני בפראג',
     },
     services: {
-      headline: 'האתר הנכון לצעד הבא של העסק',
-      subline: 'נגדיר יחד מה הלקוחות צריכים להבין ולעשות — ונבנה סביב זה את האתר.',
+      headline: 'איזה אתר העסק שלכם באמת צריך?',
+      subline: 'אתר תדמית, דף נחיתה או פיתוח מותאם: לכל פתרון מטרה אחרת. נבחר לפי קהל היעד והפעולה שצריך לאפשר באתר.',
       items: [
         { title: 'אתר תדמית לעסק', desc: 'בית מקצועי לשירותים שלכם, עם תוכן ברור, עבודות והמלצות שמסייעים ללקוחות להבין אם אתם מתאימים להם.' },
         { title: 'דף נחיתה ממוקד', desc: 'עמוד לקמפיין או לשירות אחד, עם מסר ממוקד, הוכחות רלוונטיות ופעולה ברורה ליצירת קשר.' },
@@ -27,9 +27,9 @@ export const translations = {
       ],
     },
     process: {
-      headline: 'תהליך פשוט. תוצאות אמיתיות.',
+      headline: 'איך נראה תהליך העבודה איתי',
       subline:
-        'אני מלווה אותך משלב הרעיון ועד להשקה – עם תהליך ברור, שקוף ומותאם לעסק שלך.',
+        'אפיון, פיתוח, בדיקות והשקה בשלבים ברורים. אתם יודעים מה נבנה, מה נבדק ומה נשאר לפני העלייה לאוויר.',
       steps: [
         {
           title: 'היכרות ואפיון',
@@ -44,7 +44,7 @@ export const translations = {
         {
           title: 'השקה וליווי',
           lead: 'אני נשאר איתך גם אחרי ההשקה',
-          desc: 'לאחר העלייה לאוויר אני ממשיך ללוות, לבצע התאמות ולוודא שהמערכת עובדת בצורה מיטבית.',
+          desc: 'לאחר העלייה לאוויר אפשר להמשיך לתחזוקה, תיקונים ושיפורים בהתאם לצורך ולהיקף השירות שסוכם.',
         },
       ],
     },
@@ -52,7 +52,7 @@ export const translations = {
       headline: 'אתרים ופרויקטים שבניתי לעסקים',
       before: 'נקודת פתיחה',
       after: 'התוצאה',
-      seeAll: 'לצפייה בכל העבודות שלנו',
+      seeAll: 'לצפייה בכל הפרויקטים',
       allHeadline: 'תיק עבודות ופרויקטים נבחרים',
       allSubline:
         'דוגמאות לאתרים, דפי נחיתה ומערכות שפיתחתי, עם תיאור הפרויקט, העבודה שבוצעה וקישורים לפרטים נוספים כשאפשר.',
@@ -235,15 +235,15 @@ export const translations = {
     hero: {
       eyebrow: 'Building Code. Creating Solutions.',
       headline: 'Custom Website Development for Businesses in Israel',
-      subline: 'Custom websites, landing pages, and web development for businesses and service providers in Israel. Clear messaging, a smooth mobile experience, and an easy way to get in touch — from our first conversation to launch.',
-      ctaPrimary: 'Discuss your website',
+      subline: 'I develop business websites and landing pages alongside CRM systems, custom software, and automations. Projects begin with a real business requirement and move through scoping, development, testing, and launch.',
+      ctaPrimary: 'Discuss your project',
       ctaSecondary: 'Send a Message on WhatsApp',
       lead: '',
       alt: 'Moshe Schwartzberg on a city street in Prague',
     },
     services: {
-      headline: 'The right website for your next business step',
-      subline: 'We define what customers need to understand and do, then build the website around it.',
+      headline: 'Which type of website does your business need?',
+      subline: 'A business website, focused landing page, or custom web application solves a different need. Choose based on the audience and the action visitors should take.',
       items: [
         { title: 'Business websites', desc: 'A professional home for your services, with clear content, work samples, and testimonials that help customers decide whether you fit their needs.' },
         { title: 'Focused landing pages', desc: 'A page for one campaign or service, with a focused message, relevant proof, and a clear action to get in touch.' },
@@ -251,9 +251,9 @@ export const translations = {
       ],
     },
     process: {
-      headline: 'Simple Process. Real Results.',
+      headline: 'How I approach a development project',
       subline:
-        'I guide you from the first idea all the way to launch with a clear, transparent process tailored to your business.',
+        'Discovery, development, testing, and launch take place in defined stages so you can review the work and understand what remains before release.',
       steps: [
         {
           title: 'Discovery & Planning',
@@ -268,7 +268,7 @@ export const translations = {
         {
           title: 'Launch & Support',
           lead: 'I stay with you after launch',
-          desc: 'After launch, I keep supporting, refining, and making sure everything works at its best.',
+          desc: 'After launch, maintenance, fixes, and improvements can continue according to the agreed support scope.',
         },
       ],
     },
@@ -276,7 +276,7 @@ export const translations = {
       headline: 'Websites and Software Projects',
       before: 'Starting Point',
       after: 'Result',
-      seeAll: 'See all our work',
+      seeAll: 'Explore the full portfolio',
       allHeadline: 'Portfolio and Project Case Studies',
       allSubline:
         'Explore websites, landing pages, and business software projects, with descriptions of the work and links to further details where available.',
