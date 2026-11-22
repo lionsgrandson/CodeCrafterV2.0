@@ -126,7 +126,7 @@ export function Portfolio({
       media: { src: project.image || undefined, kind: project.id === 'ilan-shachar' ? 'logo' as const : 'screenshot' as const },
       externalLink: project.link,
       link: additionalCaseStudySlugsById[project.id] ? localizePath(additionalCaseStudySlugsById[project.id], lang) : project.link,
-      featured: project.id === 'codesite',
+      featured: project.id === 'codesite' || project.id === 'green-therapy',
     })),
   ]
 
