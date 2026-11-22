@@ -6,7 +6,6 @@ import {
   type Language,
   type SeoPage,
 } from './seoPages'
-import { caseStudyExtrasByLanguage } from './seoCaseStudyExtras'
 import { extraPagesByLanguage } from './seoExtraPages'
 import { factsPagesByLanguage } from './seoFactsPages'
 import { locationHubByLanguage } from './seoLocationHub'
@@ -16,7 +15,6 @@ import { servicesHubByLanguage } from './seoServicesHub'
 import { enhanceSeoPage } from './seoEnhancements'
 import { addPracticalSeoContent } from './seoBuyerGuides'
 import { addAdditionalBuyerGuides } from './seoAdditionalBuyerGuides'
-import { newCaseStudyPagesByLanguage } from './seoNewCaseStudies'
 import { editorialPagesByLanguage, relatedGuidesByService } from './seoEditorialPages'
 
 export { localizePath, serviceLabels, serviceSlugs, type Language, type SeoPage }
@@ -77,26 +75,14 @@ function withSearchConsoleMetadata(page: SeoPage, lang: Language): SeoPage {
   return override ? { ...page, ...override } : page
 }
 
-const relatedCaseStudiesByService: Record<string, string[]> = {
-  websites: ['aderet-argaman', 'ilan-shachar', 'green-therapy'],
-  'wordpress-development': ['aderet-argaman'],
-  'website-maintenance': ['aderet-argaman', 'ilan-shachar', 'green-therapy'],
-  'landing-page-development': ['green-therapy'],
-}
-
 function withRelatedGuides(page: SeoPage): SeoPage {
   const guideSlugs = relatedGuidesByService[page.slug] ?? []
-  const projects = relatedCaseStudiesByService[page.slug] ?? []
-  return guideSlugs.length || projects.length ? {
-    ...page,
-    ...(guideSlugs.length ? { relatedGuides: guideSlugs } : {}),
-    ...(projects.length ? { relatedProjects: [...new Set([...(page.relatedProjects ?? []), ...projects])] } : {}),
-  } : page
+  return guideSlugs.length ? { ...page, relatedGuides: guideSlugs } : page
 }
 
 export const pagesByLanguage: Record<Language, SeoPage[]> = {
-  he: [...corePagesByLanguage.he, ...caseStudyExtrasByLanguage.he, ...extraPagesByLanguage.he, ...systemsPagesByLanguage.he, ...commercialPagesByLanguage.he, servicesHubByLanguage.he, ...locationHubByLanguage.he, ...factsPagesByLanguage.he, ...newCaseStudyPagesByLanguage.he, ...editorialPagesByLanguage.he].map((page) => withRelatedGuides(addAdditionalBuyerGuides(addPracticalSeoContent(enhanceSeoPage(withSearchConsoleMetadata(page, 'he'), 'he'), 'he'), 'he'))),
-  en: [...corePagesByLanguage.en, ...caseStudyExtrasByLanguage.en, ...extraPagesByLanguage.en, ...systemsPagesByLanguage.en, ...commercialPagesByLanguage.en, servicesHubByLanguage.en, ...locationHubByLanguage.en, ...factsPagesByLanguage.en, ...newCaseStudyPagesByLanguage.en, ...editorialPagesByLanguage.en].map((page) => withRelatedGuides(addAdditionalBuyerGuides(addPracticalSeoContent(enhanceSeoPage(withSearchConsoleMetadata(page, 'en'), 'en'), 'en'), 'en'))),
+  he: [...corePagesByLanguage.he.filter(page => page.kind !== 'case-study'), ...extraPagesByLanguage.he, ...systemsPagesByLanguage.he, ...commercialPagesByLanguage.he, servicesHubByLanguage.he, ...locationHubByLanguage.he, ...factsPagesByLanguage.he, ...editorialPagesByLanguage.he].map((page) => withRelatedGuides(addAdditionalBuyerGuides(addPracticalSeoContent(enhanceSeoPage(withSearchConsoleMetadata(page, 'he'), 'he'), 'he'), 'he'))),
+  en: [...corePagesByLanguage.en.filter(page => page.kind !== 'case-study'), ...extraPagesByLanguage.en, ...systemsPagesByLanguage.en, ...commercialPagesByLanguage.en, servicesHubByLanguage.en, ...locationHubByLanguage.en, ...factsPagesByLanguage.en, ...editorialPagesByLanguage.en].map((page) => withRelatedGuides(addAdditionalBuyerGuides(addPracticalSeoContent(enhanceSeoPage(withSearchConsoleMetadata(page, 'en'), 'en'), 'en'), 'en'))),
 }
 
 export function getSeoPage(pathname: string, lang: Language) {
