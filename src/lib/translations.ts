@@ -88,7 +88,7 @@ export const translations = {
         },
         {
           title: 'פורטפוליו עמית קדוש',
-          desc: 'יצירת פורטפוליו לעמית קדוש, שהיא במקרה גם בת הזוג שלי.',
+          desc: 'אתר תיק עבודות לעמית קדוש, המציג יצירה ועבודות נבחרות בחוויית גלישה מותאמת למובייל.',
           before: 'עבודות יצירתיות שחיכו להצגה מלוטשת',
           after: 'חלון ראווה יצירתי, מקצועי ונעים לצפייה',
           link: '../../amitStarProject/',
@@ -144,7 +144,7 @@ export const translations = {
         },
         {
           title: 'Omnifood',
-          desc: 'דף נחיתה למנוי ארוחות חכמות שמחבר בין התאמה אישית, תזונה נוחה והוכחה חברתית ומוביל את המבקר בצורה ברורה להתחלת מנוי.',
+          desc: 'דמו של דף נחיתה למנוי ארוחות, המדגים מבנה שיווקי, הצגת מסלולים וטופס הרשמה. אינו מוצג כהוכחה לפעילות עסקית אמיתית.',
           before: 'שירות ארוחות חדש שחיכה להצעת ערך פשוטה ומשכנעת',
           after: 'חוויית שיווק ממוקדת שממחישה את השירות ומניעה להתנסות',
           link: 'https://omnifood.dev/',
@@ -315,7 +315,7 @@ export const translations = {
         },
         {
           title: 'Amit Kadosh Portfolio',
-          desc: 'Created a portfolio for Amit Kadosh who also happens to be my significant other.',
+          desc: 'A creative portfolio website for Amit Kadosh, showcasing selected work in a clear, mobile-friendly layout.',
           before: 'Creative work ready for a more polished showcase',
           after: 'Polished, professional creative showcase',
           link: '../../amitStarProject/',
@@ -384,7 +384,7 @@ export const translations = {
         },
         {
           title: 'Omnifood',
-          desc: 'A landing page for a smart meal subscription that combines personalization, convenient nutrition, and social proof, then guides visitors clearly toward starting a plan.',
+          desc: 'A concept landing page for a meal-subscription service, demonstrating a marketing layout, pricing sections, and a signup form rather than a verified operating business.',
           before:
             'A new meal service ready for a simple, persuasive value proposition',
           after:
