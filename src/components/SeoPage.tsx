@@ -8,11 +8,19 @@ import { guideLabels } from '../lib/seoEditorialPages'
 import type { SeoPage as SeoPageData } from '../lib/seoPages'
 import { FaqAccordion } from './FaqAccordion'
 
-const projectLabels: Record<string, string> = {
-  sumsup: 'SumsUp',
-  coderecovery: 'CodeRecovery',
-  'yuval-kadosh': 'יובל קדוש',
-  'project-orion': 'Project Orion',
+const projectLabels: Record<'he' | 'en', Record<string, string>> = {
+  he: {
+    sumsup: 'SumsUp', coderecovery: 'CodeRecovery', 'yuval-kadosh': 'יובל קדוש',
+    'project-orion': 'Project Orion', 'rainbow-asd': 'Rainbow ASD',
+    'shimon-photography': 'שמעון כהן צילום', 'aderet-argaman': 'אדרת וארגמן',
+    'ilan-shachar': 'אילן שחר', 'green-therapy': 'Green Therapy',
+  },
+  en: {
+    sumsup: 'SumsUp', coderecovery: 'CodeRecovery', 'yuval-kadosh': 'Yuval Kadosh',
+    'project-orion': 'Project Orion', 'rainbow-asd': 'Rainbow ASD',
+    'shimon-photography': 'Shimon Cohen Photography', 'aderet-argaman': 'Aderet & Argaman',
+    'ilan-shachar': 'Ilan Shachar', 'green-therapy': 'Green Therapy',
+  },
 }
 
 const profileLinks = [
@@ -396,7 +404,7 @@ export function SeoPage({ page }: SeoPageProps) {
                 <div className='seo-link-grid'>
                   {page.relatedProjects.map((slug) => (
                     <a key={slug} href={localizePath(`portfolio/${slug}`, lang)}>
-                      <span>{projectLabels[slug] ?? slug}</span><Arrow className='w-4 h-4' aria-hidden='true' />
+                      <span>{projectLabels[lang][slug] ?? slug}</span><Arrow className='w-4 h-4' aria-hidden='true' />
                     </a>
                   ))}
                 </div>
