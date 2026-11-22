@@ -138,6 +138,18 @@ for (const targetPath of ['/erp-development/', '/inventory-systems/', '/business
   if (inbound.length < 2) fail(`${targetPath} needs at least two prerendered inbound links, found ${inbound.length}`)
 }
 
+for (const path of [
+  '/en/portfolio/sumsup/',
+  '/en/portfolio/coderecovery/',
+  '/en/portfolio/yuval-kadosh/',
+  '/en/portfolio/project-orion/',
+]) {
+  const html = documents.get(path) ?? ''
+  const h1 = capture(html, /<h1[^>]*>([\\s\\S]*?)<\\/h1>/i)
+  if (/[\\u0590-\\u05ff]/.test(h1)) fail(path + ' has untranslated Hebrew H1')
+  if (html.includes('The original problem')) fail(path + ' still uses a generic English case-study template')
+}
+
 const buyerGuideChecks = [
   ['/websites/', 'מה לבדוק לפני שמזמינים אתר לעסק', 'האם אתר חדש מבטיח הופעה במקום הראשון בגוגל'],
   ['/crm-development/', 'בדיקות חובה לפני שמחליפים או בונים CRM', 'איך מונעים כפילות של לקוחות'],
