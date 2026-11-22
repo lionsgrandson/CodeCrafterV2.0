@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react'
 import { useLanguage } from '../App'
-import { contact, getWhatsAppUrl } from '../lib/contact'
+import { contact } from '../lib/contact'
 import { validateContact, type ContactInput, type ContactField } from '../lib/contactValidation'
 import { trackEvent, trackContactLead, readConsent } from '../lib/analytics'
 import { getCampaignAttribution } from '../lib/campaignAttribution'
@@ -92,7 +92,6 @@ export function ContactForm({ id = 'contact', title, description }: { id?: strin
         <p className='md:col-span-2 text-sm text-secondary'>{he ? 'הפרטים ישמשו למענה לפנייה, כפי שמפורט ב' : 'Your details will be used to reply, as described in the '}<a href='/privacy/' className='underline'>{he ? 'מדיניות הפרטיות' : 'privacy policy'}</a>.</p>
         <div className='md:col-span-2 flex flex-col sm:flex-row gap-3'>
           <button type='submit' disabled={status === 'sending' || status === 'sent'} className='button-primary px-6 py-4 disabled:opacity-70'>{status === 'sending' ? (he ? 'שולח…' : 'Sending…') : status === 'sent' ? (he ? 'הפנייה התקבלה' : 'Inquiry accepted') : (he ? 'שלחו בקשה להצעת מחיר' : 'Request a quote')}</button>
-          <a className='button-secondary px-6 py-4' href={getWhatsAppUrl(lang)} target='_blank' rel='noreferrer' data-placement='contact_whatsapp'>{he ? 'אפשר גם ב-WhatsApp' : 'Prefer WhatsApp?'}</a>
         </div>
       </form>
     </div>
