@@ -94,6 +94,7 @@ export function Portfolio({
     { src: '/portfolio/big-sale-logo.jpeg' },
     { src: '/portfolio/project-orion-logo.svg' },
     { src: '/portfolio/shimon-photography-logo.jpeg' },
+    { src: '/portfolio/aderet-argaman-logo.png' },
     {
       src: '/portfolio/coderecovery-screenshot.webp',
       kind: 'screenshot' as const,
