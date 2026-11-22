@@ -3,7 +3,6 @@ import { ArrowLeft, ArrowRight, ExternalLink, MapPin, MessageSquare } from 'luci
 import { useLanguage } from '../App'
 import { getWhatsAppUrl } from '../lib/contact'
 import { localizePath, serviceLabels } from '../lib/seoRoutes'
-import { pricingRows } from '../lib/seoFactsPages'
 import { guideLabels } from '../lib/seoEditorialPages'
 import type { SeoPage as SeoPageData } from '../lib/seoPages'
 import { FaqAccordion } from './FaqAccordion'
@@ -110,7 +109,6 @@ export function SeoPage({ page }: SeoPageProps) {
   const servicesPath = localizePath('services', lang)
   const portfolioPath = localizePath('portfolio', lang)
   const isServicesHub = page.slug === 'services'
-  const isPricingPage = page.slug === 'pricing'
   const pageSeed = hashPageSlug(page.slug)
   const layoutVariant = pageSeed % 5
   const pageHue = 205 + (pageSeed % 42)
@@ -163,10 +161,8 @@ export function SeoPage({ page }: SeoPageProps) {
             <h1>{page.h1}</h1>
             {page.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             <div className='seo-page-actions'>
-              <a className='button-primary px-7 py-4' href={isServicesHub ? localizePath('pricing', lang) : page.kind === 'directory' || page.kind === 'guide' ? localizePath('services', lang) : '#contact-page'}>
-                {isServicesHub
-                  ? (lang === 'he' ? 'למחירון' : 'View pricing')
-                  : page.kind === 'directory' || page.kind === 'guide' ? (lang === 'he' ? 'לשירותי הפיתוח' : 'Explore development services')
+              <a className='button-primary px-7 py-4' href={page.kind === 'directory' || page.kind === 'guide' ? localizePath('services', lang) : '#contact-page'}>
+                {page.kind === 'directory' || page.kind === 'guide' ? (lang === 'he' ? 'לשירותי הפיתוח' : 'Explore development services')
                   : (lang === 'he' ? 'בואו נדבר על הפרויקט' : 'Discuss your project')}
               </a>
               <a className='button-secondary px-7 py-4' href={getWhatsAppUrl(lang)} target='_blank' rel='noreferrer'>
@@ -262,11 +258,8 @@ export function SeoPage({ page }: SeoPageProps) {
             </div>
 
             <nav className='mt-6 flex flex-wrap gap-3' aria-label={lang === 'he' ? 'קישורים שימושיים' : 'Useful links'}>
-              <a className='button-primary px-5 py-3' href={localizePath('pricing', lang)}>
-                {lang === 'he' ? 'מחירים' : 'Pricing'}
-              </a>
               <a className='button-secondary px-5 py-3' href={localizePath('portfolio', lang)}>
-                {lang === 'he' ? 'עבודות ומקרי בוחן' : 'Portfolio and case studies'}
+                {lang === 'he' ? 'תיק עבודות' : 'Portfolio'}
               </a>
               <a className='button-secondary px-5 py-3' href={localizePath('locations', lang)}>
                 {lang === 'he' ? 'אזורי שירות' : 'Service areas'}
@@ -343,34 +336,6 @@ export function SeoPage({ page }: SeoPageProps) {
           </section>
         )}
 
-        {isPricingPage && (
-          <section className='seo-faq' aria-labelledby='pricing-table-heading'>
-            <span className='section-kicker'>{lang === 'he' ? 'מחירים בפועל' : 'Published prices'}</span>
-            <h2 id='pricing-table-heading'>{lang === 'he' ? 'מחירון שירותים מלא' : 'Full service pricing guide'}</h2>
-            <p>{lang === 'he' ? 'המחירים להלן נלקחו ממדריך השירותים והתמחור הנוכחי. מחיר שמסומן כמשוער עשוי להשתנות לאחר אפיון.' : 'The prices below come from the current services and pricing guide. A price marked as approximate may change after discovery.'}</p>
-            <div className='overflow-x-auto mt-5'>
-              <table className='w-full border-collapse text-start'>
-                <thead>
-                  <tr>
-                    <th className='p-3 border-b border-outline-variant/30 text-start'>{lang === 'he' ? 'שירות' : 'Service'}</th>
-                    <th className='p-3 border-b border-outline-variant/30 text-start'>{lang === 'he' ? 'מחיר' : 'Price'}</th>
-                    <th className='p-3 border-b border-outline-variant/30 text-start'>{lang === 'he' ? 'הערה' : 'Note'}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pricingRows[lang].map((row) => (
-                    <tr key={row.service}>
-                      <th scope='row' className='p-3 border-b border-outline-variant/15 text-start font-semibold'>{row.service}</th>
-                      <td className='p-3 border-b border-outline-variant/15'>{row.price}</td>
-                      <td className='p-3 border-b border-outline-variant/15 text-secondary'>{row.note ?? (row.external ? (lang === 'he' ? 'ספק חיצוני' : 'External specialist') : '')}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
-        )}
-
         {page.faq && (
           <section className='seo-faq' aria-labelledby='faq-heading'>
             <span className='section-kicker'>FAQ</span>
@@ -381,12 +346,12 @@ export function SeoPage({ page }: SeoPageProps) {
 
         {page.slug === 'websites' && <section className='seo-faq' data-section='testimonial'>
           <h2>{lang === 'he' ? 'מה אומרים אחרי ההשקה' : 'What a client says after launch'}</h2>
-          <blockquote className='mt-5 text-lg leading-relaxed'>{t.testimonials.items[0].text}</blockquote>
+          <blockquote className='mt-5 text-lg leading-relaxed'>{t.testimonials.items.find(review => review.name === 'Gabby')?.text}</blockquote>
           <p className='mt-3 font-semibold'>Gabby · CEO of SumsUp</p>
-          <a href={localizePath('portfolio/sumsup', lang)} className='underline'>{lang === 'he' ? 'למקרה הבוחן של SumsUp' : 'Read the SumsUp case study'}</a>
+          <a href={localizePath('portfolio', lang)} className='underline'>{lang === 'he' ? 'לצפייה בתיק העבודות' : 'Explore our portfolio'}</a>
         </section>}
 
-        {!isServicesHub && (page.relatedServices?.length || page.relatedProjects?.length || page.externalUrl) && (
+        {!isServicesHub && (page.relatedServices?.length || page.externalUrl) && (
           <aside className='seo-related' aria-label={lang === 'he' ? 'קישורים קשורים' : 'Related links'}>
             {page.relatedServices?.length ? (
               <div>
@@ -395,18 +360,6 @@ export function SeoPage({ page }: SeoPageProps) {
                   {page.relatedServices.map((slug) => (
                     <a key={slug} href={localizePath(slug, lang)}>
                       <span>{serviceLabels[lang][slug] ?? slug}</span><Arrow className='w-4 h-4' aria-hidden='true' />
-                    </a>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-            {page.relatedProjects?.length ? (
-              <div>
-                <h2>{lang === 'he' ? 'מקרי בוחן קשורים' : 'Related case studies'}</h2>
-                <div className='seo-link-grid'>
-                  {page.relatedProjects.map((slug) => (
-                    <a key={slug} href={localizePath(`portfolio/${slug}`, lang)}>
-                      <span>{projectLabels[lang][slug] ?? slug}</span><Arrow className='w-4 h-4' aria-hidden='true' />
                     </a>
                   ))}
                 </div>
@@ -441,11 +394,6 @@ export function SeoPage({ page }: SeoPageProps) {
                 <a href={servicesPath}>
                   <span>{lang === 'he' ? 'כל שירותי הפיתוח' : 'All development services'}</span><Arrow className='w-4 h-4' aria-hidden='true' />
                 </a>
-                {!isPricingPage && (
-                  <a href={localizePath('pricing', lang)}>
-                    <span>{lang === 'he' ? 'מחירון שירותים 2026' : '2026 service pricing'}</span><Arrow className='w-4 h-4' aria-hidden='true' />
-                  </a>
-                )}
                 <a href={localizePath('locations', lang)}>
                   <span>{lang === 'he' ? 'כל אזורי השירות' : 'All service areas'}</span><Arrow className='w-4 h-4' aria-hidden='true' />
                 </a>
@@ -453,15 +401,6 @@ export function SeoPage({ page }: SeoPageProps) {
             </div>
           </aside>
         )}
-
-        <aside className='mt-10 rounded-xl border border-outline-variant/20 bg-surface-container-low px-5 py-4 text-sm text-secondary' aria-label={lang === 'he' ? 'מקור וייחוס התוכן' : 'Content source and attribution'}>
-          <p>
-            {lang === 'he' ? 'מקור: CodeCrafter — משה שוורצברג. קישור קבוע למידע בעמוד זה: ' : 'Original publisher: CodeCrafter — Moshe Schwartzberg. Permanent source link: '}
-            <a className='underline underline-offset-4 text-primary' href={localizePath(page.slug, lang)}>
-              {`mosheschwartzberg.com${localizePath(page.slug, lang)}`}
-            </a>
-          </p>
-        </aside>
 
         {page.kind !== 'directory' && <ContactForm id='contact-page' title={lang === 'he' ? 'בואו נדבר על הפרויקט שלכם' : 'Let’s discuss your project'} description={lang === 'he' ? 'ספרו מה העסק צריך. אחזור אליכם לשיחת היכרות כדי להגדיר היקף, התאמה והצעת מחיר לפרויקט.' : 'Share what your business needs. I’ll reply for an introductory conversation about scope, fit, and a project quote.'} />}
       </div>
