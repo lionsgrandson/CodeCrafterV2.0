@@ -69,6 +69,17 @@ for (const url of sitemapUrls) {
   if (count(html, /<link\s+rel=["']canonical["']/gi) !== 1 || canonical !== expectedCanonical) fail(`${routePath} canonical is ${canonical}`)
   if (/noindex|none/i.test(robots)) fail(`${routePath} is unexpectedly noindex`)
   if (count(html, /<h1\b/gi) !== 1) fail(`${routePath} must have one h1`)
+  // Every informative static image needs descriptive alt text and a real build asset.
+  for (const image of html.matchAll(/<img\b[^>]*>/gi)) {
+    const tag = image[0]
+    const alt = capture(tag, /\balt=["']([^"']*)["']/i)
+    if (!alt) fail(`${routePath} has an image without descriptive alt text`)
+    const src = capture(tag, /\bsrc=["']([^"']+)["']/i)
+    if (!baseUrl && src.startsWith('/') && !existsSync(join(distDir, src.replace(/^\//, '')))) {
+      fail(`${routePath} references missing image ${src}`)
+    }
+  }
+
   if (!/<main\b/i.test(html) || !/<nav\b/i.test(html) || !/<footer\b/i.test(html)) fail(`${routePath} lacks semantic page regions`)
   if (!/<a\s+[^>]*href=["']\//i.test(html)) fail(`${routePath} has no internal outlink in raw HTML`)
   for (const key of ['og:title', 'og:description', 'og:url', 'og:image']) {
@@ -94,6 +105,19 @@ for (const url of sitemapUrls) {
       if (/placeholder|example\.com|AggregateRating|"Review"/i.test(serialized)) fail(`${routePath} schema contains placeholder or controlled review data`)
     }
   }
+}
+
+for (const locale of ['/', '/en/']) {
+  const routePath = locale === '/' ? '/portfolio/' : '/en/portfolio/'
+  const html = documents.get(routePath) ?? ''
+  if (html.includes('Mahagony Israel') || html.includes('mahagonyisraeldidntpay')) fail('Mahagony was not removed from ' + routePath)
+  if (/HIPAA.compliant|תואם HIPAA/i.test(html)) fail('Portfolio makes an unsupported compliance claim: ' + routePath)
+  const script = [...html.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)][0]?.[1]
+  if (!script) fail('portfolio structured data missing: ' + routePath)
+  const list = JSON.parse(script)['@graph']?.find((item) => item['@type'] === 'ItemList')
+  if (!list || list.numberOfItems !== list.itemListElement?.length || list.numberOfItems < 10) fail('portfolio structured data does not match its project listing: ' + routePath)
+  const expectedSumsUp = `${origin}${locale === '/' ? '/portfolio/sumsup/' : '/en/portfolio/sumsup/'}`
+  if (!list.itemListElement.some((item) => item.url === expectedSumsUp)) fail('portfolio structured data is missing its internal SumsUp case study: ' + routePath)
 }
 
 const titles = [...documents.values()].map((html) => capture(html, /<title[^>]*>([\s\S]*?)<\/title>/i))

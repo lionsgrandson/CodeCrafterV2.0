@@ -235,8 +235,17 @@ const sharedPages: Record<Language, SeoPage[]> = {
   en: [],
 }
 
+const englishPortfolioImageAlt: Record<string, string> = {
+  about: 'Portrait of Moshe Schwartzberg, founder of CodeCrafter',
+  'portfolio/sumsup': 'SumsUp white-label tax services platform logo',
+  'portfolio/coderecovery': 'Screenshot of the CodeRecovery data recovery service website',
+  'portfolio/yuval-kadosh': 'Yuval Kadosh speaking and coaching website logo',
+  'portfolio/project-orion': 'Project Orion strategic consulting logo',
+}
+
 sharedPages.en = sharedPages.he.map((page) => ({
   ...page,
+  image: page.image ? { ...page.image, alt: englishPortfolioImageAlt[page.slug] ?? page.image.alt } : undefined,
   title: page.kind === 'about' ? 'Moshe Schwartzberg | Founder of CodeCrafter' : `${page.h1} | CodeCrafter case study`,
   description: page.kind === 'about' ? 'Meet Moshe Schwartzberg, founder of CodeCrafter, and the practical approach behind custom websites, business systems, CRM, automation, and apps.' : `A factual CodeCrafter case study covering the challenge, solution, public implementation, and relevant services for ${page.h1}.`,
   eyebrow: page.kind === 'about' ? 'About' : 'Case study',

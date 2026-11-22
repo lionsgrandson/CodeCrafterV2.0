@@ -1,11 +1,11 @@
 <div align="center">
   <h1>CodeCrafter</h1>
-  <p><strong>Crafting Code. Crafting Solutions.</strong></p>
+  <p><strong>Crafting Code, Creating Solutions.</strong></p>
 </div>
 
 ## About CodeCrafter V2.0
 
-CodeCrafter V2.0 is the next evolution of the CodeCrafter experience. This version is built to showcase a polished modern portfolio website powered by a fast Vite/React stack, designed for developers, creators, and small teams who want a clean, responsive presentation of their skills, services, and projects.
+CodeCrafter is Moshe Schwartzberg's bilingual (Hebrew/English) business website for web development, custom software, CRM systems, integrations, and automation. The application uses React and Vite with prerendered HTML for canonical service, location, and portfolio pages.
 
 ### What it does
 
@@ -55,6 +55,8 @@ CodeCrafter V2.0 is about moving beyond a basic template and into a refined digi
 
 Run:
 
-`npm run build`
+`npm run lint && npm run build && npm test && npm run test:e2e`
 
-The production build is served through the current Cloudflare hosting configuration.
+The build prerenders the public routes, generates the XML sitemap, and runs SEO validation. Browser tests require Playwright Chromium to be installed (`npx playwright install chromium`).
+
+**GitHub Actions has been removed by request.** Run these checks locally before pushing or deploying. The production build is served through Cloudflare Pages behind the existing routed Cloudflare Worker; a successful GitHub push is not proof that production has updated.

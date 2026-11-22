@@ -9,7 +9,7 @@ const he: SeoPage = {
   eyebrow: 'אזורי שירות',
   h1: 'איפה CodeCrafter עובדת עם עסקים בישראל',
   intro: [
-    'CodeCrafter Moshe Schwartzberg פועלת כעסק נותן שירות ולא מציגה סניפים או כתובות משרד שלא קיימים. במקום עמודי עיר גנריים, כל אזור מתאר את מודל העבודה שנמסר בפועל.',
+    'CodeCrafter מספקת שירותי פיתוח לעסקים בישראל. ניתן לתאם פגישות בחלק מהאזורים, ובאזורים אחרים העבודה מתבצעת מרחוק. אין סניפים או משרדי קבלת קהל קבועים בערים המפורטות.',
     'השירותים כוללים אתרים, מערכות, CRM, CMS, אוטומציות, אינטגרציות ואפליקציות. ההבדל בין האזורים הוא אופן העבודה: פגישה פנים אל פנים, עבודה מרחוק או שילוב של השניים.',
   ],
   sections: [
@@ -54,7 +54,7 @@ const en: SeoPage = {
   eyebrow: 'Service areas',
   h1: 'Where CodeCrafter works with businesses in Israel',
   intro: [
-    'CodeCrafter Moshe Schwartzberg operates as a service area business and does not claim branches or office addresses that do not exist. Each local page describes the delivery model that was actually provided.',
+    'CodeCrafter provides development services to businesses in Israel. Meetings can be arranged in some areas, while other areas are served remotely. There are no permanent client-facing offices in the cities listed.',
     'Services include websites, custom systems, CRM, CMS, automation, integrations, and apps. The local difference is whether work is available in person, remotely, or through both modes.',
   ],
   sections: [

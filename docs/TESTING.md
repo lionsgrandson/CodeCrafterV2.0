@@ -11,7 +11,7 @@
 
 The test server explicitly clears email credentials, even when the host has them. Browser form requests are mocked. The same backend implementation is exercised with an injected mock transport. GA4/Clarity network scripts are intercepted; tests verify call contracts and event privacy, not live vendor ingestion. Initial test failures were corrected: the consent initializer originally erased stored choices on reload, FAQ assertions needed to await native toggle dispatch, and the language URL assertion needed to preserve the contact anchor. No failures are suppressed.
 
-CI now uses Node 22, runs unit and browser/accessibility checks after the existing build, and installs Chromium. The user subsequently authorized production publication. Production deployed successfully; no production POST or paid subscription occurred. GA4 key-event/custom-definition/enhanced-measurement settings and Clarity strict masking were updated in the existing accounts.
+Historical verification used Node 22, unit tests, build and browser/accessibility checks with Chromium. The GitHub Actions workflow was removed by request on 2026-11-22; run the documented checks locally for future changes. The user subsequently authorized production publication. Production deployed successfully; no production POST or paid subscription occurred. GA4 key-event/custom-definition/enhanced-measurement settings and Clarity strict masking were updated in the existing accounts.
 
 ## Visual review
 

@@ -4,6 +4,8 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 import { pagesByLanguage, localizePath, type Language, type SeoPage } from '../src/lib/seoRegistry.ts'
 import { pricingRows } from '../src/lib/seoFactsPages.ts'
 import { translations } from '../src/lib/translations.ts'
+import { additionalPortfolioProjects } from '../src/lib/additionalPortfolioProjects.ts'
+import { portfolioCaseStudySlugsByIndex } from '../src/lib/portfolioCaseStudyLinks.ts'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = path.join(root, 'dist')
@@ -25,18 +27,18 @@ type Route = {
 
 const homeMetadata: Record<Language, Pick<Route, 'title' | 'description'>> = {
   he: {
-    title: 'בניית אתרים ודפי נחיתה לעסקים | CodeCrafter',
-    description: 'בניית אתרים לעסקים ודפי נחיתה בהתאמה אישית עם CodeCrafter: תוכן ברור, חוויית מובייל, תשתית SEO וליווי ישיר משיחת ההיכרות ועד ההשקה.',
+    title: 'בניית אתרים לעסקים ודפי נחיתה בהתאמה אישית | CodeCrafter',
+    description: 'בניית אתרים לעסקים ודפי נחיתה עם CodeCrafter: אפיון, פיתוח רספונסיבי, SEO טכני, תוכן ברור, טפסים ואינטגרציות בהתאם לצורכי העסק.',
   },
   en: {
-    title: 'Web Development Company Israel | CodeCrafter',
-    description: 'CodeCrafter builds business websites and landing pages in Israel, with clear content, mobile usability, technical SEO, and direct developer support from discovery to launch.',
+    title: 'Web Development Company in Israel | CodeCrafter',
+    description: 'CodeCrafter develops custom business websites and landing pages in Israel with clear content, responsive design, technical SEO, reliable forms, and integrations.',
   },
 }
 
 const portfolioMetadata: Record<Language, Pick<Route, 'title' | 'description'>> = {
   he: {
-    title: 'תיק עבודות ומקרי בוחן | CodeCrafter',
+    title: 'תיק עבודות: אתרים, מערכות ומקרי בוחן | CodeCrafter',
     description: 'אתרים, מערכות וחוויות דיגיטליות שנבנו ב-CodeCrafter לעסקים, ארגונים ויוצרים, עם קישורים למקרי בוחן ולפרויקטים הפעילים.',
   },
   en: {
@@ -103,7 +105,7 @@ function absoluteUrl(routePath: string) {
 }
 
 function normalizePortfolioUrl(url?: string) {
-  if (url === 'https://mahagonyisraeldidntpay.netlify.app/') return undefined
+  if (!url || !/^https?:\/\//i.test(url)) return undefined
   if (url === 'https://rainbowasdv2.netlify.app/') return 'https://rainbow-asd.com/'
   if (url === 'https://eclectic-marigold-0fe508.netlify.app/') return 'https://shimonphotos.com/'
   return url
@@ -325,12 +327,25 @@ function schemaFor(route: Route) {
   }
 
   if (route.type === 'collection') {
+    const projects = [
+      ...translations[route.lang].portfolio.projects.map((project, index) => ({
+        name: project.title,
+        url: portfolioCaseStudySlugsByIndex[index]
+          ? absoluteUrl(localizePath(portfolioCaseStudySlugsByIndex[index], route.lang))
+          : normalizePortfolioUrl(project.link),
+      })),
+      ...additionalPortfolioProjects.map((project) => ({
+        name: project.title[route.lang],
+        url: project.link,
+      })),
+    ]
     graph.push({
       '@type': 'ItemList',
       '@id': `${url}#projects`,
-      numberOfItems: translations[route.lang].portfolio.projects.length,
-      itemListElement: translations[route.lang].portfolio.projects.map((project, index) => ({
-        '@type': 'ListItem', position: index + 1, name: project.title, url: normalizePortfolioUrl(project.link),
+      numberOfItems: projects.length,
+      itemListElement: projects.map((project, index) => ({
+        '@type': 'ListItem', position: index + 1, name: project.name,
+        ...(project.url ? { url: project.url } : {}),
       })),
     })
   }

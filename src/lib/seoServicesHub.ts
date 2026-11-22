@@ -28,10 +28,10 @@ const he: SeoPage = {
 const en: SeoPage = {
   kind: 'service',
   slug: 'services',
-  title: 'Business Development Services | CodeCrafter',
+  title: 'Website & Software Development Services | CodeCrafter',
   description: 'CodeCrafter service directory for websites, CRM, ERP, mobile apps, web apps, APIs, automation, integrations, ecommerce, CMS, portals, inventory systems, and maintenance.',
   eyebrow: 'All services in one place',
-  h1: 'Development services for business',
+  h1: 'Website, software, and automation services',
   intro: [
     'Choose by what the business needs to achieve — website and commerce, a management system, an app, or connections and automation. From there you can open the exact service or go straight to pricing.',
   ],
