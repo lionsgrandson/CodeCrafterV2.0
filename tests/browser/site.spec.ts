@@ -136,11 +136,12 @@ test('navigation, FAQ, portfolio, vendor failures and service links', async ({ p
   await expect(page.locator('img[src="/portfolio/aderet-argaman-logo.png"]')).toHaveCount(1)
   await expect(page.getByRole('heading', { name: 'Aderet & Argaman' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Green Therapy' })).toBeVisible()
-  await expect(page.locator('img[src="/portfolio/coderecovery-screenshot.webp"]')).toHaveCount(1)
-  await expect(page.locator('img[src="/portfolio/omnifood-logo.png"]')).toHaveCount(1)
+  await expect(page.getByRole('heading', { name: 'CodeRecovery' })).toHaveCount(0)
+  await expect(page.locator('img[src="https://omnifood.dev/img/omnifood-logo.png"]')).toHaveCount(1)
+  await expect(page.locator('a[href="https://rainbowasdv2.netlify.app"]')).toHaveCount(1)
 })
 test('existing redirects, unknown route and nonconfigured local backend', async ({ request }) => {
-  for (const [from, to] of [['/blog.html', '/websites/'], ['/index.html', '/'], ['/portfolio/Rainbow-ASD', '/portfolio/rainbow-asd/']]) {
+  for (const [from, to] of [['/blog.html', '/websites/'], ['/index.html', '/'], ['/portfolio/Rainbow-ASD', '/portfolio/'], ['/pricing/', '/services/'], ['/en/pricing/', '/en/services/'], ['/portfolio/sumsup/', '/portfolio/'], ['/en/portfolio/green-therapy/', '/en/portfolio/']]) {
     const response = await request.get(from, { maxRedirects: 0 }); expect(response.status()).toBe(301); expect(response.headers().location).toBe(to)
   }
   expect((await request.get('/does-not-exist/')).status()).toBe(404)
@@ -184,14 +185,14 @@ test('vendor exceptions cannot break a successful form', async ({ page }) => {
   await expect(page.locator('form[data-contact-form]').getByRole('status')).toBeVisible()
 })
 
-test('Google verification file, editorial hub and portfolio case studies are crawlable', async ({ request, page }) => {
+test('Google verification file and editorial hub are crawlable', async ({ request, page }) => {
   const verification = await request.get('/google6768eed8771c59fe.html')
   expect(verification.status()).toBe(200)
   expect((await verification.text()).trim()).toBe('google-site-verification: google6768eed8771c59fe.html')
   await analytics(page, 'denied')
   await page.goto('/en/site-map/')
   await expect(page.getByRole('heading', { level: 1 })).toContainText('CodeCrafter website sitemap')
-  for (const path of ['/en/guides/', '/en/portfolio/aderet-argaman/', '/en/portfolio/ilan-shachar/', '/en/portfolio/green-therapy/']) {
+  for (const path of ['/en/guides/', '/en/guides/planning-a-custom-crm/', '/en/guides/woocommerce-to-shopify-migration/']) {
     expect(await page.locator('a[href="' + path + '"]').count()).toBeGreaterThan(0)
     const response = await request.get(path)
     expect(response.status()).toBe(200)
@@ -230,4 +231,31 @@ test('denying analytics also excludes campaign attribution from contact requests
   await form.getByRole('button', { name: 'Request a quote' }).click()
   await expect(form.getByRole('status')).toBeVisible()
   expect(received.attribution).toBeUndefined()
+})
+
+test('only the three requested projects appear on the homepage', async ({ page }) => {
+  await analytics(page, 'denied')
+  for (const lang of ['he', 'en'] as const) {
+    await page.goto(localizePath('', lang))
+    const cards = page.locator('#portfolio .portfolio-inner-card, #portfolio .group')
+    await expect(cards).toHaveCount(3)
+    for (const slug of ['ykadosh.co.il', 'shimonphotos.com', 'ilanshacar.netlify.app']) {
+      await expect(page.locator('#portfolio a[href*="' + slug + '"]')).toHaveCount(1)
+    }
+    await expect(page.locator('a[href*="/pricing/"]')).toHaveCount(0)
+    await expect(page.locator('a[href*="/portfolio/"][href*="coderecovery"]')).toHaveCount(0)
+  }
+})
+test('project reviews, public links, and removed attribution footers', async ({ page }) => {
+  await analytics(page, 'denied')
+  await page.goto('/')
+  for (const href of [
+    'https://www.google.com/maps/contrib/112206677045488065213/reviews?hl=iw',
+    'https://www.google.com/maps/contrib/113497995420725252333/reviews?hl=iw-IL',
+  ]) await expect(page.locator('#testimonials a[href="' + href + '"]')).toHaveCount(1)
+  await expect(page.locator('#testimonials .testimonial-card')).toHaveCount(6)
+  await page.goto('/websites/')
+  await expect(page.getByText('מקור: CodeCrafter')).toHaveCount(0)
+  await page.goto('/en/guides/')
+  await expect(page.getByText('Original publisher: CodeCrafter')).toHaveCount(0)
 })
