@@ -62,7 +62,7 @@ After account/data validation and sufficient baseline traffic, test one approved
 
 ## Files changed or added
 
-- `.github/workflows/seo-build-check.yml`
+- `.github/workflows/seo-build-check.yml` (historical addition; removed on 2026-11-22 at the owner's request)
 - `.gitignore`
 - `docs/ANALYTICS.md`
 - `docs/CONVERSION-FUNNEL.md`
