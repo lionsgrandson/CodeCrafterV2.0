@@ -5,6 +5,7 @@ import { useLanguage } from '../App'
 import { WordReveal } from './WordReveal'
 import { localizePath } from '../lib/seoRoutes'
 import { additionalPortfolioProjects } from '../lib/additionalPortfolioProjects'
+import { portfolioCaseStudySlugsByIndex } from '../lib/portfolioCaseStudyLinks'
 
 type ProjectMediaProps = {
   src?: string
@@ -104,14 +105,8 @@ export function Portfolio({
   const existingProjects = t.portfolio.projects.map((project, idx) => {
     const sourceLink = normalizePortfolioLink(project.link)
     const externalLink = sourceLink
-    const caseStudyLink = ({
-      0: localizePath('portfolio/yuval-kadosh', lang),
-      1: localizePath('portfolio/rainbow-asd', lang),
-      3: localizePath('portfolio/sumsup', lang),
-      7: localizePath('portfolio/project-orion', lang),
-      8: localizePath('portfolio/shimon-photography', lang),
-      9: localizePath('portfolio/coderecovery', lang),
-    } as Record<number, string>)[idx]
+    const caseStudySlug = portfolioCaseStudySlugsByIndex[idx]
+    const caseStudyLink = caseStudySlug ? localizePath(caseStudySlug, lang) : undefined
 
     return {
       ...project,
