@@ -7,21 +7,6 @@ import { guideLabels } from '../lib/seoEditorialPages'
 import type { SeoPage as SeoPageData } from '../lib/seoPages'
 import { FaqAccordion } from './FaqAccordion'
 
-const projectLabels: Record<'he' | 'en', Record<string, string>> = {
-  he: {
-    sumsup: 'SumsUp', coderecovery: 'CodeRecovery', 'yuval-kadosh': 'יובל קדוש',
-    'project-orion': 'Project Orion', 'rainbow-asd': 'Rainbow ASD',
-    'shimon-photography': 'שמעון כהן צילום', 'aderet-argaman': 'אדרת וארגמן',
-    'ilan-shachar': 'אילן שחר', 'green-therapy': 'Green Therapy',
-  },
-  en: {
-    sumsup: 'SumsUp', coderecovery: 'CodeRecovery', 'yuval-kadosh': 'Yuval Kadosh',
-    'project-orion': 'Project Orion', 'rainbow-asd': 'Rainbow ASD',
-    'shimon-photography': 'Shimon Cohen Photography', 'aderet-argaman': 'Aderet & Argaman',
-    'ilan-shachar': 'Ilan Shachar', 'green-therapy': 'Green Therapy',
-  },
-}
-
 const profileLinks = [
   { label: 'LinkedIn', href: 'https://il.linkedin.com/in/codecrafteril' },
   { label: 'Instagram', href: 'https://www.instagram.com/moshe_blackberg/' },
@@ -137,12 +122,10 @@ export function SeoPage({ page }: SeoPageProps) {
               <li><a href={localizePath('locations', lang)}>{lang === 'he' ? 'אזורי שירות' : 'Service areas'}</a></li>
             ) : page.kind === 'service' && !isServicesHub ? (
               <li><a href={servicesPath}>{lang === 'he' ? 'שירותים' : 'Services'}</a></li>
-            ) : page.kind === 'case-study' ? (
-              <li><a href={portfolioPath}>{lang === 'he' ? 'תיק עבודות' : 'Portfolio'}</a></li>
             ) : page.kind === 'guide' ? (
               <li><a href={localizePath('guides', lang)}>{lang === 'he' ? 'מדריכים' : 'Guides'}</a></li>
             ) : null}
-            {(page.slug.startsWith('locations/') || (page.kind === 'service' && !isServicesHub) || page.kind === 'case-study' || page.kind === 'guide') && <li aria-hidden='true'>/</li>}
+            {(page.slug.startsWith('locations/') || (page.kind === 'service' && !isServicesHub) || page.kind === 'guide') && <li aria-hidden='true'>/</li>}
             <li aria-current='page'>{page.h1}</li>
           </ol>
         </nav>
