@@ -177,7 +177,7 @@ const hePages: SeoPage[] = [
 
 const enPages: SeoPage[] = [
   {
-    kind: 'service', slug: 'erp-development', title: 'Custom ERP Development Israel | CodeCrafter', description: 'Custom ERP development and modular business management software for shared customer, order, procurement, inventory, project, service, permission, and reporting workflows.', eyebrow: 'Connected business systems', h1: 'Custom ERP and business management system development',
+    kind: 'service', slug: 'erp-development', title: 'Custom ERP Development in Israel | CodeCrafter', description: 'Custom ERP development and modular business management software for shared customer, order, procurement, inventory, project, service, permission, and reporting workflows.', eyebrow: 'Connected business systems', h1: 'Custom ERP and business management system development',
     intro: ['ERP connects business processes, people, and data in one operating environment. Instead of repeatedly copying information between spreadsheets, inboxes, and disconnected tools, the business can define shared records and workflows across sales, orders, procurement, inventory, projects, and service.', 'CodeCrafter builds modular management platforms around the real workflow and develops integrations or extensions around an existing ERP. This is not a claim to replace enterprise products such as Oracle, SAP, or Priority. Discovery establishes which modules should be custom, which systems should remain in place, and where integration is the safer choice.'],
     sections: [
       { heading: 'A single source of truth without needless duplication', paragraphs: ['The core is an agreed data model. A customer, product, supplier, order, or project has a consistent identity, while each role receives the access it needs. One source of truth does not require every datum to live in one app; an existing platform may remain authoritative while the custom system synchronizes through a controlled API.'] },
@@ -199,7 +199,7 @@ const enPages: SeoPage[] = [
     ], relatedServices: ['custom-software', 'crm-development', 'inventory-systems', 'automation', 'integrations', 'business-portals'],
   },
   {
-    kind: 'service', slug: 'inventory-systems', title: 'Custom Inventory and Warehouse Systems Israel | CodeCrafter', description: 'Custom inventory and warehouse systems for products, SKUs, locations, receiving, transfers, returns, counts, movement history, permissions, reporting, and integrations.', eyebrow: 'Inventory operations', h1: 'Custom inventory and warehouse system development',
+    kind: 'service', slug: 'inventory-systems', title: 'Custom Inventory & Warehouse Software | CodeCrafter', description: 'Custom inventory and warehouse systems for products, SKUs, locations, receiving, transfers, returns, counts, movement history, permissions, reporting, and integrations.', eyebrow: 'Inventory operations', h1: 'Custom inventory and warehouse system development',
     intro: ['Reliable inventory software records more than a final number. It explains why stock changed, where it moved, who performed the action, which document it belongs to, and what the balance was before and after.', 'CodeCrafter develops focused inventory systems or inventory modules within a wider ERP. Scope follows the products, warehouses, purchasing and sales process, and the systems that already own part of the data.'],
     sections: [
       { heading: 'An inventory model that matches operations', items: ['Products, variants, SKUs, and categories', 'Warehouses, zones, and locations', 'Units and item condition when required', 'Suppliers and supplier-item relationships', 'Reorder thresholds, alerts, and shortages', 'Permissions by warehouse, action, or role'] },
@@ -236,7 +236,7 @@ const enPages: SeoPage[] = [
     ], relatedServices: ['erp-development', 'crm-development', 'cms-development', 'custom-software', 'app-development', 'integrations'],
   },
   {
-    kind: 'service', slug: 'web-app-development', title: 'Web App Development Israel | CodeCrafter', description: 'Web application development in Israel for browser-based business systems, users, permissions, databases, forms, workflows, dashboards, reports, APIs, and integrations.', eyebrow: 'Software in the browser', h1: 'Web app development for business workflows',
+    kind: 'service', slug: 'web-app-development', title: 'Web App Development in Israel | CodeCrafter', description: 'Web application development in Israel for browser-based business systems, users, permissions, databases, forms, workflows, dashboards, reports, APIs, and integrations.', eyebrow: 'Software in the browser', h1: 'Web app development for business workflows',
     intro: ['A web app is interactive software that runs in a browser: a management system, dashboard, internal tool, account area, or portal. Unlike a content-led website, it manages users, data, and ongoing actions.', 'CodeCrafter designs and develops web applications around a defined business process, from screens and permissions to backend, database, and integrations. Products can support an internal team, customers, or partners and expand in modules.'],
     sections: [
       { heading: 'Website, web app, or mobile app', paragraphs: ['A website is suited to presenting services and content. A web app supports interactive browser work with accounts, data, and workflows. An installed mobile app is useful when device experience, push notifications, field use, or hardware capabilities are central. A responsive web product may be enough when installation adds little value.'] },
@@ -260,7 +260,7 @@ const enPages: SeoPage[] = [
       { heading: 'Services for northern businesses', items: ['Hebrew and English websites', 'Custom CRM and management systems', 'Modular ERP and inventory systems', 'Web apps, portals, and mobile apps', 'Integrations and workflow automation'] },
       { heading: 'Haifa and Karmiel delivery', paragraphs: ['Haifa projects are delivered remotely. Karmiel work may combine an arranged meeting with ongoing digital delivery. Discovery, decisions, feedback, and testing remain documented in both cases.'] },
       { heading: 'How remote work stays clear', paragraphs: ['The project defines a contact, objectives, first release, feedback points, and approval method. Demonstrations happen throughout delivery, with testing and documentation appropriate to scope.'] },
-      { heading: 'No invented local branch', paragraphs: ['CodeCrafter does not present an office in Haifa or regional branches. This page states the real service area and delivery model.'] },
+      { heading: 'Working remotely with a developer in northern Israel', paragraphs: ['Project scope, design reviews and testing can be handled remotely. Where useful, meetings in Karmiel may be arranged in advance; there is no public office in Haifa.'] },
     ], relatedServices: ['websites', 'crm-development', 'erp-development', 'custom-software', 'app-development', 'automation'],
   },
   {
