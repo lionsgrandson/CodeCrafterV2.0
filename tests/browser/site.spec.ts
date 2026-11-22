@@ -139,9 +139,10 @@ test('navigation, FAQ, portfolio, vendor failures and service links', async ({ p
   await page.goto('/en/portfolio/')
   await expect(page.getByRole('heading', { name: 'Mahagony Israel' })).toHaveCount(0)
   await expect(page.getByRole('heading', { name: 'SumsUp' })).toBeVisible()
-  await expect(page.locator('img[src="/portfolio/aderet-argaman-logo.png"]')).toHaveCount(1)
-  await expect(page.getByRole('heading', { name: 'Aderet & Argaman' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Aderet & Argaman' })).toHaveCount(0)
+  await expect(page.getByRole('heading', { name: 'AI Pro' })).toHaveCount(0)
   await expect(page.getByRole('heading', { name: 'Green Therapy' })).toBeVisible()
+  await expect(page.locator('#portfolio img[src="https://greentherapy.co.il/assets/green-therapy-logo.webp"]')).toHaveCount(1)
   await expect(page.getByRole('heading', { name: 'CodeRecovery' })).toHaveCount(0)
   await expect(page.locator('img[src="https://omnifood.dev/img/omnifood-logo.png"]')).toHaveCount(1)
   await expect(page.locator('a[href="https://rainbowasdv2.netlify.app"]')).toHaveCount(1)
@@ -248,9 +249,11 @@ test('only the three requested projects appear on the homepage', async ({ page }
     await page.goto(localizePath('', lang))
     const cards = page.locator('#portfolio .portfolio-inner-card, #portfolio .group')
     await expect(cards).toHaveCount(3)
-    for (const slug of ['ykadosh.co.il', 'shimonphotos.com', 'ilanshacar.netlify.app']) {
+    for (const slug of ['greentherapy.co.il', 'shimonphotos.com', 'ilanshacar.netlify.app']) {
       await expect(page.locator('#portfolio a[href*="' + slug + '"]')).toHaveCount(1)
     }
+    await expect(page.locator('#portfolio a[href*="ykadosh.co.il"]')).toHaveCount(0)
+    await expect(page.locator('#portfolio img[src="https://greentherapy.co.il/assets/green-therapy-logo.webp"]')).toHaveCount(1)
     await expect(page.locator('a[href*="/pricing/"]')).toHaveCount(0)
     await expect(page.locator('a[href*="/portfolio/"][href*="coderecovery"]')).toHaveCount(0)
   }
