@@ -7,5 +7,5 @@ export const portfolioCaseStudySlugsByIndex: Record<number, string> = {
   3: 'portfolio/sumsup',
   7: 'portfolio/project-orion',
   8: 'portfolio/shimon-photography',
-  9: 'portfolio/coderecovery',
+  10: 'portfolio/coderecovery',
 }
