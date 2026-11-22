@@ -13,13 +13,13 @@
     "start": "node --import tsx server.ts",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
-    "postbuild": "node scripts/seo-check.mjs --dist dist && node scripts/seo-config-check.mjs",
+    "postbuild": "node --test tests/seo-meta.test.mjs && node scripts/seo-check.mjs --dist dist && node scripts/seo-config-check.mjs",
     "seo:check": "node scripts/seo-check.mjs --dist dist",
     "seo:config": "node scripts/seo-config-check.mjs",
     "seo:check:production": "node scripts/seo-check.mjs --base-url https://mosheschwartzberg.com",
     "seo:audit:production": "node scripts/production-seo-audit.mjs",
     "seo:cloudflare": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/cloudflare-seo-hardening.ps1",
-    "test": "node --import tsx --test tests/*.test.ts",
+    "test": "node --import tsx --test tests/*.test.ts tests/*.test.mjs",
     "test:e2e": "playwright test"
   },
   "dependencies": {
