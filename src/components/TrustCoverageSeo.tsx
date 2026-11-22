@@ -31,7 +31,6 @@ export function TrustCoverageSeo() {
         locationsHeading: 'אזורי שירות בישראל',
         locationsIntro: 'CodeCrafter פועלת כעסק נותן שירות. אין כאן כתובות משרד מומצאות. בכל אזור מפורט אם העבודה היא פנים אל פנים, מרחוק או בשילוב.',
         locationsAll: 'לכל אזורי השירות',
-        pricing: 'מחירון שירותים 2026',
         authorityHeading: 'פרופילים וביקורות מחוץ לאתר',
         authorityIntro: 'כאן אפשר לבדוק את הפרופילים הציבוריים של CodeCrafter ושל משה שוורצברג ולקרוא ביקורות במקורות החיצוניים הרלוונטיים.',
         cta: 'דברו איתי על הפרויקט',
@@ -50,7 +49,6 @@ export function TrustCoverageSeo() {
         locationsHeading: 'Service areas in Israel',
         locationsIntro: 'CodeCrafter operates as a service area business. No office addresses are invented. Each local page states whether delivery is in person, remote, or both.',
         locationsAll: 'View all service areas',
-        pricing: '2026 service pricing',
         authorityHeading: 'Profiles and reviews outside this website',
         authorityIntro: 'These public profiles and review sources let visitors check the business identity and explore independently published feedback.',
         cta: 'Discuss your project',
@@ -133,7 +131,6 @@ export function TrustCoverageSeo() {
               <h3 className='text-2xl font-bold font-headline mb-2'>{copy.authorityHeading}</h3>
               <p className='text-secondary leading-relaxed max-w-3xl'>{copy.authorityIntro}</p>
             </div>
-            <a href={localizePath('pricing', lang)} className='button-secondary px-6 py-3 whitespace-nowrap'>{copy.pricing}</a>
           </div>
           <div className='flex flex-wrap gap-3 mt-5'>
             {authorityLinks.map((link) => (
