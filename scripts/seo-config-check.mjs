@@ -52,6 +52,7 @@ expect(rootHtaccess.includes('RewriteRule ^manifest\\.json$ - [R=410,L]'), 'Apac
 expect(rootHtaccess.includes('RewriteRule ^portfolio/(sumsup|coderecovery|yuval-kadosh|rainbow-asd|'), 'Apache redirects old case-study URLs into the consolidated portfolio')
 expect(/X-Robots-Tag:\s*noindex/i.test(headers), 'static-host headers include noindex protection')
 expect(headers.includes("connect-src 'self' https://api.emailjs.com"), 'Cloudflare CSP allows the EmailJS contact endpoint')
+expect(headers.includes('https://cdn.jsdelivr.net https://www.google-analytics.com'), 'Cloudflare CSP allows Sienna accessibility language-pack fetches from jsDelivr')
 expect(server.includes("res.setHeader('X-Robots-Tag', 'noindex')"), 'Node server adds X-Robots-Tag noindex')
 expect(server.includes("new Set(['/favicon.svg', '/manifest.json'])"), 'Node server treats obsolete asset URLs as gone')
 expect(server.includes('retiredCaseStudy') && server.includes("return res.redirect(301, pathname.startsWith('/en/') ? '/en/portfolio/' : '/portfolio/')"), 'Node server redirects retired case-study routes to the localized portfolio')
