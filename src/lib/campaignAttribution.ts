@@ -29,7 +29,7 @@ export function normalizeCampaignAttribution(input: unknown): CampaignAttributio
     if (value) result[field] = value
   }
   const path = record.landing_path
-  if (typeof path === 'string' && path.length <= 160 && /^\/(?:[a-zA-Z0-9/_-]*)$/.test(path)) result.landing_path = path
+  if (typeof path === 'string' && path.length <= 160 && /^\/(?:[a-zA-Z0-9\/_-]*)$/.test(path)) result.landing_path = path
   const referrer = record.referrer_origin
   if (typeof referrer === 'string' && referrer.length <= 160) {
     try {
